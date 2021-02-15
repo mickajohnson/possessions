@@ -31,13 +31,15 @@ export function NightStandStuffBoard({ G: { rooms, characters, roomOrder } }) {
                   {rooms[room].drops.map((drop) => (
                     <Drop>
                       <span>{drop.value}</span>
-                      <span>{drop.character}</span>
+                      <span>{characters[drop.character].name}</span>
                     </Drop>
                   ))}
                 </Drops>
                 <span>{rooms[room].name}</span>
                 {roomsWithCharacters[room]
-                  ? roomsWithCharacters[room].map((character) => character)
+                  ? roomsWithCharacters[room].map(
+                      (character) => characters[character].name
+                    )
                   : null}
               </Room>
             ))
