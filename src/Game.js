@@ -27,7 +27,15 @@ export const NightStandStuff = {
       // if (G.cells[id] !== null) {
       //   return INVALID_MOVE;
       // }
-      // G.rooms[] = ctx.currentPlayer;
+      const currentRoom = G.characters[character].location;
+      G.rooms[currentRoom].drops.push({ value: 1, character: character });
+    },
+    dropNegativeOne: (G, ctx, character) => {
+      // if (G.cells[id] !== null) {
+      //   return INVALID_MOVE;
+      // }
+      const currentRoom = G.characters[character].location;
+      G.rooms[currentRoom].drops.push({ value: -1, character: character });
     },
   },
   ai: {

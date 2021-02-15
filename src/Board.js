@@ -20,8 +20,6 @@ export function NightStandStuffBoard({ G: { rooms, characters, roomOrder } }) {
     [characters]
   );
 
-  console.log(roomsWithCharacters);
-
   return (
     <div>
       <table id="board">
@@ -29,6 +27,14 @@ export function NightStandStuffBoard({ G: { rooms, characters, roomOrder } }) {
           {roomOrder.map((roomRow) =>
             roomRow.map((room) => (
               <Room key={room}>
+                <Drops>
+                  {rooms[room].drops.map((drop) => (
+                    <Drop>
+                      <span>{drop.value}</span>
+                      <span>{drop.character}</span>
+                    </Drop>
+                  ))}
+                </Drops>
                 <span>{rooms[room].name}</span>
                 {roomsWithCharacters[room]
                   ? roomsWithCharacters[room].map((character) => character)
@@ -54,5 +60,15 @@ const Room = styled.td`
   justify-content: center;
   width: 200px;
   height: 200px;
+  border: 1px solid black;
+`;
+
+const Drops = styled.div``;
+
+const Drop = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 1px solid black;
 `;
