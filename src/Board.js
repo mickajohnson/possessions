@@ -27,14 +27,16 @@ export function NightStandStuffBoard({ G: { rooms, characters, roomOrder } }) {
           {roomOrder.map((roomRow) =>
             roomRow.map((room) => (
               <Room key={room}>
-                <Drops>
-                  {rooms[room].drops.map((drop) => (
-                    <Drop>
-                      <span>{drop.value}</span>
-                      <span>{characters[drop.character].name}</span>
-                    </Drop>
-                  ))}
-                </Drops>
+                {rooms[room].drops.length ? (
+                  <Drops>
+                    {rooms[room].drops.map((drop) => (
+                      <Drop>
+                        <span>{drop.value}</span>
+                        <span>{characters[drop.character].name}</span>
+                      </Drop>
+                    ))}
+                  </Drops>
+                ) : null}
                 <span>{rooms[room].name}</span>
                 {roomsWithCharacters[room]
                   ? roomsWithCharacters[room].map(
@@ -59,13 +61,16 @@ const Room = styled.td`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 200px;
   height: 200px;
   border: 1px solid black;
 `;
 
-const Drops = styled.div``;
+const Drops = styled.div`
+  display: flex;
+  justify-content: space-around;
+`;
 
 const Drop = styled.div`
   display: flex;
