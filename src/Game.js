@@ -1,11 +1,12 @@
 import { INVALID_MOVE } from "boardgame.io/core";
 import shuffle from "lodash/shuffle";
+import chunk from "lodash/chunk";
 
 import { ROOMS } from "./constants";
 
 export const NightStandStuff = {
   setup: () => ({
-    roomOrder: shuffle(ROOMS),
+    roomOrder: chunk(shuffle(Object.keys(ROOMS)), 3),
     rooms: ROOMS,
   }),
   turn: {

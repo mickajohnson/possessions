@@ -1,54 +1,29 @@
 import React from "react";
 import styled from "styled-components";
 
-export class NightStandStuffBoard extends React.Component {
-  onClick(id) {
-    this.props.moves.clickCell(id);
-  }
+export function NightStandStuffBoard({ G }) {
+  // onClick(id) {
+  //   this.props.moves.clickCell(id);
+  // }
 
-  render() {
-    let winner = "";
-    if (this.props.ctx.gameover) {
-      winner =
-        this.props.ctx.gameover.winner !== undefined ? (
-          <div id="winner">Winner: {this.props.ctx.gameover.winner}</div>
-        ) : (
-          <div id="winner">Draw!</div>
-        );
-    }
-
-    // let tbody = [];
-    // for (let i = 0; i < 3; i++) {
-    //   let cells = [];
-    //   for (let j = 0; j < 3; j++) {
-    //     const id = 3 * i + j;
-    //     cells.push(
-    //       <td style={cellStyle} key={id} onClick={() => this.onClick(id)}>
-    //         {this.props.G.cells[id]}
-    //       </td>
-    //     );
-    //   }
-    //   tbody.push(<tr key={i}>{cells}</tr>);
-    // }
-
-    return (
-      <div>
-        <table id="board">
-          <House>
-            {this.props.G.roomOrder.map((room) => (
-              <Room key={room.displayName}>
-                <span>{room.displayName}</span>
-                {room.characters.map((character) => (
+  return (
+    <div>
+      <table id="board">
+        <House>
+          {G.roomOrder.map((roomRow) =>
+            roomRow.map((room) => (
+              <Room key={room}>
+                <span>{G.rooms[room].displayName}</span>
+                {G.rooms[room].characters.map((character) => (
                   <span>{character}</span>
                 ))}
               </Room>
-            ))}
-          </House>
-        </table>
-        {winner}
-      </div>
-    );
-  }
+            ))
+          )}
+        </House>
+      </table>
+    </div>
+  );
 }
 
 const House = styled.tbody`
