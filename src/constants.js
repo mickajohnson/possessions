@@ -1,52 +1,52 @@
+// TODO: BEtter constants here
+
 export const MOM = "Mom";
 export const DAD = "Dad";
 export const DAUGHTER = "Daughter";
 export const GRANDPA = "Grandpa";
 
+export const CHARACTERS = {
+  [MOM]: { name: "Mom", location: "parentsRoom" },
+  [DAD]: { name: "Dad", location: "bathroom" },
+  [DAUGHTER]: { name: "Daughter", location: "daughtersRoom" },
+  [GRANDPA]: { name: "Grandpa", location: "grandpasRoom" },
+};
+
 export const ROOMS = {
   livingRoom: {
-    displayName: "Living Room",
+    name: "Living Room",
     drops: [],
-    characters: [],
   },
   diningRoom: {
-    displayName: "Dining Room",
+    name: "Dining Room",
     drops: [],
-    characters: [],
   },
   kitchen: {
-    displayName: "Kitchen",
+    name: "Kitchen",
     drops: [],
-    characters: [],
   },
   bathroom: {
-    displayName: "Bathroom",
+    name: "Bathroom",
     drops: [],
-    characters: [DAD],
   },
   parentsRoom: {
-    displayName: "Parent's Room",
+    name: "Parent's Room",
     drops: [],
-    characters: [MOM],
   },
   daughtersRoom: {
-    displayName: "Daughter's Room",
+    name: "Daughter's Room",
     drops: [],
-    characters: [DAUGHTER],
   },
   grandpasRoom: {
-    displayName: "Grandpa's Room",
+    name: "Grandpa's Room",
     drops: [],
-    characters: [GRANDPA],
   },
   garage: {
-    displayName: "Garage",
+    name: "Garage",
     drops: [],
-    characters: [],
   },
   office: {
-    displayName: "Office",
+    name: "Office",
     drops: [],
-    characters: [],
   },
 };

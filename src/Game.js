@@ -2,12 +2,13 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import shuffle from "lodash/shuffle";
 import chunk from "lodash/chunk";
 
-import { ROOMS } from "./constants";
+import { ROOMS, CHARACTERS } from "./constants";
 
 export const NightStandStuff = {
   setup: () => ({
     roomOrder: chunk(shuffle(Object.keys(ROOMS)), 3),
     rooms: ROOMS,
+    characters: CHARACTERS,
   }),
   turn: {
     moveLimit: 1,
@@ -22,11 +23,11 @@ export const NightStandStuff = {
   // },
 
   moves: {
-    clickCell: (G, ctx, id) => {
-      if (G.cells[id] !== null) {
-        return INVALID_MOVE;
-      }
-      G.cells[id] = ctx.currentPlayer;
+    dropPositiveOne: (G, ctx, character) => {
+      // if (G.cells[id] !== null) {
+      //   return INVALID_MOVE;
+      // }
+      // G.rooms[] = ctx.currentPlayer;
     },
   },
   ai: {

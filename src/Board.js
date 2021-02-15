@@ -1,22 +1,38 @@
-import React from "react";
+import * as React from "react";
 import styled from "styled-components";
+import reduce from "lodash/reduce";
 
-export function NightStandStuffBoard({ G }) {
-  // onClick(id) {
-  //   this.props.moves.clickCell(id);
-  // }
+export function NightStandStuffBoard({ G: { rooms, characters, roomOrder } }) {
+  const roomsWithCharacters = React.useMemo(
+    () =>
+      reduce(
+        characters,
+        (roomData, characterData, character) => {
+          (
+            roomData[characterData.location] ||
+            (roomData[characterData.location] = [])
+          ).push(character);
+
+          return roomData;
+        },
+        {}
+      ),
+    [characters]
+  );
+
+  console.log(roomsWithCharacters);
 
   return (
     <div>
       <table id="board">
         <House>
-          {G.roomOrder.map((roomRow) =>
+          {roomOrder.map((roomRow) =>
             roomRow.map((room) => (
               <Room key={room}>
-                <span>{G.rooms[room].displayName}</span>
-                {G.rooms[room].characters.map((character) => (
-                  <span>{character}</span>
-                ))}
+                <span>{rooms[room].name}</span>
+                {roomsWithCharacters[room]
+                  ? roomsWithCharacters[room].map((character) => character)
+                  : null}
               </Room>
             ))
           )}
