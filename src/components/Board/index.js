@@ -4,51 +4,36 @@ import reduce from "lodash/reduce";
 import map from "lodash/map";
 
 import { isValidMoveOne } from "../../game/validations";
-
-export const MOVE_ONE = "MOVE_ONE";
+import {
+  reducer,
+  moveClickAction,
+  MOVE_ONE,
+  characterClickAction,
+  roomClickAction,
+  resetAction,
+  initialState,
+} from "./reducer";
 
 export default function NightStandStuffBoard({
   G: { rooms, characters, roomOrder, relationships },
   moves,
 }) {
-  const [memo, setMemo] = React.useState("");
-
-  const handleMoveClick = () => {
-    setMemo("Select a character");
-    setStagedAction(MOVE_ONE);
-  };
-
-  const handleCharacterClick = (character) => {
-    if (stagedAction === MOVE_ONE) {
-      setMemo(`Where should ${character} go?`);
-      setSelectedCharacter(character);
-    }
-  };
-
-  const handleRoomClick = (room) => {
-    if (stagedAction === MOVE_ONE && selectedCharacter) {
-      setMemo(`${selectedCharacter} to ${room}?`);
-      setSelectedRoom(room);
-    }
-  };
-
-  const handleCancelClick = () => {
-    setMemo("");
-    setStagedAction(null);
-    setSelectedRoom(null);
-    setSelectedCharacter(null);
-  };
+  const [
+    { message, stagedAction, selectedCharacter, selectedRoom },
+    dispatch,
+  ] = React.useReducer(reducer, initialState);
 
   const handleConfirmClick = () => {
     if (stagedAction === MOVE_ONE && selectedRoom && selectedCharacter) {
       moves.moveOne(selectedCharacter, selectedRoom);
-      handleCancelClick();
+      dispatch(resetAction);
     }
   };
 
-  const [stagedAction, setStagedAction] = React.useState(null);
-  const [selectedCharacter, setSelectedCharacter] = React.useState(null);
-  const [selectedRoom, setSelectedRoom] = React.useState(null);
+  const handleCharacterClick = (e, character) => {
+    e.stopPropagation();
+    dispatch(characterClickAction(character));
+  };
 
   const roomsWithCharacters = React.useMemo(
     () =>
@@ -85,7 +70,7 @@ export default function NightStandStuffBoard({
                 )
               }
               selected={selectedRoom === room}
-              onClick={() => handleRoomClick(room)}
+              onClick={() => dispatch(roomClickAction(room))}
             >
               {rooms[room].drops.length ? (
                 <Drops>
@@ -101,7 +86,7 @@ export default function NightStandStuffBoard({
               {roomsWithCharacters[room]
                 ? roomsWithCharacters[room].map((character) => (
                     <Character
-                      onClick={() => handleCharacterClick(character)}
+                      onClick={(e) => handleCharacterClick(e, character)}
                       showBorder={
                         stagedAction === MOVE_ONE &&
                         (selectedCharacter === null ||
@@ -125,14 +110,14 @@ export default function NightStandStuffBoard({
           </RelationshipWrapper>
         ))}
       </Relationships>
-      <button onClick={handleMoveClick}>Move 1</button>
+      <button onClick={() => dispatch(moveClickAction)}>Move 1</button>
       {stagedAction !== null ? (
-        <button onClick={handleCancelClick}>Cancel</button>
+        <button onClick={() => dispatch(resetAction)}>Cancel</button>
       ) : null}
       {stagedAction !== null ? (
         <button onClick={handleConfirmClick}>Confirm</button>
       ) : null}
-      <p>{memo}</p>
+      <p>{message}</p>
     </Container>
   );
 }
