@@ -68,16 +68,7 @@ export default function NightStandStuffBoard({
   );
 
   return (
-    <div>
-      <div>
-        {map(relationships, (relationshipData, relationshipKey) => (
-          <div key={relationshipKey}>
-            {relationshipData.name}
-            {relationshipData.score}
-          </div>
-        ))}
-      </div>
-
+    <Container>
       <table id="board">
         <House>
           {roomOrder.map((room) => (
@@ -126,6 +117,14 @@ export default function NightStandStuffBoard({
           ))}
         </House>
       </table>
+      <Relationships>
+        {map(relationships, (relationshipData, relationshipKey) => (
+          <RelationshipWrapper key={relationshipKey}>
+            <span>{relationshipData.name}</span>
+            <span>{relationshipData.score}</span>
+          </RelationshipWrapper>
+        ))}
+      </Relationships>
       <button onClick={handleMoveClick}>Move 1</button>
       {stagedAction !== null ? (
         <button onClick={handleCancelClick}>Cancel</button>
@@ -134,9 +133,11 @@ export default function NightStandStuffBoard({
         <button onClick={handleConfirmClick}>Confirm</button>
       ) : null}
       <p>{memo}</p>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div``;
 
 const House = styled.tbody`
   display: grid;
@@ -173,4 +174,17 @@ const Character = styled.div`
   border-style: solid;
   border-width: ${({ showBorder }) => (showBorder ? "1px" : "0px")};
   border-color: ${({ selected }) => (selected ? "green" : "blue")};
+`;
+
+const Relationships = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 60%;
+  column-gap: 10px;
+  row-gap: 5px;
+`;
+
+const RelationshipWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
 `;
