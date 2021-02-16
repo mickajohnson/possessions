@@ -1,6 +1,6 @@
 import { Client } from "boardgame.io/react";
-import { NightStandStuff } from "./Game";
-import { NightStandStuffBoard } from "./Board";
+import NightStandStuff from "../../game";
+import NightStandStuffBoard from "../Board";
 
 const App = Client({
   game: NightStandStuff,
