@@ -1,9 +1,14 @@
-// TODO: BEtter constants here
-
 export const MOM = "MOM";
 export const DAD = "DAD";
 export const DAUGHTER = "DAUGHTER";
 export const GRANDPA = "GRANDPA";
+
+export const MOM_DAD = `${MOM}${DAD}`;
+export const MOM_GRANDPA = `${MOM}${GRANDPA}`;
+export const MOM_DAUGHTER = `${MOM}${DAUGHTER}`;
+export const DAD_DAUGHTER = `${DAD}${DAUGHTER}`;
+export const GRANDPA_DAUGHTER = `${GRANDPA}${DAUGHTER}`;
+export const GRANDPA_DAD = `${GRANDPA}${DAD}`;
 
 export const LIVING_ROOM = "LIVING_ROOM";
 export const DINING_ROOM = "DINING_ROOM";
@@ -14,49 +19,3 @@ export const BATHROOM = "BATHROOM";
 export const OFFICE = "OFFICE";
 export const GARAGE = "GARAGE";
 export const KITCHEN = "KITCHEN";
-
-export const CHARACTERS = {
-  [MOM]: { name: "Mom", location: PARENTS_ROOM },
-  [DAD]: { name: "Dad", location: BATHROOM },
-  [DAUGHTER]: { name: "Daughter", location: DAUGHTERS_ROOM },
-  [GRANDPA]: { name: "Grandpa", location: GRANDPAS_ROOM },
-};
-
-export const ROOMS = {
-  [LIVING_ROOM]: {
-    name: "Living Room",
-    drops: [],
-  },
-  [DINING_ROOM]: {
-    name: "Dining Room",
-    drops: [],
-  },
-  [KITCHEN]: {
-    name: "Kitchen",
-    drops: [],
-  },
-  [BATHROOM]: {
-    name: "Bathroom",
-    drops: [],
-  },
-  [PARENTS_ROOM]: {
-    name: "Parent's Room",
-    drops: [],
-  },
-  [DAUGHTERS_ROOM]: {
-    name: "Daughter's Room",
-    drops: [],
-  },
-  [GRANDPAS_ROOM]: {
-    name: "Grandpa's Room",
-    drops: [],
-  },
-  [GARAGE]: {
-    name: "Garage",
-    drops: [],
-  },
-  [OFFICE]: {
-    name: "Office",
-    drops: [],
-  },
-};

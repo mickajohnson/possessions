@@ -1,13 +1,14 @@
 import * as React from "react";
 import styled from "styled-components";
 import reduce from "lodash/reduce";
+import map from "lodash/map";
 
-import { isValidMoveOne } from "../../game/gameData";
+import { isValidMoveOne } from "../../game/validations";
 
 export const MOVE_ONE = "MOVE_ONE";
 
 export default function NightStandStuffBoard({
-  G: { rooms, characters, roomOrder },
+  G: { rooms, characters, roomOrder, relationships },
   moves,
 }) {
   const [memo, setMemo] = React.useState("");
@@ -68,6 +69,15 @@ export default function NightStandStuffBoard({
 
   return (
     <div>
+      <div>
+        {map(relationships, (relationshipData, relationshipKey) => (
+          <div key={relationshipKey}>
+            {relationshipData.name}
+            {relationshipData.score}
+          </div>
+        ))}
+      </div>
+
       <table id="board">
         <House>
           {roomOrder.map((room) => (

@@ -1,18 +1,76 @@
-export const validMoveOnes = {
-  0: [1, 3],
-  1: [0, 2, 4],
-  2: [2, 5],
-  3: [0, 4, 6],
-  4: [1, 3, 5, 7],
-  5: [2, 4, 8],
-  6: [3, 7],
-  7: [6, 4, 8],
-  8: [7, 5],
+import {
+  MOM,
+  DAD,
+  DAUGHTER,
+  GRANDPA,
+  DAUGHTERS_ROOM,
+  BATHROOM,
+  PARENTS_ROOM,
+  GRANDPAS_ROOM,
+  DINING_ROOM,
+  KITCHEN,
+  LIVING_ROOM,
+  GARAGE,
+  OFFICE,
+  MOM_DAD,
+  MOM_DAUGHTER,
+  MOM_GRANDPA,
+  GRANDPA_DAD,
+  GRANDPA_DAUGHTER,
+  DAD_DAUGHTER,
+} from "../constants";
+
+export const Relationships = {
+  [MOM_DAD]: { name: "Mom & Dad", score: 0 },
+  [MOM_DAUGHTER]: { name: "Mom & Daughter", score: 0 },
+  [MOM_GRANDPA]: { name: "Mom & Grandpa", score: 0 },
+  [GRANDPA_DAD]: { name: "Grandpa & Dad", score: 0 },
+  [GRANDPA_DAUGHTER]: { name: "Grandpa & Daughter", score: 0 },
+  [DAD_DAUGHTER]: { name: "Dad & Daughter", score: 0 },
 };
 
-export const isValidMoveOne = (G, characterKey, locationKey) => {
-  const destinationIndex = G.roomOrder.indexOf(locationKey);
-  const originIndex = G.roomOrder.indexOf(G.characters[characterKey].location);
+export const Characters = {
+  [MOM]: { name: "Mom", location: PARENTS_ROOM },
+  [DAD]: { name: "Dad", location: BATHROOM },
+  [DAUGHTER]: { name: "Daughter", location: DAUGHTERS_ROOM },
+  [GRANDPA]: { name: "Grandpa", location: GRANDPAS_ROOM },
+};
 
-  return validMoveOnes[originIndex].includes(destinationIndex);
+export const Rooms = {
+  [LIVING_ROOM]: {
+    name: "Living Room",
+    drops: [],
+  },
+  [DINING_ROOM]: {
+    name: "Dining Room",
+    drops: [],
+  },
+  [KITCHEN]: {
+    name: "Kitchen",
+    drops: [],
+  },
+  [BATHROOM]: {
+    name: "Bathroom",
+    drops: [],
+  },
+  [PARENTS_ROOM]: {
+    name: "Parent's Room",
+    drops: [],
+  },
+  [DAUGHTERS_ROOM]: {
+    name: "Daughter's Room",
+    drops: [],
+  },
+  [GRANDPAS_ROOM]: {
+    name: "Grandpa's Room",
+    drops: [],
+  },
+  [GARAGE]: {
+    name: "Garage",
+    drops: [],
+  },
+  [OFFICE]: {
+    name: "Office",
+    drops: [],
+  },
 };
