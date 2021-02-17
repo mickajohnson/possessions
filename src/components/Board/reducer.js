@@ -1,4 +1,6 @@
 export const MOVE_ONE = "MOVE_ONE";
+export const MOVE_TWO = "MOVE_TWO";
+
 export const initialState = {
   message: "",
   selectedRoom: null,
@@ -8,14 +10,21 @@ export const initialState = {
 
 export function reducer(state, action) {
   switch (action.type) {
-    case MOVE_CLICK:
+    // CLEAN UP below - action should pass stagedAction
+    case MOVE_ONE_CLICK:
       return {
         ...state,
         message: "Select a character",
         stagedAction: MOVE_ONE,
       };
+    case MOVE_TWO_CLICK:
+      return {
+        ...state,
+        message: "Select a character",
+        stagedAction: MOVE_TWO,
+      };
     case CHARACTER_CLICK:
-      if (state.stagedAction === MOVE_ONE) {
+      if ([MOVE_ONE, MOVE_TWO].includes(state.stagedAction)) {
         return {
           ...state,
           message: `Where should ${action.character} go?`,
@@ -25,7 +34,10 @@ export function reducer(state, action) {
         return state;
       }
     case ROOM_CLICK:
-      if (state.stagedAction === MOVE_ONE && state.selectedCharacter) {
+      if (
+        [MOVE_ONE, MOVE_TWO].includes(state.stagedAction) &&
+        state.selectedCharacter
+      ) {
         return {
           ...state,
           message: `${state.selectedCharacter} to ${action.room}?`,
@@ -41,13 +53,18 @@ export function reducer(state, action) {
   }
 }
 
-const MOVE_CLICK = "MOVE_CLICK";
+const MOVE_ONE_CLICK = "MOVE_ONE_CLICK";
+const MOVE_TWO_CLICK = "MOVE_TWO_CLICK";
 const CHARACTER_CLICK = "CHARACTER_CLICK";
 const ROOM_CLICK = "ROOM_CLICK";
 const RESET = "RESET";
 
-export const moveClickAction = {
-  type: MOVE_CLICK,
+export const moveOneClickAction = {
+  type: MOVE_ONE_CLICK,
+};
+
+export const moveTwoClickAction = {
+  type: MOVE_TWO_CLICK,
 };
 
 export const resetAction = {

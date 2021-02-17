@@ -3,11 +3,13 @@ import styled from "styled-components";
 import reduce from "lodash/reduce";
 import map from "lodash/map";
 
-import { isValidMoveOne } from "../../game/validations";
+import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
 import {
   reducer,
-  moveClickAction,
+  moveOneClickAction,
+  moveTwoClickAction,
   MOVE_ONE,
+  MOVE_TWO,
   characterClickAction,
   roomClickAction,
   resetAction,
@@ -24,10 +26,15 @@ export default function NightStandStuffBoard({
   ] = React.useReducer(reducer, initialState);
 
   const handleConfirmClick = () => {
-    if (stagedAction === MOVE_ONE && selectedRoom && selectedCharacter) {
+    // if (canConfirm(state)) {
+    // stagedAction === MOVE_ONE && selectedRoom && selectedCharacter
+    if (stagedAction === MOVE_ONE) {
       moves.moveOne(selectedCharacter, selectedRoom);
-      dispatch(resetAction);
+    } else if (stagedAction === MOVE_TWO) {
+      moves.moveTwo(selectedCharacter, selectedRoom);
     }
+    dispatch(resetAction);
+    // }
   };
 
   const handleCharacterClick = (e, character) => {
@@ -59,10 +66,22 @@ export default function NightStandStuffBoard({
           <Room
             key={room}
             option={
-              stagedAction === MOVE_ONE &&
-              selectedCharacter &&
-              (selectedRoom === null || selectedRoom === room) &&
-              isValidMoveOne({ roomOrder, characters }, selectedCharacter, room)
+              (stagedAction === MOVE_ONE &&
+                selectedCharacter &&
+                (selectedRoom === null || selectedRoom === room) &&
+                isValidMoveOne(
+                  { roomOrder, characters },
+                  selectedCharacter,
+                  room
+                )) ||
+              (stagedAction === MOVE_TWO &&
+                selectedCharacter &&
+                (selectedRoom === null || selectedRoom === room) &&
+                isValidMoveTwo(
+                  { roomOrder, characters },
+                  selectedCharacter,
+                  room
+                ))
             }
             selected={selectedRoom === room}
             onClick={() => dispatch(roomClickAction(room))}
@@ -84,7 +103,8 @@ export default function NightStandStuffBoard({
                     key={character}
                     onClick={(e) => handleCharacterClick(e, character)}
                     showBorder={
-                      stagedAction === MOVE_ONE &&
+                      (stagedAction === MOVE_ONE ||
+                        stagedAction === MOVE_TWO) &&
                       (selectedCharacter === null ||
                         selectedCharacter === character)
                     }
@@ -105,7 +125,8 @@ export default function NightStandStuffBoard({
           </RelationshipWrapper>
         ))}
       </Relationships>
-      <button onClick={() => dispatch(moveClickAction)}>Move 1</button>
+      <button onClick={() => dispatch(moveOneClickAction)}>Move 1</button>
+      <button onClick={() => dispatch(moveTwoClickAction)}>Move 2</button>
       {stagedAction !== null ? (
         <button onClick={() => dispatch(resetAction)}>Cancel</button>
       ) : null}
