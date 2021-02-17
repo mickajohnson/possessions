@@ -1,16 +1,29 @@
 import { INVALID_MOVE } from "boardgame.io/core";
 import shuffle from "lodash/shuffle";
+import cloneDeep from "lodash/cloneDeep";
 
-import { Relationships, Rooms, Characters } from "./gameData";
+import { Relationships, Rooms, Characters, initialDrops } from "./gameData";
 import { isValidReact, isValidMoveOne } from "./validations";
 
 export const NightStandStuff = {
-  setup: () => ({
-    roomOrder: shuffle(Object.keys(Rooms)),
-    rooms: Rooms,
-    characters: Characters,
-    relationships: Relationships,
-  }),
+  setup: () => {
+    const roomOrder = shuffle(Object.keys(Rooms));
+    const shuffledDrops = shuffle([...initialDrops]);
+    const rooms = cloneDeep(Rooms);
+    roomOrder.forEach((roomKey, index) => {
+      rooms[roomKey].position = index;
+      if (shuffledDrops.length && index !== 4) {
+        rooms[roomKey].drops.push(shuffledDrops.pop());
+      }
+    });
+
+    return {
+      roomOrder,
+      rooms,
+      characters: Characters,
+      relationships: Relationships,
+    };
+  },
 
   moves: {
     dropPositiveOne: (G, _, character) => {

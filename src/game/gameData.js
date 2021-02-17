@@ -19,6 +19,7 @@ import {
   GRANDPA_DAUGHTER,
   DAD_DAUGHTER,
 } from "../constants";
+import { makeId } from "../utils";
 
 export const Relationships = {
   [MOM_DAD]: { name: "Mom & Dad", score: 0 },
@@ -40,37 +41,57 @@ export const Rooms = {
   [LIVING_ROOM]: {
     name: "Living Room",
     drops: [],
+    position: 0,
   },
   [DINING_ROOM]: {
     name: "Dining Room",
     drops: [],
+    position: 0,
   },
   [KITCHEN]: {
     name: "Kitchen",
     drops: [],
+    position: 0,
   },
   [BATHROOM]: {
     name: "Bathroom",
     drops: [],
+    position: 0,
   },
   [PARENTS_ROOM]: {
     name: "Parent's Room",
     drops: [],
+    position: 0,
   },
   [DAUGHTERS_ROOM]: {
     name: "Daughter's Room",
     drops: [],
+    position: 0,
   },
   [GRANDPAS_ROOM]: {
     name: "Grandpa's Room",
     drops: [],
+    position: 0,
   },
   [GARAGE]: {
     name: "Garage",
     drops: [],
+    position: 0,
   },
   [OFFICE]: {
     name: "Office",
     drops: [],
+    position: 0,
   },
 };
+
+export const initialDrops = [
+  { id: makeId(), character: DAD, value: -1 },
+  { id: makeId(), character: DAD, value: 1 },
+  { id: makeId(), character: MOM, value: -1 },
+  { id: makeId(), character: MOM, value: 1 },
+  { id: makeId(), character: GRANDPA, value: -1 },
+  { id: makeId(), character: GRANDPA, value: 1 },
+  { id: makeId(), character: DAUGHTER, value: -1 },
+  { id: makeId(), character: DAUGHTER, value: 1 },
+];

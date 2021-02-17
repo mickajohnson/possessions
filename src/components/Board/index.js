@@ -54,54 +54,49 @@ export default function NightStandStuffBoard({
 
   return (
     <Container>
-      <table id="board">
-        <House>
-          {roomOrder.map((room) => (
-            <Room
-              key={room}
-              option={
-                stagedAction === MOVE_ONE &&
-                selectedCharacter &&
-                (selectedRoom === null || selectedRoom === room) &&
-                isValidMoveOne(
-                  { roomOrder, characters },
-                  selectedCharacter,
-                  room
-                )
-              }
-              selected={selectedRoom === room}
-              onClick={() => dispatch(roomClickAction(room))}
-            >
-              {rooms[room].drops.length ? (
-                <Drops>
-                  {rooms[room].drops.map((drop) => (
-                    <Drop>
-                      <span>{drop.value}</span>
-                      <span>{characters[drop.character].name}</span>
-                    </Drop>
-                  ))}
-                </Drops>
-              ) : null}
-              <span>{rooms[room].name}</span>
-              {roomsWithCharacters[room]
-                ? roomsWithCharacters[room].map((character) => (
-                    <Character
-                      onClick={(e) => handleCharacterClick(e, character)}
-                      showBorder={
-                        stagedAction === MOVE_ONE &&
-                        (selectedCharacter === null ||
-                          selectedCharacter === character)
-                      }
-                      selected={selectedCharacter === character}
-                    >
-                      {characters[character].name}
-                    </Character>
-                  ))
-                : null}
-            </Room>
-          ))}
-        </House>
-      </table>
+      <House>
+        {roomOrder.map((room) => (
+          <Room
+            key={room}
+            option={
+              stagedAction === MOVE_ONE &&
+              selectedCharacter &&
+              (selectedRoom === null || selectedRoom === room) &&
+              isValidMoveOne({ roomOrder, characters }, selectedCharacter, room)
+            }
+            selected={selectedRoom === room}
+            onClick={() => dispatch(roomClickAction(room))}
+          >
+            {rooms[room].drops.length ? (
+              <Drops>
+                {rooms[room].drops.map((drop) => (
+                  <Drop key={drop.id}>
+                    <span>{drop.value}</span>
+                    <span>{characters[drop.character].name}</span>
+                  </Drop>
+                ))}
+              </Drops>
+            ) : null}
+            <span>{rooms[room].name}</span>
+            {roomsWithCharacters[room]
+              ? roomsWithCharacters[room].map((character) => (
+                  <Character
+                    key={character}
+                    onClick={(e) => handleCharacterClick(e, character)}
+                    showBorder={
+                      stagedAction === MOVE_ONE &&
+                      (selectedCharacter === null ||
+                        selectedCharacter === character)
+                    }
+                    selected={selectedCharacter === character}
+                  >
+                    {characters[character].name}
+                  </Character>
+                ))
+              : null}
+          </Room>
+        ))}
+      </House>
       <Relationships>
         {map(relationships, (relationshipData, relationshipKey) => (
           <RelationshipWrapper key={relationshipKey}>
@@ -124,13 +119,14 @@ export default function NightStandStuffBoard({
 
 const Container = styled.div``;
 
-const House = styled.tbody`
+const House = styled.div`
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(3, 1fr);
+  width: 60%;
 `;
 
-const Room = styled.td`
+const Room = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
