@@ -4,21 +4,13 @@ import reduce from "lodash/reduce";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
 
-import {
-  MOVE_ONE,
-  MOVE_TWO,
-  roomClickAction,
-  characterClickAction,
-} from "../Board/reducer";
+import { MOVE_ONE, MOVE_TWO, roomClickAction } from "../Board/reducer";
+import Drops from "../Drops";
+import Character from "../Character";
 
 export default function Room({ state, roomKey, G, dispatch }) {
   const { stagedAction, selectedRoom, selectedCharacter } = state;
   const { roomOrder, characters, rooms } = G;
-
-  const handleCharacterClick = (e, character) => {
-    e.stopPropagation();
-    dispatch(characterClickAction(character));
-  };
 
   const roomsWithCharacters = React.useMemo(
     () =>
@@ -56,53 +48,23 @@ export default function Room({ state, roomKey, G, dispatch }) {
       onClick={() => dispatch(roomClickAction(roomKey))}
     >
       {rooms[roomKey].drops.length ? (
-        <Drops>
-          {rooms[roomKey].drops.map((drop) => (
-            <Drop key={drop.id}>
-              <span>{drop.value}</span>
-              <span>{characters[drop.character].name}</span>
-            </Drop>
-          ))}
-        </Drops>
+        <Drops drops={rooms[roomKey].drops} characters={characters} />
       ) : null}
       <span>{rooms[roomKey].name}</span>
       {roomsWithCharacters[roomKey]
-        ? roomsWithCharacters[roomKey].map((character) => (
+        ? roomsWithCharacters[roomKey].map((characterKey) => (
             <Character
-              key={character}
-              onClick={(e) => handleCharacterClick(e, character)}
-              showBorder={
-                (stagedAction === MOVE_ONE || stagedAction === MOVE_TWO) &&
-                (selectedCharacter === null || selectedCharacter === character)
-              }
-              selected={selectedCharacter === character}
-            >
-              {characters[character].name}
-            </Character>
+              key={characterKey}
+              characterKey={characterKey}
+              dispatch={dispatch}
+              state={state}
+              characters={characters}
+            />
           ))
         : null}
     </RoomContainer>
   );
 }
-
-const Drops = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;
-
-const Drop = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid black;
-`;
-
-const Character = styled.div`
-  border-style: solid;
-  border-width: ${({ showBorder }) => (showBorder ? "1px" : "0px")};
-  border-color: ${({ selected }) => (selected ? "green" : "blue")};
-`;
 
 const RoomContainer = styled.div`
   display: flex;
