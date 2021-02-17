@@ -10,21 +10,31 @@ const validMoveOnes = {
   8: [7, 5],
 };
 
-export const isValidMoveOne = (G, characterKey, locationKey) => {
+const validMoveTwos = {
+  0: [2, 4, 6],
+  1: [3, 5, 7],
+  2: [0, 4, 8],
+  3: [1, 5, 7],
+  4: [0, 2, 6, 8],
+  5: [1, 3, 7],
+  6: [0, 4, 8],
+  7: [1, 3, 5],
+  8: [2, 4, 6],
+};
+
+export const isValidMove = (moveValidator) => (
+  G,
+  characterKey,
+  locationKey
+) => {
   const destinationIndex = G.roomOrder.indexOf(locationKey);
   const originIndex = G.roomOrder.indexOf(G.characters[characterKey].location);
 
-  return validMoveOnes[originIndex].includes(destinationIndex);
+  return moveValidator[originIndex].includes(destinationIndex);
 };
 
-export const isValidReact = (G, reactorKey, reacteeKey) => {
-  const characterRoom = G.rooms[G.characters[reactorKey].location];
-
-  return (
-    characterRoom.drops.some((drop) => drop.character !== reactorKey) &&
-    characterRoom.drops.some((drop) => drop.character === reacteeKey)
-  );
-};
+export const isValidMoveOne = isValidMove(validMoveOnes);
+export const isValidMoveTwo = isValidMove(validMoveTwos);
 
 export const isValidChat = (G, characterOneKey, characterTwoKey) =>
   G.characters[characterOneKey].location ===
