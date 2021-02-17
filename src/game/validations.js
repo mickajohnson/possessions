@@ -17,8 +17,11 @@ export const isValidMoveOne = (G, characterKey, locationKey) => {
   return validMoveOnes[originIndex].includes(destinationIndex);
 };
 
-export const isValidReact = (G, characterKey) => {
-  const characterRoom = G.rooms[G.characters[characterKey].location];
+export const isValidReact = (G, reactorKey, reacteeKey) => {
+  const characterRoom = G.rooms[G.characters[reactorKey].location];
 
-  return characterRoom.drops.some((drop) => drop.character !== characterKey);
+  return (
+    characterRoom.drops.some((drop) => drop.character !== reactorKey) &&
+    characterRoom.drops.some((drop) => drop.character === reacteeKey)
+  );
 };
