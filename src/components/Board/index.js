@@ -6,10 +6,18 @@ import {
   reducer,
   moveOneClickAction,
   moveTwoClickAction,
+  dropPosOneClickAction,
+  dropPosTwoClickAction,
+  dropNegOneClickAction,
+  dropNegTwoClickAction,
   MOVE_ONE,
   MOVE_TWO,
   resetAction,
   initialState,
+  DROP_POS_ONE,
+  DROP_POS_TWO,
+  DROP_NEG_ONE,
+  DROP_NEG_TWO,
 } from "./reducer";
 import Room from "../Room";
 
@@ -21,11 +29,29 @@ export default function NightStandStuffBoard({ G, moves }) {
   const handleConfirmClick = () => {
     // if (canConfirm(state)) {
     // stagedAction === MOVE_ONE && selectedRoom && selectedCharacter
-    if (stagedAction === MOVE_ONE) {
-      moves.moveOne(selectedCharacter, selectedRoom);
-    } else if (stagedAction === MOVE_TWO) {
-      moves.moveTwo(selectedCharacter, selectedRoom);
+    switch (stagedAction) {
+      case MOVE_ONE:
+        moves.moveOne(selectedCharacter, selectedRoom);
+        break;
+      case MOVE_TWO:
+        moves.moveTwo(selectedCharacter, selectedRoom);
+        break;
+      case DROP_POS_ONE:
+        moves.dropPositiveOne(selectedCharacter);
+        break;
+      case DROP_POS_TWO:
+        moves.dropPositiveTwo(selectedCharacter);
+        break;
+      case DROP_NEG_ONE:
+        moves.dropNegativeOne(selectedCharacter);
+        break;
+      case DROP_NEG_TWO:
+        moves.dropNegativeTwo(selectedCharacter);
+        break;
+      default:
+        break;
     }
+
     dispatch(resetAction);
     // }
   };
@@ -53,6 +79,10 @@ export default function NightStandStuffBoard({ G, moves }) {
       </Relationships>
       <button onClick={() => dispatch(moveOneClickAction)}>Move 1</button>
       <button onClick={() => dispatch(moveTwoClickAction)}>Move 2</button>
+      <button onClick={() => dispatch(dropPosOneClickAction)}>Drop 1</button>
+      <button onClick={() => dispatch(dropPosTwoClickAction)}>Drop 2</button>
+      <button onClick={() => dispatch(dropNegOneClickAction)}>Drop -1</button>
+      <button onClick={() => dispatch(dropNegTwoClickAction)}>Drop -2</button>
       {stagedAction !== null ? (
         <button onClick={() => dispatch(resetAction)}>Cancel</button>
       ) : null}

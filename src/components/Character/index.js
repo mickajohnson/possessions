@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { MOVE_ONE, MOVE_TWO, characterClickAction } from "../Board/reducer";
+import { characterClickAction } from "../Board/reducer";
 
 export default function Character({
   dispatch,
@@ -16,7 +16,7 @@ export default function Character({
   };
 
   const showBorder =
-    (stagedAction === MOVE_ONE || stagedAction === MOVE_TWO) &&
+    stagedAction &&
     (selectedCharacter === null || selectedCharacter === characterKey);
 
   return (
