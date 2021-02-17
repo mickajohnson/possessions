@@ -25,3 +25,7 @@ export const isValidReact = (G, reactorKey, reacteeKey) => {
     characterRoom.drops.some((drop) => drop.character === reacteeKey)
   );
 };
+
+export const isValidChat = (G, characterOneKey, characterTwoKey) =>
+  G.characters[characterOneKey].location ===
+  G.characters[characterTwoKey].location;

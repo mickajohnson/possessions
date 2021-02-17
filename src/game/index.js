@@ -4,7 +4,8 @@ import cloneDeep from "lodash/cloneDeep";
 import partition from "lodash/partition";
 
 import { Relationships, Rooms, Characters, initialDrops } from "./gameData";
-import { isValidReact, isValidMoveOne } from "./validations";
+import { isValidChat, isValidMoveOne } from "./validations";
+import { changeScore, getRelationship } from "./helpers";
 import { makeId } from "../utils";
 
 export const NightStandStuff = {
@@ -71,11 +72,45 @@ export const NightStandStuff = {
           0
         );
 
-        G.relationships[
-          `${reactingCharKey}${dropperCharKey}`
-        ].score += netEffect;
+        const relationship = getRelationship(
+          G.relationships,
+          dropperCharKey,
+          reactingCharKey
+        );
+
+        changeScore(relationship, netEffect);
 
         characterRoom.drops = irrelevantDrops;
+      } else {
+        return INVALID_MOVE;
+      }
+    },
+    bond: (G, _, characterOneKey, characterTwoKey) => {
+      if (isValidChat(G, characterOneKey, characterTwoKey)) {
+        const relationship = getRelationship(
+          G.relationships,
+          characterOneKey,
+          characterTwoKey
+        );
+
+        changeScore(relationship, 1);
+      } else {
+        return INVALID_MOVE;
+      }
+    },
+    fight: (G, _, movingCharacterKey, characterTwoKey, destinationKey) => {
+      if (
+        isValidChat(G, movingCharacterKey, characterTwoKey) &&
+        isValidMoveOne(G, movingCharacterKey, destinationKey)
+      ) {
+        const relationship = getRelationship(
+          G.relationships,
+          movingCharacterKey,
+          characterTwoKey
+        );
+
+        changeScore(relationship, -1);
+        G.characters[movingCharacterKey].location = destinationKey;
       } else {
         return INVALID_MOVE;
       }
