@@ -37,6 +37,7 @@ export default function NightStandStuffBoard({ G, moves }) {
     message,
     chatCharacterOne,
     chatCharacterTwo,
+    dropperCharacter,
   } = state;
 
   const handleConfirmClick = () => {
@@ -63,6 +64,9 @@ export default function NightStandStuffBoard({ G, moves }) {
         break;
       case BOND:
         moves.bond(chatCharacterOne, chatCharacterTwo);
+        break;
+      case REACT:
+        moves.react(selectedCharacter, dropperCharacter);
         break;
       case FIGHT:
         moves.fight(
@@ -110,6 +114,7 @@ export default function NightStandStuffBoard({ G, moves }) {
       <button onClick={() => dispatch(dropNegTwoClickAction)}>Drop -2</button>
       <button onClick={() => dispatch(bondClickAction)}>Bond</button>
       <button onClick={() => dispatch(fightClickAction)}>Fight</button>
+      <button onClick={() => dispatch(reactClickAction)}>React</button>
       {stagedAction !== null ? (
         <button onClick={() => dispatch(resetAction)}>Cancel</button>
       ) : null}

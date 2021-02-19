@@ -75,7 +75,11 @@ export default function Room({ state, roomKey, G, dispatch }) {
       onClick={() => dispatch(roomClickAction(roomKey))}
     >
       {rooms[roomKey].drops.length ? (
-        <Drops drops={rooms[roomKey].drops} characters={characters} />
+        <Drops
+          dispatch={dispatch}
+          drops={rooms[roomKey].drops}
+          characters={characters}
+        />
       ) : null}
       <span>{rooms[roomKey].name}</span>
       {roomsWithCharacters[roomKey]

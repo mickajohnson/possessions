@@ -1,10 +1,15 @@
 import styled from "styled-components";
 
-export default function Drops({ drops, characters }) {
+import { dropClickAction } from "../Board/reducer";
+
+export default function Drops({ drops, characters, dispatch }) {
   return (
     <DropsContainer>
       {drops.map((drop) => (
-        <Drop key={drop.id}>
+        <Drop
+          onClick={() => dispatch(dropClickAction(drop.character))}
+          key={drop.id}
+        >
           <span>{drop.value}</span>
           <span>{characters[drop.character].name}</span>
         </Drop>

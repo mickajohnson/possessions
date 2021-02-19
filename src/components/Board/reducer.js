@@ -8,6 +8,7 @@ export const REACT = "REACT";
 export const FIGHT = "FIGHT";
 export const BOND = "BOND";
 
+// TODO: at some point consolidate dropper character and others
 export const initialState = {
   message: "",
   selectedRoom: null,
@@ -15,6 +16,7 @@ export const initialState = {
   stagedAction: null,
   chatCharacterOne: null,
   chatCharacterTwo: null,
+  dropperCharacter: null,
 };
 
 export const NON_CHAT_ACTIONS = [
@@ -103,6 +105,16 @@ export function reducer(state, action) {
         };
       }
       return state;
+
+    case DROP_CLICK:
+      if (state.stagedAction === REACT && state.selectedCharacter) {
+        return {
+          ...state,
+          dropperCharacter: action.dropperKey,
+          message: `${state.selectedCharacter} pick up ${action.dropperKey}`,
+        };
+      }
+      return state;
     case RESET:
       return initialState;
     default:
@@ -121,6 +133,7 @@ const DROP_NEG_TWO_CLICK = "DROP_NEG_TWO_CLICK";
 const REACT_CLICK = "REACT_CLICK";
 const BOND_CLICK = "BOND_CLICK";
 const FIGHT_CLICK = "FIGHT_CLICK";
+const DROP_CLICK = "DROP_CLICK";
 const RESET = "RESET";
 
 // TODO: clean all this up
@@ -177,7 +190,13 @@ export const characterClickAction = (character) => ({
   type: CHARACTER_CLICK,
   character,
 });
+
 export const roomClickAction = (room) => ({
   type: ROOM_CLICK,
   room,
+});
+
+export const dropClickAction = (dropperKey) => ({
+  type: DROP_CLICK,
+  dropperKey,
 });
