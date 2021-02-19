@@ -79,6 +79,7 @@ export default function Room({ state, roomKey, G, dispatch }) {
           dispatch={dispatch}
           drops={rooms[roomKey].drops}
           characters={characters}
+          state={state}
         />
       ) : null}
       <span>{rooms[roomKey].name}</span>

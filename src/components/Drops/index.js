@@ -1,18 +1,44 @@
 import styled from "styled-components";
 
-import { dropClickAction } from "../Board/reducer";
+import { dropClickAction, REACT } from "../Board/reducer";
 
-export default function Drops({ drops, characters, dispatch }) {
+function Drop({ drop, characters, state, dispatch }) {
+  const { stagedAction, dropperCharacter, selectedCharacter } = state;
+
+  const isOption = selectedCharacter && stagedAction === REACT;
+  const isSelected = dropperCharacter === drop.character;
+
+  let borderColor = "black";
+  if (isSelected) {
+    borderColor = "green";
+  } else if (isOption) {
+    borderColor = "blue";
+  }
+  console.log("drop", dropperCharacter, drop.character, borderColor);
+
+  return (
+    <DropContainer
+      borderColor={borderColor}
+      onClick={() => dispatch(dropClickAction(drop.character))}
+      key={drop.id}
+    >
+      <span>{drop.value}</span>
+      <span>{characters[drop.character].name}</span>
+    </DropContainer>
+  );
+}
+
+export default function Drops({ drops, characters, dispatch, state }) {
   return (
     <DropsContainer>
       {drops.map((drop) => (
         <Drop
-          onClick={() => dispatch(dropClickAction(drop.character))}
           key={drop.id}
-        >
-          <span>{drop.value}</span>
-          <span>{characters[drop.character].name}</span>
-        </Drop>
+          drop={drop}
+          dispatch={dispatch}
+          characters={characters}
+          state={state}
+        />
       ))}
     </DropsContainer>
   );
@@ -23,10 +49,11 @@ const DropsContainer = styled.div`
   justify-content: space-around;
 `;
 
-const Drop = styled.div`
+const DropContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid black;
+  border: 1px solid;
+  border-color: ${({ borderColor }) => borderColor};
 `;
