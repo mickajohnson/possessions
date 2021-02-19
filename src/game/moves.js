@@ -85,17 +85,19 @@ export const bond = (G, _, characterOneKey, characterTwoKey) => {
 export const fight = (
   G,
   _,
-  movingCharacterKey,
+  characterOneKey,
   characterTwoKey,
+  movingCharacterKey,
   destinationKey
 ) => {
   if (
-    isValidChat(G, movingCharacterKey, characterTwoKey) &&
+    [characterOneKey, characterTwoKey].includes(movingCharacterKey) &&
+    isValidChat(G, characterOneKey, characterTwoKey) &&
     isValidMoveOne(G, movingCharacterKey, destinationKey)
   ) {
     const relationship = getRelationship(
       G.relationships,
-      movingCharacterKey,
+      characterOneKey,
       characterTwoKey
     );
 

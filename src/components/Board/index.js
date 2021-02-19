@@ -64,6 +64,14 @@ export default function NightStandStuffBoard({ G, moves }) {
       case BOND:
         moves.bond(chatCharacterOne, chatCharacterTwo);
         break;
+      case FIGHT:
+        moves.fight(
+          chatCharacterOne,
+          chatCharacterTwo,
+          selectedCharacter,
+          selectedRoom
+        );
+        break;
       default:
         break;
     }
@@ -101,6 +109,7 @@ export default function NightStandStuffBoard({ G, moves }) {
       <button onClick={() => dispatch(dropNegOneClickAction)}>Drop -1</button>
       <button onClick={() => dispatch(dropNegTwoClickAction)}>Drop -2</button>
       <button onClick={() => dispatch(bondClickAction)}>Bond</button>
+      <button onClick={() => dispatch(fightClickAction)}>Fight</button>
       {stagedAction !== null ? (
         <button onClick={() => dispatch(resetAction)}>Cancel</button>
       ) : null}

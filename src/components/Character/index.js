@@ -4,6 +4,7 @@ import {
   characterClickAction,
   CHAT_ACTIONS,
   NON_CHAT_ACTIONS,
+  FIGHT,
 } from "../Board/reducer";
 import { isValidChat } from "../../game/validations";
 
@@ -42,18 +43,23 @@ export default function Character({
     inFirstChatSelectionPhase ||
     inSecondChatSelectionPhase;
 
-  const selected =
+  const isSelected =
     selectedCharacter === characterKey ||
     chatCharacterOne === characterKey ||
     chatCharacterTwo === characterKey;
 
-  const borderColor = selected ? "green" : "blue";
+  let borderColor = "blue";
 
+  if (selectedCharacter === characterKey && stagedAction === FIGHT) {
+    borderColor = "red";
+  } else if (isSelected) {
+    borderColor = "green";
+  }
   return (
     <CharacterContainer
       key={characterKey}
       onClick={(e) => handleCharacterClick(e, characterKey)}
-      showBorder={showBorder || selected}
+      showBorder={showBorder || isSelected}
       borderColor={borderColor}
     >
       {characters[characterKey].name}

@@ -4,12 +4,18 @@ import reduce from "lodash/reduce";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
 
-import { MOVE_ONE, MOVE_TWO, roomClickAction } from "../Board/reducer";
+import { MOVE_ONE, MOVE_TWO, FIGHT, roomClickAction } from "../Board/reducer";
 import Drops from "../Drops";
 import Character from "../Character";
 
 export default function Room({ state, roomKey, G, dispatch }) {
-  const { stagedAction, selectedRoom, selectedCharacter } = state;
+  const {
+    stagedAction,
+    selectedRoom,
+    selectedCharacter,
+    chatCharacterOne,
+    chatCharacterTwo,
+  } = state;
   const { roomOrder, characters, rooms } = G;
 
   const roomsWithCharacters = React.useMemo(
@@ -32,19 +38,40 @@ export default function Room({ state, roomKey, G, dispatch }) {
   const isMoveOneOption =
     stagedAction === MOVE_ONE &&
     selectedCharacter &&
-    (selectedRoom === null || selectedRoom === roomKey) &&
+    selectedRoom === null &&
     isValidMoveOne({ roomOrder, characters }, selectedCharacter, roomKey);
+
+  const isFightAfterOption =
+    stagedAction === FIGHT &&
+    selectedCharacter &&
+    chatCharacterOne &&
+    chatCharacterTwo &&
+    selectedRoom === null &&
+    isValidMoveOne({ roomOrder, characters }, selectedCharacter, roomKey);
+
+  if (isFightAfterOption) {
+    console.log(
+      isValidMoveOne({ roomOrder, characters }, selectedCharacter, roomKey),
+      roomKey
+    );
+  }
 
   const isMoveTwoOption =
     stagedAction === MOVE_TWO &&
     selectedCharacter &&
-    (selectedRoom === null || selectedRoom === roomKey) &&
+    selectedRoom === null &&
     isValidMoveTwo({ roomOrder, characters }, selectedCharacter, roomKey);
 
+  let borderColor = "black";
+
+  if (selectedRoom === roomKey) {
+    borderColor = "green";
+  } else if (isMoveOneOption || isMoveTwoOption || isFightAfterOption) {
+    borderColor = "blue";
+  }
   return (
     <RoomContainer
-      option={isMoveOneOption || isMoveTwoOption}
-      selected={selectedRoom === roomKey}
+      borderColor={borderColor}
       onClick={() => dispatch(roomClickAction(roomKey))}
     >
       {rooms[roomKey].drops.length ? (
@@ -74,7 +101,7 @@ const RoomContainer = styled.div`
   justify-content: space-around;
   width: 200px;
   height: 200px;
+  border-style: solid;
   border: 1px solid;
-  border-color: ${({ selected, option }) =>
-    selected ? "green" : option ? "blue" : "black"};
+  border-color: ${({ borderColor }) => borderColor};
 `;

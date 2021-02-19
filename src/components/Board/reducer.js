@@ -78,9 +78,8 @@ export function reducer(state, action) {
         };
       } else if (CHAT_ACTIONS.includes(state.stagedAction)) {
         return chatInteraction(state, action);
-      } else {
-        return state;
       }
+      return state;
     case ROOM_CLICK:
       if (
         [MOVE_ONE, MOVE_TWO].includes(state.stagedAction) &&
@@ -91,9 +90,19 @@ export function reducer(state, action) {
           message: `${state.selectedCharacter} to ${action.room}?`,
           selectedRoom: action.room,
         };
-      } else {
-        return state;
+      } else if (
+        state.stagedAction === FIGHT &&
+        state.selectedCharacter &&
+        state.chatCharacterOne &&
+        state.chatCharacterTwo
+      ) {
+        return {
+          ...state,
+          message: `${state.stagedAction} - character one: ${state.chatCharacterOne}, character two: ${state.chatCharacterTwo}. ${state.selectedCharacter} to ${action.room}`,
+          selectedRoom: action.room,
+        };
       }
+      return state;
     case RESET:
       return initialState;
     default:
