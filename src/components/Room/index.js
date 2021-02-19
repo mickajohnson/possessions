@@ -59,6 +59,7 @@ export default function Room({ state, roomKey, G, dispatch }) {
               dispatch={dispatch}
               state={state}
               characters={characters}
+              G={G}
             />
           ))
         : null}

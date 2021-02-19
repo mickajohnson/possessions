@@ -38,4 +38,5 @@ export const isValidMoveTwo = isValidMove(validMoveTwos);
 
 export const isValidChat = (G, characterOneKey, characterTwoKey) =>
   G.characters[characterOneKey].location ===
-  G.characters[characterTwoKey].location;
+    G.characters[characterTwoKey].location &&
+  characterOneKey !== characterTwoKey;

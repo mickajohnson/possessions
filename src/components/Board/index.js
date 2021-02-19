@@ -10,6 +10,9 @@ import {
   dropPosTwoClickAction,
   dropNegOneClickAction,
   dropNegTwoClickAction,
+  reactClickAction,
+  fightClickAction,
+  bondClickAction,
   MOVE_ONE,
   MOVE_TWO,
   resetAction,
@@ -18,13 +21,23 @@ import {
   DROP_POS_TWO,
   DROP_NEG_ONE,
   DROP_NEG_TWO,
+  FIGHT,
+  BOND,
+  REACT,
 } from "./reducer";
 import Room from "../Room";
 
 export default function NightStandStuffBoard({ G, moves }) {
   const { roomOrder, relationships } = G;
   const [state, dispatch] = React.useReducer(reducer, initialState);
-  const { stagedAction, selectedRoom, selectedCharacter, message } = state;
+  const {
+    stagedAction,
+    selectedRoom,
+    selectedCharacter,
+    message,
+    chatCharacterOne,
+    chatCharacterTwo,
+  } = state;
 
   const handleConfirmClick = () => {
     // if (canConfirm(state)) {
@@ -48,13 +61,17 @@ export default function NightStandStuffBoard({ G, moves }) {
       case DROP_NEG_TWO:
         moves.dropNegativeTwo(selectedCharacter);
         break;
+      case BOND:
+        moves.bond(chatCharacterOne, chatCharacterTwo);
+        break;
       default:
         break;
     }
 
     dispatch(resetAction);
-    // }
   };
+
+  console.log("state", state);
 
   return (
     <Container>
@@ -83,6 +100,7 @@ export default function NightStandStuffBoard({ G, moves }) {
       <button onClick={() => dispatch(dropPosTwoClickAction)}>Drop 2</button>
       <button onClick={() => dispatch(dropNegOneClickAction)}>Drop -1</button>
       <button onClick={() => dispatch(dropNegTwoClickAction)}>Drop -2</button>
+      <button onClick={() => dispatch(bondClickAction)}>Bond</button>
       {stagedAction !== null ? (
         <button onClick={() => dispatch(resetAction)}>Cancel</button>
       ) : null}
