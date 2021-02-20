@@ -11,7 +11,6 @@ import Character from "../Character";
 
 export default function Room({ roomKey, G }) {
   const dispatch = useDispatch();
-  const state = useBoardState();
 
   const {
     stagedAction,
@@ -19,7 +18,8 @@ export default function Room({ roomKey, G }) {
     selectedCharacter,
     chatCharacterOne,
     chatCharacterTwo,
-  } = state;
+  } = useBoardState();
+
   const { roomOrder, characters, rooms } = G;
 
   const roomsWithCharacters = React.useMemo(
@@ -85,7 +85,6 @@ export default function Room({ roomKey, G }) {
         dispatch={dispatch}
         drops={rooms[roomKey].drops}
         G={G}
-        state={state}
         roomKey={roomKey}
       />
 
@@ -96,7 +95,6 @@ export default function Room({ roomKey, G }) {
               key={characterKey}
               characterKey={characterKey}
               dispatch={dispatch}
-              state={state}
               G={G}
             />
           ))

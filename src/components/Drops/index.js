@@ -4,10 +4,14 @@ import get from "lodash/get";
 
 import { REACT } from "../../constants";
 import { dropClickAction } from "../../state/board/actions";
+import { useDispatch, useBoardState } from "../../state/board/reducer";
+
 import { isValidReact } from "../../game/validations";
 
-function DropGroup({ dropGroup, dispatch, G, state, characterKey, roomKey }) {
-  const { stagedAction, dropperCharacter, selectedCharacter } = state;
+function DropGroup({ dropGroup, G, characterKey, roomKey }) {
+  const dispatch = useDispatch();
+  const { stagedAction, dropperCharacter, selectedCharacter } = useBoardState();
+
   const { characters } = G;
 
   const reactingCharRoomKey = get(
@@ -49,7 +53,7 @@ function DropGroup({ dropGroup, dispatch, G, state, characterKey, roomKey }) {
   );
 }
 
-export default function Drops({ drops, G, dispatch, state, roomKey }) {
+export default function Drops({ drops, G, roomKey }) {
   return (
     <DropsContainer>
       {map(drops, (dropGroup, characterKey) =>
@@ -58,9 +62,7 @@ export default function Drops({ drops, G, dispatch, state, roomKey }) {
             key={characterKey}
             characterKey={characterKey}
             dropGroup={dropGroup}
-            dispatch={dispatch}
             G={G}
-            state={state}
             roomKey={roomKey}
           />
         ) : null

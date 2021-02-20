@@ -2,15 +2,19 @@ import styled from "styled-components";
 
 import { CHAT_ACTIONS, NON_CHAT_ACTIONS, FIGHT } from "../../constants";
 import { characterClickAction } from "../../state/board/actions";
+import { useDispatch, useBoardState } from "../../state/board/reducer";
+
 import { isValidChat } from "../../game/validations";
 
-export default function Character({ dispatch, characterKey, state, G }) {
+export default function Character({ characterKey, G }) {
+  const dispatch = useDispatch();
   const {
     stagedAction,
     selectedCharacter,
     chatCharacterOne,
     chatCharacterTwo,
-  } = state;
+  } = useBoardState();
+
   const { characters } = G;
 
   const characterSelected = selectedCharacter === characterKey;
