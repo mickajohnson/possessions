@@ -41,8 +41,6 @@ export default function NightStandStuffBoard({ G, moves }) {
   } = state;
 
   const handleConfirmClick = () => {
-    // if (canConfirm(state)) {
-    // stagedAction === MOVE_ONE && selectedRoom && selectedCharacter
     switch (stagedAction) {
       case MOVE_ONE:
         moves.moveOne(selectedCharacter, selectedRoom);

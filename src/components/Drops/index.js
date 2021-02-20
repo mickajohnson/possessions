@@ -25,11 +25,18 @@ function DropGroup({ dropGroup, dispatch, G, state, characterKey, roomKey }) {
 
   const borderColor = isSelected ? "green" : "blue";
 
+  const handleDropGroupClick = (e) => {
+    if (isOption) {
+      e.stopPropagation();
+      dispatch(dropClickAction(characterKey));
+    }
+  };
+
   return (
     <DropGroupContainer
-      showBorder={isSelected || isOption}
+      isOption={isSelected || isOption}
       borderColor={borderColor}
-      onClick={() => dispatch(dropClickAction(characterKey))}
+      onClick={handleDropGroupClick}
     >
       {dropGroup.map((drop) => (
         <DropContainer key={drop.id}>
@@ -68,8 +75,9 @@ const DropsContainer = styled.div`
 
 const DropGroupContainer = styled.div`
   padding: 5px;
+  cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
   border-style: solid;
-  border-width: ${({ showBorder }) => (showBorder ? "1px" : "0px")};
+  border-width: ${({ isOption }) => (isOption ? "1px" : "0px")};
   border-color: ${({ borderColor }) => borderColor};
 `;
 

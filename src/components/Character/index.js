@@ -17,11 +17,6 @@ export default function Character({ dispatch, characterKey, state, G }) {
   } = state;
   const { characters } = G;
 
-  const handleCharacterClick = (e, character) => {
-    e.stopPropagation();
-    dispatch(characterClickAction(character));
-  };
-
   const characterSelected = selectedCharacter === characterKey;
   const inCharacterSelectionPhase =
     NON_CHAT_ACTIONS.includes(stagedAction) && selectedCharacter === null;
@@ -32,7 +27,7 @@ export default function Character({ dispatch, characterKey, state, G }) {
     chatCharacterOne &&
     isValidChat(G, chatCharacterOne, characterKey);
 
-  const showBorder =
+  const isOption =
     characterSelected ||
     inCharacterSelectionPhase ||
     inFirstChatSelectionPhase ||
@@ -50,11 +45,19 @@ export default function Character({ dispatch, characterKey, state, G }) {
   } else if (isSelected) {
     borderColor = "green";
   }
+
+  const handleCharacterClick = (e, character) => {
+    if (isOption) {
+      e.stopPropagation();
+      dispatch(characterClickAction(character));
+    }
+  };
+
   return (
     <CharacterContainer
       key={characterKey}
       onClick={(e) => handleCharacterClick(e, characterKey)}
-      showBorder={showBorder || isSelected}
+      isOption={isOption || isSelected}
       borderColor={borderColor}
     >
       {characters[characterKey].name}
@@ -64,6 +67,8 @@ export default function Character({ dispatch, characterKey, state, G }) {
 
 const CharacterContainer = styled.div`
   border-style: solid;
-  border-width: ${({ showBorder }) => (showBorder ? "1px" : "0px")};
+  cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
+
+  border-width: ${({ isOption }) => (isOption ? "1px" : "0px")};
   border-color: ${({ borderColor }) => borderColor};
 `;

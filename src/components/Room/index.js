@@ -55,17 +55,27 @@ export default function Room({ state, roomKey, G, dispatch }) {
     selectedRoom === null &&
     isValidMoveTwo({ roomOrder, characters }, selectedCharacter, roomKey);
 
+  const isOption = isMoveOneOption || isMoveTwoOption || isFightAfterOption;
+
   let borderColor = "black";
 
   if (selectedRoom === roomKey) {
     borderColor = "green";
-  } else if (isMoveOneOption || isMoveTwoOption || isFightAfterOption) {
+  } else if (isOption) {
     borderColor = "blue";
   }
+
+  const handleRoomClick = () => {
+    if (isOption) {
+      dispatch(roomClickAction(roomKey));
+    }
+  };
+
   return (
     <RoomContainer
+      isOption={isOption}
       borderColor={borderColor}
-      onClick={() => dispatch(roomClickAction(roomKey))}
+      onClick={handleRoomClick}
     >
       <Drops
         dispatch={dispatch}
@@ -98,6 +108,7 @@ const RoomContainer = styled.div`
   justify-content: space-around;
   width: 200px;
   height: 200px;
+  cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
   border-style: solid;
   border: 1px solid;
   border-color: ${({ borderColor }) => borderColor};
