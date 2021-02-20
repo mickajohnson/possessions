@@ -22,7 +22,7 @@ import {
 } from "../constants";
 import { makeId } from "../utils";
 
-const dropTemplate = {
+export const dropTemplate = {
   [MOM]: [],
   [DAD]: [],
   [GRANDPA]: [],
@@ -45,53 +45,29 @@ export const Characters = {
   [GRANDPA]: { name: "Grandpa", location: GRANDPAS_ROOM },
 };
 
-export const Rooms = {
-  [LIVING_ROOM]: {
-    name: "Living Room",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [DINING_ROOM]: {
-    name: "Dining Room",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [KITCHEN]: {
-    name: "Kitchen",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [BATHROOM]: {
-    name: "Bathroom",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [PARENTS_ROOM]: {
-    name: "Parent's Room",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [DAUGHTERS_ROOM]: {
-    name: "Daughter's Room",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [GRANDPAS_ROOM]: {
-    name: "Grandpa's Room",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [GARAGE]: {
-    name: "Garage",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
-  [OFFICE]: {
-    name: "Office",
-    drops: cloneDeep(dropTemplate),
-    position: 0,
-  },
+export const roomKeyToNameMapping = {
+  [LIVING_ROOM]: "Living Room",
+  [DINING_ROOM]: "Dining Room",
+  [KITCHEN]: "Kitchen",
+  [BATHROOM]: "Bathroom",
+  [PARENTS_ROOM]: "Parent's Room",
+  [DAUGHTERS_ROOM]: "Daughter's Room",
+  [GRANDPAS_ROOM]: "Grandpa's Room",
+  [GARAGE]: "Garage",
+  [OFFICE]: "Office",
 };
+
+export const roomKeys = [
+  LIVING_ROOM,
+  DINING_ROOM,
+  KITCHEN,
+  BATHROOM,
+  PARENTS_ROOM,
+  DAUGHTERS_ROOM,
+  GRANDPAS_ROOM,
+  GARAGE,
+  OFFICE,
+];
 
 export const initialDrops = [
   { id: makeId(), character: DAD, value: -1 },

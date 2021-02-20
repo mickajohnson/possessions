@@ -1,7 +1,4 @@
-import shuffle from "lodash/shuffle";
-import cloneDeep from "lodash/cloneDeep";
-
-import { Relationships, Rooms, Characters, initialDrops } from "./gameData";
+import setup from "./setup";
 
 import {
   dropNegativeOne,
@@ -16,25 +13,7 @@ import {
 } from "./moves";
 
 export const NightStandStuff = {
-  setup: () => {
-    const roomOrder = shuffle(Object.keys(Rooms));
-    const shuffledDrops = shuffle([...initialDrops]);
-    const rooms = cloneDeep(Rooms);
-    roomOrder.forEach((roomKey, index) => {
-      rooms[roomKey].position = index;
-      if (shuffledDrops.length && index !== 4) {
-        const newDrop = shuffledDrops.pop();
-        rooms[roomKey].drops[newDrop.character].push(newDrop);
-      }
-    });
-
-    return {
-      roomOrder,
-      rooms,
-      characters: Characters,
-      relationships: Relationships,
-    };
-  },
+  setup,
 
   moves: {
     dropPositiveOne,
