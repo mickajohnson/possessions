@@ -40,3 +40,13 @@ export const isValidChat = (G, characterOneKey, characterTwoKey) =>
   G.characters[characterOneKey].location ===
     G.characters[characterTwoKey].location &&
   characterOneKey !== characterTwoKey;
+
+export const isValidReact = (G, roomKey, dropperCharKey, reactingCharKey) => {
+  const characterRoom = G.rooms[roomKey];
+
+  return (
+    characterRoom &&
+    characterRoom.drops[dropperCharKey].length > 0 &&
+    dropperCharKey !== reactingCharKey
+  );
+};

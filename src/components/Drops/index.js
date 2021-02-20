@@ -1,62 +1,62 @@
 import styled from "styled-components";
 import map from "lodash/map";
+import get from "lodash/get";
 
 import { dropClickAction, REACT } from "../Board/reducer";
+import { isValidReact } from "../../game/validations";
 
-function Drop({ drop, characters, state, dispatch }) {
+function DropGroup({ dropGroup, dispatch, G, state, characterKey, roomKey }) {
   const { stagedAction, dropperCharacter, selectedCharacter } = state;
+  const { characters } = G;
 
-  const isOption = selectedCharacter && stagedAction === REACT;
-  const isSelected = dropperCharacter === drop.character;
+  const reactingCharRoomKey = get(
+    characters,
+    [selectedCharacter, "location"],
+    null
+  );
 
-  let borderColor = "black";
-  if (isSelected) {
-    borderColor = "green";
-  } else if (isOption) {
-    borderColor = "blue";
-  }
-  console.log("drop", dropperCharacter, drop.character, borderColor);
+  const isOption =
+    selectedCharacter &&
+    stagedAction === REACT &&
+    roomKey === reactingCharRoomKey &&
+    isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter);
+
+  const isSelected = isOption && dropperCharacter === characterKey;
+
+  const borderColor = isSelected ? "green" : "blue";
 
   return (
-    <DropContainer
+    <DropGroupContainer
+      showBorder={isSelected || isOption}
       borderColor={borderColor}
-      onClick={() => dispatch(dropClickAction(drop.character))}
-      key={drop.id}
+      onClick={() => dispatch(dropClickAction(characterKey))}
     >
-      <span>{drop.value}</span>
-      <span>{characters[drop.character].name}</span>
-    </DropContainer>
-  );
-}
-
-function DropGroup({ dropGroup, dispatch, characters, state }) {
-  return (
-    <div>
       {dropGroup.map((drop) => (
-        <Drop
-          key={drop.id}
-          drop={drop}
-          dispatch={dispatch}
-          characters={characters}
-          state={state}
-        ></Drop>
+        <DropContainer key={drop.id}>
+          <span>{drop.value}</span>
+          <span>{characters[drop.character].name}</span>
+        </DropContainer>
       ))}
-    </div>
+    </DropGroupContainer>
   );
 }
 
-export default function Drops({ drops, characters, dispatch, state }) {
+export default function Drops({ drops, G, dispatch, state, roomKey }) {
   return (
     <DropsContainer>
-      {map(drops, (dropGroup, characterKey) => (
-        <DropGroup
-          key={dropGroup.id}
-          drop={dropGroup}
-          dispatch={dispatch}
-          characters={characters}
-          state={state}
-        />
-      ))}
+      {map(drops, (dropGroup, characterKey) =>
+        dropGroup.length ? (
+          <DropGroup
+            key={characterKey}
+            characterKey={characterKey}
+            dropGroup={dropGroup}
+            dispatch={dispatch}
+            G={G}
+            state={state}
+            roomKey={roomKey}
+          />
+        ) : null
+      )}
     </DropsContainer>
   );
 }
@@ -64,6 +64,13 @@ export default function Drops({ drops, characters, dispatch, state }) {
 const DropsContainer = styled.div`
   display: flex;
   justify-content: space-around;
+`;
+
+const DropGroupContainer = styled.div`
+  padding: 5px;
+  border-style: solid;
+  border-width: ${({ showBorder }) => (showBorder ? "1px" : "0px")};
+  border-color: ${({ borderColor }) => borderColor};
 `;
 
 const DropContainer = styled.div`

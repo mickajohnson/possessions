@@ -8,19 +8,14 @@ import {
 } from "../Board/reducer";
 import { isValidChat } from "../../game/validations";
 
-export default function Character({
-  dispatch,
-  characterKey,
-  characters,
-  state,
-  G,
-}) {
+export default function Character({ dispatch, characterKey, state, G }) {
   const {
     stagedAction,
     selectedCharacter,
     chatCharacterOne,
     chatCharacterTwo,
   } = state;
+  const { characters } = G;
 
   const handleCharacterClick = (e, character) => {
     e.stopPropagation();

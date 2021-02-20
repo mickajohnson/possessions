@@ -83,8 +83,6 @@ export default function NightStandStuffBoard({ G, moves }) {
     dispatch(resetAction);
   };
 
-  console.log("state", state);
-
   return (
     <Container>
       <House>

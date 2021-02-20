@@ -49,13 +49,6 @@ export default function Room({ state, roomKey, G, dispatch }) {
     selectedRoom === null &&
     isValidMoveOne({ roomOrder, characters }, selectedCharacter, roomKey);
 
-  if (isFightAfterOption) {
-    console.log(
-      isValidMoveOne({ roomOrder, characters }, selectedCharacter, roomKey),
-      roomKey
-    );
-  }
-
   const isMoveTwoOption =
     stagedAction === MOVE_TWO &&
     selectedCharacter &&
@@ -74,14 +67,14 @@ export default function Room({ state, roomKey, G, dispatch }) {
       borderColor={borderColor}
       onClick={() => dispatch(roomClickAction(roomKey))}
     >
-      {rooms[roomKey].drops.length ? (
-        <Drops
-          dispatch={dispatch}
-          drops={rooms[roomKey].drops}
-          characters={characters}
-          state={state}
-        />
-      ) : null}
+      <Drops
+        dispatch={dispatch}
+        drops={rooms[roomKey].drops}
+        G={G}
+        state={state}
+        roomKey={roomKey}
+      />
+
       <span>{rooms[roomKey].name}</span>
       {roomsWithCharacters[roomKey]
         ? roomsWithCharacters[roomKey].map((characterKey) => (
@@ -90,7 +83,6 @@ export default function Room({ state, roomKey, G, dispatch }) {
               characterKey={characterKey}
               dispatch={dispatch}
               state={state}
-              characters={characters}
               G={G}
             />
           ))

@@ -1,15 +1,19 @@
 import { INVALID_MOVE } from "boardgame.io/core";
-import partition from "lodash/partition";
 
-import { isValidChat, isValidMoveOne, isValidMoveTwo } from "./validations";
+import {
+  isValidChat,
+  isValidMoveOne,
+  isValidMoveTwo,
+  isValidReact,
+} from "./validations";
 import { changeScore, getRelationship } from "./helpers";
 import { makeId } from "../utils";
 
-const drop = (value) => (G, _, character) => {
-  const currentRoom = G.characters[character].location;
-  G.rooms[currentRoom].drops.push({
+const drop = (value) => (G, _, characterKey) => {
+  const currentRoom = G.characters[characterKey].location;
+  G.rooms[currentRoom].drops[characterKey].push({
     value: value,
-    character: character,
+    character: characterKey,
     id: makeId(),
   });
 };
@@ -37,19 +41,11 @@ export const moveTwo = (G, _, characterKey, locationKey) => {
 };
 
 export const react = (G, _, reactingCharKey, dropperCharKey) => {
-  const characterRoom = G.rooms[G.characters[reactingCharKey].location];
+  const characterRoomKey = G.characters[reactingCharKey].location;
+  const characterRoom = G.rooms[characterRoomKey];
 
-  const valid =
-    characterRoom.drops.some((drop) => drop.character !== reactingCharKey) &&
-    characterRoom.drops.some((drop) => drop.character === dropperCharKey);
-
-  if (valid) {
-    const [relevantDrops, irrelevantDrops] = partition(
-      characterRoom.drops,
-      (drop) => drop.character === dropperCharKey
-    );
-
-    const netEffect = relevantDrops.reduce(
+  if (isValidReact(G, characterRoomKey, dropperCharKey, reactingCharKey)) {
+    const netEffect = characterRoom.drops[dropperCharKey].reduce(
       (combined, drop) => combined + drop.value,
       0
     );
@@ -62,7 +58,7 @@ export const react = (G, _, reactingCharKey, dropperCharKey) => {
 
     changeScore(relationship, netEffect);
 
-    characterRoom.drops = irrelevantDrops;
+    characterRoom.drops[dropperCharKey] = [];
   } else {
     return INVALID_MOVE;
   }
