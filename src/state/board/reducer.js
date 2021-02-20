@@ -1,12 +1,29 @@
-export const MOVE_ONE = "MOVE_ONE";
-export const MOVE_TWO = "MOVE_TWO";
-export const DROP_POS_ONE = "DROP_POS_ONE";
-export const DROP_POS_TWO = "DROP_POS_TWO";
-export const DROP_NEG_ONE = "DROP_NEG_ONE";
-export const DROP_NEG_TWO = "DROP_NEG_TWO";
-export const REACT = "REACT";
-export const FIGHT = "FIGHT";
-export const BOND = "BOND";
+import { useReducer } from "react";
+import { createContainer } from "react-tracked";
+
+import {
+  FIGHT,
+  BOND,
+  MOVE_ONE,
+  MOVE_TWO,
+  NON_CHAT_ACTIONS,
+  CHAT_ACTIONS,
+  REACT,
+} from "../../constants";
+
+export const MOVE_ONE_CLICK = "MOVE_ONE_CLICK";
+export const MOVE_TWO_CLICK = "MOVE_TWO_CLICK";
+export const CHARACTER_CLICK = "CHARACTER_CLICK";
+export const ROOM_CLICK = "ROOM_CLICK";
+export const DROP_POS_ONE_CLICK = "DROP_POS_ONE_CLICK";
+export const DROP_POS_TWO_CLICK = "DROP_POS_TWO_CLICK";
+export const DROP_NEG_ONE_CLICK = "DROP_NEG_ONE_CLICK";
+export const DROP_NEG_TWO_CLICK = "DROP_NEG_TWO_CLICK";
+export const REACT_CLICK = "REACT_CLICK";
+export const BOND_CLICK = "BOND_CLICK";
+export const FIGHT_CLICK = "FIGHT_CLICK";
+export const DROP_CLICK = "DROP_CLICK";
+export const RESET = "RESET";
 
 // TODO: at some point consolidate dropper character and others
 export const initialState = {
@@ -18,18 +35,6 @@ export const initialState = {
   chatCharacterTwo: null,
   dropperCharacter: null,
 };
-
-export const NON_CHAT_ACTIONS = [
-  MOVE_ONE,
-  MOVE_TWO,
-  DROP_POS_ONE,
-  DROP_POS_TWO,
-  DROP_NEG_ONE,
-  DROP_NEG_TWO,
-  REACT,
-];
-
-export const CHAT_ACTIONS = [FIGHT, BOND];
 
 const chatInteraction = (state, action) => {
   if (state.chatCharacterOne === null) {
@@ -122,81 +127,10 @@ export function reducer(state, action) {
   }
 }
 
-const MOVE_ONE_CLICK = "MOVE_ONE_CLICK";
-const MOVE_TWO_CLICK = "MOVE_TWO_CLICK";
-const CHARACTER_CLICK = "CHARACTER_CLICK";
-const ROOM_CLICK = "ROOM_CLICK";
-const DROP_POS_ONE_CLICK = "DROP_POS_ONE_CLICK";
-const DROP_POS_TWO_CLICK = "DROP_POS_TWO_CLICK";
-const DROP_NEG_ONE_CLICK = "DROP_NEG_ONE_CLICK";
-const DROP_NEG_TWO_CLICK = "DROP_NEG_TWO_CLICK";
-const REACT_CLICK = "REACT_CLICK";
-const BOND_CLICK = "BOND_CLICK";
-const FIGHT_CLICK = "FIGHT_CLICK";
-const DROP_CLICK = "DROP_CLICK";
-const RESET = "RESET";
+const useValue = () => useReducer(reducer, initialState);
 
-// TODO: clean all this up
-export const moveOneClickAction = {
-  type: MOVE_ONE_CLICK,
-  action: MOVE_ONE,
-};
-
-export const moveTwoClickAction = {
-  type: MOVE_TWO_CLICK,
-  action: MOVE_TWO,
-};
-
-export const dropPosOneClickAction = {
-  type: DROP_POS_ONE_CLICK,
-  action: DROP_POS_ONE,
-};
-
-export const dropPosTwoClickAction = {
-  type: DROP_POS_TWO_CLICK,
-  action: DROP_POS_TWO,
-};
-
-export const dropNegOneClickAction = {
-  type: DROP_NEG_ONE_CLICK,
-  action: DROP_NEG_ONE,
-};
-
-export const dropNegTwoClickAction = {
-  type: DROP_NEG_TWO_CLICK,
-  action: DROP_NEG_TWO,
-};
-
-export const reactClickAction = {
-  type: REACT_CLICK,
-  action: REACT,
-};
-
-export const bondClickAction = {
-  type: BOND_CLICK,
-  action: BOND,
-};
-
-export const fightClickAction = {
-  type: FIGHT_CLICK,
-  action: FIGHT,
-};
-
-export const resetAction = {
-  type: RESET,
-};
-
-export const characterClickAction = (character) => ({
-  type: CHARACTER_CLICK,
-  character,
-});
-
-export const roomClickAction = (room) => ({
-  type: ROOM_CLICK,
-  room,
-});
-
-export const dropClickAction = (dropperKey) => ({
-  type: DROP_CLICK,
-  dropperKey,
-});
+export const {
+  Provider,
+  useTrackedState,
+  useUpdate: useDispatch,
+} = createContainer(useValue);

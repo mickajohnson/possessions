@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
-import {
-  characterClickAction,
-  CHAT_ACTIONS,
-  NON_CHAT_ACTIONS,
-  FIGHT,
-} from "../Board/reducer";
+import { CHAT_ACTIONS, NON_CHAT_ACTIONS, FIGHT } from "../../constants";
+import { characterClickAction } from "../../state/board/actions";
 import { isValidChat } from "../../game/validations";
 
 export default function Character({ dispatch, characterKey, state, G }) {

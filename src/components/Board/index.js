@@ -3,7 +3,18 @@ import styled from "styled-components";
 import map from "lodash/map";
 
 import {
-  reducer,
+  DROP_POS_ONE,
+  DROP_POS_TWO,
+  DROP_NEG_ONE,
+  DROP_NEG_TWO,
+  FIGHT,
+  BOND,
+  REACT,
+  MOVE_ONE,
+  MOVE_TWO,
+} from "../../constants";
+import { reducer, initialState } from "../../state/board/reducer";
+import {
   moveOneClickAction,
   moveTwoClickAction,
   dropPosOneClickAction,
@@ -13,18 +24,8 @@ import {
   reactClickAction,
   fightClickAction,
   bondClickAction,
-  MOVE_ONE,
-  MOVE_TWO,
   resetAction,
-  initialState,
-  DROP_POS_ONE,
-  DROP_POS_TWO,
-  DROP_NEG_ONE,
-  DROP_NEG_TWO,
-  FIGHT,
-  BOND,
-  REACT,
-} from "./reducer";
+} from "../../state/board/actions";
 import House from "../House";
 
 export default function NightStandStuffBoard({ G, moves }) {

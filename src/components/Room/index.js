@@ -3,8 +3,8 @@ import styled from "styled-components";
 import reduce from "lodash/reduce";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
-
-import { MOVE_ONE, MOVE_TWO, FIGHT, roomClickAction } from "../Board/reducer";
+import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";
+import { roomClickAction } from "../../state/board/actions";
 import Drops from "../Drops";
 import Character from "../Character";
 

@@ -2,7 +2,8 @@ import styled from "styled-components";
 import map from "lodash/map";
 import get from "lodash/get";
 
-import { dropClickAction, REACT } from "../Board/reducer";
+import { REACT } from "../../constants";
+import { dropClickAction } from "../../state/board/actions";
 import { isValidReact } from "../../game/validations";
 
 function DropGroup({ dropGroup, dispatch, G, state, characterKey, roomKey }) {

@@ -32,3 +32,24 @@ export const ROOM_KEYS = [
   GARAGE,
   OFFICE,
 ];
+
+export const MOVE_ONE = "MOVE_ONE";
+export const MOVE_TWO = "MOVE_TWO";
+export const DROP_POS_ONE = "DROP_POS_ONE";
+export const DROP_POS_TWO = "DROP_POS_TWO";
+export const DROP_NEG_ONE = "DROP_NEG_ONE";
+export const DROP_NEG_TWO = "DROP_NEG_TWO";
+export const REACT = "REACT";
+export const FIGHT = "FIGHT";
+export const BOND = "BOND";
+
+export const NON_CHAT_ACTIONS = [
+  MOVE_ONE,
+  MOVE_TWO,
+  DROP_POS_ONE,
+  DROP_POS_TWO,
+  DROP_NEG_ONE,
+  DROP_NEG_TWO,
+  REACT,
+];
+export const CHAT_ACTIONS = [FIGHT, BOND];
