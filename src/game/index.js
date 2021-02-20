@@ -23,7 +23,8 @@ export const NightStandStuff = {
     roomOrder.forEach((roomKey, index) => {
       rooms[roomKey].position = index;
       if (shuffledDrops.length && index !== 4) {
-        rooms[roomKey].drops.push(shuffledDrops.pop());
+        const newDrop = shuffledDrops.pop();
+        rooms[roomKey].drops[newDrop.character].push(newDrop);
       }
     });
 

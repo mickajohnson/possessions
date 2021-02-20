@@ -1,3 +1,4 @@
+import cloneDeep from "lodash/cloneDeep";
 import {
   MOM,
   DAD,
@@ -21,6 +22,13 @@ import {
 } from "../constants";
 import { makeId } from "../utils";
 
+const dropTemplate = {
+  [MOM]: [],
+  [DAD]: [],
+  [GRANDPA]: [],
+  [DAUGHTER]: [],
+};
+
 export const Relationships = {
   [MOM_DAD]: { name: "Mom & Dad", score: 0 },
   [MOM_DAUGHTER]: { name: "Mom & Daughter", score: 0 },
@@ -40,47 +48,47 @@ export const Characters = {
 export const Rooms = {
   [LIVING_ROOM]: {
     name: "Living Room",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [DINING_ROOM]: {
     name: "Dining Room",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [KITCHEN]: {
     name: "Kitchen",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [BATHROOM]: {
     name: "Bathroom",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [PARENTS_ROOM]: {
     name: "Parent's Room",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [DAUGHTERS_ROOM]: {
     name: "Daughter's Room",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [GRANDPAS_ROOM]: {
     name: "Grandpa's Room",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [GARAGE]: {
     name: "Garage",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
   [OFFICE]: {
     name: "Office",
-    drops: [],
+    drops: cloneDeep(dropTemplate),
     position: 0,
   },
 };

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import map from "lodash/map";
 
 import { dropClickAction, REACT } from "../Board/reducer";
 
@@ -28,13 +29,29 @@ function Drop({ drop, characters, state, dispatch }) {
   );
 }
 
-export default function Drops({ drops, characters, dispatch, state }) {
+function DropGroup({ dropGroup, dispatch, characters, state }) {
   return (
-    <DropsContainer>
-      {drops.map((drop) => (
+    <div>
+      {dropGroup.map((drop) => (
         <Drop
           key={drop.id}
           drop={drop}
+          dispatch={dispatch}
+          characters={characters}
+          state={state}
+        ></Drop>
+      ))}
+    </div>
+  );
+}
+
+export default function Drops({ drops, characters, dispatch, state }) {
+  return (
+    <DropsContainer>
+      {map(drops, (dropGroup, characterKey) => (
+        <DropGroup
+          key={dropGroup.id}
+          drop={dropGroup}
           dispatch={dispatch}
           characters={characters}
           state={state}
