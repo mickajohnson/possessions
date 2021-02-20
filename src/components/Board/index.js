@@ -25,10 +25,10 @@ import {
   BOND,
   REACT,
 } from "./reducer";
-import Room from "../Room";
+import House from "../House";
 
 export default function NightStandStuffBoard({ G, moves }) {
-  const { roomOrder, relationships } = G;
+  const { relationships } = G;
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const {
     stagedAction,
@@ -83,17 +83,7 @@ export default function NightStandStuffBoard({ G, moves }) {
 
   return (
     <Container>
-      <House>
-        {roomOrder.map((roomKey) => (
-          <Room
-            key={roomKey}
-            state={state}
-            roomKey={roomKey}
-            G={G}
-            dispatch={dispatch}
-          />
-        ))}
-      </House>
+      <House G={G} dispatch={dispatch} state={state} />
       <Relationships>
         {map(relationships, (relationshipData, relationshipKey) => (
           <RelationshipWrapper key={relationshipKey}>
@@ -123,13 +113,6 @@ export default function NightStandStuffBoard({ G, moves }) {
 }
 
 const Container = styled.div``;
-
-const House = styled.div`
-  display: grid;
-  grid-gap: 5px;
-  grid-template-columns: repeat(3, 1fr);
-  width: 60%;
-`;
 
 const Relationships = styled.div`
   display: grid;
