@@ -19,3 +19,16 @@ export const BATHROOM = "BATHROOM";
 export const OFFICE = "OFFICE";
 export const GARAGE = "GARAGE";
 export const KITCHEN = "KITCHEN";
+
+export const CHARACTER_KEYS = [MOM, DAD, DAUGHTER, GRANDPA];
+export const ROOM_KEYS = [
+  LIVING_ROOM,
+  DINING_ROOM,
+  KITCHEN,
+  BATHROOM,
+  PARENTS_ROOM,
+  DAUGHTERS_ROOM,
+  GRANDPAS_ROOM,
+  GARAGE,
+  OFFICE,
+];
