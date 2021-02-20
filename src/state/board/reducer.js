@@ -58,7 +58,7 @@ const chatInteraction = (state, action) => {
   }
 };
 
-export function reducer(state, action) {
+function reducer(state, action) {
   switch (action.type) {
     case MOVE_ONE_CLICK:
     case MOVE_TWO_CLICK:
@@ -131,6 +131,6 @@ const useValue = () => useReducer(reducer, initialState);
 
 export const {
   Provider,
-  useTrackedState,
+  useTrackedState: useBoardState,
   useUpdate: useDispatch,
 } = createContainer(useValue);

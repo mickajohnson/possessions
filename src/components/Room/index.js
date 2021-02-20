@@ -5,10 +5,14 @@ import reduce from "lodash/reduce";
 import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
 import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";
 import { roomClickAction } from "../../state/board/actions";
+import { useDispatch, useBoardState } from "../../state/board/reducer";
 import Drops from "../Drops";
 import Character from "../Character";
 
-export default function Room({ state, roomKey, G, dispatch }) {
+export default function Room({ roomKey, G }) {
+  const dispatch = useDispatch();
+  const state = useBoardState();
+
   const {
     stagedAction,
     selectedRoom,

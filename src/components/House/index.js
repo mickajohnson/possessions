@@ -2,19 +2,13 @@ import styled from "styled-components";
 
 import Room from "../Room";
 
-export default function House({ G, state, dispatch }) {
+export default function House({ G }) {
   const { roomOrder } = G;
 
   return (
     <HouseContainer>
       {roomOrder.map((roomKey) => (
-        <Room
-          key={roomKey}
-          state={state}
-          roomKey={roomKey}
-          G={G}
-          dispatch={dispatch}
-        />
+        <Room key={roomKey} roomKey={roomKey} G={G} />
       ))}
     </HouseContainer>
   );
