@@ -3,24 +3,44 @@ import Deck from "../Deck";
 import Hand from "../Hand";
 import ProgrammingLine from "../ProgrammingLine";
 
-export default function ActivePlayerCardArea({ playerInfo, moves, playerKey }) {
+import { PLANNING } from "../../constants";
+
+export default function ActivePlayerCardArea({
+  G,
+  moves,
+  playerID,
+  ctx,
+  isActive,
+}) {
+  const player = G.players[playerID];
+  const isPlayable = isActive && ctx.phase === PLANNING;
+  const isDrawable =
+    isPlayable && player.commands[G.currentCommandKey] !== null;
+
+  console.log(isPlayable, playerID);
+
   const handleProgramCard = (cardId) => {
-    moves.programCard(playerKey, cardId);
+    moves.programCard(playerID, cardId);
   };
   const handleDrawCard = () => {
-    moves.drawCard(playerKey);
+    moves.drawCard(playerID);
   };
   return (
     <Container>
       <TopContent>
         <Deck
           onDrawCard={handleDrawCard}
-          remainingCardCount={playerInfo.deck.length}
+          remainingCardCount={player.deck.length}
+          isDrawable={isDrawable}
         />
-        <ProgrammingLine commands={playerInfo.commands} />
+        <ProgrammingLine commands={player.commands} />
       </TopContent>
 
-      <Hand onPlayCard={handleProgramCard} cards={playerInfo.hand} />
+      <Hand
+        isPlayable={isPlayable}
+        onPlayCard={handleProgramCard}
+        cards={player.hand}
+      />
     </Container>
   );
 }

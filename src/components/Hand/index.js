@@ -2,11 +2,16 @@ import styled from "styled-components";
 
 import FaceUpCard from "../FaceUpCard";
 
-export default function Hand({ cards, onPlayCard }) {
+export default function Hand({ cards, onPlayCard, isPlayable }) {
   return (
     <Container>
       {cards.map((card) => (
-        <FaceUpCard onDoubleClick={onPlayCard} key={card.id} card={card} />
+        <FaceUpCard
+          isPlayable={isPlayable}
+          onDoubleClick={onPlayCard}
+          key={card.id}
+          card={card}
+        />
       ))}
     </Container>
   );

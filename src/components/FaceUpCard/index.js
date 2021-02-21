@@ -1,8 +1,18 @@
 import styled from "styled-components";
 
-export default function FaceUpCard({ card, onDoubleClick }) {
+export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
+  const handlePlayCard = () => {
+    if (isPlayable) {
+      onDoubleClick(card.id);
+    }
+  };
+
+  const borderColor = isPlayable ? "blue" : "black";
+
+  console.log(isPlayable);
+
   return (
-    <Container onDoubleClick={() => onDoubleClick(card.id)}>
+    <Container borderColor={borderColor} onDoubleClick={handlePlayCard}>
       {card.name}
     </Container>
   );
@@ -11,7 +21,8 @@ export default function FaceUpCard({ card, onDoubleClick }) {
 const Container = styled.div`
   height: 6em;
   width: 4em;
-  border: 1px solid black;
+  border: 1px solid;
+  border-color: ${({ borderColor }) => borderColor};
   display: flex;
   align-items: center;
   justify-content: center;

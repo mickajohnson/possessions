@@ -2,11 +2,16 @@ import styled from "styled-components";
 
 import FaceDownCard from "../FaceDownCard";
 
-export default function Deck({ remainingCardCount, onDrawCard }) {
+export default function Deck({ remainingCardCount, onDrawCard, isDrawable }) {
+  const handleDrawCard = () => {
+    if (isDrawable) {
+      onDrawCard();
+    }
+  };
   return (
     <Container>
       <p>Deck</p>
-      <FaceDownCard onDoubleClick={onDrawCard} />
+      <FaceDownCard isDrawable={isDrawable} onDoubleClick={handleDrawCard} />
       Remaining: {remainingCardCount}
     </Container>
   );

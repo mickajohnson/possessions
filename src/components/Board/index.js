@@ -9,7 +9,13 @@ import House from "../House";
 // import BoardButtons from "../BoardButtons";
 import ActivePlayerCardArea from "../ActivePlayerCardArea";
 
-export default function NightStandStuffBoard({ G, moves, playerID, isActive }) {
+export default function NightStandStuffBoard({
+  G,
+  moves,
+  playerID,
+  isActive,
+  ctx,
+}) {
   const { relationships } = G;
 
   return (
@@ -27,9 +33,11 @@ export default function NightStandStuffBoard({ G, moves, playerID, isActive }) {
           ))}
         </Relationships>
         <ActivePlayerCardArea
-          playerKey={playerID}
+          playerID={playerID}
           moves={moves}
-          playerInfo={G.players[playerID]}
+          G={G}
+          ctx={ctx}
+          isActive={isActive}
         />
         {/* <BoardButtons moves={moves} G={G} /> */}
       </Container>
