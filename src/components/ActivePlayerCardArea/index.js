@@ -4,6 +4,7 @@ import Hand from "../Hand";
 import ProgrammingLine from "../ProgrammingLine";
 
 import { PLANNING } from "../../constants";
+import DiscardPile from "../DiscardPile";
 
 export default function ActivePlayerCardArea({
   G,
@@ -34,6 +35,7 @@ export default function ActivePlayerCardArea({
           isDrawable={isDrawable}
         />
         <ProgrammingLine commands={player.commands} />
+        <DiscardPile discardPile={player.discardPile} />
       </TopContent>
 
       <Hand

@@ -1,6 +1,7 @@
 import { INVALID_MOVE } from "boardgame.io/core";
 import remove from "lodash/remove";
 import every from "lodash/every";
+import shuffle from "lodash/shuffle";
 
 import {
   isValidChat,
@@ -130,7 +131,8 @@ export const drawCard = (G, ctx, playerKey) => {
   }
 
   if (player.deck.length === 0) {
-    // Shuffle discard
+    player.deck = shuffle([...player.discardPile]);
+    player.discardPile = [];
   }
 
   player.hand.push(player.deck.pop());

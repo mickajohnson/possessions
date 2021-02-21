@@ -80,18 +80,22 @@ const createInitialRelationships = () => ({
   [DAD_DAUGHTER]: { name: "Dad & Daughter", score: 0 },
 });
 
-export default function setup(ctx) {
-  const players = ctx.playOrder.reduce((playerObject, playerKey) => {
+const createInitialPlayers = (ctx) =>
+  ctx.playOrder.reduce((playerObject, playerKey) => {
     const deck = shuffle(getDefaultDeck());
     const hand = pullAt(deck, [0, 1, 2, 3, 4, 5]);
     playerObject[playerKey] = {
       deck,
       hand,
       commands: getEmptyCommands(),
+      discardPile: [],
     };
 
     return playerObject;
   }, {});
+
+export default function setup(ctx) {
+  const players = createInitialPlayers(ctx);
 
   const relationships = createInitialRelationships();
 
