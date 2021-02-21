@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 import FaceDownCard from "../FaceDownCard";
 
-export default function Deck({ remainingCardCount }) {
+export default function Deck({ remainingCardCount, onDrawCard }) {
   return (
     <Container>
       <p>Deck</p>
-      <FaceDownCard />
+      <FaceDownCard onDoubleClick={onDrawCard} />
       Remaining: {remainingCardCount}
     </Container>
   );

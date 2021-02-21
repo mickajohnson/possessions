@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function FaceDownCard() {
-  return <Container />;
+export default function FaceDownCard({ onDoubleClick }) {
+  return <Container onDoubleClick={onDoubleClick} />;
 }
 
 const Container = styled.div`

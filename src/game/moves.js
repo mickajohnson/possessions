@@ -1,4 +1,6 @@
 import { INVALID_MOVE } from "boardgame.io/core";
+import remove from "lodash/remove";
+import every from "lodash/every";
 
 import {
   isValidChat,
@@ -102,4 +104,43 @@ export const fight = (
   } else {
     return INVALID_MOVE;
   }
+};
+
+export const programCard = (G, _, playerKey, cardId) => {
+  const player = G.players[playerKey];
+
+  const alreadyProgrammedCard = player.commands[G.currentCommandKey];
+
+  if (alreadyProgrammedCard) {
+    player.hand.push(alreadyProgrammedCard);
+  }
+
+  const [playedCard] = remove(player.hand, (card) => card.id === cardId);
+
+  player.commands[G.currentCommandKey] = playedCard;
+
+  // INVALID MOVE
+};
+
+export const drawCard = (G, ctx, playerKey) => {
+  const player = G.players[playerKey];
+
+  if (player.commands[G.currentCommandKey] === null) {
+    return INVALID_MOVE;
+  }
+
+  if (player.deck.length === 0) {
+    // Shuffle discard
+  }
+
+  player.hand.push(player.deck.pop());
+  ctx.events.endTurn();
+
+  if (
+    every(G.players, (player) => player.commands[G.currentCommandKey] !== null)
+  ) {
+    G.currentCommandKey = G.currentCommandKey + 1;
+  }
+
+  // More Invalid moves?
 };

@@ -11,13 +11,21 @@ import {
   fight,
   bond,
   react,
+  programCard,
+  drawCard,
 } from "./moves";
 
 export const NightStandStuff = {
   setup,
   phases: {
     [PLANNING]: {
-      moves: {},
+      onBegin: (G) => {
+        G.currentCommandKey = 0;
+      },
+      moves: {
+        programCard,
+        drawCard,
+      },
       start: true, //Will eventually need to be goal selection phase
       endIf: () => false, // All players have confirmed four cards in programming line,
       next: EXECUTION,

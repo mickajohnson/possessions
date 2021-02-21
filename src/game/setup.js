@@ -3,7 +3,12 @@ import reduce from "lodash/reduce";
 import cloneDeep from "lodash/cloneDeep";
 import pullAt from "lodash/pullAt";
 
-import { roomKeyToNameMapping, dropTemplate, getDefaultDeck } from "./gameData";
+import {
+  roomKeyToNameMapping,
+  dropTemplate,
+  getDefaultDeck,
+  getEmptyCommands,
+} from "./gameData";
 import {
   CHARACTER_KEYS,
   ROOM_KEYS,
@@ -76,14 +81,13 @@ const createInitialRelationships = () => ({
 });
 
 export default function setup(ctx) {
-  console.log("ctx", ctx);
-
   const players = ctx.playOrder.reduce((playerObject, playerKey) => {
     const deck = shuffle(getDefaultDeck());
     const hand = pullAt(deck, [0, 1, 2, 3, 4, 5]);
     playerObject[playerKey] = {
       deck,
       hand,
+      commands: getEmptyCommands(),
     };
 
     return playerObject;
@@ -105,5 +109,6 @@ export default function setup(ctx) {
     characters,
     relationships,
     players,
+    currentCommandKey: "0",
   };
 }

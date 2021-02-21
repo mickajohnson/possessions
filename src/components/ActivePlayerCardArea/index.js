@@ -3,15 +3,24 @@ import Deck from "../Deck";
 import Hand from "../Hand";
 import ProgrammingLine from "../ProgrammingLine";
 
-export default function ActivePlayerCardArea({ playerInfo }) {
+export default function ActivePlayerCardArea({ playerInfo, moves, playerKey }) {
+  const handleProgramCard = (cardId) => {
+    moves.programCard(playerKey, cardId);
+  };
+  const handleDrawCard = () => {
+    moves.drawCard(playerKey);
+  };
   return (
     <Container>
       <TopContent>
-        <Deck remainingCardCount={playerInfo.deck.length} />
-        <ProgrammingLine commands={{ 0: null, 1: null, 2: null, 3: null }} />
+        <Deck
+          onDrawCard={handleDrawCard}
+          remainingCardCount={playerInfo.deck.length}
+        />
+        <ProgrammingLine commands={playerInfo.commands} />
       </TopContent>
 
-      <Hand cards={playerInfo.hand} />
+      <Hand onPlayCard={handleProgramCard} cards={playerInfo.hand} />
     </Container>
   );
 }

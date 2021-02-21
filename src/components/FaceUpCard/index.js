@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-export default function FaceUpCard({ card }) {
-  return <Container>{card.name}</Container>;
+export default function FaceUpCard({ card, onDoubleClick }) {
+  return (
+    <Container onDoubleClick={() => onDoubleClick(card.id)}>
+      {card.name}
+    </Container>
+  );
 }
 
 const Container = styled.div`

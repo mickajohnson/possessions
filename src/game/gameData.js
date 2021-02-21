@@ -105,3 +105,10 @@ export const getDefaultDeck = () => [
   getChatCard(),
   getChatCard(),
 ];
+
+export const getEmptyCommands = () => ({
+  0: null,
+  1: null,
+  2: null,
+  3: null,
+});

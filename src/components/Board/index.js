@@ -26,7 +26,11 @@ export default function NightStandStuffBoard({ G, moves, playerID, isActive }) {
             </RelationshipWrapper>
           ))}
         </Relationships>
-        <ActivePlayerCardArea playerInfo={G.players[playerID]} />
+        <ActivePlayerCardArea
+          playerKey={playerID}
+          moves={moves}
+          playerInfo={G.players[playerID]}
+        />
         {/* <BoardButtons moves={moves} G={G} /> */}
       </Container>
     </Provider>
