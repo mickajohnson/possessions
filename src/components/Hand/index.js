@@ -6,7 +6,7 @@ export default function Hand({ cards }) {
   return (
     <Container>
       {cards.map((card) => (
-        <FaceUpCard key="TODO" name={card.name} value={card.value} />
+        <FaceUpCard key={card.id} name={card.name} value={card.value} />
       ))}
     </Container>
   );

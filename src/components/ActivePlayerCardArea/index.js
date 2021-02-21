@@ -13,4 +13,7 @@ export default function ActivePlayerCardArea({ playerInfo }) {
 
 const Container = styled.div`
   display: flex;
+  padding: 10px;
+  border: 1px solid black;
+  margin-top: 10px;
 `;

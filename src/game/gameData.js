@@ -21,6 +21,7 @@ import {
   REACT,
   CHAT,
 } from "../constants";
+import { makeId } from "../utils";
 
 export const dropTemplate = {
   [MOM]: [],
@@ -41,58 +42,66 @@ export const roomKeyToNameMapping = {
   [OFFICE]: "Office",
 };
 
-export const moveOneCard = {
+export const getMoveOneCard = () => ({
   action: MOVE_ONE,
   name: "Move One",
-};
+  id: makeId(),
+});
 
-export const moveTwoCard = {
+export const getMoveTwoCard = () => ({
   action: MOVE_TWO,
   name: "Move Two",
-};
+  id: makeId(),
+});
 
-export const dropNegOneCard = {
+export const getDropNegOneCard = () => ({
   action: DROP_NEG_ONE,
   name: "Drop -1",
-};
+  id: makeId(),
+});
 
-export const dropNegTwoCard = {
+export const getDropNegTwoCard = () => ({
   action: DROP_NEG_TWO,
   name: "Drop -2",
-};
+  id: makeId(),
+});
 
-export const dropPosTwoCard = {
+export const getDropPosTwoCard = () => ({
   action: DROP_POS_TWO,
   name: "Drop +2",
-};
+  id: makeId(),
+});
 
-export const dropPosOneCard = {
+export const getDropPosOneCard = () => ({
   action: DROP_POS_ONE,
   name: "Drop -1",
-};
+  id: makeId(),
+});
 
-export const reactCard = {
+export const getReactCard = () => ({
   action: REACT,
   name: "React",
-};
+  id: makeId(),
+});
 
-export const chatCard = {
+export const getChatCard = () => ({
   action: CHAT,
   name: "Chat",
-};
+  id: makeId(),
+});
 
-export const defaultDeck = [
-  moveOneCard,
-  moveOneCard,
-  moveOneCard,
-  moveTwoCard,
-  moveTwoCard,
-  dropNegOneCard,
-  dropNegTwoCard,
-  dropPosOneCard,
-  dropPosTwoCard,
-  reactCard,
-  reactCard,
-  chatCard,
-  chatCard,
+export const getDefaultDeck = () => [
+  getMoveOneCard(),
+  getMoveOneCard(),
+  getMoveOneCard(),
+  getMoveTwoCard(),
+  getMoveTwoCard(),
+  getDropNegOneCard(),
+  getDropNegTwoCard(),
+  getDropPosOneCard(),
+  getDropPosTwoCard(),
+  getReactCard(),
+  getReactCard(),
+  getChatCard(),
+  getChatCard(),
 ];
