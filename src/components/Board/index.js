@@ -6,7 +6,8 @@ import map from "lodash/map";
 import { Provider } from "../../state/board/reducer";
 
 import House from "../House";
-import BoardButtons from "../BoardButtons";
+// import BoardButtons from "../BoardButtons";
+import ActivePlayerCardArea from "../ActivePlayerCardArea";
 
 export default function NightStandStuffBoard({ G, moves, playerID, isActive }) {
   const { relationships } = G;
@@ -25,7 +26,8 @@ export default function NightStandStuffBoard({ G, moves, playerID, isActive }) {
             </RelationshipWrapper>
           ))}
         </Relationships>
-        <BoardButtons moves={moves} G={G} />
+        <ActivePlayerCardArea playerInfo={G.players[playerID]} />
+        {/* <BoardButtons moves={moves} G={G} /> */}
       </Container>
     </Provider>
   );
