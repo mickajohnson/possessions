@@ -1,8 +1,9 @@
 import shuffle from "lodash/shuffle";
 import reduce from "lodash/reduce";
 import cloneDeep from "lodash/cloneDeep";
+import pullAt from "lodash/pullAt";
 
-import { roomKeyToNameMapping, dropTemplate } from "./gameData";
+import { roomKeyToNameMapping, dropTemplate, defaultDeck } from "./gameData";
 import {
   CHARACTER_KEYS,
   ROOM_KEYS,
@@ -74,7 +75,20 @@ const createInitialRelationships = () => ({
   [DAD_DAUGHTER]: { name: "Dad & Daughter", score: 0 },
 });
 
-export default function setup() {
+export default function setup(ctx) {
+  console.log("ctx", ctx);
+
+  const players = ctx.playOrder.reduce((playerObject, playerKey) => {
+    const deck = shuffle(cloneDeep(defaultDeck));
+    const hand = pullAt(deck, [0, 1, 2, 3, 4, 5]);
+    playerObject[playerKey] = {
+      deck,
+      hand,
+    };
+
+    return playerObject;
+  }, {});
+
   const relationships = createInitialRelationships();
 
   const characters = createInitialCharacters();
@@ -90,5 +104,6 @@ export default function setup() {
     rooms,
     characters,
     relationships,
+    players,
   };
 }

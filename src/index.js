@@ -1,8 +1,28 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Client } from "boardgame.io/react";
+import { Local } from "boardgame.io/multiplayer";
+
 import "./index.css";
-import App from "./components/App";
 import reportWebVitals from "./reportWebVitals";
+
+import NightStandStuff from "./game";
+import NightStandStuffBoard from "./components/Board";
+
+const GameClient = Client({
+  game: NightStandStuff,
+  board: NightStandStuffBoard,
+  multiplayer: Local(),
+});
+
+const App = () => (
+  <>
+    <GameClient playerID="0" />
+    <br />
+    <br />
+    <GameClient playerID="1" />
+  </>
+);
 
 ReactDOM.render(
   <React.StrictMode>

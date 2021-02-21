@@ -42,6 +42,7 @@ export const DROP_NEG_TWO = "DROP_NEG_TWO";
 export const REACT = "REACT";
 export const FIGHT = "FIGHT";
 export const BOND = "BOND";
+export const CHAT = "CHAT";
 
 export const NON_CHAT_ACTIONS = [
   MOVE_ONE,
@@ -53,3 +54,6 @@ export const NON_CHAT_ACTIONS = [
   REACT,
 ];
 export const CHAT_ACTIONS = [FIGHT, BOND];
+
+export const EXECUTION = "EXECUTION";
+export const PLANNING = "PLANNING";
