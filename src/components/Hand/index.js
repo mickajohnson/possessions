@@ -6,7 +6,7 @@ export default function Hand({ cards }) {
   return (
     <Container>
       {cards.map((card) => (
-        <FaceUpCard key={card.id} name={card.name} value={card.value} />
+        <FaceUpCard key={card.id} card={card} />
       ))}
     </Container>
   );
@@ -14,4 +14,6 @@ export default function Hand({ cards }) {
 
 const Container = styled.div`
   display: flex;
+  justify-content: space-between;
+  width: 450px;
 `;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export default function FaceUpCard({ name, value }) {
-  return <Container>{name}</Container>;
+export default function FaceUpCard({ card }) {
+  return <Container>{card.name}</Container>;
 }
 
 const Container = styled.div`
