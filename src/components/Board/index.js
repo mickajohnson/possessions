@@ -24,7 +24,7 @@ export default function NightStandStuffBoard({
         <span>Player {playerID} | </span>
         <span>{isActive ? "Active" : "Not Active"} | </span>
         <span>Phase {ctx.phase}</span>
-        <House G={G} />
+        <House G={G} isActive={isActive} ctx={ctx} playerID={playerID} />
         <Relationships>
           {map(relationships, (relationshipData, relationshipKey) => (
             <RelationshipWrapper key={relationshipKey}>

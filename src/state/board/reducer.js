@@ -24,6 +24,7 @@ export const BOND_CLICK = "BOND_CLICK";
 export const FIGHT_CLICK = "FIGHT_CLICK";
 export const DROP_CLICK = "DROP_CLICK";
 export const RESET = "RESET";
+export const SELECT_ACTION = "SELECT_ACTION";
 
 // TODO: at some point consolidate dropper character and others
 export const initialState = {
@@ -60,15 +61,7 @@ const chatInteraction = (state, action) => {
 
 function reducer(state, action) {
   switch (action.type) {
-    case MOVE_ONE_CLICK:
-    case MOVE_TWO_CLICK:
-    case DROP_POS_ONE_CLICK:
-    case DROP_POS_TWO_CLICK:
-    case DROP_NEG_ONE_CLICK:
-    case DROP_NEG_TWO_CLICK:
-    case BOND_CLICK:
-    case FIGHT_CLICK:
-    case REACT_CLICK:
+    case SELECT_ACTION:
       return {
         ...state,
         message: `${action.action} - Select a character`,

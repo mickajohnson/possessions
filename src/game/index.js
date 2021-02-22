@@ -30,7 +30,10 @@ export const NightStandStuff = {
       next: EXECUTION,
     },
     [EXECUTION]: {
-      onBegin: () => {}, // reveal all cards
+      onBegin: (G) => {
+        G.currentCommandKey = 0;
+        // reveal all cards
+      },
       moves: {},
     },
   },
