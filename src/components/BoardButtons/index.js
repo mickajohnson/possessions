@@ -1,4 +1,4 @@
-import { resetAction } from "../../state/board/actions";
+import { resetAction, selectAction } from "../../state/board/actions";
 
 import {
   DROP_POS_ONE,
@@ -10,6 +10,7 @@ import {
   REACT,
   MOVE_ONE,
   MOVE_TWO,
+  CHAT,
 } from "../../constants";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
@@ -66,12 +67,32 @@ export default function BoardButtons({ moves, G }) {
     dispatch(resetAction);
   };
 
+  const handleCancelClick = () => {
+    dispatch(resetAction);
+    dispatch(selectAction(CHAT));
+  };
+
+  const handleFightClick = () => {
+    dispatch(selectAction(FIGHT));
+  };
+
+  const handleBondClick = () => {
+    dispatch(selectAction(BOND));
+  };
+
   return (
     <>
-      {stagedAction !== null ? (
+      {stagedAction !== null && stagedAction !== CHAT ? (
         <button onClick={handleConfirmClick}>Confirm</button>
       ) : null}
       <p>{message}</p>
+      {stagedAction === CHAT ? (
+        <>
+          <button onClick={handleCancelClick}>Cancel</button>
+          <button onClick={handleFightClick}>Fight</button>
+          <button onClick={handleBondClick}>Bond</button>
+        </>
+      ) : null}
     </>
   );
 }

@@ -12,13 +12,15 @@ import {
 import { changeScore, getRelationship } from "./helpers";
 import { makeId } from "../utils";
 
-const drop = (value) => (G, _, characterKey) => {
+const drop = (value) => (G, ctx, characterKey) => {
   const currentRoom = G.characters[characterKey].location;
   G.rooms[currentRoom].drops[characterKey].push({
     value: value,
     character: characterKey,
     id: makeId(),
   });
+  ctx.events.endTurn();
+  G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
 };
 
 export const dropNegativeOne = drop(-1);
@@ -31,6 +33,7 @@ export const moveOne = (G, ctx, characterKey, locationKey) => {
   if (isValidMoveOne(G, characterKey, locationKey)) {
     G.characters[characterKey].location = locationKey;
     ctx.events.endTurn();
+    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
   } else {
     return INVALID_MOVE;
   }
@@ -40,6 +43,7 @@ export const moveTwo = (G, ctx, characterKey, locationKey) => {
   if (isValidMoveTwo(G, characterKey, locationKey)) {
     G.characters[characterKey].location = locationKey;
     ctx.events.endTurn();
+    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
   } else {
     return INVALID_MOVE;
   }
@@ -65,6 +69,7 @@ export const react = (G, ctx, reactingCharKey, dropperCharKey) => {
 
     characterRoom.drops[dropperCharKey] = [];
     ctx.events.endTurn();
+    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
   } else {
     return INVALID_MOVE;
   }
@@ -80,6 +85,7 @@ export const bond = (G, ctx, characterOneKey, characterTwoKey) => {
 
     changeScore(relationship, 1);
     ctx.events.endTurn();
+    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
   } else {
     return INVALID_MOVE;
   }
@@ -107,6 +113,7 @@ export const fight = (
     changeScore(relationship, -1);
     G.characters[movingCharacterKey].location = destinationKey;
     ctx.events.endTurn();
+    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
   } else {
     return INVALID_MOVE;
   }
@@ -148,7 +155,7 @@ export const drawCard = (G, ctx, playerKey) => {
     if (G.currentCommandKey === 3) {
       ctx.events.endPhase();
     } else {
-      G.currentCommandKey = G.currentCommandKey + 1;
+      G.currentCommandKey += 1;
     }
   } else {
     ctx.events.endTurn();

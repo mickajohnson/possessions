@@ -32,7 +32,12 @@ export default function ActivePlayerCardArea({
           remainingCardCount={player.deck.length}
           isDrawable={isDrawable}
         />
-        <ProgrammingLine commands={player.commands} />
+        <ProgrammingLine
+          phase={ctx.phase}
+          isActive={isActive}
+          currentCommandKey={G.currentCommandKey}
+          commands={player.commands}
+        />
         <DiscardPile discardPile={player.discardPile} />
       </TopContent>
 

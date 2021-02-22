@@ -1,5 +1,6 @@
 import setup from "./setup";
 import { EXECUTION, PLANNING } from "../constants";
+import every from "lodash/every";
 
 import {
   dropNegativeOne,
@@ -34,6 +35,7 @@ export const NightStandStuff = {
         G.currentCommandKey = 0;
         // reveal all cards
       },
+      next: PLANNING,
       moves: {
         dropPositiveOne,
         dropNegativeOne,
@@ -48,16 +50,22 @@ export const NightStandStuff = {
     },
   },
 
-  moves: {
-    dropPositiveOne,
-    dropNegativeOne,
-    dropNegativeTwo,
-    dropPositiveTwo,
-    moveOne,
-    moveTwo,
-    react,
-    bond,
-    fight,
+  turn: {
+    onEnd: (G, ctx) => {
+      if (
+        ctx.phase === EXECUTION &&
+        every(
+          G.players,
+          (player) => player.commands[G.currentCommandKey] === null
+        )
+      ) {
+        if (G.currentCommandKey === 3) {
+          ctx.events.endPhase();
+        } else {
+          G.currentCommandKey += 1;
+        }
+      }
+    },
   },
 };
 
