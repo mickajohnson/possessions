@@ -113,6 +113,6 @@ export default function setup(ctx) {
     characters,
     relationships,
     players,
-    currentCommandKey: "0",
+    currentCommandKey: 3,
   };
 }

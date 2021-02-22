@@ -1,15 +1,4 @@
-import {
-  moveOneClickAction,
-  moveTwoClickAction,
-  dropPosOneClickAction,
-  dropPosTwoClickAction,
-  dropNegOneClickAction,
-  dropNegTwoClickAction,
-  reactClickAction,
-  fightClickAction,
-  bondClickAction,
-  resetAction,
-} from "../../state/board/actions";
+import { resetAction } from "../../state/board/actions";
 
 import {
   DROP_POS_ONE,
@@ -79,18 +68,6 @@ export default function BoardButtons({ moves, G }) {
 
   return (
     <>
-      <button onClick={() => dispatch(moveOneClickAction)}>Move 1</button>
-      <button onClick={() => dispatch(moveTwoClickAction)}>Move 2</button>
-      <button onClick={() => dispatch(dropPosOneClickAction)}>Drop 1</button>
-      <button onClick={() => dispatch(dropPosTwoClickAction)}>Drop 2</button>
-      <button onClick={() => dispatch(dropNegOneClickAction)}>Drop -1</button>
-      <button onClick={() => dispatch(dropNegTwoClickAction)}>Drop -2</button>
-      <button onClick={() => dispatch(bondClickAction)}>Bond</button>
-      <button onClick={() => dispatch(fightClickAction)}>Fight</button>
-      <button onClick={() => dispatch(reactClickAction)}>React</button>
-      {stagedAction !== null ? (
-        <button onClick={() => dispatch(resetAction)}>Cancel</button>
-      ) : null}
       {stagedAction !== null ? (
         <button onClick={handleConfirmClick}>Confirm</button>
       ) : null}

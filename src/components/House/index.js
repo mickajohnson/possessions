@@ -13,7 +13,9 @@ export default function House({ G, ctx, isActive, playerID }) {
 
   React.useEffect(() => {
     if (isActive && stagedAction === null && ctx.phase === EXECUTION) {
-      dispatch(selectAction(G.players[playerID].commands[G.currentCommandKey]));
+      dispatch(
+        selectAction(G.players[playerID].commands[G.currentCommandKey].action)
+      );
     }
   }, [
     isActive,

@@ -6,7 +6,7 @@ import map from "lodash/map";
 import { Provider } from "../../state/board/reducer";
 
 import House from "../House";
-// import BoardButtons from "../BoardButtons";
+import BoardButtons from "../BoardButtons";
 import ActivePlayerCardArea from "../ActivePlayerCardArea";
 
 export default function NightStandStuffBoard({
@@ -40,7 +40,7 @@ export default function NightStandStuffBoard({
           ctx={ctx}
           isActive={isActive}
         />
-        {/* <BoardButtons moves={moves} G={G} /> */}
+        <BoardButtons moves={moves} G={G} />
       </Container>
     </Provider>
   );

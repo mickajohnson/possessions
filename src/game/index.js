@@ -20,7 +20,7 @@ export const NightStandStuff = {
   phases: {
     [PLANNING]: {
       onBegin: (G) => {
-        G.currentCommandKey = 0;
+        G.currentCommandKey = 3;
       },
       moves: {
         programCard,
@@ -34,13 +34,16 @@ export const NightStandStuff = {
         G.currentCommandKey = 0;
         // reveal all cards
       },
-      moves: {},
-    },
-  },
-  turn: {
-    stages: {
-      playCard: {
-        moves: {},
+      moves: {
+        dropPositiveOne,
+        dropNegativeOne,
+        dropNegativeTwo,
+        dropPositiveTwo,
+        moveOne,
+        moveTwo,
+        react,
+        bond,
+        fight,
       },
     },
   },

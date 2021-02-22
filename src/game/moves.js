@@ -27,23 +27,25 @@ export const dropNegativeTwo = drop(-2);
 export const dropPositiveOne = drop(1);
 export const dropPositiveTwo = drop(2);
 
-export const moveOne = (G, _, characterKey, locationKey) => {
+export const moveOne = (G, ctx, characterKey, locationKey) => {
   if (isValidMoveOne(G, characterKey, locationKey)) {
     G.characters[characterKey].location = locationKey;
+    ctx.events.endTurn();
   } else {
     return INVALID_MOVE;
   }
 };
 
-export const moveTwo = (G, _, characterKey, locationKey) => {
+export const moveTwo = (G, ctx, characterKey, locationKey) => {
   if (isValidMoveTwo(G, characterKey, locationKey)) {
     G.characters[characterKey].location = locationKey;
+    ctx.events.endTurn();
   } else {
     return INVALID_MOVE;
   }
 };
 
-export const react = (G, _, reactingCharKey, dropperCharKey) => {
+export const react = (G, ctx, reactingCharKey, dropperCharKey) => {
   const characterRoomKey = G.characters[reactingCharKey].location;
   const characterRoom = G.rooms[characterRoomKey];
 
@@ -62,12 +64,13 @@ export const react = (G, _, reactingCharKey, dropperCharKey) => {
     changeScore(relationship, netEffect);
 
     characterRoom.drops[dropperCharKey] = [];
+    ctx.events.endTurn();
   } else {
     return INVALID_MOVE;
   }
 };
 
-export const bond = (G, _, characterOneKey, characterTwoKey) => {
+export const bond = (G, ctx, characterOneKey, characterTwoKey) => {
   if (isValidChat(G, characterOneKey, characterTwoKey)) {
     const relationship = getRelationship(
       G.relationships,
@@ -76,6 +79,7 @@ export const bond = (G, _, characterOneKey, characterTwoKey) => {
     );
 
     changeScore(relationship, 1);
+    ctx.events.endTurn();
   } else {
     return INVALID_MOVE;
   }
@@ -83,7 +87,7 @@ export const bond = (G, _, characterOneKey, characterTwoKey) => {
 
 export const fight = (
   G,
-  _,
+  ctx,
   characterOneKey,
   characterTwoKey,
   movingCharacterKey,
@@ -102,6 +106,7 @@ export const fight = (
 
     changeScore(relationship, -1);
     G.characters[movingCharacterKey].location = destinationKey;
+    ctx.events.endTurn();
   } else {
     return INVALID_MOVE;
   }
@@ -136,7 +141,6 @@ export const drawCard = (G, ctx, playerKey) => {
   }
 
   player.hand.push(player.deck.pop());
-  ctx.events.endTurn();
 
   if (
     every(G.players, (player) => player.commands[G.currentCommandKey] !== null)
@@ -146,6 +150,8 @@ export const drawCard = (G, ctx, playerKey) => {
     } else {
       G.currentCommandKey = G.currentCommandKey + 1;
     }
+  } else {
+    ctx.events.endTurn();
   }
 
   // More Invalid moves?
