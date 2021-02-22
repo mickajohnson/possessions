@@ -9,8 +9,6 @@ export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
 
   const borderColor = isPlayable ? "blue" : "black";
 
-  console.log(isPlayable);
-
   return (
     <Container borderColor={borderColor} onDoubleClick={handlePlayCard}>
       {card.name}

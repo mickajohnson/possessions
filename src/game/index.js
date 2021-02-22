@@ -27,7 +27,6 @@ export const NightStandStuff = {
         drawCard,
       },
       start: true, //Will eventually need to be goal selection phase
-      endIf: () => false, // All players have confirmed four cards in programming line,
       next: EXECUTION,
     },
     [EXECUTION]: {

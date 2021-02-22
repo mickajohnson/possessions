@@ -18,8 +18,6 @@ export default function ActivePlayerCardArea({
   const isDrawable =
     isPlayable && player.commands[G.currentCommandKey] !== null;
 
-  console.log(isPlayable, playerID);
-
   const handleProgramCard = (cardId) => {
     moves.programCard(playerID, cardId);
   };

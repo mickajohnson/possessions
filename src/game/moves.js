@@ -141,7 +141,11 @@ export const drawCard = (G, ctx, playerKey) => {
   if (
     every(G.players, (player) => player.commands[G.currentCommandKey] !== null)
   ) {
-    G.currentCommandKey = G.currentCommandKey + 1;
+    if (G.currentCommandKey === 3) {
+      ctx.events.endPhase();
+    } else {
+      G.currentCommandKey = G.currentCommandKey + 1;
+    }
   }
 
   // More Invalid moves?
