@@ -26,12 +26,18 @@ export default function Character({ characterKey, G }) {
     CHAT_ACTIONS.includes(stagedAction) &&
     chatCharacterOne &&
     isValidChat(G, chatCharacterOne, characterKey);
+  const inFightMoverSelectionPhase =
+    stagedAction === FIGHT &&
+    chatCharacterOne &&
+    chatCharacterTwo &&
+    [chatCharacterTwo, chatCharacterOne].includes(characterKey);
 
   const isOption =
     characterSelected ||
     inCharacterSelectionPhase ||
     inFirstChatSelectionPhase ||
-    inSecondChatSelectionPhase;
+    inSecondChatSelectionPhase ||
+    inFightMoverSelectionPhase;
 
   const isSelected =
     selectedCharacter === characterKey ||

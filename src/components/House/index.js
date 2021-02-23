@@ -1,5 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
+import get from "lodash/get";
+
 import { EXECUTION } from "../../constants";
 import { selectAction } from "../../state/board/actions";
 import { useBoardState, useDispatch } from "../../state/board/reducer";
@@ -12,10 +14,19 @@ export default function House({ G, ctx, isActive, playerID }) {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if (isActive && stagedAction === null && ctx.phase === EXECUTION) {
-      dispatch(
-        selectAction(G.players[playerID].commands[G.currentCommandKey].action)
-      );
+    const currentCardAction = get(
+      G.players[playerID].commands[G.currentCommandKey],
+      "action",
+      null
+    );
+
+    if (
+      isActive &&
+      stagedAction === null &&
+      ctx.phase === EXECUTION &&
+      currentCardAction
+    ) {
+      dispatch(selectAction(currentCardAction));
     }
   }, [
     isActive,
@@ -26,8 +37,6 @@ export default function House({ G, ctx, isActive, playerID }) {
     G.players,
     playerID,
   ]);
-
-  // is phase = EXECUTION && isactive - do 'moveclick' of card at current command line'
 
   return (
     <HouseContainer>

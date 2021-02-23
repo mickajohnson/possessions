@@ -63,12 +63,14 @@ function reducer(state, action) {
   switch (action.type) {
     case SELECT_ACTION:
       return {
-        ...state,
+        ...initialState,
         message: `${action.action} - Select a character`,
         stagedAction: action.action,
       };
 
     case CHARACTER_CLICK:
+      console.log("char click", action);
+
       if (NON_CHAT_ACTIONS.includes(state.stagedAction)) {
         return {
           ...state,

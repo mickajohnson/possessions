@@ -2,6 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import map from "lodash/map";
+import get from "lodash/get";
 
 import { Provider } from "../../state/board/reducer";
 
@@ -40,7 +41,15 @@ export default function NightStandStuffBoard({
           ctx={ctx}
           isActive={isActive}
         />
-        <BoardButtons moves={moves} G={G} />
+        <BoardButtons
+          currentCardAction={get(
+            G.players[playerID].commands[G.currentCommandKey],
+            "action",
+            null
+          )}
+          moves={moves}
+          G={G}
+        />
       </Container>
     </Provider>
   );

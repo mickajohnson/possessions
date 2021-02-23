@@ -14,7 +14,7 @@ import {
 } from "../../constants";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
-export default function BoardButtons({ moves, G }) {
+export default function BoardButtons({ moves, currentCardAction }) {
   const dispatch = useDispatch();
   const {
     selectedCharacter,
@@ -68,8 +68,7 @@ export default function BoardButtons({ moves, G }) {
   };
 
   const handleCancelClick = () => {
-    dispatch(resetAction);
-    dispatch(selectAction(CHAT));
+    dispatch(selectAction(currentCardAction));
   };
 
   const handleFightClick = () => {
@@ -83,12 +82,15 @@ export default function BoardButtons({ moves, G }) {
   return (
     <>
       {stagedAction !== null && stagedAction !== CHAT ? (
-        <button onClick={handleConfirmClick}>Confirm</button>
+        <>
+          <button onClick={handleConfirmClick}>Confirm</button>
+          <button onClick={handleCancelClick}>Cancel</button>
+        </>
       ) : null}
+
       <p>{message}</p>
       {stagedAction === CHAT ? (
         <>
-          <button onClick={handleCancelClick}>Cancel</button>
           <button onClick={handleFightClick}>Fight</button>
           <button onClick={handleBondClick}>Bond</button>
         </>
