@@ -108,7 +108,7 @@ export const getDefaultDeck = () => [
 
 export const getEmptyCommands = () => ({
   0: getMoveOneCard(),
-  1: getChatCard(),
-  2: getChatCard(),
+  1: getReactCard(),
+  2: getReactCard(),
   3: null,
 });

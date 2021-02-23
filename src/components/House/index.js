@@ -2,7 +2,7 @@ import * as React from "react";
 import styled from "styled-components";
 import get from "lodash/get";
 
-import { CHAT, EXECUTION } from "../../constants";
+import { CHAT, EXECUTION, FIGHT, BOND } from "../../constants";
 import { selectAction, noValidMoves } from "../../state/board/actions";
 import { useBoardState, useDispatch } from "../../state/board/reducer";
 
@@ -43,7 +43,7 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   React.useEffect(() => {
     if (
       isActive &&
-      stagedAction === CHAT &&
+      [CHAT, FIGHT, BOND].includes(stagedAction) &&
       ctx.phase === EXECUTION &&
       every(
         G.characters,
