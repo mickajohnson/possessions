@@ -2,13 +2,15 @@ import * as React from "react";
 import styled from "styled-components";
 import get from "lodash/get";
 
-import { EXECUTION } from "../../constants";
-import { selectAction } from "../../state/board/actions";
+import { CHAT, EXECUTION } from "../../constants";
+import { selectAction, noValidMoves } from "../../state/board/actions";
 import { useBoardState, useDispatch } from "../../state/board/reducer";
 
 import Room from "../Room";
+import { every } from "lodash";
+import { isChatEligible } from "../../game/validations";
 
-export default function House({ G, ctx, isActive, playerID }) {
+export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   const { roomOrder } = G;
   const { stagedAction } = useBoardState();
   const dispatch = useDispatch();
@@ -36,6 +38,33 @@ export default function House({ G, ctx, isActive, playerID }) {
     G.currentCommandKey,
     G.players,
     playerID,
+  ]);
+
+  React.useEffect(() => {
+    if (
+      isActive &&
+      stagedAction === CHAT &&
+      ctx.phase === EXECUTION &&
+      every(
+        G.characters,
+        (_, characterKey) => !isChatEligible(G.characters, characterKey)
+      )
+    ) {
+      dispatch(noValidMoves());
+      setTimeout(() => {
+        skipTurn();
+      }, 1500);
+    }
+  }, [
+    isActive,
+    ctx.phase,
+    stagedAction,
+    dispatch,
+    G.currentCommandKey,
+    G.players,
+    G.characters,
+    playerID,
+    skipTurn,
   ]);
 
   return (

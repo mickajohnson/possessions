@@ -4,6 +4,7 @@ import {
   ROOM_CLICK,
   DROP_CLICK,
   SELECT_ACTION,
+  NO_VALID_MOVES,
 } from "./reducer";
 
 // TODO: clean all this up
@@ -29,4 +30,8 @@ export const roomClickAction = (room) => ({
 export const dropClickAction = (dropperKey) => ({
   type: DROP_CLICK,
   dropperKey,
+});
+
+export const noValidMoves = () => ({
+  type: NO_VALID_MOVES,
 });

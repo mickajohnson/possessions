@@ -163,3 +163,8 @@ export const drawCard = (G, ctx, playerKey) => {
 
   // More Invalid moves?
 };
+
+export const skipTurn = (G, ctx) => {
+  G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+  ctx.events.endTurn();
+};

@@ -4,7 +4,7 @@ import { CHAT_ACTIONS, NON_CHAT_ACTIONS, FIGHT } from "../../constants";
 import { characterClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
-import { isValidChat } from "../../game/validations";
+import { isChatEligible, isValidChat } from "../../game/validations";
 
 export default function Character({ characterKey, G }) {
   const dispatch = useDispatch();
@@ -21,7 +21,9 @@ export default function Character({ characterKey, G }) {
   const inCharacterSelectionPhase =
     NON_CHAT_ACTIONS.includes(stagedAction) && selectedCharacter === null;
   const inFirstChatSelectionPhase =
-    CHAT_ACTIONS.includes(stagedAction) && chatCharacterOne === null;
+    CHAT_ACTIONS.includes(stagedAction) &&
+    chatCharacterOne === null &&
+    isChatEligible(G.characters, characterKey);
   const inSecondChatSelectionPhase =
     CHAT_ACTIONS.includes(stagedAction) &&
     chatCharacterOne &&

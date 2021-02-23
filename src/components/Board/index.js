@@ -25,7 +25,13 @@ export default function NightStandStuffBoard({
         <span>Player {playerID} | </span>
         <span>{isActive ? "Active" : "Not Active"} | </span>
         <span>Phase {ctx.phase}</span>
-        <House G={G} isActive={isActive} ctx={ctx} playerID={playerID} />
+        <House
+          G={G}
+          isActive={isActive}
+          ctx={ctx}
+          playerID={playerID}
+          skipTurn={moves.skipTurn}
+        />
         <Relationships>
           {map(relationships, (relationshipData, relationshipKey) => (
             <RelationshipWrapper key={relationshipKey}>

@@ -14,6 +14,7 @@ import {
   react,
   programCard,
   drawCard,
+  skipTurn,
 } from "./moves";
 
 export const NightStandStuff = {
@@ -46,6 +47,7 @@ export const NightStandStuff = {
         react,
         bond,
         fight,
+        skipTurn,
       },
     },
   },

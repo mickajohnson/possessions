@@ -25,6 +25,7 @@ export const FIGHT_CLICK = "FIGHT_CLICK";
 export const DROP_CLICK = "DROP_CLICK";
 export const RESET = "RESET";
 export const SELECT_ACTION = "SELECT_ACTION";
+export const NO_VALID_MOVES = "NO_VALID_MOVES";
 
 // TODO: at some point consolidate dropper character and others
 export const initialState = {
@@ -69,8 +70,6 @@ function reducer(state, action) {
       };
 
     case CHARACTER_CLICK:
-      console.log("char click", action);
-
       if (NON_CHAT_ACTIONS.includes(state.stagedAction)) {
         return {
           ...state,
@@ -115,6 +114,11 @@ function reducer(state, action) {
         };
       }
       return state;
+    case NO_VALID_MOVES:
+      return {
+        ...state,
+        message: "No valid moves. Skipping turn...",
+      };
     case RESET:
       return initialState;
     default:

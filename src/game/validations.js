@@ -1,3 +1,5 @@
+import some from "lodash/some";
+
 const validMoveOnes = {
   0: [1, 3],
   1: [0, 2, 4],
@@ -48,5 +50,15 @@ export const isValidReact = (G, roomKey, dropperCharKey, reactingCharKey) => {
     characterRoom &&
     characterRoom.drops[dropperCharKey].length > 0 &&
     dropperCharKey !== reactingCharKey
+  );
+};
+
+export const isChatEligible = (characters, characterKey) => {
+  const characterLocation = characters[characterKey].location;
+
+  return some(
+    characters,
+    (character, key) =>
+      key !== characterKey && character.location === characterLocation
   );
 };
