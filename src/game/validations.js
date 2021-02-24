@@ -43,6 +43,15 @@ export const isValidChat = (G, characterOneKey, characterTwoKey) =>
     G.characters[characterTwoKey].location &&
   characterOneKey !== characterTwoKey;
 
+export const isReactEligible = (G, characterKey) => {
+  const characterLocation = G.characters[characterKey].location;
+
+  return some(
+    G.rooms[characterLocation].drops,
+    (drops, dropperKey) => dropperKey !== characterKey && drops.length > 0
+  );
+};
+
 export const isValidReact = (G, roomKey, dropperCharKey, reactingCharKey) => {
   const characterRoom = G.rooms[roomKey];
 

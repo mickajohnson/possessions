@@ -7,7 +7,6 @@ import {
   NO_VALID_MOVES,
 } from "./reducer";
 
-// TODO: clean all this up
 export const selectAction = (action) => ({
   type: SELECT_ACTION,
   action,

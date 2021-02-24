@@ -53,6 +53,14 @@ export const NON_CHAT_ACTIONS = [
   DROP_NEG_TWO,
   REACT,
 ];
+export const NON_RESTRICTED_ACTIONS = [
+  MOVE_ONE,
+  MOVE_TWO,
+  DROP_POS_ONE,
+  DROP_POS_TWO,
+  DROP_NEG_ONE,
+  DROP_NEG_TWO,
+];
 export const CHAT_ACTIONS = [FIGHT, BOND];
 
 export const EXECUTION = "EXECUTION";

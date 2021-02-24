@@ -2,13 +2,17 @@ import * as React from "react";
 import styled from "styled-components";
 import get from "lodash/get";
 
-import { CHAT, EXECUTION, FIGHT, BOND } from "../../constants";
-import { selectAction, noValidMoves } from "../../state/board/actions";
+import { CHAT, EXECUTION, FIGHT, BOND, REACT } from "../../constants";
+import {
+  selectAction,
+  noValidMoves,
+  resetAction,
+} from "../../state/board/actions";
 import { useBoardState, useDispatch } from "../../state/board/reducer";
 
 import Room from "../Room";
 import { every } from "lodash";
-import { isChatEligible } from "../../game/validations";
+import { isChatEligible, isReactEligible } from "../../game/validations";
 
 export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   const { roomOrder } = G;
@@ -41,31 +45,32 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   ]);
 
   React.useEffect(() => {
-    if (
+    const onChatAndNoneValid =
       isActive &&
       [CHAT, FIGHT, BOND].includes(stagedAction) &&
       ctx.phase === EXECUTION &&
       every(
         G.characters,
         (_, characterKey) => !isChatEligible(G.characters, characterKey)
-      )
-    ) {
+      );
+
+    const onReactAndNoneValid =
+      isActive &&
+      stagedAction === REACT &&
+      ctx.phase === EXECUTION &&
+      every(
+        G.characters,
+        (_, characterKey) => !isReactEligible(G, characterKey)
+      );
+
+    if (onChatAndNoneValid || onReactAndNoneValid) {
       dispatch(noValidMoves());
       setTimeout(() => {
         skipTurn();
+        dispatch(resetAction);
       }, 1500);
     }
-  }, [
-    isActive,
-    ctx.phase,
-    stagedAction,
-    dispatch,
-    G.currentCommandKey,
-    G.players,
-    G.characters,
-    playerID,
-    skipTurn,
-  ]);
+  }, [isActive, ctx.phase, stagedAction, dispatch, G, playerID, skipTurn]);
 
   return (
     <HouseContainer>

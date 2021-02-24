@@ -1,10 +1,19 @@
 import styled from "styled-components";
 
-import { CHAT_ACTIONS, NON_CHAT_ACTIONS, FIGHT } from "../../constants";
+import {
+  CHAT_ACTIONS,
+  NON_RESTRICTED_ACTIONS,
+  FIGHT,
+  REACT,
+} from "../../constants";
 import { characterClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
-import { isChatEligible, isValidChat } from "../../game/validations";
+import {
+  isChatEligible,
+  isValidChat,
+  isReactEligible,
+} from "../../game/validations";
 
 export default function Character({ characterKey, G }) {
   const dispatch = useDispatch();
@@ -19,7 +28,12 @@ export default function Character({ characterKey, G }) {
 
   const characterSelected = selectedCharacter === characterKey;
   const inCharacterSelectionPhase =
-    NON_CHAT_ACTIONS.includes(stagedAction) && selectedCharacter === null;
+    NON_RESTRICTED_ACTIONS.includes(stagedAction) && selectedCharacter === null;
+  const reactEligible =
+    stagedAction === REACT &&
+    isReactEligible(G, characterKey) &&
+    selectedCharacter === null;
+
   const inFirstChatSelectionPhase =
     CHAT_ACTIONS.includes(stagedAction) &&
     chatCharacterOne === null &&
@@ -39,7 +53,8 @@ export default function Character({ characterKey, G }) {
     inCharacterSelectionPhase ||
     inFirstChatSelectionPhase ||
     inSecondChatSelectionPhase ||
-    inFightMoverSelectionPhase;
+    inFightMoverSelectionPhase ||
+    reactEligible;
 
   const isSelected =
     selectedCharacter === characterKey ||
