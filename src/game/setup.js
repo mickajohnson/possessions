@@ -8,6 +8,8 @@ import {
   dropTemplate,
   getDefaultDeck,
   getEmptyCommands,
+  getGoalCards,
+  getInitialRelationships,
 } from "./gameData";
 import {
   CHARACTER_KEYS,
@@ -20,12 +22,6 @@ import {
   BATHROOM,
   PARENTS_ROOM,
   GRANDPAS_ROOM,
-  MOM_DAD,
-  MOM_DAUGHTER,
-  MOM_GRANDPA,
-  GRANDPA_DAD,
-  GRANDPA_DAUGHTER,
-  DAD_DAUGHTER,
 } from "../constants";
 import { makeId } from "../utils";
 
@@ -71,15 +67,6 @@ const createInitialCharacters = () => ({
   [GRANDPA]: { name: "Grandpa", location: GRANDPAS_ROOM },
 });
 
-const createInitialRelationships = () => ({
-  [MOM_DAD]: { name: "Mom & Dad", score: 0 },
-  [MOM_DAUGHTER]: { name: "Mom & Daughter", score: 0 },
-  [MOM_GRANDPA]: { name: "Mom & Grandpa", score: 0 },
-  [GRANDPA_DAD]: { name: "Grandpa & Dad", score: 0 },
-  [GRANDPA_DAUGHTER]: { name: "Grandpa & Daughter", score: 0 },
-  [DAD_DAUGHTER]: { name: "Dad & Daughter", score: 0 },
-});
-
 const createInitialPlayers = (ctx) =>
   ctx.playOrder.reduce((playerObject, playerKey) => {
     const deck = shuffle(getDefaultDeck());
@@ -95,9 +82,11 @@ const createInitialPlayers = (ctx) =>
   }, {});
 
 export default function setup(ctx) {
+  const goals = shuffle(getGoalCards());
+
   const players = createInitialPlayers(ctx);
 
-  const relationships = createInitialRelationships();
+  const relationships = getInitialRelationships();
 
   const characters = createInitialCharacters();
 
@@ -114,5 +103,6 @@ export default function setup(ctx) {
     relationships,
     players,
     currentCommandKey: 3,
+    goals,
   };
 }

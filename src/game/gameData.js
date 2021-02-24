@@ -23,6 +23,12 @@ import {
   RELATIONSHIPS,
   POSITIVE,
   NEGATIVE,
+  MOM_DAD,
+  MOM_DAUGHTER,
+  MOM_GRANDPA,
+  GRANDPA_DAD,
+  GRANDPA_DAUGHTER,
+  DAD_DAUGHTER,
 } from "../constants";
 import { makeId } from "../utils";
 
@@ -43,6 +49,15 @@ export const roomKeyToNameMapping = {
   [GRANDPAS_ROOM]: "Grandpa's Room",
   [GARAGE]: "Garage",
   [OFFICE]: "Office",
+};
+
+export const relationshipKeyToNameMapping = {
+  [MOM_DAD]: "Mom & Dad",
+  [MOM_DAUGHTER]: "Mom & Daughter",
+  [MOM_GRANDPA]: "Mom & Grandpa",
+  [GRANDPA_DAD]: "Grandpa & Dad",
+  [GRANDPA_DAUGHTER]: "Grandpa & Daughter",
+  [DAD_DAUGHTER]: "Dad & Daughter",
 };
 
 export const getMoveOneCard = () => ({
@@ -116,8 +131,26 @@ export const getEmptyCommands = () => ({
   3: null,
 });
 
-// export const getGoalCards = () => {
-//   RELATIONSHIPS.reduce((goals, relationship) => {
-//     [POSITIVE, NEGATIVE].f;
-//   }, []);
-// };
+export const getGoalCards = () => {
+  return RELATIONSHIPS.reduce((goals, relationship) => {
+    [POSITIVE, NEGATIVE].forEach((polarity) => {
+      goals.push({
+        polarity,
+        description: "Use description mapping",
+        name: "use a name mapping",
+        relationship,
+      });
+    });
+    return goals;
+  }, []);
+};
+
+export const getInitialRelationships = () => {
+  return RELATIONSHIPS.reduce((relationshipObject, relationshipKey) => {
+    relationshipObject[relationshipKey] = {
+      score: 0,
+      name: relationshipKeyToNameMapping[relationshipKey],
+    };
+    return relationshipObject;
+  }, {});
+};
