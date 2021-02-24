@@ -157,9 +157,8 @@ export const drawCard = (G, ctx, playerKey) => {
     } else {
       G.currentCommandKey += 1;
     }
-  } else {
-    ctx.events.endTurn();
   }
+  ctx.events.endTurn();
 
   // More Invalid moves?
 };

@@ -22,7 +22,7 @@ export const NightStandStuff = {
   phases: {
     [PLANNING]: {
       onBegin: (G) => {
-        G.currentCommandKey = 3;
+        G.currentCommandKey = 0;
       },
       moves: {
         programCard,

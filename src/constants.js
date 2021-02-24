@@ -10,6 +10,15 @@ export const DAD_DAUGHTER = `${DAD}${DAUGHTER}`;
 export const GRANDPA_DAUGHTER = `${GRANDPA}${DAUGHTER}`;
 export const GRANDPA_DAD = `${GRANDPA}${DAD}`;
 
+export const RELATIONSHIPS = [
+  MOM_DAD,
+  MOM_GRANDPA,
+  MOM_DAUGHTER,
+  DAD_DAUGHTER,
+  GRANDPA_DAUGHTER,
+  GRANDPA_DAD,
+];
+
 export const LIVING_ROOM = "LIVING_ROOM";
 export const DINING_ROOM = "DINING_ROOM";
 export const PARENTS_ROOM = "PARENTS_ROOM";
@@ -19,6 +28,9 @@ export const BATHROOM = "BATHROOM";
 export const OFFICE = "OFFICE";
 export const GARAGE = "GARAGE";
 export const KITCHEN = "KITCHEN";
+
+export const POSITIVE = "POSITIVE";
+export const NEGATIVE = "NEGATIVE";
 
 export const CHARACTER_KEYS = [MOM, DAD, DAUGHTER, GRANDPA];
 export const ROOM_KEYS = [

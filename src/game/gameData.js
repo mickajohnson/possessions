@@ -20,6 +20,9 @@ import {
   DROP_POS_ONE,
   REACT,
   CHAT,
+  RELATIONSHIPS,
+  POSITIVE,
+  NEGATIVE,
 } from "../constants";
 import { makeId } from "../utils";
 
@@ -107,8 +110,14 @@ export const getDefaultDeck = () => [
 ];
 
 export const getEmptyCommands = () => ({
-  0: getMoveOneCard(),
-  1: getReactCard(),
-  2: getReactCard(),
+  0: null,
+  1: null,
+  2: null,
   3: null,
 });
+
+// export const getGoalCards = () => {
+//   RELATIONSHIPS.reduce((goals, relationship) => {
+//     [POSITIVE, NEGATIVE].f;
+//   }, []);
+// };
