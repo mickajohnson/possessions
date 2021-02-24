@@ -67,7 +67,7 @@ const createInitialCharacters = () => ({
   [GRANDPA]: { name: "Grandpa", location: GRANDPAS_ROOM },
 });
 
-const createInitialPlayers = (ctx) =>
+const createInitialPlayers = (ctx, goals) =>
   ctx.playOrder.reduce((playerObject, playerKey) => {
     const deck = shuffle(getDefaultDeck());
     const hand = pullAt(deck, [0, 1, 2, 3, 4, 5]);
@@ -76,6 +76,7 @@ const createInitialPlayers = (ctx) =>
       hand,
       commands: getEmptyCommands(),
       discardPile: [],
+      goals: goals.splice(-4),
     };
 
     return playerObject;
@@ -84,7 +85,7 @@ const createInitialPlayers = (ctx) =>
 export default function setup(ctx) {
   const goals = shuffle(getGoalCards());
 
-  const players = createInitialPlayers(ctx);
+  const players = createInitialPlayers(ctx, goals);
 
   const relationships = getInitialRelationships();
 
@@ -103,6 +104,5 @@ export default function setup(ctx) {
     relationships,
     players,
     currentCommandKey: 3,
-    goals,
   };
 }

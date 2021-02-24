@@ -167,3 +167,9 @@ export const skipTurn = (G, ctx) => {
   G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
   ctx.events.endTurn();
 };
+
+export const removeGoal = (G, _, playerID, goalId) => {
+  G.players[playerID].goals = G.players[playerID].goals.filter(
+    (goal) => goal.id !== goalId
+  );
+};

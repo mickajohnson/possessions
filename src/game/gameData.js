@@ -137,8 +137,9 @@ export const getGoalCards = () => {
       goals.push({
         polarity,
         description: "Use description mapping",
-        name: "use a name mapping",
+        name: relationshipKeyToNameMapping[relationship],
         relationship,
+        id: makeId(),
       });
     });
     return goals;

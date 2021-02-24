@@ -9,6 +9,9 @@ import { Provider } from "../../state/board/reducer";
 import House from "../House";
 import BoardButtons from "../BoardButtons";
 import ActivePlayerCardArea from "../ActivePlayerCardArea";
+import { GOAL_SELECTION } from "../../constants";
+import GoalSelection from "../GoalSelection";
+import Goals from "../Goals";
 
 export default function NightStandStuffBoard({
   G,
@@ -19,12 +22,25 @@ export default function NightStandStuffBoard({
 }) {
   const { relationships } = G;
 
+  if (ctx.phase === GOAL_SELECTION) {
+    return (
+      <GoalSelection
+        goals={G.players[playerID].goals}
+        removeGoal={moves.removeGoal}
+        isActive={isActive}
+        playerID={playerID}
+      />
+    );
+  }
   return (
     <Provider>
       <Container>
         <span>Player {playerID} | </span>
         <span>{isActive ? "Active" : "Not Active"} | </span>
         <span>Phase {ctx.phase}</span>
+
+        <Goals goals={G.players[playerID].goals} />
+
         <House
           G={G}
           isActive={isActive}
@@ -32,6 +48,7 @@ export default function NightStandStuffBoard({
           playerID={playerID}
           skipTurn={moves.skipTurn}
         />
+
         <Relationships>
           {map(relationships, (relationshipData, relationshipKey) => (
             <RelationshipWrapper key={relationshipKey}>
