@@ -168,8 +168,14 @@ export const skipTurn = (G, ctx) => {
   ctx.events.endTurn();
 };
 
-export const removeGoal = (G, _, playerID, goalId) => {
+export const removeGoal = (G, ctx, playerID, goalId) => {
   G.players[playerID].goals = G.players[playerID].goals.filter(
     (goal) => goal.id !== goalId
   );
+
+  if (every(G.players, (player) => player.goals.length === 3)) {
+    ctx.events.endPhase();
+  } else {
+    ctx.events.endTurn();
+  }
 };

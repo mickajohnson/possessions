@@ -1,6 +1,8 @@
 import setup from "./setup";
 import { EXECUTION, PLANNING, GOAL_SELECTION } from "../constants";
 import every from "lodash/every";
+import maxBy from "lodash/maxBy";
+import { tallyScores } from "./validations";
 
 import {
   dropNegativeOne,
@@ -22,19 +24,14 @@ export const NightStandStuff = {
   setup,
   phases: {
     [GOAL_SELECTION]: {
+      onEnd: (G) => {
+        G.roundNumber = 1;
+      },
       moves: {
         removeGoal,
       },
       start: true,
       next: PLANNING,
-      turn: {
-        moveLimit: 1,
-        onEnd: (G, ctx) => {
-          if (every(G.players, (player) => player.goals.length === 3)) {
-            ctx.events.endPhase();
-          }
-        },
-      },
     },
     [PLANNING]: {
       onBegin: (G) => {
@@ -80,7 +77,19 @@ export const NightStandStuff = {
         fight,
         skipTurn,
       },
+      onEnd: (G) => {
+        G.roundNumber += 1;
+      },
     },
+  },
+  endIf: (G) => {
+    if (G.roundNumber === 7) {
+      const scores = tallyScores(G);
+      return { winner: maxBy(scores, "score"), scores };
+    }
+  },
+  onEnd: (_, ctx) => {
+    console.log(ctx.gameover);
   },
 };
 

@@ -37,7 +37,8 @@ export default function NightStandStuffBoard({
       <Container>
         <span>Player {playerID} | </span>
         <span>{isActive ? "Active" : "Not Active"} | </span>
-        <span>Phase {ctx.phase}</span>
+        <span>Phase {ctx.phase} | </span>
+        <span>Round {G.roundNumber}</span>
 
         <Goals goals={G.players[playerID].goals} />
 
