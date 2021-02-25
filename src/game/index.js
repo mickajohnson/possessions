@@ -21,6 +21,7 @@ import {
 } from "./moves";
 
 export const NightStandStuff = {
+  name: "nightstand-stuff",
   setup,
   phases: {
     [GOAL_SELECTION]: {

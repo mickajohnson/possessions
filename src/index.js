@@ -6,7 +6,7 @@ import { SocketIO } from "boardgame.io/multiplayer";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
-import NightStandStuff from "./game";
+import { NightStandStuff } from "./game";
 import NightStandStuffBoard from "./components/Board";
 
 const GameClient = Client({
@@ -16,19 +16,19 @@ const GameClient = Client({
 });
 
 const App = () => {
-  const [playerId, setPlayerId] = React.useState(null);
-  if (playerId === null) {
+  const [playerID, setPlayerID] = React.useState(null);
+  if (playerID === null) {
     return (
       <div>
         <p>Play as</p>
-        <button onClick={() => setPlayerId("0")}>Player 0</button>
-        <button onClick={() => setPlayerId("1")}>Player 1</button>
+        <button onClick={() => setPlayerID("0")}>Player 0</button>
+        <button onClick={() => setPlayerID("1")}>Player 1</button>
       </div>
     );
   }
   return (
     <>
-      <GameClient playerId={playerId} />
+      <GameClient playerID={playerID} />
     </>
   );
 };
