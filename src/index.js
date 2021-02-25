@@ -1,7 +1,7 @@
-import React from "react";
+import * as React from "react";
 import ReactDOM from "react-dom";
 import { Client } from "boardgame.io/react";
-import { Local } from "boardgame.io/multiplayer";
+import { SocketIO } from "boardgame.io/multiplayer";
 
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
@@ -12,17 +12,26 @@ import NightStandStuffBoard from "./components/Board";
 const GameClient = Client({
   game: NightStandStuff,
   board: NightStandStuffBoard,
-  multiplayer: Local(),
+  multiplayer: SocketIO({ server: "localhost:8000" }),
 });
 
-const App = () => (
-  <>
-    <GameClient playerID="0" />
-    <br />
-    <br />
-    <GameClient playerID="1" />
-  </>
-);
+const App = () => {
+  const [playerId, setPlayerId] = React.useState(null);
+  if (playerId === null) {
+    return (
+      <div>
+        <p>Play as</p>
+        <button onClick={() => setPlayerId("0")}>Player 0</button>
+        <button onClick={() => setPlayerId("1")}>Player 1</button>
+      </div>
+    );
+  }
+  return (
+    <>
+      <GameClient playerId={playerId} />
+    </>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>

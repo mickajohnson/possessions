@@ -14,14 +14,14 @@ import Room from "../Room";
 import { every } from "lodash";
 import { isChatEligible, isReactEligible } from "../../game/validations";
 
-export default function House({ G, ctx, isActive, playerID, skipTurn }) {
+export default function House({ G, ctx, isActive, playerId, skipTurn }) {
   const { roomOrder } = G;
   const { stagedAction } = useBoardState();
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     const currentCardAction = get(
-      G.players[playerID].commands[G.currentCommandKey],
+      G.players[playerId].commands[G.currentCommandKey],
       "action",
       null
     );
@@ -41,7 +41,7 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
     dispatch,
     G.currentCommandKey,
     G.players,
-    playerID,
+    playerId,
   ]);
 
   React.useEffect(() => {
@@ -70,7 +70,7 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
         dispatch(resetAction);
       }, 1500);
     }
-  }, [isActive, ctx.phase, stagedAction, dispatch, G, playerID, skipTurn]);
+  }, [isActive, ctx.phase, stagedAction, dispatch, G, playerId, skipTurn]);
 
   return (
     <HouseContainer>

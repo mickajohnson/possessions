@@ -16,37 +16,44 @@ import Goals from "../Goals";
 export default function NightStandStuffBoard({
   G,
   moves,
-  playerID,
+  playerId,
   isActive,
   ctx,
 }) {
   const { relationships } = G;
 
+  if (true) {
+    console.log(G);
+    console.log(playerId);
+
+    return <div>hi</div>;
+  }
+
   if (ctx.phase === GOAL_SELECTION) {
     return (
       <GoalSelection
-        goals={G.players[playerID].goals}
+        goals={G.players[playerId].goals}
         removeGoal={moves.removeGoal}
         isActive={isActive}
-        playerID={playerID}
+        playerId={playerId}
       />
     );
   }
   return (
     <Provider>
       <Container>
-        <span>Player {playerID} | </span>
+        <span>Player {playerId} | </span>
         <span>{isActive ? "Active" : "Not Active"} | </span>
         <span>Phase {ctx.phase} | </span>
         <span>Round {G.roundNumber}</span>
 
-        <Goals goals={G.players[playerID].goals} />
+        <Goals goals={G.players[playerId].goals} />
 
         <House
           G={G}
           isActive={isActive}
           ctx={ctx}
-          playerID={playerID}
+          playerId={playerId}
           skipTurn={moves.skipTurn}
         />
 
@@ -59,7 +66,7 @@ export default function NightStandStuffBoard({
           ))}
         </Relationships>
         <ActivePlayerCardArea
-          playerID={playerID}
+          playerId={playerId}
           moves={moves}
           G={G}
           ctx={ctx}
@@ -67,7 +74,7 @@ export default function NightStandStuffBoard({
         />
         <BoardButtons
           currentCardAction={get(
-            G.players[playerID].commands[G.currentCommandKey],
+            G.players[playerId].commands[G.currentCommandKey],
             "action",
             null
           )}
@@ -83,7 +90,7 @@ NightStandStuffBoard.propTypes = {
   G: PropTypes.any.isRequired,
   ctx: PropTypes.any.isRequired,
   moves: PropTypes.any.isRequired,
-  playerID: PropTypes.string,
+  playerId: PropTypes.string,
   isActive: PropTypes.bool,
   isMultiplayer: PropTypes.bool,
 };

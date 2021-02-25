@@ -93,7 +93,7 @@ export const tallyScores = (G) => {
     (scores, player, playerKey) => {
       const playerScore = getPlayerScore(G, player);
 
-      scores.push({ score: playerScore, playerID: playerKey });
+      scores.push({ score: playerScore, playerId: playerKey });
 
       return scores;
     },

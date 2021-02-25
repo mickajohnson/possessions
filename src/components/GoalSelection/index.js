@@ -5,13 +5,13 @@ export default function GoalSelection({
   goals,
   removeGoal,
   isActive,
-  playerID,
+  playerId,
 }) {
   const [selectedGoalId, setSelectedGoalId] = React.useState(null);
 
   const handleConfirmClick = () => {
     if (isActive) {
-      removeGoal(playerID, selectedGoalId);
+      removeGoal(playerId, selectedGoalId);
     }
   };
 

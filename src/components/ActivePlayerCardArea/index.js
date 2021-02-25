@@ -9,20 +9,20 @@ import DiscardPile from "../DiscardPile";
 export default function ActivePlayerCardArea({
   G,
   moves,
-  playerID,
+  playerId,
   ctx,
   isActive,
 }) {
-  const player = G.players[playerID];
+  const player = G.players[playerId];
   const isPlayable = isActive && ctx.phase === PLANNING;
   const isDrawable =
     isPlayable && player.commands[G.currentCommandKey] !== null;
 
   const handleProgramCard = (cardId) => {
-    moves.programCard(playerID, cardId);
+    moves.programCard(playerId, cardId);
   };
   const handleDrawCard = () => {
-    moves.drawCard(playerID);
+    moves.drawCard(playerId);
   };
   return (
     <Container>
