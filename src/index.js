@@ -82,6 +82,10 @@ const App = () => {
     setMatch(matchInfo);
   };
 
+  const handleGetMatch = async (matchId) => {
+    return await lobbyClient.current.getMatch("nightstand-stuff", matchId);
+  };
+
   if (view === "CREATE") {
     return <CreateGameScreen handleCreateGame={handleCreateGame} />;
   }
@@ -95,9 +99,7 @@ const App = () => {
     );
   }
   if (view === "JOIN") {
-    return (
-      <JoinScreen onJoin={handleJoin} getMatch={lobbyClient.current.getMatch} />
-    );
+    return <JoinScreen onJoin={handleJoin} onGetMatch={handleGetMatch} />;
   }
 
   if (view === "GAME") {
