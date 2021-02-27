@@ -16,9 +16,9 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
       const emptySeat = match.players.find((player) => !player.name);
 
       onJoin({
-        playerId: String(emptySeat.id),
+        playerID: String(emptySeat.id),
         playerName: name,
-        matchId: match.matchID,
+        matchID: match.matchID,
       });
     } catch {
       setMessage("match not found");

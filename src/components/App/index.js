@@ -1,48 +1,35 @@
 import * as React from "react";
-import { NightStandStuff } from "../../game";
-import NightStandStuffBoard from "../Board";
-import JoinScreen from "../JoinScreen";
-import { Client } from "boardgame.io/react";
-import { SocketIO } from "boardgame.io/multiplayer";
 import { LobbyClient } from "boardgame.io/client";
-
-import CreateGameScreen from "../CreateGameScreen";
-import LobbyScreen from "../LobbyScreen";
-import Home from "../Home";
-
 import { Switch, Route, useHistory } from "react-router-dom";
 
-const GameClient = Client({
-  game: NightStandStuff,
-  board: NightStandStuffBoard,
-  multiplayer: SocketIO({ server: "localhost:8000" }),
-});
+import JoinScreen from "../JoinScreen";
+import CreateGameScreen from "../CreateGameScreen";
+import LobbyScreen from "../LobbyScreen";
+import GameScreen from "../GameScreen";
+import Home from "../Home";
 
 export default function App() {
   const [lobbyClient] = React.useState(
     new LobbyClient({ server: "http://localhost:8000" })
   );
   const [credentials, setCredentials] = React.useState("");
-  const [playerID, setPlayerID] = React.useState(null);
-  const [matchID, setMatchID] = React.useState(null);
+  const [playerId, setPlayerId] = React.useState(null);
 
   const history = useHistory();
 
-  const handleJoin = async ({ playerId, playerName, matchId }) => {
-    setPlayerID(playerId);
-    setMatchID(matchId);
-
+  const handleJoin = async ({ playerID, playerName, matchID }) => {
     const { playerCredentials } = await lobbyClient.joinMatch(
       "nightstand-stuff",
-      matchId,
+      matchID,
       {
-        playerID: playerId,
+        playerID,
         playerName,
       }
     );
+    setPlayerId(playerID);
     setCredentials(playerCredentials);
 
-    history.push("/lobby");
+    history.push(`/lobby/${matchID}`);
   };
 
   return (
@@ -50,22 +37,14 @@ export default function App() {
       <Route path="/create">
         <CreateGameScreen onJoin={handleJoin} lobbyClient={lobbyClient} />
       </Route>
-      <Route path="/lobby">
-        <LobbyScreen
-          matchID={matchID}
-          lobbyClient={lobbyClient}
-          playerID={playerID}
-        />
+      <Route path="/lobby/:matchID">
+        <LobbyScreen lobbyClient={lobbyClient} playerId={playerId} />
       </Route>
       <Route path="/join">
         <JoinScreen onJoin={handleJoin} lobbyClient={lobbyClient} />
       </Route>
-      <Route path="/game">
-        <GameClient
-          credentials={credentials}
-          matchID={matchID}
-          playerID={playerID}
-        />
+      <Route path="/game/:matchID/:playerID">
+        <GameScreen credentials={credentials} />
       </Route>
       <Route path="/">
         <Home />

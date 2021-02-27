@@ -12,7 +12,7 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
       }
     );
 
-    onJoin({ playerId: "0", playerName, matchId: createMatchResponse.matchID });
+    onJoin({ playerID: "0", playerName, matchID: createMatchResponse.matchID });
   };
 
   const buttonDisabled = name.length === 0 || !numberOfPlayers;

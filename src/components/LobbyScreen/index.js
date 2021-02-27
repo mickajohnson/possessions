@@ -2,11 +2,12 @@ import * as React from "react";
 import { useInterval } from "beautiful-react-hooks";
 import every from "lodash/every";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
-export default function LobbyScreen({ playerID, lobbyClient, matchID }) {
+export default function LobbyScreen({ lobbyClient, playerId }) {
   const [match, setMatch] = React.useState({});
 
+  const { matchID } = useParams();
   const history = useHistory();
 
   const getMatchInfo = async () => {
@@ -16,9 +17,9 @@ export default function LobbyScreen({ playerID, lobbyClient, matchID }) {
 
   React.useEffect(() => {
     if (match.players && every(match.players, (player) => player.name)) {
-      history.replace("/game");
+      history.replace(`/game/${matchID}/${playerId}`);
     }
-  }, [match, history]);
+  }, [match, history, matchID, playerId]);
 
   useInterval(() => {
     getMatchInfo();
@@ -31,7 +32,7 @@ export default function LobbyScreen({ playerID, lobbyClient, matchID }) {
         {match.players.map((player) => (
           <div key={player.id}>
             Player: {player.name} {player.id}{" "}
-            {String(playerID) === String(player.id) ? "(you)" : ""}
+            {String(playerId) === String(player.id) ? "(you)" : ""}
           </div>
         ))}
       </div>
