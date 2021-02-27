@@ -12,6 +12,7 @@ import ActivePlayerCardArea from "../ActivePlayerCardArea";
 import { GOAL_SELECTION } from "../../constants";
 import GoalSelection from "../GoalSelection";
 import Goals from "../Goals";
+import OtherPlayerCommands from "../OtherPlayerCommands";
 
 export default function NightStandStuffBoard({
   G,
@@ -80,6 +81,7 @@ export default function NightStandStuffBoard({
           moves={moves}
           G={G}
         />
+        <OtherPlayerCommands G={G} playerID={playerID} />
       </Container>
     </Provider>
   );
