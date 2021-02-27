@@ -1,9 +1,10 @@
+import * as React from "react";
 import { NightStandStuff } from "../../game";
 import NightStandStuffBoard from "../Board";
 import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
 
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 
 const GameClient = Client({
   game: NightStandStuff,
@@ -11,12 +12,19 @@ const GameClient = Client({
   multiplayer: SocketIO({ server: "localhost:8000" }),
 });
 
-export default function GameScreen({ credentials }) {
+export default function GameScreen({ storedPlayerData }) {
   const { matchID, playerID } = useParams();
 
+  if (
+    !storedPlayerData.playerCredentials ||
+    storedPlayerData.matchID !== matchID ||
+    storedPlayerData.playerID !== playerID
+  ) {
+    return <Redirect to="/" />;
+  }
   return (
     <GameClient
-      credentials={credentials}
+      credentials={storedPlayerData.playerCredentials}
       matchID={matchID}
       playerID={playerID}
     />

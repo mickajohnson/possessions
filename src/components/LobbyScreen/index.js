@@ -4,11 +4,22 @@ import every from "lodash/every";
 
 import { useHistory, useParams } from "react-router-dom";
 
-export default function LobbyScreen({ lobbyClient }) {
+export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   const [match, setMatch] = React.useState({});
 
   const { matchID, playerID } = useParams();
   const history = useHistory();
+
+  React.useEffect(() => {
+    if (
+      storedPlayerData.matchID === matchID &&
+      storedPlayerData.playerID === playerID
+    ) {
+      getMatchInfo();
+    } else {
+      history.push("/");
+    }
+  }, [storedPlayerData, matchID, playerID]);
 
   const getMatchInfo = async () => {
     const matchInfo = await lobbyClient.getMatch("nightstand-stuff", matchID);
