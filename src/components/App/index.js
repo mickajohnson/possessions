@@ -13,7 +13,6 @@ export default function App() {
     new LobbyClient({ server: "http://localhost:8000" })
   );
   const [credentials, setCredentials] = React.useState("");
-  const [playerId, setPlayerId] = React.useState(null);
 
   const history = useHistory();
 
@@ -26,10 +25,9 @@ export default function App() {
         playerName,
       }
     );
-    setPlayerId(playerID);
     setCredentials(playerCredentials);
 
-    history.push(`/lobby/${matchID}`);
+    history.push(`/lobby/${matchID}/${playerID}`);
   };
 
   return (
@@ -37,8 +35,8 @@ export default function App() {
       <Route path="/create">
         <CreateGameScreen onJoin={handleJoin} lobbyClient={lobbyClient} />
       </Route>
-      <Route path="/lobby/:matchID">
-        <LobbyScreen lobbyClient={lobbyClient} playerId={playerId} />
+      <Route path="/lobby/:matchID/:playerID">
+        <LobbyScreen lobbyClient={lobbyClient} />
       </Route>
       <Route path="/join">
         <JoinScreen onJoin={handleJoin} lobbyClient={lobbyClient} />

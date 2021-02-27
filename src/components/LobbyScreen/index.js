@@ -4,10 +4,10 @@ import every from "lodash/every";
 
 import { useHistory, useParams } from "react-router-dom";
 
-export default function LobbyScreen({ lobbyClient, playerId }) {
+export default function LobbyScreen({ lobbyClient }) {
   const [match, setMatch] = React.useState({});
 
-  const { matchID } = useParams();
+  const { matchID, playerID } = useParams();
   const history = useHistory();
 
   const getMatchInfo = async () => {
@@ -16,10 +16,12 @@ export default function LobbyScreen({ lobbyClient, playerId }) {
   };
 
   React.useEffect(() => {
+    console.log(playerID);
+
     if (match.players && every(match.players, (player) => player.name)) {
-      history.replace(`/game/${matchID}/${playerId}`);
+      history.replace(`/game/${matchID}/${playerID}`);
     }
-  }, [match, history, matchID, playerId]);
+  }, [match, history, matchID, playerID]);
 
   useInterval(() => {
     getMatchInfo();
@@ -32,7 +34,7 @@ export default function LobbyScreen({ lobbyClient, playerId }) {
         {match.players.map((player) => (
           <div key={player.id}>
             Player: {player.name} {player.id}{" "}
-            {String(playerId) === String(player.id) ? "(you)" : ""}
+            {String(playerID) === String(player.id) ? "(you)" : ""}
           </div>
         ))}
       </div>
