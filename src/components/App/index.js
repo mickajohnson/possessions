@@ -11,7 +11,7 @@ import CreateGameScreen from "../CreateGameScreen";
 import LobbyScreen from "../LobbyScreen";
 import Home from "../Home";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 
 const GameClient = Client({
   game: NightStandStuff,
@@ -28,14 +28,13 @@ export default function App() {
   const [matchID, setMatchID] = React.useState(null);
   const [match, setMatch] = React.useState({});
 
-  // TODO: replace with react router
-  const [view, setView] = React.useState("MAIN");
+  const history = useHistory();
 
   React.useEffect(() => {
     if (match.players && every(match.players, (player) => player.name)) {
-      setView("GAME");
+      history.push("/game");
     }
-  }, [match]);
+  }, [match, history]);
 
   const handleCreateGame = async (playerName, numberOfPlayers) => {
     const createMatchResponse = await lobbyClient.current.createMatch(
@@ -64,7 +63,7 @@ export default function App() {
     );
     setCredentials(playerCredentials);
 
-    setView("LOBBY");
+    history.push("/lobby");
   };
 
   const getMatchInfo = async () => {
@@ -79,32 +78,30 @@ export default function App() {
     return await lobbyClient.current.getMatch("nightstand-stuff", matchId);
   };
   return (
-    <Router>
-      <Switch>
-        <Route path="/create">
-          <CreateGameScreen handleCreateGame={handleCreateGame} />
-        </Route>
-        <Route path="/lobby">
-          <LobbyScreen
-            getMatchInfo={getMatchInfo}
-            match={match}
-            playerID={playerID}
-          />
-        </Route>
-        <Route path="/join">
-          <JoinScreen onJoin={handleJoin} onGetMatch={handleGetMatch} />
-        </Route>
-        <Route path="/game">
-          <GameClient
-            credentials={credentials}
-            matchID={matchID}
-            playerID={playerID}
-          />
-        </Route>
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <Switch>
+      <Route path="/create">
+        <CreateGameScreen handleCreateGame={handleCreateGame} />
+      </Route>
+      <Route path="/lobby">
+        <LobbyScreen
+          getMatchInfo={getMatchInfo}
+          match={match}
+          playerID={playerID}
+        />
+      </Route>
+      <Route path="/join">
+        <JoinScreen onJoin={handleJoin} onGetMatch={handleGetMatch} />
+      </Route>
+      <Route path="/game">
+        <GameClient
+          credentials={credentials}
+          matchID={matchID}
+          playerID={playerID}
+        />
+      </Route>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Switch>
   );
 }
