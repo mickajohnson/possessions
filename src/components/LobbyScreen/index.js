@@ -27,10 +27,15 @@ export default function LobbyScreen({ lobbyClient }) {
     getMatchInfo();
   }, 1000);
 
+  const handleCopyClick = () => {
+    navigator.clipboard.writeText(match.matchID);
+  };
+
   if (match.players) {
     return (
       <div>
-        <h1>{match.matchID}</h1>
+        <h1>Match ID: {match.matchID}</h1>
+        <button onClick={handleCopyClick}>Copy Match ID</button>
         {match.players.map((player) => (
           <div key={player.id}>
             Player: {player.name} {player.id}{" "}
