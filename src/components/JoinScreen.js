@@ -6,18 +6,18 @@ export default function JoinScreen({ onJoin, onGetMatch }) {
   const [message, setMessage] = React.useState("");
 
   const handleJoin = async () => {
-    // try {
-    const match = await onGetMatch(matchID);
+    try {
+      const match = await onGetMatch(matchID);
 
-    const emptySeat = match.players.find((player) => !player.name);
+      const emptySeat = match.players.find((player) => !player.name);
 
-    console.log(match, emptySeat);
+      console.log(match, emptySeat);
 
-    onJoin(String(emptySeat.id), name, match.matchID);
-    // } catch {
-    //   setMessage("match not found");
-    //   setMatchID("");
-    // }
+      onJoin(String(emptySeat.id), name, match.matchID);
+    } catch {
+      setMessage("match not found");
+      setMatchID("");
+    }
   };
 
   return (
