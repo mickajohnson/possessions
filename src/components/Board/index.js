@@ -21,7 +21,6 @@ export default function NightStandStuffBoard({
   ctx,
   matchData,
 }) {
-  // matchData = [{"id":0,"name":"Mick","isConnected":true},{"id":1,"name":"Aimee","isConnected":true}]
   const { relationships } = G;
 
   if (ctx.phase === GOAL_SELECTION) {
@@ -34,10 +33,15 @@ export default function NightStandStuffBoard({
       />
     );
   }
+  const currentPlayerData = matchData.find(
+    (datum) => Number(datum.id) === Number(playerID)
+  );
+
   return (
     <Provider>
       <Container>
         <span>Player {playerID} | </span>
+        <span>{currentPlayerData.name} | </span>
         <span>{isActive ? "Active" : "Not Active"} | </span>
         <span>Phase {ctx.phase} | </span>
         <span>Round {G.roundNumber}</span>
