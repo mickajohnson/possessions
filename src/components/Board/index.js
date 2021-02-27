@@ -19,7 +19,9 @@ export default function NightStandStuffBoard({
   playerID,
   isActive,
   ctx,
+  matchData,
 }) {
+  // matchData = [{"id":0,"name":"Mick","isConnected":true},{"id":1,"name":"Aimee","isConnected":true}]
   const { relationships } = G;
 
   if (ctx.phase === GOAL_SELECTION) {

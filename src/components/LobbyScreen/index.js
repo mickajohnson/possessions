@@ -27,8 +27,6 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   };
 
   React.useEffect(() => {
-    console.log(playerID);
-
     if (match.players && every(match.players, (player) => player.name)) {
       history.replace(`/game/${matchID}/${playerID}`);
     }
