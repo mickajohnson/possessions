@@ -51,7 +51,11 @@ export default function App() {
         <CreateGameScreen onJoin={handleJoin} lobbyClient={lobbyClient} />
       </Route>
       <Route path="/lobby">
-        <LobbyScreen lobbyClient={lobbyClient} playerID={playerID} />
+        <LobbyScreen
+          matchID={matchID}
+          lobbyClient={lobbyClient}
+          playerID={playerID}
+        />
       </Route>
       <Route path="/join">
         <JoinScreen onJoin={handleJoin} lobbyClient={lobbyClient} />
