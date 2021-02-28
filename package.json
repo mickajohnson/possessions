@@ -17,6 +17,7 @@
     "react-scripts": "4.0.2",
     "react-tracked": "^1.6.5",
     "styled-components": "^5.2.1",
+    "typeface-staatliches": "^1.1.13",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
