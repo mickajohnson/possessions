@@ -4,24 +4,28 @@ import map from "lodash/map";
 import { EXECUTION } from "../../constants";
 
 import FaceUpCard from "../FaceUpCard";
+import FaceDownCard from "../FaceDownCard";
 
-function Command({ command, isHappening }) {
+function Command({ command, isHappening, isFaceUp }) {
   const borderColor = isHappening ? "blue" : "black";
+  const Card = isFaceUp ? FaceUpCard : FaceDownCard;
+
   return (
     <CommandContainer borderColor={borderColor}>
-      {command ? <FaceUpCard card={command} /> : null}
+      {command ? <Card card={command} /> : null}
     </CommandContainer>
   );
 }
 
-export default function ProgrammingLine({
+export default function CommandLine({
   commands,
   phase,
   isActive,
   currentCommandKey,
+  isFaceUp,
 }) {
   return (
-    <ProgrammingLineContainer>
+    <CommandLineContainer>
       {map(commands, (command, commandKey) => (
         <Command
           isHappening={
@@ -29,15 +33,16 @@ export default function ProgrammingLine({
             isActive &&
             Number(currentCommandKey) === Number(commandKey)
           }
+          isFaceUp={isFaceUp}
           key={`command${commandKey}`}
           command={command}
         />
       ))}
-    </ProgrammingLineContainer>
+    </CommandLineContainer>
   );
 }
 
-const ProgrammingLineContainer = styled.div`
+const CommandLineContainer = styled.div`
   display: flex;
   justify-content: space-around;
   width: 400px;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Deck from "../Deck";
 import Hand from "../Hand";
-import ProgrammingLine from "../ProgrammingLine";
+import CommandLine from "../CommandLine";
 
 import { PLANNING } from "../../constants";
 import DiscardPile from "../DiscardPile";
@@ -32,11 +32,12 @@ export default function ActivePlayerCardArea({
           remainingCardCount={player.deck.length}
           isDrawable={isDrawable}
         />
-        <ProgrammingLine
+        <CommandLine
           phase={ctx.phase}
           isActive={isActive}
           currentCommandKey={G.currentCommandKey}
           commands={player.commands}
+          isFaceUp
         />
         <DiscardPile discardPile={player.discardPile} />
       </TopContent>

@@ -24,19 +24,38 @@ export default function NightStandStuffBoard({
 }) {
   const { relationships } = G;
 
-  if (ctx.phase === GOAL_SELECTION) {
-    return (
-      <GoalSelection
-        goals={G.players[playerID].goals}
-        removeGoal={moves.removeGoal}
-        isActive={isActive}
-        playerID={playerID}
-      />
-    );
-  }
+  const playerMetaData = React.useMemo(
+    () =>
+      matchData.reduce((playerData, player) => {
+        playerData[player.id] = player;
+        return playerData;
+      }, {}),
+    [matchData]
+  );
+
   const currentPlayerData = matchData.find(
     (datum) => Number(datum.id) === Number(playerID)
   );
+
+  if (ctx.phase === GOAL_SELECTION) {
+    return (
+      <Container>
+        <div>
+          <span>Player {playerID} | </span>
+          <span>{playerMetaData[playerID].name} | </span>
+          <span>{isActive ? "Active" : "Not Active"} | </span>
+          <span>Phase {ctx.phase} | </span>
+          <span>Round {G.roundNumber}</span>
+        </div>
+        <GoalSelection
+          goals={G.players[playerID].goals}
+          removeGoal={moves.removeGoal}
+          isActive={isActive}
+          playerID={playerID}
+        />
+      </Container>
+    );
+  }
 
   return (
     <Provider>
@@ -81,7 +100,12 @@ export default function NightStandStuffBoard({
           moves={moves}
           G={G}
         />
-        <OtherPlayerCommands G={G} playerID={playerID} />
+        <OtherPlayerCommands
+          G={G}
+          playerID={playerID}
+          ctx={ctx}
+          playerMetaData={playerMetaData}
+        />
       </Container>
     </Provider>
   );
