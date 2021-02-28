@@ -15,7 +15,7 @@ import {
   isReactEligible,
 } from "../../game/validations";
 
-export default function Character({ characterKey, G }) {
+export default function Character({ characterKey, G, isActive }) {
   const dispatch = useDispatch();
   const {
     stagedAction,
@@ -38,10 +38,12 @@ export default function Character({ characterKey, G }) {
     CHAT_ACTIONS.includes(stagedAction) &&
     chatCharacterOne === null &&
     isChatEligible(G.characters, characterKey);
+
   const inSecondChatSelectionPhase =
     CHAT_ACTIONS.includes(stagedAction) &&
     chatCharacterOne &&
     isValidChat(G, chatCharacterOne, characterKey);
+
   const inFightMoverSelectionPhase =
     stagedAction === FIGHT &&
     chatCharacterOne &&
@@ -49,12 +51,13 @@ export default function Character({ characterKey, G }) {
     [chatCharacterTwo, chatCharacterOne].includes(characterKey);
 
   const isOption =
-    characterSelected ||
-    inCharacterSelectionPhase ||
-    inFirstChatSelectionPhase ||
-    inSecondChatSelectionPhase ||
-    inFightMoverSelectionPhase ||
-    reactEligible;
+    isActive &&
+    (characterSelected ||
+      inCharacterSelectionPhase ||
+      inFirstChatSelectionPhase ||
+      inSecondChatSelectionPhase ||
+      inFightMoverSelectionPhase ||
+      reactEligible);
 
   const isSelected =
     selectedCharacter === characterKey ||

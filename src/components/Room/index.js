@@ -9,7 +9,7 @@ import { useDispatch, useBoardState } from "../../state/board/reducer";
 import Drops from "../Drops";
 import Character from "../Character";
 
-export default function Room({ roomKey, G }) {
+export default function Room({ roomKey, G, isActive }) {
   const dispatch = useDispatch();
 
   const {
@@ -59,7 +59,8 @@ export default function Room({ roomKey, G }) {
     selectedRoom === null &&
     isValidMoveTwo({ roomOrder, characters }, selectedCharacter, roomKey);
 
-  const isOption = isMoveOneOption || isMoveTwoOption || isFightAfterOption;
+  const isOption =
+    isActive && (isMoveOneOption || isMoveTwoOption || isFightAfterOption);
 
   let borderColor = "black";
 
@@ -86,6 +87,7 @@ export default function Room({ roomKey, G }) {
         drops={rooms[roomKey].drops}
         G={G}
         roomKey={roomKey}
+        isActive={isActive}
       />
 
       <span>{rooms[roomKey].name}</span>
@@ -96,6 +98,7 @@ export default function Room({ roomKey, G }) {
               characterKey={characterKey}
               dispatch={dispatch}
               G={G}
+              isActive={isActive}
             />
           ))
         : null}

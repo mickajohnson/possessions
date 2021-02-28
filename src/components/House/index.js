@@ -75,7 +75,7 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   return (
     <HouseContainer>
       {roomOrder.map((roomKey) => (
-        <Room key={roomKey} roomKey={roomKey} G={G} />
+        <Room key={roomKey} roomKey={roomKey} G={G} isActive={isActive} />
       ))}
     </HouseContainer>
   );

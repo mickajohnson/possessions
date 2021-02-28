@@ -9,7 +9,7 @@ import { Provider } from "../../state/board/reducer";
 import House from "../House";
 import BoardButtons from "../BoardButtons";
 import ActivePlayerCardArea from "../ActivePlayerCardArea";
-import { GOAL_SELECTION } from "../../constants";
+import { GOAL_SELECTION, EXECUTION } from "../../constants";
 import GoalSelection from "../GoalSelection";
 import Goals from "../Goals";
 import OtherPlayerCommands from "../OtherPlayerCommands";
@@ -91,15 +91,17 @@ export default function NightStandStuffBoard({
           ctx={ctx}
           isActive={isActive}
         />
-        <BoardButtons
-          currentCardAction={get(
-            G.players[playerID].commands[G.currentCommandKey],
-            "action",
-            null
-          )}
-          moves={moves}
-          G={G}
-        />
+        {isActive && ctx.phase === EXECUTION ? (
+          <BoardButtons
+            currentCardAction={get(
+              G.players[playerID].commands[G.currentCommandKey],
+              "action",
+              null
+            )}
+            moves={moves}
+            G={G}
+          />
+        ) : null}
         <OtherPlayerCommands
           G={G}
           playerID={playerID}

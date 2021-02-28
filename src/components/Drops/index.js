@@ -8,7 +8,7 @@ import { useDispatch, useBoardState } from "../../state/board/reducer";
 
 import { isValidReact } from "../../game/validations";
 
-function DropGroup({ dropGroup, G, characterKey, roomKey }) {
+function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   const dispatch = useDispatch();
   const { stagedAction, dropperCharacter, selectedCharacter } = useBoardState();
 
@@ -24,7 +24,8 @@ function DropGroup({ dropGroup, G, characterKey, roomKey }) {
     selectedCharacter &&
     stagedAction === REACT &&
     roomKey === reactingCharRoomKey &&
-    isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter);
+    isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter) &&
+    isActive;
 
   const isSelected = isOption && dropperCharacter === characterKey;
 
