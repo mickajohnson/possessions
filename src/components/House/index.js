@@ -19,11 +19,34 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   const { stagedAction } = useBoardState();
   const dispatch = useDispatch();
 
+  console.log(
+    "outside",
+    G.currentCommandKey,
+    G.players[playerID].commands,
+    isActive,
+    stagedAction === null,
+    ctx.phase === EXECUTION
+  );
+
+  // somehow isactive true while G is still out of date, but how is that possible when command line shows empty slot?
+  // Is it happening at end of turn???
+
   React.useEffect(() => {
     const currentCardAction = get(
       G.players[playerID].commands[G.currentCommandKey],
       "action",
       null
+    );
+
+    console.log(
+      "ff",
+      G.currentCommandKey,
+      G.players[playerID].commands,
+      currentCardAction,
+      isActive,
+      stagedAction === null,
+      ctx.phase === EXECUTION,
+      currentCardAction
     );
 
     if (
@@ -34,15 +57,7 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
     ) {
       dispatch(selectAction(currentCardAction));
     }
-  }, [
-    isActive,
-    ctx.phase,
-    stagedAction,
-    dispatch,
-    G.currentCommandKey,
-    G.players,
-    playerID,
-  ]);
+  }, [isActive, ctx.phase, stagedAction, dispatch, G, playerID]);
 
   React.useEffect(() => {
     const onChatAndNoneValid =

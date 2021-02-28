@@ -61,6 +61,8 @@ const chatInteraction = (state, action) => {
 };
 
 function reducer(state, action) {
+  console.log(state, action);
+
   switch (action.type) {
     case SELECT_ACTION:
       return {

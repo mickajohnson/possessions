@@ -92,7 +92,7 @@ export const getDropPosTwoCard = () => ({
 
 export const getDropPosOneCard = () => ({
   action: DROP_POS_ONE,
-  name: "Drop -1",
+  name: "Drop +1",
   id: makeId(),
 });
 
