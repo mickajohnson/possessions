@@ -14,6 +14,12 @@ import GoalSelection from "../GoalSelection";
 import Goals from "../Goals";
 import OtherPlayerCommands from "../OtherPlayerCommands";
 
+import {
+  BoardContainer,
+  Relationships,
+  RelationshipWrapper,
+} from "./Board.styles";
+
 export default function NightStandStuffBoard({
   G,
   moves,
@@ -39,7 +45,7 @@ export default function NightStandStuffBoard({
 
   if (ctx.phase === GOAL_SELECTION) {
     return (
-      <Container>
+      <BoardContainer>
         <div>
           <span>Player {playerID} | </span>
           <span>{playerMetaData[playerID].name} | </span>
@@ -53,18 +59,26 @@ export default function NightStandStuffBoard({
           isActive={isActive}
           playerID={playerID}
         />
-      </Container>
+      </BoardContainer>
     );
   }
 
   return (
     <Provider>
-      <Container>
+      <BoardContainer>
         <span>Player {playerID} | </span>
         <span>{currentPlayerData.name} | </span>
         <span>{isActive ? "Active" : "Not Active"} | </span>
         <span>Phase {ctx.phase} | </span>
         <span>Round {G.roundNumber}</span>
+        <Relationships>
+          {map(relationships, (relationshipData, relationshipKey) => (
+            <RelationshipWrapper key={relationshipKey}>
+              <span>{relationshipData.name}</span>
+              <span>{relationshipData.score}</span>
+            </RelationshipWrapper>
+          ))}
+        </Relationships>
 
         <Goals goals={G.players[playerID].goals} />
 
@@ -76,15 +90,7 @@ export default function NightStandStuffBoard({
           skipTurn={moves.skipTurn}
         />
 
-        <Relationships>
-          {map(relationships, (relationshipData, relationshipKey) => (
-            <RelationshipWrapper key={relationshipKey}>
-              <span>{relationshipData.name}</span>
-              <span>{relationshipData.score}</span>
-            </RelationshipWrapper>
-          ))}
-        </Relationships>
-        <ActivePlayerCardArea
+        {/* <ActivePlayerCardArea
           playerID={playerID}
           moves={moves}
           G={G}
@@ -107,8 +113,8 @@ export default function NightStandStuffBoard({
           playerID={playerID}
           ctx={ctx}
           playerMetaData={playerMetaData}
-        />
-      </Container>
+        /> */}
+      </BoardContainer>
     </Provider>
   );
 }
@@ -121,18 +127,3 @@ NightStandStuffBoard.propTypes = {
   isActive: PropTypes.bool,
   isMultiplayer: PropTypes.bool,
 };
-
-const Container = styled.div``;
-
-const Relationships = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 60%;
-  column-gap: 10px;
-  row-gap: 5px;
-`;
-
-const RelationshipWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-`;

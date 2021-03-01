@@ -16,6 +16,7 @@ export default function Goals({ goals }) {
 
 const GoalsContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 60%;
   justify-content: space-around;
 `;
