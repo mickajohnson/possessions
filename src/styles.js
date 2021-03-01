@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 3em;
+  padding: 2em;
   display: flex;
   justify-content: center;
   height: 100vh;
@@ -52,4 +52,5 @@ export const FormContainer = styled.div`
   align-items: center;
   justify-content: center;
   height: fit-content;
+  margin-top: 1em;
 `;
