@@ -1,5 +1,13 @@
 import * as React from "react";
 
+import {
+  FormContainer,
+  Container,
+  Input,
+  Label,
+  Button,
+} from "./JoinScreen.styles";
+
 export default function JoinScreen({ onJoin, lobbyClient }) {
   const [name, setName] = React.useState("");
   const [matchID, setMatchID] = React.useState("");
@@ -27,22 +35,28 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
   };
 
   return (
-    <div>
-      <label>
-        Name
-        <input value={name} onChange={(e) => setName(e.target.value)} />
-      </label>
-      <label>
-        match id
-        <input value={matchID} onChange={(e) => setMatchID(e.target.value)} />
-      </label>
-      <button
-        onClick={handleJoin}
-        disabled={name.length < 1 || matchID.length < 1}
-      >
-        Submit
-      </button>
-      <p>{message}</p>
-    </div>
+    <Container>
+      <FormContainer>
+        <Label htmlFor="name">Your Name</Label>
+        <Input
+          name="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Label for="matchID">Match Id</Label>
+        <Input
+          name="matchID"
+          value={matchID}
+          onChange={(e) => setMatchID(e.target.value)}
+        />
+        <Button
+          onClick={handleJoin}
+          disabled={name.length < 1 || matchID.length < 1}
+        >
+          Submit
+        </Button>
+        <p>{message}</p>
+      </FormContainer>
+    </Container>
   );
 }

@@ -1,8 +1,16 @@
 import * as React from "react";
 import { useInterval } from "beautiful-react-hooks";
 import every from "lodash/every";
-
 import { useHistory, useParams } from "react-router-dom";
+
+import {
+  Container,
+  Button,
+  MatchName,
+  Player,
+  Header,
+  FormContainer,
+} from "./LobbyScreen.styles";
 
 export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   const [match, setMatch] = React.useState({});
@@ -42,17 +50,20 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
 
   if (match.players) {
     return (
-      <div>
-        <h1>Match ID: {match.matchID}</h1>
-        <button onClick={handleCopyClick}>Copy Match ID</button>
-        {match.players.map((player) => (
-          <div key={player.id}>
-            Player: {player.name} {player.id}{" "}
-            {String(playerID) === String(player.id) ? "(you)" : ""}
-          </div>
-        ))}
-      </div>
+      <Container>
+        <FormContainer>
+          <Header>Waiting for all players to join...</Header>
+          <MatchName>Match ID: {match.matchID}</MatchName>
+          <Button onClick={handleCopyClick}>Copy Match ID</Button>
+          {match.players.map((player) => (
+            <Player key={player.id}>
+              Player {player.id + 1}: {player.name ? player.name : "Waiting..."}{" "}
+              {String(playerID) === String(player.id) ? "(you)" : ""}
+            </Player>
+          ))}
+        </FormContainer>
+      </Container>
     );
   }
-  return <div>Loading...</div>;
+  return <Container>Loading...</Container>;
 }

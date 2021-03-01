@@ -40,3 +40,16 @@ export const Select = styled.select`
   font-family: "Staatliches";
   font-size: 1.3em;
 `;
+
+export const Label = styled.label`
+  width: 100%;
+  font-size: 2em;
+`;
+
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: fit-content;
+`;
