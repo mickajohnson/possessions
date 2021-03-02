@@ -1,11 +1,10 @@
 import styled from "styled-components";
-import FaceDownCard from "../FaceDownCard";
-
+=
 export default function DiscardPile({ discardPile }) {
   return (
     <Container>
       <span>Discard Pile</span>
-      <Discards>{discardPile.length ? <FaceDownCard /> : null}</Discards>
+      <Discards>{discardPile.length ? <div /> : null}</Discards>
       <span>{discardPile.length} Cards</span>
     </Container>
   );

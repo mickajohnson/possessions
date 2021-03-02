@@ -1,10 +1,7 @@
 import styled from "styled-components";
-import Deck from "../Deck";
-import Hand from "../Hand";
-import CommandLine from "../CommandLine";
 
 import { PLANNING } from "../../constants";
-import DiscardPile from "../DiscardPile";
+import FaceUpCard from "../FaceUpCard";
 
 export default function ActivePlayerCardArea({
   G,
@@ -22,7 +19,9 @@ export default function ActivePlayerCardArea({
     moves.programCard(playerID, cardId);
   };
   const handleDrawCard = () => {
-    moves.drawCard(playerID);
+    if (isDrawable) {
+      moves.drawCard(playerID);
+    }
   };
   return (
     <Container>
@@ -31,14 +30,39 @@ export default function ActivePlayerCardArea({
         remainingCardCount={player.deck.length}
         isDrawable={isDrawable}
       />
-      <Hand
-        isPlayable={isPlayable}
-        onPlayCard={handleProgramCard}
-        cards={player.hand}
-      />
+      <Deck isDrawable={isDrawable} onDoubleClick={handleDrawCard}>
+        <p>Deck</p>
+        Remaining: {player.deck.length}
+      </Deck>
+
+      <Hand>
+        {player.hand.map((card) => (
+          <FaceUpCard
+            isPlayable={isPlayable}
+            onDoubleClick={handleProgramCard}
+            key={card.id}
+            card={card}
+          />
+        ))}
+      </Hand>
     </Container>
   );
 }
+
+const Deck = styled.div`
+  height: 120px;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.salmon};
+`;
+
+const Hand = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 const Container = styled.div`
   grid-area: hand;
@@ -46,4 +70,5 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  padding-bottom: 20px;
 `;
