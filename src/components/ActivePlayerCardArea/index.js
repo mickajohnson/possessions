@@ -25,11 +25,6 @@ export default function ActivePlayerCardArea({
   };
   return (
     <Container>
-      <Deck
-        onDrawCard={handleDrawCard}
-        remainingCardCount={player.deck.length}
-        isDrawable={isDrawable}
-      />
       <Deck isDrawable={isDrawable} onDoubleClick={handleDrawCard}>
         <p>Deck</p>
         Remaining: {player.deck.length}
@@ -37,26 +32,38 @@ export default function ActivePlayerCardArea({
 
       <Hand>
         {player.hand.map((card) => (
-          <FaceUpCard
-            isPlayable={isPlayable}
-            onDoubleClick={handleProgramCard}
-            key={card.id}
-            card={card}
-          />
+          <CardContainer>
+            <FaceUpCard
+              isPlayable={isPlayable}
+              onDoubleClick={handleProgramCard}
+              key={card.id}
+              card={card}
+            />
+          </CardContainer>
         ))}
       </Hand>
     </Container>
   );
 }
 
+const CardContainer = styled.div`
+  height: 120px;
+  width: 80px;
+  background-color: white;
+  border-radius: 6px;
+  margin-right: 10px;
+`;
+
 const Deck = styled.div`
   height: 120px;
-  width: 60px;
+  width: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.salmon};
+  margin-right: 10px;
+  border-radius: 6px;
 `;
 
 const Hand = styled.div`

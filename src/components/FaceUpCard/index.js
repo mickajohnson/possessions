@@ -7,10 +7,8 @@ export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
     }
   };
 
-  const borderColor = isPlayable ? "blue" : "black";
-
   return (
-    <Container borderColor={borderColor} onDoubleClick={handlePlayCard}>
+    <Container isPlayable={isPlayable} onDoubleClick={handlePlayCard}>
       {card.name}
     </Container>
   );
@@ -19,8 +17,7 @@ export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
 const Container = styled.div`
   height: 100%;
   width: 100%;
-  border: 1px solid;
-  border-color: ${({ borderColor }) => borderColor};
+  border: ${({ isPlayable }) => (isPlayable ? `1px solid blue` : "none")};
   display: flex;
   align-items: center;
   justify-content: center;
