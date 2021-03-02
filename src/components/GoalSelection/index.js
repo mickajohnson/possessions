@@ -44,8 +44,9 @@ export default function GoalSelection({
 const Container = styled.div``;
 
 const GoalsContainer = styled.div`
+  width: 100%;
+  align-items: center;
   display: flex;
-  width: 60%;
   justify-content: space-around;
 `;
 

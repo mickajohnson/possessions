@@ -52,12 +52,12 @@ export const roomKeyToNameMapping = {
 };
 
 export const relationshipKeyToNameMapping = {
-  [MOM_DAD]: "Mom & Dad",
-  [MOM_DAUGHTER]: "Mom & Daughter",
-  [MOM_GRANDPA]: "Mom & Grandpa",
-  [GRANDPA_DAD]: "Grandpa & Dad",
-  [GRANDPA_DAUGHTER]: "Grandpa & Daughter",
-  [DAD_DAUGHTER]: "Dad & Daughter",
+  [MOM_DAD]: "Mom + Dad",
+  [MOM_DAUGHTER]: "Mom + Daughter",
+  [MOM_GRANDPA]: "Mom + Grandpa",
+  [GRANDPA_DAD]: "Grandpa + Dad",
+  [GRANDPA_DAUGHTER]: "Grandpa + Daughter",
+  [DAD_DAUGHTER]: "Dad + Daughter",
 };
 
 export const getMoveOneCard = () => ({

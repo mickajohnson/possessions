@@ -16,17 +16,21 @@ export default function Goals({ goals }) {
 
 const GoalsContainer = styled.div`
   display: flex;
+  width: 100%;
+  align-items: center;
   flex-direction: column;
-  width: 60%;
   justify-content: space-around;
 `;
 
 const GoalCard = styled.div`
-  height: 10em;
-  width: 6em;
-  border: 1px solid black;
+  height: 120px;
+  width: 80px;
+  font-size: 14px;
+  background-color: white;
+  boarder-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+  margin-top: 10px;
 `;

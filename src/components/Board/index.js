@@ -20,6 +20,8 @@ import {
   RelationshipWrapper,
   Header,
   Sidebar,
+  SidebarHeading,
+  SidebarSection,
 } from "./Board.styles";
 
 export default function NightStandStuffBoard({
@@ -76,16 +78,22 @@ export default function NightStandStuffBoard({
           <span>Round {G.roundNumber}</span>
         </Header>
         <Sidebar>
-          <Relationships>
-            {map(relationships, (relationshipData, relationshipKey) => (
-              <RelationshipWrapper key={relationshipKey}>
-                <span>{relationshipData.name}</span>
-                <span>{relationshipData.score}</span>
-              </RelationshipWrapper>
-            ))}
-          </Relationships>
+          <SidebarSection>
+            <SidebarHeading>Relationships</SidebarHeading>
+            <Relationships>
+              {map(relationships, (relationshipData, relationshipKey) => (
+                <RelationshipWrapper key={relationshipKey}>
+                  <span>{relationshipData.name}</span>
+                  <span>{relationshipData.score}</span>
+                </RelationshipWrapper>
+              ))}
+            </Relationships>
+          </SidebarSection>
 
-          <Goals goals={G.players[playerID].goals} />
+          <SidebarSection>
+            <SidebarHeading>Goals</SidebarHeading>
+            <Goals goals={G.players[playerID].goals} />
+          </SidebarSection>
         </Sidebar>
 
         <House

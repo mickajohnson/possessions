@@ -4,7 +4,6 @@ import map from "lodash/map";
 import { EXECUTION } from "../../constants";
 
 import FaceUpCard from "../FaceUpCard";
-import FaceDownCard from "../FaceDownCard";
 
 function Command({ command, isHappening, isFaceUp }) {
   return (
@@ -12,7 +11,7 @@ function Command({ command, isHappening, isFaceUp }) {
       isFaceDown={command && !isHappening}
       isHappening={isHappening}
     >
-      {command ? <FaceUpCard card={command} /> : null}
+      {command && isFaceUp ? <FaceUpCard card={command} /> : null}
     </CommandContainer>
   );
 }
@@ -53,8 +52,8 @@ const CommandLineContainer = styled.div`
 const CommandContainer = styled.div`
   border: ${({ isHappening }) => (isHappening ? "1px solid blue" : "none")};
   border-radius: 6px;
-  width: 3em;
-  height: 4em;
+
+  height: 120px;
   background-color: ${({ theme, isFaceDown }) =>
     isFaceDown ? theme.colors.salmon : "white"};
 `;
