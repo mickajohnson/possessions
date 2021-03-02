@@ -7,12 +7,12 @@ import FaceUpCard from "../FaceUpCard";
 import FaceDownCard from "../FaceDownCard";
 
 function Command({ command, isHappening, isFaceUp }) {
-  const borderColor = isHappening ? "blue" : "black";
-  const Card = isFaceUp ? FaceUpCard : FaceDownCard;
-
   return (
-    <CommandContainer borderColor={borderColor}>
-      {command ? <Card card={command} /> : null}
+    <CommandContainer
+      isFaceDown={command && !isHappening}
+      isHappening={isHappening}
+    >
+      {command ? <FaceUpCard card={command} /> : null}
     </CommandContainer>
   );
 }
@@ -43,15 +43,18 @@ export default function CommandLine({
 }
 
 const CommandLineContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 400px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+  padding: 5px;
+  background-color: ${({ theme }) => theme.colors.brown};
 `;
 
 const CommandContainer = styled.div`
-  padding: 5px;
-  border: 1px solid;
-  border-color: ${({ borderColor }) => borderColor};
-  width: 5em;
-  height: 7em;
+  border: ${({ isHappening }) => (isHappening ? "1px solid blue" : "none")};
+  border-radius: 6px;
+  width: 3em;
+  height: 4em;
+  background-color: ${({ theme, isFaceDown }) =>
+    isFaceDown ? theme.colors.salmon : "white"};
 `;

@@ -11,31 +11,30 @@ export default function OtherPlayerCommands({
   playerMetaData,
 }) {
   return (
-    <div>
-      {map(G.players, (player, playerKey) =>
-        playerKey === playerID ? null : (
-          <CommandLineContainer key={playerKey}>
-            <h3>{playerMetaData[playerKey].name}</h3>
-            <CommandLine
-              commands={player.commands}
-              isActive={Number(ctx.currentPlayer) === Number(playerKey)}
-              currentCommandKey={G.currentCommandKey}
-              phase={ctx.phase}
-              isFaceUp={ctx.phase === EXECUTION}
-            />
-          </CommandLineContainer>
-        )
-      )}
-    </div>
+    <Container>
+      {map(G.players, (player, playerKey) => (
+        <CommandLineContainer key={playerKey}>
+          <h3>{playerMetaData[playerKey].name}</h3>
+          <CommandLine
+            commands={player.commands}
+            isActive={Number(ctx.currentPlayer) === Number(playerKey)}
+            currentCommandKey={G.currentCommandKey}
+            phase={ctx.phase}
+            isFaceUp={ctx.phase === EXECUTION || playerID === playerKey}
+          />
+        </CommandLineContainer>
+      ))}
+    </Container>
   );
 }
 
-const CommandLineContainer = styled.div`
+const Container = styled.div`
   grid-area: commandLines;
-  border: 1px solid black;
-  margin-bottom: 10px;
-  padding: 10px 0;
+`;
+
+const CommandLineContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 10px;
 `;

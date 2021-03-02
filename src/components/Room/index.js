@@ -62,7 +62,7 @@ export default function Room({ roomKey, G, isActive }) {
   const isOption =
     isActive && (isMoveOneOption || isMoveTwoOption || isFightAfterOption);
 
-  let borderColor = "black";
+  let borderColor = null;
 
   if (selectedRoom === roomKey) {
     borderColor = "green";
@@ -90,7 +90,7 @@ export default function Room({ roomKey, G, isActive }) {
         isActive={isActive}
       />
 
-      <span>{rooms[roomKey].name}</span>
+      <RoomName>{rooms[roomKey].name}</RoomName>
       {roomsWithCharacters[roomKey]
         ? roomsWithCharacters[roomKey].map((characterKey) => (
             <Character
@@ -106,6 +106,10 @@ export default function Room({ roomKey, G, isActive }) {
   );
 }
 
+const RoomName = styled.p`
+  color: ${({ theme }) => theme.colors.redOrange};
+`;
+
 const RoomContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -113,7 +117,7 @@ const RoomContainer = styled.div`
   justify-content: space-around;
   min-height: 150px;
   cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
-  border-style: solid;
-  border: 1px solid;
-  border-color: ${({ borderColor }) => borderColor};
+  border: ${({ borderColor }) =>
+    borderColor ? `1px solid ${borderColor}` : null};
+  background-color: ${({ theme }) => theme.colors.grey};
 `;

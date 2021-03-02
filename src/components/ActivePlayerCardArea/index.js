@@ -26,22 +26,11 @@ export default function ActivePlayerCardArea({
   };
   return (
     <Container>
-      <TopContent>
-        <Deck
-          onDrawCard={handleDrawCard}
-          remainingCardCount={player.deck.length}
-          isDrawable={isDrawable}
-        />
-        <CommandLine
-          phase={ctx.phase}
-          isActive={isActive}
-          currentCommandKey={G.currentCommandKey}
-          commands={player.commands}
-          isFaceUp
-        />
-        <DiscardPile discardPile={player.discardPile} />
-      </TopContent>
-
+      <Deck
+        onDrawCard={handleDrawCard}
+        remainingCardCount={player.deck.length}
+        isDrawable={isDrawable}
+      />
       <Hand
         isPlayable={isPlayable}
         onPlayCard={handleProgramCard}
@@ -54,17 +43,7 @@ export default function ActivePlayerCardArea({
 const Container = styled.div`
   grid-area: hand;
   display: flex;
-  flex-direction: column;
-  padding: 10px;
-  border: 1px solid black;
-  margin-top: 10px;
-  align-items: center;
-  justify-content: center;
-`;
-
-const TopContent = styled.div`
-  display: flex;
-  padding-bottom: 10px;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 `;

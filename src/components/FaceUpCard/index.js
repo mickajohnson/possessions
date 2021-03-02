@@ -17,8 +17,8 @@ export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
 }
 
 const Container = styled.div`
-  height: 6em;
-  width: 4em;
+  height: 100%;
+  width: 100%;
   border: 1px solid;
   border-color: ${({ borderColor }) => borderColor};
   display: flex;
