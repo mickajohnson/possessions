@@ -52,12 +52,12 @@ export default function ActivePlayerCardArea({
 }
 
 const Container = styled.div`
+  grid-area: hand;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border: 1px solid black;
   margin-top: 10px;
-  width: 60%;
   align-items: center;
   justify-content: center;
 `;

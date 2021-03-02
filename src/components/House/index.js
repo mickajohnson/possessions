@@ -97,8 +97,8 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
 }
 
 const HouseContainer = styled.div`
+  grid-area: main;
   display: grid;
   grid-gap: 5px;
   grid-template-columns: repeat(3, 1fr);
-  width: 60%;
 `;

@@ -111,8 +111,7 @@ const RoomContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 200px;
-  height: 200px;
+  min-height: 150px;
   cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
   border-style: solid;
   border: 1px solid;

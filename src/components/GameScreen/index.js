@@ -10,6 +10,7 @@ const GameClient = Client({
   game: NightStandStuff,
   board: NightStandStuffBoard,
   multiplayer: SocketIO({ server: "localhost:8000" }),
+  debug: false,
 });
 
 export default function GameScreen({ storedPlayerData }) {

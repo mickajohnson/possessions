@@ -31,8 +31,8 @@ export default function OtherPlayerCommands({
 }
 
 const CommandLineContainer = styled.div`
+  grid-area: commandLines;
   border: 1px solid black;
-  width: 60%;
   margin-bottom: 10px;
   padding: 10px 0;
   display: flex;

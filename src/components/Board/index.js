@@ -18,6 +18,8 @@ import {
   BoardContainer,
   Relationships,
   RelationshipWrapper,
+  Header,
+  Sidebar,
 } from "./Board.styles";
 
 export default function NightStandStuffBoard({
@@ -46,13 +48,13 @@ export default function NightStandStuffBoard({
   if (ctx.phase === GOAL_SELECTION) {
     return (
       <BoardContainer>
-        <div>
+        <Header>
           <span>Player {playerID} | </span>
           <span>{playerMetaData[playerID].name} | </span>
           <span>{isActive ? "Active" : "Not Active"} | </span>
           <span>Phase {ctx.phase} | </span>
           <span>Round {G.roundNumber}</span>
-        </div>
+        </Header>
         <GoalSelection
           goals={G.players[playerID].goals}
           removeGoal={moves.removeGoal}
@@ -66,21 +68,25 @@ export default function NightStandStuffBoard({
   return (
     <Provider>
       <BoardContainer>
-        <span>Player {playerID} | </span>
-        <span>{currentPlayerData.name} | </span>
-        <span>{isActive ? "Active" : "Not Active"} | </span>
-        <span>Phase {ctx.phase} | </span>
-        <span>Round {G.roundNumber}</span>
-        <Relationships>
-          {map(relationships, (relationshipData, relationshipKey) => (
-            <RelationshipWrapper key={relationshipKey}>
-              <span>{relationshipData.name}</span>
-              <span>{relationshipData.score}</span>
-            </RelationshipWrapper>
-          ))}
-        </Relationships>
+        <Header>
+          <span>Player {playerID} | </span>
+          <span>{currentPlayerData.name} | </span>
+          <span>{isActive ? "Active" : "Not Active"} | </span>
+          <span>Phase {ctx.phase} | </span>
+          <span>Round {G.roundNumber}</span>
+        </Header>
+        <Sidebar>
+          <Relationships>
+            {map(relationships, (relationshipData, relationshipKey) => (
+              <RelationshipWrapper key={relationshipKey}>
+                <span>{relationshipData.name}</span>
+                <span>{relationshipData.score}</span>
+              </RelationshipWrapper>
+            ))}
+          </Relationships>
 
-        <Goals goals={G.players[playerID].goals} />
+          <Goals goals={G.players[playerID].goals} />
+        </Sidebar>
 
         <House
           G={G}
@@ -90,14 +96,14 @@ export default function NightStandStuffBoard({
           skipTurn={moves.skipTurn}
         />
 
-        {/* <ActivePlayerCardArea
+        <ActivePlayerCardArea
           playerID={playerID}
           moves={moves}
           G={G}
           ctx={ctx}
           isActive={isActive}
         />
-        {isActive && ctx.phase === EXECUTION ? (
+        {/* {isActive && ctx.phase === EXECUTION ? (
           <BoardButtons
             currentCardAction={get(
               G.players[playerID].commands[G.currentCommandKey],
@@ -107,13 +113,13 @@ export default function NightStandStuffBoard({
             moves={moves}
             G={G}
           />
-        ) : null}
+        ) : null} */}
         <OtherPlayerCommands
           G={G}
           playerID={playerID}
           ctx={ctx}
           playerMetaData={playerMetaData}
-        /> */}
+        />
       </BoardContainer>
     </Provider>
   );
