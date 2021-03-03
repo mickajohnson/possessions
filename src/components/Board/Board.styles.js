@@ -6,7 +6,7 @@ export const BoardContainer = styled(Container)`
   padding: 0;
   display: grid;
   grid-template-columns: 130px 1fr 300px;
-  grid-template-rows: 30px 1fr 120px;
+  grid-template-rows: 40px 1fr 120px;
   grid-template-areas:
     "header header header"
     "sidebar main commandLines"
@@ -15,6 +15,9 @@ export const BoardContainer = styled(Container)`
 
 export const Header = styled.div`
   grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 `;
 
 export const Relationships = styled.div`

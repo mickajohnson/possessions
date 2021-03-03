@@ -14,7 +14,12 @@ export default function OtherPlayerCommands({
     <Container>
       {map(G.players, (player, playerKey) => (
         <CommandLineContainer key={playerKey}>
-          <h3>{playerMetaData[playerKey].name}</h3>
+          <PlayerName
+            isActive={Number(ctx.currentPlayer) === Number(playerKey)}
+          >
+            {playerMetaData[playerKey].name}
+            {playerKey === playerID ? " (You)" : ""}
+          </PlayerName>
           <CommandLine
             commands={player.commands}
             isActive={Number(ctx.currentPlayer) === Number(playerKey)}
@@ -33,8 +38,14 @@ const Container = styled.div`
   padding-right: 10px;
 `;
 
+const PlayerName = styled.p`
+  color: ${({ theme, isActive }) =>
+    isActive ? theme.colors.redOrange : theme.colors.blue};
+`;
+
 const CommandLineContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;

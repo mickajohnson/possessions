@@ -54,7 +54,7 @@ const CommandContainer = styled.div`
   border: ${({ isHappening }) => (isHappening ? "1px solid blue" : "none")};
   border-radius: 6px;
 
-  height: 120px;
+  height: 100px;
   background-color: ${({ theme, isFaceDown }) =>
     isFaceDown ? theme.colors.salmon : "white"};
 `;

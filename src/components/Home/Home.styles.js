@@ -7,18 +7,6 @@ export const HomeContainer = styled(Container)`
   display: block;
 `;
 
-export const Title = styled.h1`
-  font-size: 4.5em;
-`;
-
-export const BlueText = styled.span`
-  color: ${({ theme }) => theme.colors.blue};
-`;
-
-export const YellowText = styled.span`
-  color: ${({ theme }) => theme.colors.yellow};
-`;
-
 export const NavItemContainer = styled.div`
   display: flex;
   flex-direction: column;

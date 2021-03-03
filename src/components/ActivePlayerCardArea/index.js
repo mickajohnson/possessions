@@ -32,11 +32,10 @@ export default function ActivePlayerCardArea({
 
       <Hand>
         {player.hand.map((card) => (
-          <CardContainer>
+          <CardContainer key={card.id}>
             <FaceUpCard
               isPlayable={isPlayable}
               onDoubleClick={handleProgramCard}
-              key={card.id}
               card={card}
             />
           </CardContainer>

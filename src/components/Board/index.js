@@ -7,7 +7,7 @@ import get from "lodash/get";
 import { Provider } from "../../state/board/reducer";
 
 import House from "../House";
-import BoardButtons from "../BoardButtons";
+import Title from "../Title";
 import ActivePlayerCardArea from "../ActivePlayerCardArea";
 import { GOAL_SELECTION, EXECUTION } from "../../constants";
 import GoalSelection from "../GoalSelection";
@@ -71,11 +71,8 @@ export default function NightStandStuffBoard({
     <Provider>
       <BoardContainer>
         <Header>
-          <span>Player {playerID} | </span>
-          <span>{currentPlayerData.name} | </span>
-          <span>{isActive ? "Active" : "Not Active"} | </span>
-          <span>Phase {ctx.phase} | </span>
-          <span>Round {G.roundNumber}</span>
+          <Title fontSize="1.2em" />
+          <p>Round {G.roundNumber}</p>
         </Header>
         <Sidebar>
           <SidebarSection>
