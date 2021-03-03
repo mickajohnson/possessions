@@ -7,21 +7,32 @@ import {
   Label,
   Select,
   Button,
+  ApiErrorMessage,
 } from "./CreateGameScreen.styles";
 
 export default function CreateGameScreen({ onJoin, lobbyClient }) {
   const [name, setName] = React.useState("");
+  const [error, setError] = React.useState(null);
   const [numberOfPlayers, setNumberOfPlayers] = React.useState("2");
 
   const handleCreateGame = async (playerName, numberOfPlayers) => {
-    const createMatchResponse = await lobbyClient.createMatch(
-      "nightstand-stuff",
-      {
-        numPlayers: Number(numberOfPlayers),
-      }
-    );
+    setError(null);
+    try {
+      const createMatchResponse = await lobbyClient.createMatch(
+        "nightstand-stuff",
+        {
+          numPlayers: Number(numberOfPlayers),
+        }
+      );
 
-    onJoin({ playerID: "0", playerName, matchID: createMatchResponse.matchID });
+      onJoin({
+        playerID: "0",
+        playerName,
+        matchID: createMatchResponse.matchID,
+      });
+    } catch {
+      setError("Unable to create game. Try again?");
+    }
   };
 
   const buttonDisabled = name.length === 0 || !numberOfPlayers;
@@ -53,6 +64,7 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
         >
           Create Game
         </Button>
+        <ApiErrorMessage>{error}</ApiErrorMessage>
       </FormContainer>
     </Container>
   );

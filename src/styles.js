@@ -54,3 +54,7 @@ export const FormContainer = styled.div`
   height: fit-content;
   margin-top: 1em;
 `;
+
+export const ApiErrorMessage = styled.p`
+  color: ${({ theme }) => theme.colors.redOrange};
+`;

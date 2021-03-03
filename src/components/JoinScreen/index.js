@@ -6,6 +6,7 @@ import {
   Input,
   Label,
   Button,
+  ApiErrorMessage,
 } from "./JoinScreen.styles";
 
 export default function JoinScreen({ onJoin, lobbyClient }) {
@@ -43,7 +44,7 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Label for="matchID">Match Id</Label>
+        <Label htmlFor="matchID">Match Id</Label>
         <Input
           name="matchID"
           value={matchID}
@@ -55,7 +56,7 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
         >
           Submit
         </Button>
-        <p>{message}</p>
+        <ApiErrorMessage>{message}</ApiErrorMessage>
       </FormContainer>
     </Container>
   );

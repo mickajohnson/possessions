@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useInterval } from "beautiful-react-hooks";
 import every from "lodash/every";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 
 import {
   Container,
@@ -10,13 +10,25 @@ import {
   Player,
   Header,
   FormContainer,
+  ApiErrorMessage,
 } from "./LobbyScreen.styles";
 
 export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   const [match, setMatch] = React.useState({});
+  const [error, setError] = React.useState(null);
 
   const { matchID, playerID } = useParams();
   const history = useHistory();
+
+  const getMatchInfo = React.useCallback(async () => {
+    try {
+      const matchInfo = await lobbyClient.getMatch("nightstand-stuff", matchID);
+      setMatch(matchInfo);
+      if (error) setError(null);
+    } catch {
+      setError("Unable to connect to server.");
+    }
+  }, [error, lobbyClient, matchID]);
 
   React.useEffect(() => {
     if (
@@ -27,12 +39,7 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
     } else {
       history.push("/");
     }
-  }, [storedPlayerData, matchID, playerID]);
-
-  const getMatchInfo = async () => {
-    const matchInfo = await lobbyClient.getMatch("nightstand-stuff", matchID);
-    setMatch(matchInfo);
-  };
+  }, [storedPlayerData, matchID, playerID, history, getMatchInfo]);
 
   React.useEffect(() => {
     if (match.players && every(match.players, (player) => player.name)) {
@@ -61,9 +68,12 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
               {String(playerID) === String(player.id) ? "(you)" : ""}
             </Player>
           ))}
+          <ApiErrorMessage>{error}</ApiErrorMessage>
         </FormContainer>
       </Container>
     );
+  } else if (error) {
+    return <Redirect to="/" />;
   }
   return <Container>Loading...</Container>;
 }
