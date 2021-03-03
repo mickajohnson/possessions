@@ -9,8 +9,6 @@ import {
 
 import Title from "../Title";
 
-// import Lander from "../../lander";
-
 export default function Home() {
   return (
     <HomeContainer>

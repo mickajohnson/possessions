@@ -17,7 +17,7 @@ export const Header = styled.div`
   grid-area: header;
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding: 5px 5px 0px 5px;
 `;
 
 export const Relationships = styled.div`

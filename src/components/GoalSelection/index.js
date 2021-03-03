@@ -1,5 +1,16 @@
 import * as React from "react";
-import styled from "styled-components";
+
+import Title from "../Title";
+
+import {
+  GoalSelectionContainer,
+  GoalsContainer,
+  GoalCard,
+  RemoveButton,
+  Header,
+  Content,
+  Directions,
+} from "./GoalSelection.styles";
 
 export default function GoalSelection({
   goals,
@@ -22,41 +33,27 @@ export default function GoalSelection({
   };
 
   return (
-    <Container>
-      <GoalsContainer>
-        {goals.map((goal) => (
-          <GoalCard
-            selected={selectedGoalId === goal.id}
-            onClick={() => handleCardClick(goal.id)}
-            key={goal.id}
-          >
-            <span>{goal.name}</span>
-            <span>{goal.polarity}</span>
-            <span>{goal.description}</span>
-          </GoalCard>
-        ))}
-      </GoalsContainer>
-      <button onClick={handleConfirmClick}>Remove Goal</button>
-    </Container>
+    <GoalSelectionContainer>
+      <Header>
+        <Title fontSize="1.2em" />
+      </Header>
+      <Content>
+        <Directions>Select a goal to remove</Directions>
+        <GoalsContainer>
+          {goals.map((goal) => (
+            <GoalCard
+              selected={selectedGoalId === goal.id}
+              onClick={() => handleCardClick(goal.id)}
+              key={goal.id}
+            >
+              <span>{goal.name}</span>
+              <span>{goal.polarity}</span>
+              <span>{goal.description}</span>
+            </GoalCard>
+          ))}
+        </GoalsContainer>
+        <RemoveButton onClick={handleConfirmClick}>Remove Goal</RemoveButton>
+      </Content>
+    </GoalSelectionContainer>
   );
 }
-
-const Container = styled.div``;
-
-const GoalsContainer = styled.div`
-  width: 100%;
-  align-items: center;
-  display: flex;
-  justify-content: space-around;
-`;
-
-const GoalCard = styled.div`
-  height: 12em;
-  width: 8em;
-  border: 1px solid;
-  border-color: ${({ selected }) => (selected ? "blue" : "black")};
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-`;

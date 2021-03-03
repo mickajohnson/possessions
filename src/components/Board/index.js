@@ -1,15 +1,13 @@
 import * as React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 import map from "lodash/map";
-import get from "lodash/get";
 
 import { Provider } from "../../state/board/reducer";
 
 import House from "../House";
 import Title from "../Title";
 import ActivePlayerCardArea from "../ActivePlayerCardArea";
-import { GOAL_SELECTION, EXECUTION } from "../../constants";
+import { GOAL_SELECTION } from "../../constants";
 import GoalSelection from "../GoalSelection";
 import Goals from "../Goals";
 import OtherPlayerCommands from "../OtherPlayerCommands";
@@ -32,8 +30,6 @@ export default function NightStandStuffBoard({
   ctx,
   matchData,
 }) {
-  const { relationships } = G;
-
   const playerMetaData = React.useMemo(
     () =>
       matchData.reduce((playerData, player) => {
@@ -43,27 +39,14 @@ export default function NightStandStuffBoard({
     [matchData]
   );
 
-  const currentPlayerData = matchData.find(
-    (datum) => Number(datum.id) === Number(playerID)
-  );
-
   if (ctx.phase === GOAL_SELECTION) {
     return (
-      <BoardContainer>
-        <Header>
-          <span>Player {playerID} | </span>
-          <span>{playerMetaData[playerID].name} | </span>
-          <span>{isActive ? "Active" : "Not Active"} | </span>
-          <span>Phase {ctx.phase} | </span>
-          <span>Round {G.roundNumber}</span>
-        </Header>
-        <GoalSelection
-          goals={G.players[playerID].goals}
-          removeGoal={moves.removeGoal}
-          isActive={isActive}
-          playerID={playerID}
-        />
-      </BoardContainer>
+      <GoalSelection
+        goals={G.players[playerID].goals}
+        removeGoal={moves.removeGoal}
+        isActive={isActive}
+        playerID={playerID}
+      />
     );
   }
 
@@ -78,7 +61,7 @@ export default function NightStandStuffBoard({
           <SidebarSection>
             <SidebarHeading>Relationships</SidebarHeading>
             <Relationships>
-              {map(relationships, (relationshipData, relationshipKey) => (
+              {map(G.relationships, (relationshipData, relationshipKey) => (
                 <RelationshipWrapper key={relationshipKey}>
                   <span>{relationshipData.name}</span>
                   <span>{relationshipData.score}</span>
