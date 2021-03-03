@@ -108,17 +108,6 @@ export default function NightStandStuffBoard({
           ctx={ctx}
           isActive={isActive}
         />
-        {/* {isActive && ctx.phase === EXECUTION ? (
-          <BoardButtons
-            currentCardAction={get(
-              G.players[playerID].commands[G.currentCommandKey],
-              "action",
-              null
-            )}
-            moves={moves}
-            G={G}
-          />
-        ) : null} */}
         <OtherPlayerCommands
           G={G}
           playerID={playerID}

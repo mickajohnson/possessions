@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import get from "lodash/get";
 
-import { PLANNING } from "../../constants";
+import { PLANNING, EXECUTION } from "../../constants";
+import BoardButtons from "../BoardButtons";
 import FaceUpCard from "../FaceUpCard";
 
 export default function ActivePlayerCardArea({
@@ -41,6 +43,17 @@ export default function ActivePlayerCardArea({
           </CardContainer>
         ))}
       </Hand>
+      {isActive && ctx.phase === EXECUTION ? (
+        <BoardButtons
+          currentCardAction={get(
+            G.players[playerID].commands[G.currentCommandKey],
+            "action",
+            null
+          )}
+          moves={moves}
+          G={G}
+        />
+      ) : null}
     </Container>
   );
 }
