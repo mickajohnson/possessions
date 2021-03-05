@@ -12,6 +12,7 @@ import { GOAL_SELECTION } from "../../constants";
 import GoalSelection from "../GoalSelection";
 import Goals from "../Goals";
 import OtherPlayerCommands from "../OtherPlayerCommands";
+import GameOverScreen from "../GameOverScreen";
 
 import {
   BoardContainer,
@@ -46,7 +47,14 @@ export default function NightStandStuffBoard({
     null
   );
 
-  console.log("currentPlayerName", currentPlayerName);
+  if (ctx.gameover) {
+    return (
+      <GameOverScreen
+        gameoverData={ctx.gameover}
+        playerMetaData={playerMetaData}
+      />
+    );
+  }
 
   if (ctx.phase === GOAL_SELECTION) {
     return (
