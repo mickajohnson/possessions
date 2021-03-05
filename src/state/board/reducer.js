@@ -50,6 +50,7 @@ export const initialState = {
   chatCharacterOne: null,
   chatCharacterTwo: null,
   dropperCharacter: null,
+  canConfirm: false,
 };
 
 const translations = {
@@ -89,6 +90,7 @@ const chatInteraction = (state, action) => {
         state.chatCharacterOne
       } & ${action.character}. Confirm?`,
       chatCharacterTwo: action.character,
+      canConfirm: true,
     };
   } else if (state.chatCharacterTwo === null && state.stagedAction === FIGHT) {
     return {
@@ -135,6 +137,7 @@ function reducer(state, action) {
             ? "Chose fight or bond"
             : `${translations[action.action]} - Select a character`,
         stagedAction: action.action,
+        canConfirm: action.action === REACT ? true : false,
       };
 
     case CHARACTER_CLICK:
@@ -144,6 +147,12 @@ function reducer(state, action) {
           message: characterClickMessage(state.stagedAction, action.character),
           selectedCharacter: action.character,
           selectedRoom: null,
+          canConfirm: [
+            DROP_NEG_ONE,
+            DROP_NEG_TWO,
+            DROP_POS_ONE,
+            DROP_POS_TWO,
+          ].includes(state.stagedAction),
         };
       } else if (CHAT_ACTIONS.includes(state.stagedAction)) {
         return chatInteraction(state, action);
@@ -175,6 +184,7 @@ function reducer(state, action) {
             translations[action.room]
           }. Confirm?`,
           selectedRoom: action.room,
+          canConfirm: true,
         };
       }
       return state;
@@ -185,6 +195,7 @@ function reducer(state, action) {
           ...state,
           dropperCharacter: action.dropperKey,
           message: `${state.selectedCharacter} react to ${action.dropperKey}. Confirm?`,
+          canConfirm: true,
         };
       }
       return state;

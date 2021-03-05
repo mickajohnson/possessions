@@ -27,15 +27,6 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
     isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter) &&
     isActive;
 
-  console.log(
-    roomKey,
-    selectedCharacter,
-    stagedAction === REACT,
-    roomKey === reactingCharRoomKey,
-    isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter),
-    isActive
-  );
-
   const isSelected = isOption && dropperCharacter === characterKey;
 
   const borderColor = isSelected ? "green" : "blue";

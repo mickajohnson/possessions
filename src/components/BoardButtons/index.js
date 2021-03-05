@@ -31,6 +31,7 @@ export default function BoardButtons({ moves, currentCardAction }) {
     chatCharacterTwo,
     dropperCharacter,
     stagedAction,
+    canConfirm,
   } = useBoardState();
 
   const handleConfirmClick = () => {
@@ -90,7 +91,9 @@ export default function BoardButtons({ moves, currentCardAction }) {
     <Container>
       {stagedAction !== null && stagedAction !== CHAT ? (
         <>
-          <ConfirmButton onClick={handleConfirmClick}>Confirm</ConfirmButton>
+          {canConfirm ? (
+            <ConfirmButton onClick={handleConfirmClick}>Confirm</ConfirmButton>
+          ) : null}
           <CancelButton onClick={handleCancelClick}>Cancel</CancelButton>
         </>
       ) : null}
