@@ -169,6 +169,7 @@ function reducer(state, action) {
             translations[action.room]
           }?`,
           selectedRoom: action.room,
+          canConfirm: true,
         };
       } else if (
         state.stagedAction === FIGHT &&

@@ -59,6 +59,8 @@ export const NightStandStuff = {
           ) {
             if (G.currentCommandKey === 3) {
               ctx.events.endPhase();
+              ctx.events.endTurn();
+              ctx.events.endTurn();
             } else {
               G.currentCommandKey += 1;
             }
