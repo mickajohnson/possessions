@@ -36,7 +36,7 @@ export default function ActivePlayerCardArea({
         {player.hand.map((card) => (
           <CardContainer key={card.id}>
             <FaceUpCard
-              isPlayable={isPlayable}
+              isPlayable={isPlayable && !isDrawable}
               onDoubleClick={handleProgramCard}
               card={card}
             />
@@ -74,6 +74,7 @@ const Deck = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.salmon};
+  border: ${({ isDrawable }) => (isDrawable ? "1px solid blue" : "")}}
   margin-right: 10px;
   border-radius: 6px;
 `;
@@ -89,5 +90,5 @@ const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 `;

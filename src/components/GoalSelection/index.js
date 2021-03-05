@@ -17,6 +17,7 @@ export default function GoalSelection({
   removeGoal,
   isActive,
   playerID,
+  currentPlayerName,
 }) {
   const [selectedGoalId, setSelectedGoalId] = React.useState(null);
 
@@ -32,13 +33,17 @@ export default function GoalSelection({
     }
   };
 
+  const direction = isActive
+    ? "Select a goal to remove"
+    : `Waiting${currentPlayerName ? ` on ${currentPlayerName}` : ""}...`;
+
   return (
     <GoalSelectionContainer>
       <Header>
         <Title fontSize="1.2em" />
       </Header>
       <Content>
-        <Directions>Select a goal to remove</Directions>
+        <Directions>{direction}</Directions>
         <GoalsContainer>
           {goals.map((goal) => (
             <GoalCard

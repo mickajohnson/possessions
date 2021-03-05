@@ -1,6 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import map from "lodash/map";
+import get from "lodash/get";
 
 import { Provider } from "../../state/board/reducer";
 
@@ -39,6 +40,14 @@ export default function NightStandStuffBoard({
     [matchData]
   );
 
+  const currentPlayerName = get(
+    playerMetaData,
+    [ctx.currentPlayer, "name"],
+    null
+  );
+
+  console.log("currentPlayerName", currentPlayerName);
+
   if (ctx.phase === GOAL_SELECTION) {
     return (
       <GoalSelection
@@ -46,6 +55,7 @@ export default function NightStandStuffBoard({
         removeGoal={moves.removeGoal}
         isActive={isActive}
         playerID={playerID}
+        currentPlayerName={currentPlayerName}
       />
     );
   }
@@ -96,6 +106,8 @@ export default function NightStandStuffBoard({
           playerID={playerID}
           ctx={ctx}
           playerMetaData={playerMetaData}
+          currentPlayerName={currentPlayerName}
+          isActive={isActive}
         />
       </BoardContainer>
     </Provider>

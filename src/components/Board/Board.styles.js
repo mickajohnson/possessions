@@ -6,7 +6,7 @@ export const BoardContainer = styled(Container)`
   padding: 0;
   display: grid;
   grid-template-columns: 130px 1fr 300px;
-  grid-template-rows: 40px 1fr 120px;
+  grid-template-rows: 40px 1fr 150px;
   grid-template-areas:
     "header header header"
     "sidebar main commandLines"
