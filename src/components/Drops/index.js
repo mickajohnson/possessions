@@ -27,6 +27,15 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
     isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter) &&
     isActive;
 
+  console.log(
+    roomKey,
+    selectedCharacter,
+    stagedAction === REACT,
+    roomKey === reactingCharRoomKey,
+    isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter),
+    isActive
+  );
+
   const isSelected = isOption && dropperCharacter === characterKey;
 
   const borderColor = isSelected ? "green" : "blue";
@@ -54,7 +63,7 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   );
 }
 
-export default function Drops({ drops, G, roomKey }) {
+export default function Drops({ drops, G, roomKey, isActive }) {
   return (
     <DropsContainer>
       {map(drops, (dropGroup, characterKey) =>
@@ -65,6 +74,7 @@ export default function Drops({ drops, G, roomKey }) {
             dropGroup={dropGroup}
             G={G}
             roomKey={roomKey}
+            isActive={isActive}
           />
         ) : null
       )}

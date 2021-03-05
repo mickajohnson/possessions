@@ -126,8 +126,6 @@ const characterClickMessage = (stagedAction, characterOne) => {
 };
 
 function reducer(state, action) {
-  console.log(state, action);
-
   switch (action.type) {
     case SELECT_ACTION:
       return {
@@ -186,7 +184,7 @@ function reducer(state, action) {
         return {
           ...state,
           dropperCharacter: action.dropperKey,
-          message: `${state.selectedCharacter} pick up ${action.dropperKey}`,
+          message: `${state.selectedCharacter} react to ${action.dropperKey}. Confirm?`,
         };
       }
       return state;
