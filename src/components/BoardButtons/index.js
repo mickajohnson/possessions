@@ -14,6 +14,14 @@ import {
 } from "../../constants";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
+import {
+  Container,
+  CancelButton,
+  ConfirmButton,
+  FightButton,
+  BondButton,
+} from "./BoardButton.styles";
+
 export default function BoardButtons({ moves, currentCardAction }) {
   const dispatch = useDispatch();
   const {
@@ -23,7 +31,6 @@ export default function BoardButtons({ moves, currentCardAction }) {
     chatCharacterTwo,
     dropperCharacter,
     stagedAction,
-    message,
   } = useBoardState();
 
   const handleConfirmClick = () => {
@@ -80,21 +87,20 @@ export default function BoardButtons({ moves, currentCardAction }) {
   };
 
   return (
-    <>
+    <Container>
       {stagedAction !== null && stagedAction !== CHAT ? (
         <>
-          <button onClick={handleConfirmClick}>Confirm</button>
-          <button onClick={handleCancelClick}>Cancel</button>
+          <ConfirmButton onClick={handleConfirmClick}>Confirm</ConfirmButton>
+          <CancelButton onClick={handleCancelClick}>Cancel</CancelButton>
         </>
       ) : null}
 
-      <p>{message}</p>
       {stagedAction === CHAT ? (
         <>
-          <button onClick={handleFightClick}>Fight</button>
-          <button onClick={handleBondClick}>Bond</button>
+          <FightButton onClick={handleFightClick}>Fight</FightButton>
+          <BondButton onClick={handleBondClick}>Bond</BondButton>
         </>
       ) : null}
-    </>
+    </Container>
   );
 }

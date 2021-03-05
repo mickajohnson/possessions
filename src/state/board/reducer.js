@@ -8,7 +8,21 @@ import {
   MOVE_TWO,
   NON_CHAT_ACTIONS,
   CHAT_ACTIONS,
+  CHAT,
   REACT,
+  DROP_POS_ONE,
+  DROP_NEG_ONE,
+  DROP_NEG_TWO,
+  DROP_POS_TWO,
+  LIVING_ROOM,
+  DINING_ROOM,
+  KITCHEN,
+  BATHROOM,
+  PARENTS_ROOM,
+  DAUGHTERS_ROOM,
+  GRANDPAS_ROOM,
+  GARAGE,
+  OFFICE,
 } from "../../constants";
 
 export const MOVE_ONE_CLICK = "MOVE_ONE_CLICK";
@@ -38,25 +52,76 @@ export const initialState = {
   dropperCharacter: null,
 };
 
+const translations = {
+  [FIGHT]: "Fight",
+  [BOND]: "Bond",
+  [MOVE_ONE]: "Move One",
+  [MOVE_TWO]: "Move Two",
+  [REACT]: "React",
+  [DROP_NEG_ONE]: "Drop -1",
+  [DROP_NEG_TWO]: "Drop -2",
+  [DROP_POS_ONE]: "Drop +1",
+  [DROP_POS_TWO]: "Drop +2",
+  [LIVING_ROOM]: "Living Room",
+  [DINING_ROOM]: "Dining Room",
+  [KITCHEN]: "Kitchen",
+  [BATHROOM]: "Bathroom",
+  [PARENTS_ROOM]: "Parent's Room",
+  [DAUGHTERS_ROOM]: "Daughter's Room",
+  [GRANDPAS_ROOM]: "Grandpa's Room",
+  [GARAGE]: "Garage",
+  [OFFICE]: "Office",
+};
+
 const chatInteraction = (state, action) => {
   if (state.chatCharacterOne === null) {
     return {
       ...state,
-      message: `${state.stagedAction} - character one: ${action.character}`,
+      message: `${translations[state.stagedAction]} - ${
+        action.character
+      }. Select other character.`,
       chatCharacterOne: action.character,
     };
-  } else if (state.chatCharacterTwo === null || state.stagedAction === BOND) {
+  } else if (state.chatCharacterTwo === null && state.stagedAction === BOND) {
     return {
       ...state,
-      message: `${state.stagedAction} - character one: ${state.chatCharacterOne}, character two: ${action.character}`,
+      message: `${translations[state.stagedAction]} - ${
+        state.chatCharacterOne
+      } & ${action.character}. Confirm?`,
+      chatCharacterTwo: action.character,
+    };
+  } else if (state.chatCharacterTwo === null && state.stagedAction === FIGHT) {
+    return {
+      ...state,
+      message: `${translations[state.stagedAction]} - ${
+        state.chatCharacterOne
+      } & ${action.character}. Which character will move?`,
       chatCharacterTwo: action.character,
     };
   } else if (state.stagedAction === FIGHT) {
     return {
       ...state,
-      message: `${state.stagedAction} - character one: ${state.chatCharacterOne}, character two: ${state.chatCharacterTwo}. Mover - ${action.character}`,
+      message: `${translations[state.stagedAction]} - ${
+        state.chatCharacterOne
+      } & ${state.chatCharacterTwo}. ${action.character} move to which room?`,
       selectedCharacter: action.character,
     };
+  }
+};
+
+const characterClickMessage = (stagedAction, characterOne) => {
+  if ([MOVE_ONE, MOVE_TWO].includes(stagedAction)) {
+    return `${translations[stagedAction]} - ${characterOne} - Select a room.`;
+  } else if (
+    [DROP_NEG_ONE, DROP_NEG_TWO, DROP_POS_ONE, DROP_POS_TWO].includes(
+      stagedAction
+    )
+  ) {
+    return `${translations[stagedAction]} - ${characterOne} - Confirm?`;
+  } else if (stagedAction === REACT) {
+    return `${translations[stagedAction]} - ${characterOne} - Select dropped items.`;
+  } else {
+    return "";
   }
 };
 
@@ -67,7 +132,10 @@ function reducer(state, action) {
     case SELECT_ACTION:
       return {
         ...initialState,
-        message: `${action.action} - Select a character`,
+        message:
+          action.action === CHAT
+            ? "Chose fight or bond"
+            : `${translations[action.action]} - Select a character`,
         stagedAction: action.action,
       };
 
@@ -75,7 +143,7 @@ function reducer(state, action) {
       if (NON_CHAT_ACTIONS.includes(state.stagedAction)) {
         return {
           ...state,
-          message: `${state.stagedAction} - ${action.character}`,
+          message: characterClickMessage(state.stagedAction, action.character),
           selectedCharacter: action.character,
           selectedRoom: null,
         };
@@ -90,7 +158,9 @@ function reducer(state, action) {
       ) {
         return {
           ...state,
-          message: `${state.selectedCharacter} to ${action.room}?`,
+          message: `${state.selectedCharacter} to ${
+            translations[action.room]
+          }?`,
           selectedRoom: action.room,
         };
       } else if (
@@ -101,7 +171,11 @@ function reducer(state, action) {
       ) {
         return {
           ...state,
-          message: `${state.stagedAction} - character one: ${state.chatCharacterOne}, character two: ${state.chatCharacterTwo}. ${state.selectedCharacter} to ${action.room}`,
+          message: `${translations[state.stagedAction]} - ${
+            state.chatCharacterOne
+          } & ${state.chatCharacterTwo}. ${state.selectedCharacter}  move to ${
+            translations[action.room]
+          }. Confirm?`,
           selectedRoom: action.room,
         };
       }
