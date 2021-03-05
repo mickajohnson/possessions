@@ -60,6 +60,33 @@ export const relationshipKeyToNameMapping = {
   [DAD_DAUGHTER]: "Dad + Daughter",
 };
 
+export const relationshipKeyToDescriptionMapping = {
+  [MOM_DAD]: {
+    [POSITIVE]: "You regret the things you never told your spouse",
+    [NEGATIVE]: "Murdered by spouse",
+  },
+  [MOM_DAUGHTER]: {
+    [POSITIVE]: "Your mom was great but died too young",
+    [NEGATIVE]: "Your mom was an unstable zealot",
+  },
+  [MOM_GRANDPA]: {
+    [POSITIVE]: "Your elderly parent was your only friend",
+    [NEGATIVE]: "Your children grew up and abandoned you",
+  },
+  [GRANDPA_DAD]: {
+    [POSITIVE]: "You thrived off of masculine energy",
+    [NEGATIVE]: "Your in-laws convinced your spouse to leave you",
+  },
+  [GRANDPA_DAUGHTER]: {
+    [POSITIVE]: "Raised by a grandparent",
+    [NEGATIVE]: "Your grandpa was a war criminal",
+  },
+  [DAD_DAUGHTER]: {
+    [POSITIVE]: "You were your dad's favorite",
+    [NEGATIVE]: "Your father abandoned you",
+  },
+};
+
 export const getMoveOneCard = () => ({
   action: MOVE_ONE,
   name: "Move One",
@@ -136,7 +163,8 @@ export const getGoalCards = () => {
     [POSITIVE, NEGATIVE].forEach((polarity) => {
       goals.push({
         polarity,
-        description: "Use description mapping",
+        description:
+          relationshipKeyToDescriptionMapping[relationship][polarity],
         name: relationshipKeyToNameMapping[relationship],
         relationship,
         id: makeId(),

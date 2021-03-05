@@ -55,7 +55,7 @@ export default function NightStandStuffBoard({
       <BoardContainer>
         <Header>
           <Title fontSize="1.2em" />
-          <p>Round {G.roundNumber}</p>
+          <p>Round {G.roundNumber} / 6</p>
         </Header>
         <Sidebar>
           <SidebarSection>
