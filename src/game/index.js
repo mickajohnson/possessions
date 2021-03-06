@@ -2,6 +2,7 @@ import setup from "./setup";
 import { EXECUTION, PLANNING, GOAL_SELECTION } from "../constants";
 import every from "lodash/every";
 import maxBy from "lodash/maxBy";
+import sortBy from "lodash/sortBy";
 import { tallyScores } from "./validations";
 
 import {
@@ -88,7 +89,10 @@ export const NightStandStuff = {
   endIf: (G) => {
     if (G.roundNumber === 1) {
       const scores = tallyScores(G);
-      return { winner: maxBy(scores, "score"), scores };
+      return {
+        winner: maxBy(scores, "score"),
+        scores: sortBy(scores, "score"),
+      };
     }
   },
   onEnd: (_, ctx) => {

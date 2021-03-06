@@ -74,26 +74,33 @@ export const isChatEligible = (characters, characterKey) => {
   );
 };
 
-const getPlayerScore = (G, player) => {
-  return player.goals.reduce((score, goal) => {
+const getPlayerScore = (scoredGoals) => {
+  return scoredGoals.reduce((cumulativeScore, goal) => {
+    return cumulativeScore + goal.score;
+  }, 0);
+};
+
+const getScoredPlayerGoals = (G, player) => {
+  return player.goals.map((goal) => {
     const relationship = G.relationships[goal.relationship];
 
     if (relationship.score > 0 && goal.polarity === POSITIVE) {
-      return score + relationship.score;
+      return { ...goal, score: relationship.score };
     } else if (relationship.score < 0 && goal.polarity === NEGATIVE) {
-      return score - relationship.score;
+      return { ...goal, score: Math.abs(relationship.score) };
     }
-    return score;
-  }, 0);
+    return { ...goal, score: 0 };
+  });
 };
 
 export const tallyScores = (G) => {
   return reduce(
     G.players,
     (scores, player, playerKey) => {
-      const playerScore = getPlayerScore(G, player);
+      const scoredGoals = getScoredPlayerGoals(G, player);
+      const playerScore = getPlayerScore(scoredGoals);
 
-      scores.push({ score: playerScore, playerID: playerKey });
+      scores.push({ score: playerScore, playerID: playerKey, scoredGoals });
 
       return scores;
     },
