@@ -32,28 +32,24 @@ export default function NightStandStuffBoard({
   ctx,
   matchData,
 }) {
-  const playerMetaData = React.useMemo(
-    () =>
-      matchData.reduce((playerData, player) => {
-        playerData[player.id] = player;
-        return playerData;
-      }, {}),
-    [matchData]
-  );
+  const currentPlayerName = get(G.players, [ctx.currentPlayer, "name"], null);
+  // Safety here to avoid possibility of infinite loops
+  const setPlayerNameRan = React.useRef(false);
 
-  const currentPlayerName = get(
-    playerMetaData,
-    [ctx.currentPlayer, "name"],
-    null
-  );
+  React.useEffect(() => {
+    if (
+      !setPlayerNameRan.current &&
+      ctx.phase === GOAL_SELECTION &&
+      isActive &&
+      !G.players[playerID].name
+    ) {
+      moves.setPlayerNames(matchData);
+      setPlayerNameRan.current = true;
+    }
+  }, [isActive, ctx.phase, G.players, playerID, G, matchData, moves]);
 
   if (ctx.gameover) {
-    return (
-      <GameOverScreen
-        gameoverData={ctx.gameover}
-        playerMetaData={playerMetaData}
-      />
-    );
+    return <GameOverScreen gameoverData={ctx.gameover} G={G} />;
   }
 
   if (ctx.phase === GOAL_SELECTION) {
@@ -113,7 +109,6 @@ export default function NightStandStuffBoard({
           G={G}
           playerID={playerID}
           ctx={ctx}
-          playerMetaData={playerMetaData}
           currentPlayerName={currentPlayerName}
           isActive={isActive}
         />

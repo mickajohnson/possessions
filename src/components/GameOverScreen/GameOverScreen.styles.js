@@ -1,3 +1,7 @@
 import styled from "styled-components";
 
-export * from "../../styles";
+import { Container } from "../../styles";
+
+export const GameOverContainer = styled(Container)`
+  flex-direction: column;
+`;

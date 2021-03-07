@@ -9,7 +9,6 @@ export default function OtherPlayerCommands({
   G,
   playerID,
   ctx,
-  playerMetaData,
   currentPlayerName,
   isActive,
 }) {
@@ -25,7 +24,7 @@ export default function OtherPlayerCommands({
     } else if (ctx.phase === PLANNING) {
       directions = canDraw ? "Draw a card to finish turn" : "Select a card";
     }
-  } else if (currentPlayerName !== null) {
+  } else if (currentPlayerName) {
     directions = `Waiting on ${currentPlayerName}...`;
   }
 
@@ -37,7 +36,7 @@ export default function OtherPlayerCommands({
             <PlayerName
               isActive={Number(ctx.currentPlayer) === Number(playerKey)}
             >
-              {playerMetaData[playerKey].name}
+              {player.name}
               {playerKey === playerID ? " (You)" : ""}
             </PlayerName>
             <CommandLine

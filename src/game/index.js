@@ -19,6 +19,7 @@ import {
   drawCard,
   skipTurn,
   removeGoal,
+  setPlayerNames,
 } from "./moves";
 
 export const NightStandStuff = {
@@ -31,6 +32,7 @@ export const NightStandStuff = {
       },
       moves: {
         removeGoal,
+        setPlayerNames,
       },
       start: true,
       next: PLANNING,

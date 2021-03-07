@@ -7,7 +7,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "beautiful-react-hooks": "^0.31.0",
-    "boardgame.io": "^0.43.2",
+    "boardgame.io": "^0.43.3",
     "esm": "^3.2.25",
     "lodash": "^4.17.20",
     "prop-types": "^15.7.2",

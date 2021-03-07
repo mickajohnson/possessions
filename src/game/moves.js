@@ -2,6 +2,8 @@ import { INVALID_MOVE } from "boardgame.io/core";
 import remove from "lodash/remove";
 import every from "lodash/every";
 import shuffle from "lodash/shuffle";
+import forEach from "lodash/forEach";
+import get from "lodash/get";
 
 import {
   isValidChat,
@@ -178,4 +180,14 @@ export const removeGoal = (G, ctx, playerID, goalId) => {
   } else {
     ctx.events.endTurn();
   }
+};
+
+export const setPlayerNames = (G, _, matchData) => {
+  forEach(G.players, (player, playerKey) => {
+    const matchDataPlayer = matchData.find(
+      (playerData) => String(playerKey) === String(playerData.id)
+    );
+
+    player.name = get(matchDataPlayer, "name", "");
+  });
 };

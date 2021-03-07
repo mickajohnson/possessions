@@ -1,40 +1,49 @@
 import * as React from "react";
 import styled from "styled-components";
 
-import { Container } from "./GameOverScreen.styles";
+import { GameOverContainer } from "./GameOverScreen.styles";
 
-export default function GameOverScreen({ gameoverData, playerMetaData }) {
+export default function GameOverScreen({ gameoverData, G }) {
   return (
-    <Container>
+    <GameOverContainer>
       {/* show end relationships */}
-      <h1>Winner: {playerMetaData[gameoverData.winner.playerID].name}</h1>
+      <h1>Winner: {G.players[gameoverData.winner.playerID].name}</h1>
       {gameoverData.scores.map((scoreData) => (
-        <div key={scoreData.playerID}>
-          <p>PlayerId: {scoreData.playerID}</p>
+        <PlayerRow key={scoreData.playerID}>
+          <p>Player: {G.players[scoreData.playerID].name}</p>
           <p>score: {scoreData.score}</p>
           <GoalsContainer>
             {scoreData.scoredGoals.map((goal) => (
-              <React.Fragment key={goal.id}>
-                goal score: {goal.score}
+              <GoalContainer key={goal.id}>
+                Goal Score: {goal.score}
                 <GoalCard>
                   <span>{goal.name}</span>
                   <span>{goal.polarity}</span>
                   <span>{goal.description}</span>
                 </GoalCard>
-              </React.Fragment>
+              </GoalContainer>
             ))}
           </GoalsContainer>
-        </div>
+        </PlayerRow>
       ))}
-    </Container>
+    </GameOverContainer>
   );
 }
+
+const GoalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const PlayerRow = styled.div`
+  display: flex;
+`;
 
 const GoalsContainer = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-around;
 `;
 
