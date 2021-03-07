@@ -7,6 +7,7 @@ const theme = {
     brown: "#C0AC92",
     salmon: "#FFBEA6",
     grey: "#C4C4C4",
+    green: "#518967",
   },
 };
 

@@ -20,12 +20,6 @@ export const Header = styled.div`
   padding: 5px 5px 0px 5px;
 `;
 
-export const Relationships = styled.div`
-  margin-top: 1em;
-  display: flex;
-  flex-direction: column;
-`;
-
 export const SidebarHeading = styled.h3`
   font-size: 1em;
   text-align: center;
@@ -34,12 +28,6 @@ export const SidebarHeading = styled.h3`
 export const SidebarSection = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-export const RelationshipWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
 `;
 
 export const Sidebar = styled.div`

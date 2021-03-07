@@ -10,7 +10,11 @@ import GameScreen from "../GameScreen";
 import Home from "../Home";
 
 const { protocol, hostname, port } = window.location;
-const server = `${protocol}//${hostname}:${port}`;
+
+const server =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8000"
+    : `${protocol}//${hostname}:${port}`;
 
 export default function App() {
   const [lobbyClient] = React.useState(new LobbyClient({ server }));

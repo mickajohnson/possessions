@@ -1,6 +1,5 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import map from "lodash/map";
 import get from "lodash/get";
 
 import { Provider } from "../../state/board/reducer";
@@ -13,11 +12,10 @@ import GoalSelection from "../GoalSelection";
 import Goals from "../Goals";
 import OtherPlayerCommands from "../OtherPlayerCommands";
 import GameOverScreen from "../GameOverScreen";
+import Relationships from "../Relationships";
 
 import {
   BoardContainer,
-  Relationships,
-  RelationshipWrapper,
   Header,
   Sidebar,
   SidebarHeading,
@@ -74,14 +72,7 @@ export default function NightStandStuffBoard({
         <Sidebar>
           <SidebarSection>
             <SidebarHeading>Relationships</SidebarHeading>
-            <Relationships>
-              {map(G.relationships, (relationshipData, relationshipKey) => (
-                <RelationshipWrapper key={relationshipKey}>
-                  <span>{relationshipData.name}</span>
-                  <span>{relationshipData.score}</span>
-                </RelationshipWrapper>
-              ))}
-            </Relationships>
+            <Relationships relationships={G.relationships} />
           </SidebarSection>
 
           <SidebarSection>

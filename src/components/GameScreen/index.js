@@ -7,7 +7,10 @@ import { SocketIO } from "boardgame.io/multiplayer";
 import { useParams, Redirect } from "react-router-dom";
 
 const { protocol, hostname, port } = window.location;
-const server = `${protocol}//${hostname}:${port}`;
+const server =
+  process.env.NODE_ENV === "development"
+    ? "localhost:8000"
+    : `${protocol}//${hostname}:${port}`;
 
 const GameClient = Client({
   game: NightStandStuff,
