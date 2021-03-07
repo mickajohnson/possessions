@@ -89,7 +89,7 @@ export const NightStandStuff = {
     },
   },
   endIf: (G) => {
-    if (G.roundNumber === 1) {
+    if (G.roundNumber === 7) {
       const scores = tallyScores(G);
       return {
         winner: maxBy(scores, "score"),
