@@ -30,7 +30,7 @@ export default function OtherPlayerCommands({
 
   return (
     <Container>
-      <div>
+      <CommandsContainer>
         {map(G.players, (player, playerKey) => (
           <CommandLineContainer key={playerKey}>
             <PlayerName
@@ -48,11 +48,18 @@ export default function OtherPlayerCommands({
             />
           </CommandLineContainer>
         ))}
-      </div>
+      </CommandsContainer>
       <Message>{directions}</Message>
     </Container>
   );
 }
+
+const CommandsContainer = styled.div`
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: 1fr;
+  height: 100%;
+`;
 
 const Container = styled.div`
   grid-area: commandLines;

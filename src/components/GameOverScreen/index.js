@@ -7,8 +7,6 @@ import Relationships from "../Relationships";
 export default function GameOverScreen({ gameoverData, G }) {
   return (
     <GameOverContainer>
-      {/* Make reusable? */}
-
       <h1>Winner: {G.players[gameoverData.winner.playerID].name}</h1>
       {gameoverData.scores.map((scoreData) => (
         <PlayerRow key={scoreData.playerID}>

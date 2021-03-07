@@ -175,7 +175,9 @@ export const removeGoal = (G, ctx, playerID, goalId) => {
     (goal) => goal.id !== goalId
   );
 
-  if (every(G.players, (player) => player.goals.length === 3)) {
+  const goalLength = ctx.playOrder.length < 4 ? 3 : 2;
+
+  if (every(G.players, (player) => player.goals.length === goalLength)) {
     ctx.events.endPhase();
   } else {
     ctx.events.endTurn();

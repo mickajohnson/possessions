@@ -70,12 +70,13 @@ const createInitialPlayers = (ctx, goals) =>
   ctx.playOrder.reduce((playerObject, playerKey) => {
     const deck = shuffle(getDefaultDeck());
     const hand = deck.splice(0, 6);
+    console.log(ctx.playOrder.length);
     playerObject[playerKey] = {
       deck,
       hand,
       commands: getEmptyCommands(),
       discardPile: [],
-      goals: goals.splice(-4),
+      goals: ctx.playOrder.length < 4 ? goals.splice(-4) : goals.splice(-3),
     };
 
     return playerObject;
