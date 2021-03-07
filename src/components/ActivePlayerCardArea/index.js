@@ -88,7 +88,7 @@ const Container = styled.div`
   grid-area: hand;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding-bottom: 10px;
+  overflow: hidden;
 `;
