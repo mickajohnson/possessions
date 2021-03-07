@@ -9,10 +9,11 @@ import LobbyScreen from "../LobbyScreen";
 import GameScreen from "../GameScreen";
 import Home from "../Home";
 
+const { protocol, hostname, port } = window.location;
+const server = `${protocol}//${hostname}:${port}`;
+
 export default function App() {
-  const [lobbyClient] = React.useState(
-    new LobbyClient({ server: "http://localhost:8000" })
-  );
+  const [lobbyClient] = React.useState(new LobbyClient({ server }));
   const [storedPlayerData, setStoredPlayerData] = useSessionStorage(
     "nightstand-stuff-data",
     {}
