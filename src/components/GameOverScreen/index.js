@@ -37,6 +37,8 @@ const GoalContainer = styled.div`
 
 const PlayerRow = styled.div`
   display: flex;
+  margin-bottom: 25px;
+  width: 75%;
 `;
 
 const GoalsContainer = styled.div`
