@@ -1,12 +1,18 @@
 import * as React from "react";
 import styled from "styled-components";
+import map from "lodash/map";
 
-import { GameOverContainer } from "./GameOverScreen.styles";
+import {
+  GameOverContainer,
+  Relationships,
+  RelationshipWrapper,
+} from "./GameOverScreen.styles";
 
 export default function GameOverScreen({ gameoverData, G }) {
   return (
     <GameOverContainer>
-      {/* show end relationships */}
+      {/* Make reusable? */}
+
       <h1>Winner: {G.players[gameoverData.winner.playerID].name}</h1>
       {gameoverData.scores.map((scoreData) => (
         <PlayerRow key={scoreData.playerID}>
@@ -26,6 +32,14 @@ export default function GameOverScreen({ gameoverData, G }) {
           </GoalsContainer>
         </PlayerRow>
       ))}
+      <Relationships>
+        {map(G.relationships, (relationshipData, relationshipKey) => (
+          <RelationshipWrapper key={relationshipKey}>
+            <span>{relationshipData.name}</span>
+            <span>{relationshipData.score}</span>
+          </RelationshipWrapper>
+        ))}
+      </Relationships>
     </GameOverContainer>
   );
 }

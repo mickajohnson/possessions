@@ -97,9 +97,6 @@ export const NightStandStuff = {
       };
     }
   },
-  onEnd: (_, ctx) => {
-    console.log(ctx.gameover);
-  },
 };
 
 export default NightStandStuff;

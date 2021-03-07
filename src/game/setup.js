@@ -82,8 +82,6 @@ const createInitialPlayers = (ctx, goals) =>
   }, {});
 
 export default function setup(ctx, setupData) {
-  console.log(setupData);
-
   const goals = shuffle(getGoalCards());
 
   const players = createInitialPlayers(ctx, goals);
