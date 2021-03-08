@@ -14,7 +14,7 @@ export const Input = styled.input`
   margin-bottom: 3em;
   width: 100%;
   padding: 1em;
-  font-family: "Staatliches";
+  font-family: "Domine", seriff;
   font-size: 1.3em;
 `;
 
@@ -30,16 +30,18 @@ export const Button = styled.button`
 `;
 
 export const Select = styled.select`
-  height: 3em;
   margin-bottom: 3em;
   border-radius: 5px;
   border: none;
   padding: 1em;
   cursor: pointer;
   width: 100%;
-  font-family: "Staatliches";
+  font-family: "Domine", seriff;
   font-size: 1.3em;
+  color: ${({ value }) => (value === "" ? "grey" : "black")};
 `;
+
+export const SplitContainer = styled.div``;
 
 export const Label = styled.label`
   width: 100%;

@@ -38,9 +38,9 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
   return (
     <Container>
       <FormContainer>
-        <Label htmlFor="name">Your Name</Label>
         <Input
           name="name"
+          placeholder="Your Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />

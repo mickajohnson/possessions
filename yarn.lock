@@ -12026,6 +12026,11 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+typeface-domine@^1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/typeface-domine/-/typeface-domine-1.1.13.tgz#c4405a9d7f14c161136634b44b1043b8b559abe3"
+  integrity sha512-VjsQTdOyJ3w0MdDLUdWoQ0rSh0mPgZx/orC8RjVbkt2hIqnUBTUg20RUICV7fAzCam+MZyQ4oA0IyxnrLN/3yg==
+
 typeface-staatliches@^1.1.13:
   version "1.1.13"
   resolved "https://registry.yarnpkg.com/typeface-staatliches/-/typeface-staatliches-1.1.13.tgz#4fe7c7109181a1dbba6db275283f6abee918f630"

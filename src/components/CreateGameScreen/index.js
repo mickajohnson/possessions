@@ -4,7 +4,7 @@ import {
   FormContainer,
   Container,
   Input,
-  Label,
+  PlaceholderOption,
   Select,
   Button,
   ApiErrorMessage,
@@ -13,7 +13,7 @@ import {
 export default function CreateGameScreen({ onJoin, lobbyClient }) {
   const [name, setName] = React.useState("");
   const [error, setError] = React.useState(null);
-  const [numberOfPlayers, setNumberOfPlayers] = React.useState("2");
+  const [numberOfPlayers, setNumberOfPlayers] = React.useState("");
 
   const handleCreateGame = async (playerName, numberOfPlayers) => {
     setError(null);
@@ -39,18 +39,21 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
   return (
     <Container>
       <FormContainer>
-        <Label htmlFor="name">Your Name</Label>
         <Input
           name="name"
+          placeholder="Your Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Label htmlFor="numberOfPlayers">Number of Players</Label>
         <Select
           name="numberOfPlayers"
           value={numberOfPlayers}
           onChange={(e) => setNumberOfPlayers(e.target.value)}
         >
+          <option disabled value="">
+            -- Number of Players --
+          </option>
+
           {[2, 3, 4].map((val) => (
             <option key={val} value={val}>
               {val}

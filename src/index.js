@@ -8,6 +8,7 @@ import theme from "./theme";
 
 import "./index.css";
 import "typeface-staatliches";
+import "typeface-domine";
 
 // import reportWebVitals from "./reportWebVitals";
 
