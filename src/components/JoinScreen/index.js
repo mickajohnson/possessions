@@ -2,11 +2,12 @@ import * as React from "react";
 
 import {
   FormContainer,
-  Container,
+  SplitContainer,
   Input,
-  Label,
-  Button,
+  FlavorText,
+  FormButton,
   ApiErrorMessage,
+  PinkSpace,
 } from "./JoinScreen.styles";
 
 export default function JoinScreen({ onJoin, lobbyClient }) {
@@ -36,28 +37,31 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
   };
 
   return (
-    <Container>
+    <SplitContainer>
+      <PinkSpace />
       <FormContainer>
+        <FlavorText>Join a Game...</FlavorText>
+
         <Input
           name="name"
           placeholder="Your Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Label htmlFor="matchID">Match Id</Label>
         <Input
           name="matchID"
+          placeholder="Game Code"
           value={matchID}
           onChange={(e) => setMatchID(e.target.value)}
         />
-        <Button
+        <FormButton
           onClick={handleJoin}
           disabled={name.length < 1 || matchID.length < 1}
         >
-          Submit
-        </Button>
+          Join Existing Game
+        </FormButton>
         <ApiErrorMessage>{message}</ApiErrorMessage>
       </FormContainer>
-    </Container>
+    </SplitContainer>
   );
 }

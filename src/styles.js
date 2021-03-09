@@ -90,3 +90,9 @@ export const ApiErrorMessage = styled.p`
   margin-top: 1em;
   font-size: 1.3em;
 `;
+
+export const PinkSpace = styled.div`
+  background-color: ${({ theme }) => theme.colors.pink};
+  height: 100%;
+  width: 100%;
+`;

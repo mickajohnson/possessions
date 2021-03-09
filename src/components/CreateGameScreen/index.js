@@ -7,7 +7,7 @@ import {
   Select,
   FormButton,
   ApiErrorMessage,
-  SidePanel,
+  PinkSpace,
   FlavorText,
 } from "./CreateGameScreen.styles";
 
@@ -39,7 +39,7 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
   const buttonDisabled = name.length === 0 || !numberOfPlayers;
   return (
     <SplitContainer>
-      <SidePanel />
+      <PinkSpace />
       <FormContainer>
         <FlavorText>Create Game...</FlavorText>
         <Input
