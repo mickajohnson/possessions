@@ -34,12 +34,14 @@ export const Button = styled.button`
   border-radius: 5px;
   font-family: "Staatliches";
   font-size: 1.4em;
+  outline-color: black;
 `;
 
 export const FormButton = styled(Button)`
   margin-top: 1.5em;
   background-color: ${({ theme }) => theme.colors.green};
   color: white;
+  outline-color: black;
 
   &:disabled {
     background-color: ${({ theme }) => theme.colors.redOrange};
@@ -60,6 +62,7 @@ export const Select = styled.select`
   color: ${({ value }) => (value === "" ? "grey" : "black")};
   appearance: none;
   margin-bottom: 1em;
+  outline-color: black;
 `;
 
 export const SplitContainer = styled.div`

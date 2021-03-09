@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { Container, Button } from "../../styles";
+import { Container, FormButton } from "../../styles";
 
 export const GoalSelectionContainer = styled(Container)`
   padding: 5px;
@@ -14,19 +14,30 @@ export const Header = styled.div`
   width: 100%;
 `;
 
-export const RemoveButton = styled(Button)`
+export const RemoveButton = styled(FormButton)`
   width: fit-content;
-  margin-left: auto;
+  margin-top: 2em;
+  margin: auto;
+  padding: 0.5em 4em;
 `;
 
 export const Content = styled.div`
   width: fit-content;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 3em;
 `;
 
 export const Directions = styled.h2`
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-family: "Domine", seriff;
+  margin-bottom: 1.5em;
+`;
+
+export const FlavorText = styled.h1`
+  font-size: 1.5em;
+  margin-bottom: 0.3em;
 `;
 
 export const GoalsContainer = styled.div`
@@ -35,13 +46,13 @@ export const GoalsContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 15px;
   justify-content: center;
-  margin: 15px 0;
+  margin: 0 0 3em;
 `;
 
 export const GoalCard = styled.div`
-  height: 12em;
-  width: 8em;
-  border-radius: 6px;
+  height: 15em;
+  width: 11em;
+  border-radius: 10px;
   background-color: white;
   border: ${({ selected }) => (selected ? "1px solid blue" : "none")};
   display: flex;

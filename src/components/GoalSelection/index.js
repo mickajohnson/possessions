@@ -10,6 +10,7 @@ import {
   Header,
   Content,
   Directions,
+  FlavorText,
 } from "./GoalSelection.styles";
 
 export default function GoalSelection({
@@ -34,7 +35,7 @@ export default function GoalSelection({
   };
 
   const direction = isActive
-    ? "Select a goal to remove"
+    ? "Select 1 Card to Remove"
     : `Waiting${currentPlayerName ? ` on ${currentPlayerName}` : ""}...`;
 
   return (
@@ -43,6 +44,7 @@ export default function GoalSelection({
         <Title fontSize="1.2em" />
       </Header>
       <Content>
+        <FlavorText>Time to choose your destiny...</FlavorText>
         <Directions>{direction}</Directions>
         <GoalsContainer>
           {goals.map((goal) => (
@@ -57,7 +59,11 @@ export default function GoalSelection({
             </GoalCard>
           ))}
         </GoalsContainer>
-        <RemoveButton onClick={handleConfirmClick}>Remove Goal</RemoveButton>
+        {isActive ? (
+          <RemoveButton disabled={!selectedGoalId} onClick={handleConfirmClick}>
+            Confirm Removal
+          </RemoveButton>
+        ) : null}
       </Content>
     </GoalSelectionContainer>
   );
