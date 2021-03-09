@@ -2,12 +2,13 @@ import * as React from "react";
 
 import {
   FormContainer,
-  Container,
+  SplitContainer,
   Input,
-  PlaceholderOption,
   Select,
-  Button,
+  FormButton,
   ApiErrorMessage,
+  SidePanel,
+  FlavorText,
 } from "./CreateGameScreen.styles";
 
 export default function CreateGameScreen({ onJoin, lobbyClient }) {
@@ -37,8 +38,10 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
 
   const buttonDisabled = name.length === 0 || !numberOfPlayers;
   return (
-    <Container>
+    <SplitContainer>
+      <SidePanel />
       <FormContainer>
+        <FlavorText>Create Game...</FlavorText>
         <Input
           name="name"
           placeholder="Your Name"
@@ -51,7 +54,7 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
           onChange={(e) => setNumberOfPlayers(e.target.value)}
         >
           <option disabled value="">
-            -- Number of Players --
+            Number of Players
           </option>
 
           {[2, 3, 4].map((val) => (
@@ -61,14 +64,14 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
           ))}
         </Select>
 
-        <Button
+        <FormButton
           disabled={buttonDisabled}
           onClick={() => handleCreateGame(name, numberOfPlayers)}
         >
           Create Game
-        </Button>
+        </FormButton>
         <ApiErrorMessage>{error}</ApiErrorMessage>
       </FormContainer>
-    </Container>
+    </SplitContainer>
   );
 }
