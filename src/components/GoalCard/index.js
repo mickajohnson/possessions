@@ -8,6 +8,7 @@ import {
   PersonName,
   PersonPicture,
   Container,
+  Polarity,
 } from "./GoalCard.styles";
 
 export default function GoalCard({
@@ -15,36 +16,36 @@ export default function GoalCard({
   onClick = () => {},
   isActive = false,
   selected = false,
+  size = "large",
 }) {
-  console.log(goal);
-
   const [personOne, personTwo] = goal.relationship.split("_");
 
   return (
     <Container
+      size={size}
       selected={selected}
       onClick={() => onClick(goal.id)}
       selectable={isActive}
       positive={goal.polarity === POSITIVE}
     >
       <DescriptionContainer>
-        <Description>{goal.description}</Description>
+        <Description size={size}>{goal.description}</Description>
       </DescriptionContainer>
       <PeopleContainer>
         <PersonContainer>
           <PersonPicture tiltLeft src={characterImages[personOne]} />
-          <PersonName>{personOne}</PersonName>
+          <PersonName size={size}>{personOne}</PersonName>
         </PersonContainer>
         <PersonContainer>
           <PersonPicture src={characterImages[personTwo]} />
-          <PersonName>{personTwo}</PersonName>
+          <PersonName size={size}>{personTwo}</PersonName>
         </PersonContainer>
       </PeopleContainer>
-      <span>
+      <Polarity size={size}>
         {goal.polarity === POSITIVE
           ? "Positive Relationship"
           : "Negative Relationship"}
-      </span>
+      </Polarity>
     </Container>
   );
 }
