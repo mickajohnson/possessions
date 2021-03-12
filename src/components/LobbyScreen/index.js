@@ -9,7 +9,7 @@ import {
   MatchName,
   Player,
   Header,
-  FormContainer,
+  Content,
   ApiErrorMessage,
 } from "./LobbyScreen.styles";
 
@@ -58,18 +58,18 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   if (match.players) {
     return (
       <Container>
-        <FormContainer>
+        <Content>
           <Header>Waiting for all players to join...</Header>
-          <MatchName>Match ID: {match.matchID}</MatchName>
-          <Button onClick={handleCopyClick}>Copy Match ID</Button>
+          <MatchName>Match Code: {match.matchID}</MatchName>
+          <Button onClick={handleCopyClick}>Copy Match Code</Button>
           {match.players.map((player) => (
             <Player key={player.id}>
-              Player {player.id + 1}: {player.name ? player.name : "Waiting..."}{" "}
-              {String(playerID) === String(player.id) ? "(you)" : ""}
+              <strong>Player {player.id + 1}:</strong>{" "}
+              {player.name ? player.name : "Waiting..."}
             </Player>
           ))}
           <ApiErrorMessage>{error}</ApiErrorMessage>
-        </FormContainer>
+        </Content>
       </Container>
     );
   } else if (error) {

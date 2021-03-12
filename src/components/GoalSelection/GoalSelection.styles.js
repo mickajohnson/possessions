@@ -16,9 +16,8 @@ export const Header = styled.div`
 
 export const RemoveButton = styled(FormButton)`
   width: fit-content;
-  margin-top: 2em;
   margin: auto;
-  padding: 0.5em 4em;
+  padding: 12px 90px;
 `;
 
 export const Content = styled.div`
@@ -26,18 +25,18 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3em;
+  margin-top: 48px;
 `;
 
 export const Directions = styled.h2`
-  font-size: 1.1em;
+  font-size: 1.1rem;
   font-family: "Domine", seriff;
-  margin-bottom: 1.5em;
+  margin-bottom: 26px;
 `;
 
 export const FlavorText = styled.h1`
-  font-size: 1.5em;
-  margin-bottom: 0.3em;
+  font-size: 1.5rem;
+  margin-bottom: 7px;
 `;
 
 export const GoalsContainer = styled.div`
@@ -46,17 +45,25 @@ export const GoalsContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 15px;
   justify-content: center;
-  margin: 0 0 3em;
+  margin: 0 0 48px;
 `;
 
 export const GoalCard = styled.div`
-  height: 15em;
-  width: 11em;
+  height: 240px;
+  width: 175px;
   border-radius: 10px;
   background-color: white;
-  border: ${({ selected }) => (selected ? "1px solid blue" : "none")};
+  background: ${({ selected }) =>
+    selected
+      ? "repeating-linear-gradient(-45deg, var(--color-green), var(--color-green) 5px,white 5px, white 18px)"
+      : "white"};
+  border-color: ${({ selected }) =>
+    selected ? "var(--color-green)" : "transparent"};
+  border-width: 3px;
+  border-style: solid;
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+  padding: 10px;
 `;

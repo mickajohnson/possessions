@@ -9,6 +9,10 @@ body {
   background-color: #ede4d8;
 }
 
+:root {
+  --color-green: #518967;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -22,8 +26,7 @@ html {
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
-  /* border-box??? */
+  box-sizing: border-box;
 }
 
 body,
