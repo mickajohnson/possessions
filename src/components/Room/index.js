@@ -2,39 +2,13 @@ import * as React from "react";
 import reduce from "lodash/reduce";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
-import {
-  MOVE_ONE,
-  MOVE_TWO,
-  FIGHT,
-  DINING_ROOM,
-  KITCHEN,
-  GRANDPAS_ROOM,
-  DAUGHTERS_ROOM,
-  PARENTS_ROOM,
-  OFFICE,
-  BATHROOM,
-  GARAGE,
-  LIVING_ROOM,
-} from "../../constants";
+import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";
 import { roomClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 import Drops from "../Drops";
 import Character from "../Character";
-import theme from "../../theme";
 
 import { RoomName, RoomContainer } from "./Room.styles";
-
-const roomBannerColors = {
-  [DINING_ROOM]: theme.colors.purple,
-  [KITCHEN]: theme.colors.purple,
-  [GRANDPAS_ROOM]: theme.colors.purple,
-  [DAUGHTERS_ROOM]: theme.colors.purple,
-  [PARENTS_ROOM]: theme.colors.purple,
-  [OFFICE]: theme.colors.purple,
-  [BATHROOM]: theme.colors.purple,
-  [GARAGE]: theme.colors.purple,
-  [LIVING_ROOM]: theme.colors.purple,
-};
 
 export default function Room({ roomKey, G, isActive }) {
   const dispatch = useDispatch();
@@ -108,10 +82,9 @@ export default function Room({ roomKey, G, isActive }) {
       isOption={isOption}
       borderColor={borderColor}
       onClick={handleRoomClick}
+      roomKey={roomKey}
     >
-      <RoomName backgroundColor={roomBannerColors[roomKey]}>
-        {rooms[roomKey].name}
-      </RoomName>
+      <RoomName roomKey={roomKey}>{rooms[roomKey].name}</RoomName>
       <Drops
         dispatch={dispatch}
         drops={rooms[roomKey].drops}
