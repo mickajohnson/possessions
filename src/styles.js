@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const Container = styled.div`
   padding: 2em;
@@ -98,4 +98,76 @@ export const PinkSpace = styled.div`
   background-color: ${({ theme }) => theme.colors.pink};
   height: 100%;
   width: 100%;
+`;
+
+export const GlobalStyles = createGlobalStyle`
+  :root {
+    --color-green: #518967;
+    --color-background: #EDE4D8;
+    --color-redOrange: #F45F31;
+    --color-blue: #77A5A4;
+    --color-yellow: #D39805;
+    --color-brown: #C0AC92;
+    --color-salmon: #FFBEA6;
+    --color-grey: #C4C4C4;
+    --color-green: #518967;
+    --color-pink: #FFBEA6;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Staatliches", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background-color: var(--color-background);
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+
+  html {
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ol,
+  ul {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
+
+  ol,
+  ul {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
