@@ -58,6 +58,7 @@ export default function GoalSelection({
         <Directions>{direction}</Directions>
         <GoalsContainer>
           {goals.map((goal) => {
+            // Make this own component
             const [personOne, personTwo] = goal.relationship.split("_");
 
             return (
@@ -73,7 +74,7 @@ export default function GoalSelection({
                 </DescriptionContainer>
                 <PeopleContainer>
                   <PersonContainer>
-                    <PersonPicture src={characterImages[personOne]} />
+                    <PersonPicture tiltLeft src={characterImages[personOne]} />
                     <PersonName>{personOne}</PersonName>
                   </PersonContainer>
                   <PersonContainer>

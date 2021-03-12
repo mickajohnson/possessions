@@ -114,7 +114,9 @@ export const PersonContainer = styled.div`
   flex-direction: column;
 `;
 
-export const PersonPicture = styled.img``;
+export const PersonPicture = styled.img`
+  transform ${({ tiltLeft }) => (tiltLeft ? "rotate(-10deg)" : "rotate(10deg)")}
+`;
 
 export const PersonName = styled.p`
   font-family: "Domine", seriff;
