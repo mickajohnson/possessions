@@ -1,13 +1,40 @@
 import * as React from "react";
-import styled from "styled-components";
 import reduce from "lodash/reduce";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
-import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";
+import {
+  MOVE_ONE,
+  MOVE_TWO,
+  FIGHT,
+  DINING_ROOM,
+  KITCHEN,
+  GRANDPAS_ROOM,
+  DAUGHTERS_ROOM,
+  PARENTS_ROOM,
+  OFFICE,
+  BATHROOM,
+  GARAGE,
+  LIVING_ROOM,
+} from "../../constants";
 import { roomClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 import Drops from "../Drops";
 import Character from "../Character";
+import theme from "../../theme";
+
+import { RoomName, RoomContainer } from "./Room.styles";
+
+const roomBannerColors = {
+  [DINING_ROOM]: theme.colors.purple,
+  [KITCHEN]: theme.colors.purple,
+  [GRANDPAS_ROOM]: theme.colors.purple,
+  [DAUGHTERS_ROOM]: theme.colors.purple,
+  [PARENTS_ROOM]: theme.colors.purple,
+  [OFFICE]: theme.colors.purple,
+  [BATHROOM]: theme.colors.purple,
+  [GARAGE]: theme.colors.purple,
+  [LIVING_ROOM]: theme.colors.purple,
+};
 
 export default function Room({ roomKey, G, isActive }) {
   const dispatch = useDispatch();
@@ -82,6 +109,9 @@ export default function Room({ roomKey, G, isActive }) {
       borderColor={borderColor}
       onClick={handleRoomClick}
     >
+      <RoomName backgroundColor={roomBannerColors[roomKey]}>
+        {rooms[roomKey].name}
+      </RoomName>
       <Drops
         dispatch={dispatch}
         drops={rooms[roomKey].drops}
@@ -90,7 +120,6 @@ export default function Room({ roomKey, G, isActive }) {
         isActive={isActive}
       />
 
-      <RoomName>{rooms[roomKey].name}</RoomName>
       {roomsWithCharacters[roomKey]
         ? roomsWithCharacters[roomKey].map((characterKey) => (
             <Character
@@ -105,19 +134,3 @@ export default function Room({ roomKey, G, isActive }) {
     </RoomContainer>
   );
 }
-
-const RoomName = styled.p`
-  color: ${({ theme }) => theme.colors.redOrange};
-`;
-
-const RoomContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  min-height: 150px;
-  cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
-  border: ${({ borderColor }) =>
-    borderColor ? `1px solid ${borderColor}` : null};
-  background-color: ${({ theme }) => theme.colors.grey};
-`;

@@ -9,6 +9,7 @@ const theme = {
     grey: "#C4C4C4",
     green: "#518967",
     pink: "#FFBEA6",
+    purple: "#61409C",
   },
 };
 
