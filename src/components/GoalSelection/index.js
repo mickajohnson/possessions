@@ -19,7 +19,7 @@ import {
   PersonContainer,
 } from "./GoalSelection.styles";
 
-import { POSITIVE } from "../../constants";
+import { characterImages, GRANDPA, POSITIVE } from "../../constants";
 
 export default function GoalSelection({
   goals,
@@ -57,34 +57,38 @@ export default function GoalSelection({
         <FlavorText>Time to choose your destiny...</FlavorText>
         <Directions>{direction}</Directions>
         <GoalsContainer>
-          {goals.map((goal) => (
-            <GoalCard
-              selected={selectedGoalId === goal.id}
-              onClick={() => handleCardClick(goal.id)}
-              key={goal.id}
-              selectable={isActive}
-              positive={goal.polarity === POSITIVE}
-            >
-              <DescriptionContainer>
-                <Description>{goal.description}</Description>
-              </DescriptionContainer>
-              <PeopleContainer>
-                <PersonContainer>
-                  <PersonPicture />
-                  <PersonName>Grandpa</PersonName>
-                </PersonContainer>
-                <PersonContainer>
-                  <PersonPicture />
-                  <PersonName>Grandpa</PersonName>
-                </PersonContainer>
-              </PeopleContainer>
-              <span>
-                {goal.polarity === POSITIVE
-                  ? "Positive Relationship"
-                  : "Negative Relationship"}
-              </span>
-            </GoalCard>
-          ))}
+          {goals.map((goal) => {
+            const [personOne, personTwo] = goal.relationship.split("_");
+
+            return (
+              <GoalCard
+                selected={selectedGoalId === goal.id}
+                onClick={() => handleCardClick(goal.id)}
+                key={goal.id}
+                selectable={isActive}
+                positive={goal.polarity === POSITIVE}
+              >
+                <DescriptionContainer>
+                  <Description>{goal.description}</Description>
+                </DescriptionContainer>
+                <PeopleContainer>
+                  <PersonContainer>
+                    <PersonPicture src={characterImages[personOne]} />
+                    <PersonName>{personOne}</PersonName>
+                  </PersonContainer>
+                  <PersonContainer>
+                    <PersonPicture src={characterImages[personTwo]} />
+                    <PersonName>{personTwo}</PersonName>
+                  </PersonContainer>
+                </PeopleContainer>
+                <span>
+                  {goal.polarity === POSITIVE
+                    ? "Positive Relationship"
+                    : "Negative Relationship"}
+                </span>
+              </GoalCard>
+            );
+          })}
         </GoalsContainer>
         {isActive ? (
           <RemoveButton disabled={!selectedGoalId} onClick={handleConfirmClick}>

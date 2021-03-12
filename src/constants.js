@@ -1,14 +1,14 @@
-export const MOM = "MOM";
-export const DAD = "DAD";
-export const DAUGHTER = "DAUGHTER";
-export const GRANDPA = "GRANDPA";
+export const MOM = "Mom";
+export const DAD = "Dad";
+export const DAUGHTER = "Daughter";
+export const GRANDPA = "Grandpa";
 
-export const MOM_DAD = `${MOM}${DAD}`;
-export const MOM_GRANDPA = `${MOM}${GRANDPA}`;
-export const MOM_DAUGHTER = `${MOM}${DAUGHTER}`;
-export const DAD_DAUGHTER = `${DAD}${DAUGHTER}`;
-export const GRANDPA_DAUGHTER = `${GRANDPA}${DAUGHTER}`;
-export const GRANDPA_DAD = `${GRANDPA}${DAD}`;
+export const MOM_DAD = `${MOM}_${DAD}`;
+export const MOM_GRANDPA = `${MOM}_${GRANDPA}`;
+export const MOM_DAUGHTER = `${MOM}_${DAUGHTER}`;
+export const DAD_DAUGHTER = `${DAD}_${DAUGHTER}`;
+export const GRANDPA_DAUGHTER = `${GRANDPA}_${DAUGHTER}`;
+export const GRANDPA_DAD = `${GRANDPA}_${DAD}`;
 
 export const RELATIONSHIPS = [
   MOM_DAD,
@@ -80,8 +80,8 @@ export const PLANNING = "PLANNING";
 export const GOAL_SELECTION = "GOAL_SELECTION";
 
 export const characterImages = {
-  [MOM]: "",
-  [DAD]: "",
-  [GRANDPA]: "",
-  [DAUGHTER]: "",
+  [MOM]: "/grandpa.png",
+  [DAD]: "/grandpa.png",
+  [GRANDPA]: "/grandpa.png",
+  [DAUGHTER]: "/grandpa.png",
 };

@@ -1,7 +1,7 @@
 export const getRelationship = (relationships, charKeyOne, charKeyTwo) =>
-  relationships[`${charKeyOne}${charKeyTwo}`]
-    ? relationships[`${charKeyOne}${charKeyTwo}`]
-    : relationships[`${charKeyTwo}${charKeyOne}`];
+  relationships[`${charKeyOne}_${charKeyTwo}`]
+    ? relationships[`${charKeyOne}_${charKeyTwo}`]
+    : relationships[`${charKeyTwo}_${charKeyOne}`];
 
 export const changeScore = (relationship, amount) => {
   if (relationship.score + amount > 5) {

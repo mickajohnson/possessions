@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { Container, FormButton } from "../../styles";
 
@@ -61,19 +61,31 @@ export const GoalCard = styled.div`
   flex-direction: column;
   cursor: ${({ selectable }) => (selectable ? "pointer" : "default")};
   padding-bottom: 10px;
+  position: relative;
+
+  &::after {
+    ${({ selected }) =>
+      selected
+        ? css`
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: 10px;
+            background: repeating-linear-gradient(
+              -45deg,
+              var(--color-green),
+              var(--color-green) 5px,
+              transparent 5px,
+              transparent 18px
+            );
+            border-color: var(--color-green);
+            border-width: 3px;
+            border-style: solid;
+          `
+        : ""}
+  }
 `;
-
-/*
-  background: ${({ selected }) =>
-    selected
-      ? "repeating-linear-gradient(-45deg, var(--color-green), var(--color-green) 5px,white 5px, white 18px)"
-      : "white"};
-
-        border-color: ${({ selected }) =>
-    selected ? "var(--color-green)" : "transparent"};
-  border-width: 3px;
-  border-style: solid;
-*/
 
 export const Description = styled.p`
   font-family: "Domine", seriff;
@@ -106,5 +118,6 @@ export const PersonPicture = styled.img``;
 
 export const PersonName = styled.p`
   font-family: "Domine", seriff;
+  text-align: center;
   font-size: 0.8rem;
 `;
