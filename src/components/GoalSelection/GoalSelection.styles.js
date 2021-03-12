@@ -112,6 +112,7 @@ export const PeopleContainer = styled.div`
 export const PersonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0 5px;
 `;
 
 export const PersonPicture = styled.img`

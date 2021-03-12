@@ -11,8 +11,6 @@ import {
   LIVING_ROOM,
 } from "../../constants";
 
-import theme from "../../theme";
-
 const roomKeysToImage = {
   [DINING_ROOM]: "/dining_room.png",
   [KITCHEN]: "/kitchen.png",
