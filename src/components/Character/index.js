@@ -1,19 +1,21 @@
-import styled from "styled-components";
-
 import {
   CHAT_ACTIONS,
   NON_RESTRICTED_ACTIONS,
   FIGHT,
   REACT,
+  characterImages,
 } from "../../constants";
 import { characterClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
+import theme from "../../theme";
 
 import {
   isChatEligible,
   isValidChat,
   isReactEligible,
 } from "../../game/validations";
+
+import { CharacterContainer, CharacterImage } from "./Character.styles";
 
 export default function Character({ characterKey, G, isActive }) {
   const dispatch = useDispatch();
@@ -64,12 +66,12 @@ export default function Character({ characterKey, G, isActive }) {
     chatCharacterOne === characterKey ||
     chatCharacterTwo === characterKey;
 
-  let borderColor = "blue";
+  let backgroundColor = theme.colors.redOrange;
 
   if (selectedCharacter === characterKey && stagedAction === FIGHT) {
-    borderColor = "red";
+    backgroundColor = theme.colors.purple;
   } else if (isSelected) {
-    borderColor = "green";
+    backgroundColor = theme.colors.green;
   }
 
   const handleCharacterClick = (e, character) => {
@@ -84,17 +86,9 @@ export default function Character({ characterKey, G, isActive }) {
       key={characterKey}
       onClick={(e) => handleCharacterClick(e, characterKey)}
       isOption={isOption || isSelected}
-      borderColor={borderColor}
+      backgroundColor={backgroundColor}
     >
-      {characters[characterKey].name}
+      <CharacterImage src={characterImages[characterKey]} />
     </CharacterContainer>
   );
 }
-
-const CharacterContainer = styled.div`
-  border-style: solid;
-  cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
-
-  border-width: ${({ isOption }) => (isOption ? "1px" : "0px")};
-  border-color: ${({ borderColor }) => borderColor};
-`;

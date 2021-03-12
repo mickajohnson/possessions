@@ -85,14 +85,6 @@ export default function Room({ roomKey, G, isActive }) {
       roomKey={roomKey}
     >
       <RoomName roomKey={roomKey}>{rooms[roomKey].name}</RoomName>
-      <Drops
-        dispatch={dispatch}
-        drops={rooms[roomKey].drops}
-        G={G}
-        roomKey={roomKey}
-        isActive={isActive}
-      />
-
       {roomsWithCharacters[roomKey]
         ? roomsWithCharacters[roomKey].map((characterKey) => (
             <Character
@@ -104,6 +96,13 @@ export default function Room({ roomKey, G, isActive }) {
             />
           ))
         : null}
+      <Drops
+        dispatch={dispatch}
+        drops={rooms[roomKey].drops}
+        G={G}
+        roomKey={roomKey}
+        isActive={isActive}
+      />
     </RoomContainer>
   );
 }
