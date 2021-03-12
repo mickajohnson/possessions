@@ -102,7 +102,7 @@ export const PinkSpace = styled.div`
 
 export const GlobalStyles = createGlobalStyle`
   :root {
-    --color-green: #518967;
+    --color-lightGreen: #A4CBB4;
     --color-background: #EDE4D8;
     --color-redOrange: #F45F31;
     --color-blue: #77A5A4;
@@ -112,6 +112,7 @@ export const GlobalStyles = createGlobalStyle`
     --color-grey: #C4C4C4;
     --color-green: #518967;
     --color-pink: #FFBEA6;
+    --color-negativePink: #FFADAD;
   }
 
   body {

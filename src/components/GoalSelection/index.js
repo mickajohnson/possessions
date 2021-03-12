@@ -11,7 +11,15 @@ import {
   Content,
   Directions,
   FlavorText,
+  Description,
+  DescriptionContainer,
+  PeopleContainer,
+  PersonPicture,
+  PersonName,
+  PersonContainer,
 } from "./GoalSelection.styles";
+
+import { POSITIVE } from "../../constants";
 
 export default function GoalSelection({
   goals,
@@ -38,6 +46,8 @@ export default function GoalSelection({
     ? "Select 1 Card to Remove"
     : `Waiting${currentPlayerName ? ` on ${currentPlayerName}` : ""}...`;
 
+  console.log(goals);
+
   return (
     <GoalSelectionContainer>
       <Header>
@@ -53,10 +63,26 @@ export default function GoalSelection({
               onClick={() => handleCardClick(goal.id)}
               key={goal.id}
               selectable={isActive}
+              positive={goal.polarity === POSITIVE}
             >
-              <span>{goal.name}</span>
-              <span>{goal.polarity}</span>
-              <span>{goal.description}</span>
+              <DescriptionContainer>
+                <Description>{goal.description}</Description>
+              </DescriptionContainer>
+              <PeopleContainer>
+                <PersonContainer>
+                  <PersonPicture />
+                  <PersonName>Grandpa</PersonName>
+                </PersonContainer>
+                <PersonContainer>
+                  <PersonPicture />
+                  <PersonName>Grandpa</PersonName>
+                </PersonContainer>
+              </PeopleContainer>
+              <span>
+                {goal.polarity === POSITIVE
+                  ? "Positive Relationship"
+                  : "Negative Relationship"}
+              </span>
             </GoalCard>
           ))}
         </GoalsContainer>

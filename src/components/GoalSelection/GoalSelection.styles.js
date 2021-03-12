@@ -52,19 +52,59 @@ export const GoalCard = styled.div`
   height: 240px;
   width: 175px;
   border-radius: 10px;
-  background-color: white;
+  background-color: ${({ positive }) =>
+    positive ? "var(--color-lightGreen)" : "var(--color-negativePink)"};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  cursor: ${({ selectable }) => (selectable ? "pointer" : "default")};
+  padding-bottom: 10px;
+`;
+
+/*
   background: ${({ selected }) =>
     selected
       ? "repeating-linear-gradient(-45deg, var(--color-green), var(--color-green) 5px,white 5px, white 18px)"
       : "white"};
-  border-color: ${({ selected }) =>
+
+        border-color: ${({ selected }) =>
     selected ? "var(--color-green)" : "transparent"};
   border-width: 3px;
   border-style: solid;
+*/
+
+export const Description = styled.p`
+  font-family: "Domine", seriff;
+  text-align: center;
+  line-height: 1.2;
+`;
+
+export const DescriptionContainer = styled.div`
+  background: white;
+  width: 100%;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 10px 5px;
+  height: 65px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
+`;
+
+export const PeopleContainer = styled.div`
+  display: flex;
+`;
+
+export const PersonContainer = styled.div`
+  display: flex;
   flex-direction: column;
-  padding: 10px;
-  cursor: ${({ selectable }) => (selectable ? "pointer" : "default")};
+`;
+
+export const PersonPicture = styled.img``;
+
+export const PersonName = styled.p`
+  font-family: "Domine", seriff;
+  font-size: 0.8rem;
 `;

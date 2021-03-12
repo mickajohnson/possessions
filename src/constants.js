@@ -78,3 +78,10 @@ export const CHAT_ACTIONS = [FIGHT, BOND];
 export const EXECUTION = "EXECUTION";
 export const PLANNING = "PLANNING";
 export const GOAL_SELECTION = "GOAL_SELECTION";
+
+export const characterImages = {
+  [MOM]: "",
+  [DAD]: "",
+  [GRANDPA]: "",
+  [DAUGHTER]: "",
+};

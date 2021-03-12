@@ -179,8 +179,8 @@ export const getGoalCards = () => {
 export const getInitialRelationships = () => {
   return RELATIONSHIPS.reduce((relationshipObject, relationshipKey) => {
     relationshipObject[relationshipKey] = {
-      score: sample([0, 1, 2, 3, 4, -1, -2, -3, -4]),
-      // score: 0,
+      // score: sample([0, 1, 2, 3, 4, -1, -2, -3, -4]),
+      score: 0,
       name: relationshipKeyToNameMapping[relationshipKey],
     };
     return relationshipObject;
