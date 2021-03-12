@@ -52,6 +52,7 @@ export default function GoalSelection({
               selected={selectedGoalId === goal.id}
               onClick={() => handleCardClick(goal.id)}
               key={goal.id}
+              selectable={isActive}
             >
               <span>{goal.name}</span>
               <span>{goal.polarity}</span>

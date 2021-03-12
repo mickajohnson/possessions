@@ -66,4 +66,5 @@ export const GoalCard = styled.div`
   justify-content: space-around;
   flex-direction: column;
   padding: 10px;
+  cursor: ${({ selectable }) => (selectable ? "pointer" : "default")};
 `;
