@@ -6,11 +6,21 @@ export default function Goals({ goals }) {
   return (
     <GoalsContainer>
       {goals.map((goal) => (
-        <GoalCard key={goal.id} size="small" goal={goal} />
+        <GoalContainer>
+          <GoalCard key={goal.id} size="small" goal={goal} />
+        </GoalContainer>
       ))}
     </GoalsContainer>
   );
 }
+
+const GoalContainer = styled.div`
+  padding-bottom: 10px;
+
+  &:first-child {
+    padding-top: 10px;
+  }
+`;
 
 const GoalsContainer = styled.div`
   display: flex;

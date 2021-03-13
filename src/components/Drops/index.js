@@ -76,6 +76,9 @@ export default function Drops({ drops, G, roomKey, isActive }) {
 
 const CharacterImage = styled.img`
   width: 60%;
+  position: absolute;
+  left: 3px;
+  top: 3px;
 `;
 
 const Value = styled.p`
@@ -88,7 +91,8 @@ const Value = styled.p`
   font-family: "Staatliches";
   width: 100%;
   text-align: right;
-  font-size: 1rem;
+  font-size: 1.3rem;
+  line-height: 1;s
 `;
 
 const DropsContainer = styled.div`
@@ -108,13 +112,15 @@ const DropContainer = styled.div`
   border-color: ${({ borderColor }) => borderColor};
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background-color: white;
   font-family: "Domine";
   font-size: 0.8rem;
   padding-right: 5px;
   padding-bottom: 2px;
+  position: relative;
+  height: 70%;
 `;
 
 const EmptyDropGroup = styled.div`
