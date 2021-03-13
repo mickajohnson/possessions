@@ -29,7 +29,7 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
 
   const isSelected = isOption && dropperCharacter === characterKey;
 
-  const borderColor = isSelected ? "green" : "blue";
+  const borderColor = isSelected ? "var(--color-green)" : "var(--color-blue)";
 
   const handleDropGroupClick = (e) => {
     if (isOption) {

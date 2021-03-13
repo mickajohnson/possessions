@@ -16,7 +16,9 @@ export const Deck = styled.div`
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: ${({ isDrawable }) => (isDrawable ? "1px solid blue" : "")}}
+  border: ${({ isDrawable }) =>
+    isDrawable ? "1px solid var(--color-green)" : ""}}
+  cursor: ${({ isDrawable }) => (isDrawable ? "pointer" : "cursor")}}
   margin-right: 10px;
   border-radius: 10px;
   background-image: url(/card_back.png);  

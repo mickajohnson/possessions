@@ -13,7 +13,8 @@ export const CommandLineContainer = styled.div`
 `;
 
 export const CommandContainer = styled.div`
-  border: ${({ isHappening }) => (isHappening ? "1px solid blue" : "none")};
+  border: ${({ isHappening }) =>
+    isHappening ? "1px solid var(--color-green)" : "none"};
   border-radius: 6px;
   height: 100%;
   background-position: center;
@@ -29,6 +30,7 @@ export const CommandContainer = styled.div`
 `;
 
 export const FaceDownCard = styled.img`
-  border: ${({ isHappening }) => (isHappening ? "1px solid blue" : "none")};
+  border: ${({ isHappening }) =>
+    isHappening ? "1px solid var(--color-green)" : "none"};
   border-radius: 6px;
 `;

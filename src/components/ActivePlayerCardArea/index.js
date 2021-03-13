@@ -32,7 +32,7 @@ export default function ActivePlayerCardArea({
   };
   return (
     <Container>
-      <Deck isDrawable={isDrawable} onDoubleClick={handleDrawCard}>
+      <Deck isDrawable={isDrawable} onClick={handleDrawCard}>
         <p>Deck</p>
         Remaining: {player.deck.length}
       </Deck>
@@ -41,7 +41,8 @@ export default function ActivePlayerCardArea({
         {player.hand.map((card) => (
           <CardContainer key={card.id}>
             <FaceUpCard
-              isPlayable={isPlayable && !isDrawable}
+              isPlayable={isPlayable}
+              isOptionalPlay={isDrawable}
               onDoubleClick={handleProgramCard}
               card={card}
             />

@@ -50,8 +50,7 @@ export const RoomContainer = styled.div`
   justify-content: space-between;
   min-height: 150px;
   cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
-  border: ${({ borderColor }) =>
-    borderColor ? `1px solid ${borderColor}` : null};
+  border-color: ${({ borderColor }) => borderColor};
   padding-top: 10px;
   background-image: url(${({ roomKey }) => roomKeysToImage[roomKey]});
   background-color: ${({ theme }) =>
@@ -59,6 +58,8 @@ export const RoomContainer = styled.div`
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
+  border-width: 1px;
+  border-style: solid;
 `;
 
 export const CharactersContainer = styled.div`
