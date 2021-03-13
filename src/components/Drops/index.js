@@ -2,7 +2,7 @@ import styled from "styled-components";
 import map from "lodash/map";
 import get from "lodash/get";
 
-import { REACT } from "../../constants";
+import { REACT, characterImages } from "../../constants";
 import { dropClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
@@ -48,7 +48,8 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
     >
       <DropContainer>
         <span>{value < 1 ? value : `+${value}`}</span>
-        <span>{characterKey}</span>
+        <span>{characterKey}</span>{" "}
+        {/* <img src={characterImages[characterKey]} /> */}
       </DropContainer>
     </DropGroupContainer>
   );
@@ -77,6 +78,8 @@ const DropsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   flex: 1;
+  background-color: rgba(255, 255, 255, 0.5);
+  width: 100%;
 `;
 
 const DropGroupContainer = styled.div`

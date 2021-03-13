@@ -63,7 +63,7 @@ export default function Room({ roomKey, G, isActive }) {
   const isOption =
     isActive && (isMoveOneOption || isMoveTwoOption || isFightAfterOption);
 
-  let borderColor = "transparent";
+  let borderColor = null;
 
   if (selectedRoom === roomKey) {
     borderColor = "--var(--color-green)";
