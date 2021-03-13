@@ -2,22 +2,21 @@ import styled from "styled-components";
 
 import { Container } from "../../styles";
 
+export const RoundTracker = styled.p`
+  grid-area: roundTracker;
+  padding: 10px;
+  text-align: right;
+`;
+
 export const BoardContainer = styled(Container)`
   padding: 0;
   display: grid;
   grid-template-columns: 10% 1fr 25%;
   grid-template-rows: 40px 1fr 85px;
   grid-template-areas:
-    "header header header"
+    "logo directions roundTracker"
     "sidebar main commandLines"
     "sidebar hand hand";
-`;
-
-export const Header = styled.div`
-  grid-area: header;
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 5px 0px 5px;
 `;
 
 export const SidebarHeading = styled.h3`

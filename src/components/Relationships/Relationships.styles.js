@@ -11,7 +11,7 @@ export const RelationshipWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 5px;
   font-family: "Domine";
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 `;
 
 export const Score = styled.div`

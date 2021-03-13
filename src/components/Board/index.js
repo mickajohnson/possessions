@@ -13,13 +13,14 @@ import Goals from "../Goals";
 import OtherPlayerCommands from "../OtherPlayerCommands";
 import GameOverScreen from "../GameOverScreen";
 import Relationships from "../Relationships";
+import Directions from "../Directions";
 
 import {
   BoardContainer,
-  Header,
   Sidebar,
   SidebarHeading,
   SidebarSection,
+  RoundTracker,
 } from "./Board.styles";
 
 export default function NightStandStuffBoard({
@@ -67,10 +68,15 @@ export default function NightStandStuffBoard({
   return (
     <Provider>
       <BoardContainer>
-        <Header>
-          <Title fontSize="1.2em" />
-          <p>Round {G.roundNumber} / 6</p>
-        </Header>
+        <Title fontSize="1.2em" />
+        <Directions
+          G={G}
+          playerID={playerID}
+          ctx={ctx}
+          currentPlayerName={currentPlayerName}
+          isActive={isActive}
+        />
+        <RoundTracker>Round {G.roundNumber} / 6</RoundTracker>
         <Sidebar>
           <SidebarSection>
             <SidebarHeading>Relationships</SidebarHeading>

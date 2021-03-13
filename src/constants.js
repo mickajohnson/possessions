@@ -1,7 +1,7 @@
 export const MOM = "Mom";
 export const DAD = "Dad";
 export const DAUGHTER = "Daughter";
-export const GRANDPA = "Grandpa";
+export const GRANDPA = "Gramps";
 
 export const MOM_DAD = `${MOM}_${DAD}`;
 export const MOM_GRANDPA = `${MOM}_${GRANDPA}`;
