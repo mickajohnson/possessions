@@ -41,9 +41,8 @@ export default function OtherPlayerCommands({
             </PlayerName>
             <CommandLine
               commands={player.commands}
-              isActive={Number(ctx.currentPlayer) === Number(playerKey)}
+              isActivePlayer={Number(ctx.currentPlayer) === Number(playerKey)}
               currentCommandKey={G.currentCommandKey}
-              phase={ctx.phase}
               isFaceUp={ctx.phase === EXECUTION || playerID === playerKey}
             />
           </CommandLineContainer>

@@ -80,8 +80,8 @@ export const PLANNING = "PLANNING";
 export const GOAL_SELECTION = "GOAL_SELECTION";
 
 export const characterImages = {
-  [MOM]: "/grandpa.png",
-  [DAD]: "/grandpa.png",
+  [MOM]: "/mom.png",
+  [DAD]: "/dad.png",
   [GRANDPA]: "/grandpa.png",
-  [DAUGHTER]: "/grandpa.png",
+  [DAUGHTER]: "/daughter.png",
 };
