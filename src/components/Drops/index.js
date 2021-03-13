@@ -103,12 +103,13 @@ const DropsContainer = styled.div`
   flex: 1;
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
+  padding: 0 2px;
 `;
 
 const DropContainer = styled.div`
   cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
   border-style: solid;
-  border-width: ${({ isOption }) => (isOption ? "1px" : "0px")};
+  border-width: ${({ isOption }) => (isOption ? "3px" : "0px")};
   border-color: ${({ borderColor }) => borderColor};
   display: flex;
   flex-direction: column;

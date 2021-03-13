@@ -66,9 +66,9 @@ export default function Room({ roomKey, G, isActive }) {
   let borderColor = null;
 
   if (selectedRoom === roomKey) {
-    borderColor = "--var(--color-green)";
+    borderColor = "var(--color-green)";
   } else if (isOption) {
-    borderColor = "--var(--color-blue)";
+    borderColor = "var(--color-blue)";
   }
 
   const handleRoomClick = () => {

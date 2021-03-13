@@ -51,7 +51,7 @@ export const RoomContainer = styled.div`
   min-height: 150px;
   cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
   border: ${({ borderColor }) =>
-    borderColor ? `1px solid ${borderColor}` : null};
+    borderColor ? `3px solid ${borderColor}` : null};
   padding-top: 10px;
   background-image: url(${({ roomKey }) => roomKeysToImage[roomKey]});
   background-color: ${({ theme }) =>

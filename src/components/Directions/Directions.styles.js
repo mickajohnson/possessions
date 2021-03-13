@@ -11,8 +11,10 @@ export const Message = styled.p`
 
 export const PlayerName = styled.span`
   color: var(--color-redOrange);
+  font-weight: 700;
 `;
 
 export const Your = styled.span`
   color: var(--color-green);
+  font-weight: 700;
 `;

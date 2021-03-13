@@ -13,7 +13,7 @@ export default function OtherPlayerCommands({ G, playerID, ctx }) {
             isActive={Number(ctx.currentPlayer) === Number(playerKey)}
           >
             {player.name}
-            {playerKey === playerID ? " (You)" : ""}
+            {playerKey === playerID ? " (You!)" : ""}
           </PlayerName>
           <CommandLine
             commands={player.commands}

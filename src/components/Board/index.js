@@ -68,7 +68,7 @@ export default function NightStandStuffBoard({
   return (
     <Provider>
       <BoardContainer>
-        <Title fontSize="1.2em" />
+        <Title padding={"10px"} fontSize="1em" />
         <Directions
           G={G}
           playerID={playerID}
