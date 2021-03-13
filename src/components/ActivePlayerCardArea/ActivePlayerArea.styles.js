@@ -13,8 +13,8 @@ export const Deck = styled.div`
   width: 80px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   background-color: white;
   border: ${({ isDrawable }) =>
     isDrawable ? "1px solid var(--color-green)" : ""}}
@@ -25,6 +25,8 @@ export const Deck = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;  
+  padding: 3px 8px;;
+  
 `;
 
 export const Hand = styled.div`
@@ -39,4 +41,9 @@ export const Container = styled.div`
   align-items: flex-start;
   justify-content: center;
   overflow: hidden;
+`;
+
+export const Remaining = styled.p`
+  color: white;
+  font-size: 1.5rem;
 `;

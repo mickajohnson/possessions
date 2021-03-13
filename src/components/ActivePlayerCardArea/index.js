@@ -8,6 +8,7 @@ import {
   Deck,
   Hand,
   Container,
+  Remaining,
 } from "./ActivePlayerArea.styles";
 
 export default function ActivePlayerCardArea({
@@ -33,8 +34,7 @@ export default function ActivePlayerCardArea({
   return (
     <Container>
       <Deck isDrawable={isDrawable} onClick={handleDrawCard}>
-        <p>Deck</p>
-        Remaining: {player.deck.length}
+        <Remaining>{player.deck.length}</Remaining>
       </Deck>
 
       <Hand>
