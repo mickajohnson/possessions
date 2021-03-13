@@ -6,7 +6,10 @@ import FaceUpCard from "../FaceUpCard";
 
 function Command({ command, isHappening, isFaceUp }) {
   return (
-    <CommandContainer isFaceDown={!isFaceUp} isHappening={isHappening}>
+    <CommandContainer
+      isFaceDown={!isFaceUp && command}
+      isHappening={isHappening}
+    >
       {command && isFaceUp ? <FaceUpCard card={command} /> : null}
     </CommandContainer>
   );

@@ -1,9 +1,14 @@
-import styled from "styled-components";
 import get from "lodash/get";
 
 import { PLANNING, EXECUTION } from "../../constants";
 import BoardButtons from "../BoardButtons";
 import FaceUpCard from "../FaceUpCard";
+import {
+  CardContainer,
+  Deck,
+  Hand,
+  Container,
+} from "./ActivePlayerArea.styles";
 
 export default function ActivePlayerCardArea({
   G,
@@ -57,38 +62,3 @@ export default function ActivePlayerCardArea({
     </Container>
   );
 }
-
-const CardContainer = styled.div`
-  height: 120px;
-  width: 80px;
-  background-color: white;
-  border-radius: 6px;
-  margin-right: 10px;
-`;
-
-const Deck = styled.div`
-  height: 120px;
-  width: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: ${({ theme }) => theme.colors.salmon};
-  border: ${({ isDrawable }) => (isDrawable ? "1px solid blue" : "")}}
-  margin-right: 10px;
-  border-radius: 6px;
-`;
-
-const Hand = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Container = styled.div`
-  grid-area: hand;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: center;
-  overflow: hidden;
-`;
