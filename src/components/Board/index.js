@@ -30,6 +30,8 @@ export default function NightStandStuffBoard({
   ctx,
   matchData,
 }) {
+  console.log(G);
+
   const currentPlayerName = get(G.players, [ctx.currentPlayer, "name"], null);
   // Safety here to avoid possibility of infinite loops
   const setPlayerNameRan = React.useRef(false);

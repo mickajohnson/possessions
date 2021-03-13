@@ -6,7 +6,7 @@ export default function Goals({ goals }) {
   return (
     <GoalsContainer>
       {goals.map((goal) => (
-        <GoalCard size="small" goal={goal} />
+        <GoalCard key={goal.id} size="small" goal={goal} />
       ))}
     </GoalsContainer>
   );

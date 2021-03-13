@@ -14,6 +14,14 @@ import {
 import { changeScore, getRelationship } from "./helpers";
 import { makeId } from "../utils";
 
+const removeCard = (G, ctx) => {
+  G.players[ctx.currentPlayer].discardPile.push(
+    G.players[ctx.currentPlayer].commands[G.currentCommandKey]
+  );
+  G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+  ctx.events.endTurn();
+};
+
 const drop = (value) => (G, ctx, characterKey) => {
   const currentRoom = G.characters[characterKey].location;
   G.rooms[currentRoom].drops[characterKey].push({
@@ -21,8 +29,7 @@ const drop = (value) => (G, ctx, characterKey) => {
     character: characterKey,
     id: makeId(),
   });
-  ctx.events.endTurn();
-  G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+  removeCard(G, ctx);
 };
 
 export const dropNegativeOne = drop(-1);
@@ -34,8 +41,7 @@ export const dropPositiveTwo = drop(2);
 export const moveOne = (G, ctx, characterKey, locationKey) => {
   if (isValidMoveOne(G, characterKey, locationKey)) {
     G.characters[characterKey].location = locationKey;
-    ctx.events.endTurn();
-    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+    removeCard(G, ctx);
   } else {
     return INVALID_MOVE;
   }
@@ -44,8 +50,7 @@ export const moveOne = (G, ctx, characterKey, locationKey) => {
 export const moveTwo = (G, ctx, characterKey, locationKey) => {
   if (isValidMoveTwo(G, characterKey, locationKey)) {
     G.characters[characterKey].location = locationKey;
-    ctx.events.endTurn();
-    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+    removeCard(G, ctx);
   } else {
     return INVALID_MOVE;
   }
@@ -70,8 +75,7 @@ export const react = (G, ctx, reactingCharKey, dropperCharKey) => {
     changeScore(relationship, netEffect);
 
     characterRoom.drops[dropperCharKey] = [];
-    ctx.events.endTurn();
-    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+    removeCard(G, ctx);
   } else {
     return INVALID_MOVE;
   }
@@ -86,8 +90,7 @@ export const bond = (G, ctx, characterOneKey, characterTwoKey) => {
     );
 
     changeScore(relationship, 1);
-    ctx.events.endTurn();
-    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+    removeCard(G, ctx);
   } else {
     return INVALID_MOVE;
   }
@@ -114,8 +117,7 @@ export const fight = (
 
     changeScore(relationship, -1);
     G.characters[movingCharacterKey].location = destinationKey;
-    ctx.events.endTurn();
-    G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
+    removeCard(G, ctx);
   } else {
     return INVALID_MOVE;
   }
@@ -166,8 +168,7 @@ export const drawCard = (G, ctx, playerKey) => {
 };
 
 export const skipTurn = (G, ctx) => {
-  G.players[ctx.currentPlayer].commands[G.currentCommandKey] = null;
-  ctx.events.endTurn();
+  removeCard(G, ctx);
 };
 
 export const removeGoal = (G, ctx, playerID, goalId) => {
