@@ -8,7 +8,7 @@ import { useDispatch, useBoardState } from "../../state/board/reducer";
 import Drops from "../Drops";
 import Character from "../Character";
 
-import { RoomName, RoomContainer } from "./Room.styles";
+import { RoomName, RoomContainer, CharactersContainer } from "./Room.styles";
 
 export default function Room({ roomKey, G, isActive }) {
   const dispatch = useDispatch();
@@ -85,17 +85,19 @@ export default function Room({ roomKey, G, isActive }) {
       roomKey={roomKey}
     >
       <RoomName roomKey={roomKey}>{rooms[roomKey].name}</RoomName>
-      {roomsWithCharacters[roomKey]
-        ? roomsWithCharacters[roomKey].map((characterKey) => (
-            <Character
-              key={characterKey}
-              characterKey={characterKey}
-              dispatch={dispatch}
-              G={G}
-              isActive={isActive}
-            />
-          ))
-        : null}
+      <CharactersContainer>
+        {roomsWithCharacters[roomKey]
+          ? roomsWithCharacters[roomKey].map((characterKey) => (
+              <Character
+                key={characterKey}
+                characterKey={characterKey}
+                dispatch={dispatch}
+                G={G}
+                isActive={isActive}
+              />
+            ))
+          : null}
+      </CharactersContainer>
       <Drops
         dispatch={dispatch}
         drops={rooms[roomKey].drops}

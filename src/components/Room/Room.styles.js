@@ -60,3 +60,10 @@ export const RoomContainer = styled.div`
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
 `;
+
+export const CharactersContainer = styled.div`
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;

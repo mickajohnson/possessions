@@ -76,6 +76,7 @@ export default function Drops({ drops, G, roomKey, isActive }) {
 const DropsContainer = styled.div`
   display: flex;
   justify-content: space-around;
+  flex: 1;
 `;
 
 const DropGroupContainer = styled.div`
