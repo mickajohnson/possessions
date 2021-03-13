@@ -41,17 +41,15 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   const value = dropGroup.reduce((accum, drop) => accum + drop.value, 0);
 
   return (
-    <DropGroupContainer
+    <DropContainer
       isOption={isSelected || isOption}
       borderColor={borderColor}
       onClick={handleDropGroupClick}
     >
-      <DropContainer>
-        <span>{value < 1 ? value : `+${value}`}</span>
-        <span>{characterKey}</span>{" "}
-        {/* <img src={characterImages[characterKey]} /> */}
-      </DropContainer>
-    </DropGroupContainer>
+      <CharacterImage src={characterImages[characterKey]} />
+      <Value value={value}>{value < 1 ? value : `+${value}`}</Value>
+      {/* <span>{characterKey}</span>{" "} */}
+    </DropContainer>
   );
 }
 
@@ -68,37 +66,62 @@ export default function Drops({ drops, G, roomKey, isActive }) {
             roomKey={roomKey}
             isActive={isActive}
           />
-        ) : null
+        ) : (
+          <EmptyDropGroup />
+        )
       )}
     </DropsContainer>
   );
 }
 
+const CharacterImage = styled.img`
+  width: 60%;
+`;
+
+const Value = styled.p`
+  color: ${({ value }) =>
+    value > 0
+      ? "var(--color-green)"
+      : value < 0
+      ? "var(--color-redOrange)"
+      : "black"};
+  font-family: "Staatliches";
+  width: 100%;
+  text-align: right;
+  font-size: 1rem;
+`;
+
 const DropsContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-gap: 2px;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
   flex: 1;
   background-color: rgba(255, 255, 255, 0.5);
   width: 100%;
 `;
 
-const DropGroupContainer = styled.div`
+const DropContainer = styled.div`
+  cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
+  border-style: solid;
+  border-width: ${({ isOption }) => (isOption ? "1px" : "0px")};
+  border-color: ${({ borderColor }) => borderColor};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  font-family: "Domine";
+  font-size: 0.8rem;
+  padding-right: 5px;
+  padding-bottom: 2px;
+`;
+
+const EmptyDropGroup = styled.div`
   padding: 5px;
   cursor: ${({ isOption }) => (isOption ? "pointer" : "default")};
   border-style: solid;
   border-width: ${({ isOption }) => (isOption ? "1px" : "0px")};
   border-color: ${({ borderColor }) => borderColor};
-`;
-
-const DropContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid;
-  border-color: ${({ borderColor }) => borderColor};
-  background-color: white;
-  font-family: "Domine";
-  font-size: 0.8rem;
-  padding: 2px;
+  flex: 1;
 `;

@@ -12,7 +12,7 @@ export const BoardContainer = styled(Container)`
   padding: 0;
   display: grid;
   grid-template-columns: 10% 1fr 25%;
-  grid-template-rows: 40px 1fr 85px;
+  grid-template-rows: 48px 1fr 85px;
   grid-template-areas:
     "logo directions roundTracker"
     "sidebar main commandLines"
