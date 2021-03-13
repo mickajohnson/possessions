@@ -10,6 +10,8 @@ export const RelationshipWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
+  font-family: "Domine";
+  font-size: 0.8rem;
 `;
 
 export const Score = styled.div`

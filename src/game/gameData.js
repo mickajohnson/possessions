@@ -48,18 +48,18 @@ export const roomKeyToNameMapping = {
   [BATHROOM]: "Bathroom",
   [PARENTS_ROOM]: "Parent's Room",
   [DAUGHTERS_ROOM]: "Daughter's Room",
-  [GRANDPAS_ROOM]: "Grandpa's Room",
+  [GRANDPAS_ROOM]: "Gramps' Room",
   [GARAGE]: "Garage",
   [OFFICE]: "Office",
 };
 
 export const relationshipKeyToNameMapping = {
-  [MOM_DAD]: "Mom + Dad",
-  [MOM_DAUGHTER]: "Mom + Daughter",
-  [MOM_GRANDPA]: "Mom + Grandpa",
-  [GRANDPA_DAD]: "Grandpa + Dad",
-  [GRANDPA_DAUGHTER]: "Grandpa + Daughter",
-  [DAD_DAUGHTER]: "Dad + Daughter",
+  [MOM_DAD]: "Mom/Dad",
+  [MOM_DAUGHTER]: "Mom/Daughter",
+  [MOM_GRANDPA]: "Mom/Gramps",
+  [GRANDPA_DAD]: "Gramps/Dad",
+  [GRANDPA_DAUGHTER]: "Gramps/Daughter",
+  [DAD_DAUGHTER]: "Dad/Daughter",
 };
 
 export const relationshipKeyToDescriptionMapping = {
