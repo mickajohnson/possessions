@@ -94,4 +94,8 @@ const DropContainer = styled.div`
   align-items: center;
   border: 1px solid;
   border-color: ${({ borderColor }) => borderColor};
+  background-color: white;
+  font-family: "Domine";
+  font-size: 0.8rem;
+  padding: 2px;
 `;

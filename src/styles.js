@@ -23,6 +23,7 @@ export const Input = styled.input`
   padding: 1em;
   font-family: "Domine", seriff;
   font-size: 1.3em;
+  outline-color: black;
 `;
 
 export const Button = styled.button`
