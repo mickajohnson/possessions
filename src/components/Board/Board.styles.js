@@ -5,7 +5,7 @@ import { Container } from "../../styles";
 export const BoardContainer = styled(Container)`
   padding: 0;
   display: grid;
-  grid-template-columns: 130px 1fr 300px;
+  grid-template-columns: 10% 1fr 25%;
   grid-template-rows: 40px 1fr 85px;
   grid-template-areas:
     "header header header"

@@ -38,18 +38,18 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
     }
   };
 
+  const value = dropGroup.reduce((accum, drop) => accum + drop.value, 0);
+
   return (
     <DropGroupContainer
       isOption={isSelected || isOption}
       borderColor={borderColor}
       onClick={handleDropGroupClick}
     >
-      {dropGroup.map((drop) => (
-        <DropContainer key={drop.id}>
-          <span>{drop.value}</span>
-          <span>{characters[drop.character].name}</span>
-        </DropContainer>
-      ))}
+      <DropContainer>
+        <span>{value < 1 ? value : `+${value}`}</span>
+        <span>{characterKey}</span>
+      </DropContainer>
     </DropGroupContainer>
   );
 }

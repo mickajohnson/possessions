@@ -8,6 +8,8 @@ export const CommandLineContainer = styled.div`
   grid-gap: 5px;
   padding: 5px;
   background-color: ${({ theme }) => theme.colors.brown};
+  max-height: 140px;
+  align-items: center;
 `;
 
 export const CommandContainer = styled.div`
@@ -24,4 +26,9 @@ export const CommandContainer = styled.div`
         `
       : ""}
   background-color: white;
+`;
+
+export const FaceDownCard = styled.img`
+  border: ${({ isHappening }) => (isHappening ? "1px solid blue" : "none")};
+  border-radius: 6px;
 `;

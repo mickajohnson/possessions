@@ -1,10 +1,17 @@
 import map from "lodash/map";
 
-import { CommandContainer, CommandLineContainer } from "./CommandLine.styles";
+import {
+  CommandContainer,
+  CommandLineContainer,
+  FaceDownCard,
+} from "./CommandLine.styles";
 
 import FaceUpCard from "../FaceUpCard";
 
 function Command({ command, isHappening, isFaceUp }) {
+  if (!isFaceUp && command) {
+    return <FaceDownCard src="/card_back.png" isHappening={isHappening} />;
+  }
   return (
     <CommandContainer
       isFaceDown={!isFaceUp && command}
