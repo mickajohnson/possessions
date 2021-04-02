@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: space-between;
   flex-direction: column;
   cursor: ${({ selectable }) => (selectable ? "pointer" : "default")};
-  padding-bottom: 5%;
+  padding-bottom: 1%;
   position: relative;
 
   &::after {

@@ -10,23 +10,18 @@ export const CardContainer = styled.div`
 
 export const Deck = styled.div`
   height: 110px;
-  width: 80px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  width: 80px; 
   background-color: white;
   border: ${({ isDrawable }) =>
     isDrawable ? "1px solid var(--color-green)" : ""}}
-  cursor: ${({ isDrawable }) => (isDrawable ? "pointer" : "cursor")}}
+  cursor: ${({ isDrawable }) => (isDrawable ? "pointer" : "initial")}}
   margin-right: 10px;
-  border-radius: 10px;
-  background-image: url(/card_back.png);  
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;  
-  padding: 3px 8px;;
-  
+  position: relative;
+`;
+
+export const DeckImage = styled.img`
+  height: 110px;
+  width: 80px;
 `;
 
 export const Hand = styled.div`
@@ -46,4 +41,7 @@ export const Container = styled.div`
 export const Remaining = styled.p`
   color: white;
   font-size: 1.5rem;
+  position: absolute;
+  top: 3px;
+  left: 7px;
 `;

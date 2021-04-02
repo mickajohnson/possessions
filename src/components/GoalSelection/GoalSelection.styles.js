@@ -41,8 +41,7 @@ export const FlavorText = styled.h1`
 
 export const GoalsContainer = styled.div`
   align-items: center;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
   grid-gap: 15px;
   justify-content: center;
   margin: 0 0 48px;

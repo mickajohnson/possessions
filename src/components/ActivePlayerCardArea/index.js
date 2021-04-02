@@ -9,6 +9,7 @@ import {
   Hand,
   Container,
   Remaining,
+  DeckImage,
 } from "./ActivePlayerArea.styles";
 
 export default function ActivePlayerCardArea({
@@ -34,6 +35,7 @@ export default function ActivePlayerCardArea({
   return (
     <Container>
       <Deck isDrawable={isDrawable} onClick={handleDrawCard}>
+        <DeckImage src="/card_back.png" />
         <Remaining>{player.deck.length}</Remaining>
       </Deck>
 
