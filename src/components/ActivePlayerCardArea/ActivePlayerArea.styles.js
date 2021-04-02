@@ -10,11 +10,8 @@ export const CardContainer = styled.div`
 
 export const Deck = styled.div`
   height: 110px;
-  width: 80px; 
+  width: 80px;
   background-color: white;
-  border: ${({ isDrawable }) =>
-    isDrawable ? "1px solid var(--color-green)" : ""}}
-  cursor: ${({ isDrawable }) => (isDrawable ? "pointer" : "initial")}}
   margin-right: 10px;
   position: relative;
 `;

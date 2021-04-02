@@ -21,20 +21,14 @@ export default function ActivePlayerCardArea({
 }) {
   const player = G.players[playerID];
   const isPlayable = isActive && ctx.phase === PLANNING;
-  const isDrawable =
-    isPlayable && player.commands[G.currentCommandKey] !== null;
 
   const handleProgramCard = (cardId) => {
     moves.programCard(playerID, cardId);
   };
-  const handleDrawCard = () => {
-    if (isDrawable) {
-      moves.drawCard(playerID);
-    }
-  };
+
   return (
     <Container>
-      <Deck isDrawable={isDrawable} onClick={handleDrawCard}>
+      <Deck>
         <DeckImage src="/card_back.png" />
         <Remaining>{player.deck.length}</Remaining>
       </Deck>
@@ -44,7 +38,6 @@ export default function ActivePlayerCardArea({
           <CardContainer key={card.id}>
             <FaceUpCard
               isPlayable={isPlayable}
-              isOptionalPlay={isDrawable}
               onDoubleClick={handleProgramCard}
               card={card}
             />

@@ -3,7 +3,7 @@ import {
   RainbowImage,
   NavItemContainer,
   HomeContainer,
-} from "./Home.styles";
+} from "./HomeScreen.styles";
 
 import Title from "../Title";
 

@@ -124,7 +124,7 @@ export const fight = (
   }
 };
 
-export const programCard = (G, _, playerKey, cardId) => {
+export const programCard = (G, ctx, playerKey, cardId) => {
   const player = G.players[playerKey];
 
   const alreadyProgrammedCard = player.commands[G.currentCommandKey];
@@ -137,7 +137,7 @@ export const programCard = (G, _, playerKey, cardId) => {
 
   player.commands[G.currentCommandKey] = playedCard;
 
-  // INVALID MOVE
+  drawCard(G, ctx, playerKey);
 };
 
 export const drawCard = (G, ctx, playerKey) => {

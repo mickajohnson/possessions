@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-export default function FaceUpCard({
-  card,
-  onDoubleClick,
-  isPlayable,
-  isOptionalPlay,
-}) {
+export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
   const handlePlayCard = () => {
     if (isPlayable) {
       onDoubleClick(card.id);
@@ -13,11 +8,7 @@ export default function FaceUpCard({
   };
 
   return (
-    <Container
-      isPlayable={isPlayable}
-      isOptionalPlay={isOptionalPlay}
-      onDoubleClick={handlePlayCard}
-    >
+    <Container isPlayable={isPlayable} onDoubleClick={handlePlayCard}>
       {card.name}
     </Container>
   );
@@ -26,8 +17,8 @@ export default function FaceUpCard({
 const Container = styled.div`
   height: 100%;
   width: 100%;
-  border: ${({ isPlayable, isOptionalPlay }) =>
-    isPlayable && !isOptionalPlay ? `1px solid var(--color-green)` : "none"};
+  border: ${({ isPlayable }) =>
+    isPlayable ? `1px solid var(--color-green)` : "none"};
   cursor: ${({ isPlayable }) => (isPlayable ? "pointer" : "cursor")}}
   display: flex;
   align-items: center;
