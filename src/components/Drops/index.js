@@ -6,7 +6,7 @@ import { REACT, characterImages } from "../../constants";
 import { dropClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
-import { isValidReact } from "../../game/validations";
+import { isValidReact } from "../../game/helpers";
 
 function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   const dispatch = useDispatch();

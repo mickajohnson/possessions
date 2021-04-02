@@ -12,7 +12,7 @@ import { useBoardState, useDispatch } from "../../state/board/reducer";
 
 import Room from "../Room";
 import { every } from "lodash";
-import { isChatEligible, isReactEligible } from "../../game/validations";
+import { isChatEligible, isReactEligible } from "../../game/helpers";
 import { usePreviousValue } from "beautiful-react-hooks";
 
 export default function House({ G, ctx, isActive, playerID, skipTurn }) {

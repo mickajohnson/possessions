@@ -3,7 +3,7 @@ import { EXECUTION, PLANNING, GOAL_SELECTION } from "../constants";
 import every from "lodash/every";
 import maxBy from "lodash/maxBy";
 import sortBy from "lodash/sortBy";
-import { tallyScores } from "./validations";
+import { tallyScores } from "./helpers";
 
 import {
   dropNegativeOne,

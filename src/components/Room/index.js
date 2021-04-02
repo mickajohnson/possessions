@@ -1,7 +1,7 @@
 import * as React from "react";
 import reduce from "lodash/reduce";
 
-import { isValidMoveOne, isValidMoveTwo } from "../../game/validations";
+import { isValidMoveOne, isValidMoveTwo } from "../../game/helpers";
 import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";
 import { roomClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";

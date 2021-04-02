@@ -13,7 +13,7 @@ import {
   isChatEligible,
   isValidChat,
   isReactEligible,
-} from "../../game/validations";
+} from "../../game/helpers";
 
 import { CharacterContainer, CharacterImage } from "./Character.styles";
 

@@ -1,5 +1,3 @@
-import rainbows from "../../assets/rainbows.png";
-
 import {
   NavItem,
   RainbowImage,
@@ -9,7 +7,7 @@ import {
 
 import Title from "../Title";
 
-export default function Home() {
+export default function HomeScreen() {
   return (
     <HomeContainer>
       <Title />
@@ -17,7 +15,7 @@ export default function Home() {
         <NavItem to="/create">Create Game</NavItem>
         <NavItem to="/join">Join Game</NavItem>
       </NavItemContainer>
-      <RainbowImage src={rainbows} alt="" />
+      <RainbowImage src={"/rainbows.png"} alt="" />
     </HomeContainer>
   );
 }

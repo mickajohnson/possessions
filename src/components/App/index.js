@@ -7,7 +7,7 @@ import JoinScreen from "../JoinScreen";
 import CreateGameScreen from "../CreateGameScreen";
 import LobbyScreen from "../LobbyScreen";
 import GameScreen from "../GameScreen";
-import Home from "../Home";
+import HomeScreen from "../HomeScreen";
 
 const { protocol, hostname, port } = window.location;
 
@@ -62,7 +62,7 @@ export default function App() {
         <GameScreen storedPlayerData={storedPlayerData} />
       </Route>
       <Route path="/">
-        <Home />
+        <HomeScreen />
       </Route>
     </Switch>
   );

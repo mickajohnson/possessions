@@ -6,12 +6,13 @@ import forEach from "lodash/forEach";
 import get from "lodash/get";
 
 import {
+  changeScore,
+  getRelationship,
   isValidChat,
   isValidMoveOne,
   isValidMoveTwo,
   isValidReact,
-} from "./validations";
-import { changeScore, getRelationship } from "./helpers";
+} from "./helpers";
 import { makeId } from "../utils";
 
 const removeCard = (G, ctx) => {
