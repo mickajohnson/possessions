@@ -4,7 +4,7 @@ import { EXECUTION } from "../../constants";
 
 import CommandLine from "../CommandLine";
 
-export default function OtherPlayerCommands({ G, playerID, ctx }) {
+export default function Commands({ G, playerID, ctx }) {
   return (
     <Container>
       {map(G.players, (player, playerKey) => (

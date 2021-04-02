@@ -9,6 +9,7 @@ export const Container = styled.div`
 export const RelationshipWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
   font-family: "Domine";
   font-size: 0.7rem;

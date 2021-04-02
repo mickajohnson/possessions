@@ -54,12 +54,12 @@ export const roomKeyToNameMapping = {
 };
 
 export const relationshipKeyToNameMapping = {
-  [MOM_DAD]: "Mom/Dad",
-  [MOM_DAUGHTER]: "Mom/Daughter",
-  [MOM_GRANDPA]: "Mom/Gramps",
-  [GRANDPA_DAD]: "Gramps/Dad",
-  [GRANDPA_DAUGHTER]: "Gramps/Daughter",
-  [DAD_DAUGHTER]: "Dad/Daughter",
+  [MOM_DAD]: "Mom / Dad",
+  [MOM_DAUGHTER]: "Mom / Daughter",
+  [MOM_GRANDPA]: "Mom / Gramps",
+  [GRANDPA_DAD]: "Gramps / Dad",
+  [GRANDPA_DAUGHTER]: "Gramps / Daughter",
+  [DAD_DAUGHTER]: "Dad / Daughter",
 };
 
 export const relationshipKeyToDescriptionMapping = {
@@ -147,6 +147,7 @@ export const getDefaultDeck = () => [
   getDropNegTwoCard(),
   getDropPosOneCard(),
   getDropPosTwoCard(),
+  getReactCard(),
   getReactCard(),
   getReactCard(),
   getChatCard(),

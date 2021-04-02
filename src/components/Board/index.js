@@ -10,7 +10,7 @@ import ActivePlayerCardArea from "../ActivePlayerCardArea";
 import { GOAL_SELECTION } from "../../constants";
 import GoalSelection from "../GoalSelection";
 import Goals from "../Goals";
-import OtherPlayerCommands from "../OtherPlayerCommands";
+import Commands from "../Commands";
 import GameOverScreen from "../GameOverScreen";
 import Relationships from "../Relationships";
 import Directions from "../Directions";
@@ -104,7 +104,7 @@ export default function NightStandStuffBoard({
           ctx={ctx}
           isActive={isActive}
         />
-        <OtherPlayerCommands
+        <Commands
           G={G}
           playerID={playerID}
           ctx={ctx}
