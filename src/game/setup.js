@@ -1,6 +1,8 @@
 import shuffle from "lodash/shuffle";
 import reduce from "lodash/reduce";
 import cloneDeep from "lodash/cloneDeep";
+import every from "lodash/every";
+import uniqBy from "lodash/uniqBy";
 
 import {
   roomKeyToNameMapping,
@@ -66,7 +68,31 @@ const createInitialCharacters = () => ({
   [GRANDPA]: { name: "Grandpa", location: GRANDPAS_ROOM },
 });
 
-const createInitialPlayers = (ctx, goals) =>
+const assignGoals = (goals, playerKeys) => {
+  const shuffledGoals = shuffle(goals);
+
+  const assignedGoals = playerKeys.reduce((goalObject, playerKey) => {
+    goalObject[playerKey] =
+      playerKeys.length < 4
+        ? shuffledGoals.splice(-4)
+        : shuffledGoals.splice(-3);
+    return goalObject;
+  }, {});
+
+  if (
+    every(
+      assignedGoals,
+      (playerGoals) =>
+        uniqBy(playerGoals, "relationship").length === playerGoals.length
+    )
+  ) {
+    return assignedGoals;
+  } else {
+    return assignGoals(goals, playerKeys);
+  }
+};
+
+const createInitialPlayers = (ctx, assignedGoals) =>
   ctx.playOrder.reduce((playerObject, playerKey) => {
     const deck = shuffle(getDefaultDeck());
     const hand = deck.splice(0, 6);
@@ -75,16 +101,16 @@ const createInitialPlayers = (ctx, goals) =>
       hand,
       commands: getEmptyCommands(),
       discardPile: [],
-      goals: ctx.playOrder.length < 4 ? goals.splice(-4) : goals.splice(-3),
+      goals: assignedGoals[playerKey],
     };
 
     return playerObject;
   }, {});
 
 export default function setup(ctx) {
-  const goals = shuffle(getGoalCards());
+  const assignedGoals = assignGoals(getGoalCards(), ctx.playOrder);
 
-  const players = createInitialPlayers(ctx, goals);
+  const players = createInitialPlayers(ctx, assignedGoals);
 
   const relationships = getInitialRelationships();
 

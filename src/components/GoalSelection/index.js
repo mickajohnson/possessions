@@ -38,8 +38,6 @@ export default function GoalSelection({
     ? "Select 1 Card to Remove"
     : `Waiting${currentPlayerName ? ` on ${currentPlayerName}` : ""}...`;
 
-  console.log(goals);
-
   return (
     <GoalSelectionContainer>
       <Header>
