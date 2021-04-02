@@ -4,7 +4,7 @@ import serve from "koa-static";
 import { PostgresStore } from "bgio-postgres";
 import NightStandStuff from "./game/index";
 
-const db = new PostgresStore(process.env.DATABASE_URL);
+const db = new PostgresStore(process.env.DATABASE_URL, { native: true });
 
 const server = Server({ games: [NightStandStuff], db });
 const PORT = process.env.PORT || 8000;
