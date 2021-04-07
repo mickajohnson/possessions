@@ -8,6 +8,7 @@ import CreateGameScreen from "../CreateGameScreen";
 import LobbyScreen from "../LobbyScreen";
 import GameScreen from "../GameScreen";
 import HomeScreen from "../HomeScreen";
+import RulesScreen from "../RulesScreen";
 
 const { protocol, hostname, port } = window.location;
 
@@ -57,6 +58,9 @@ export default function App() {
       </Route>
       <Route path="/join">
         <JoinScreen onJoin={handleJoin} lobbyClient={lobbyClient} />
+      </Route>
+      <Route path="/rules">
+        <RulesScreen />
       </Route>
       <Route path="/game/:matchID/:playerID">
         <GameScreen storedPlayerData={storedPlayerData} />

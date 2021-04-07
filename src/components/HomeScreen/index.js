@@ -14,6 +14,7 @@ export default function HomeScreen() {
       <NavItemContainer>
         <NavItem to="/create">Create Game</NavItem>
         <NavItem to="/join">Join Game</NavItem>
+        <NavItem to="/rules">How to Play</NavItem>
       </NavItemContainer>
       <RainbowImage src={"/rainbows.png"} alt="" />
     </HomeContainer>
