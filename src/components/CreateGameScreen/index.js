@@ -19,12 +19,9 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
   const handleCreateGame = async (playerName, numberOfPlayers) => {
     setError(null);
     try {
-      const createMatchResponse = await lobbyClient.createMatch(
-        "nightstand-stuff",
-        {
-          numPlayers: Number(numberOfPlayers),
-        }
-      );
+      const createMatchResponse = await lobbyClient.createMatch("possessions", {
+        numPlayers: Number(numberOfPlayers),
+      });
 
       onJoin({
         playerID: "0",

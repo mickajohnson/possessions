@@ -20,7 +20,7 @@ const server =
 export default function App() {
   const [lobbyClient] = React.useState(new LobbyClient({ server }));
   const [storedPlayerData, setStoredPlayerData] = useSessionStorage(
-    "nightstand-stuff-data",
+    "possessions-data",
     {}
   );
 
@@ -28,7 +28,7 @@ export default function App() {
 
   const handleJoin = async ({ playerID, playerName, matchID }) => {
     const { playerCredentials } = await lobbyClient.joinMatch(
-      "nightstand-stuff",
+      "possessions",
       matchID,
       {
         playerID,

@@ -1,6 +1,6 @@
 import * as React from "react";
-import { NightStandStuff } from "../../game";
-import NightStandStuffBoard from "../Board";
+import { Possessions } from "../../game";
+import PossessionsBoard from "../Board";
 import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
 
@@ -13,8 +13,8 @@ const server =
     : `${protocol}//${hostname}:${port}`;
 
 const GameClient = Client({
-  game: NightStandStuff,
-  board: NightStandStuffBoard,
+  game: Possessions,
+  board: PossessionsBoard,
   multiplayer: SocketIO({ server }),
   debug: false,
 });

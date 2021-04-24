@@ -16,7 +16,7 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
   const [message, setMessage] = React.useState("");
 
   const handleGetMatch = async () => {
-    return await lobbyClient.getMatch("nightstand-stuff", matchID);
+    return await lobbyClient.getMatch("possessions", matchID);
   };
 
   const handleJoin = async () => {

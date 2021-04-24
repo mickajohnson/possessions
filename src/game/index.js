@@ -22,8 +22,8 @@ import {
   setPlayerNames,
 } from "./moves";
 
-export const NightStandStuff = {
-  name: "nightstand-stuff",
+export const Possessions = {
+  name: "possessions",
   setup,
   phases: {
     [GOAL_SELECTION]: {
@@ -99,4 +99,4 @@ export const NightStandStuff = {
   },
 };
 
-export default NightStandStuff;
+export default Possessions;

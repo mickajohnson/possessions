@@ -1,4 +1,4 @@
 const Server = require("boardgame.io/server").Server;
-const NightStandStuff = require("./game/index").NightStandStuff;
-const server = Server({ games: [NightStandStuff] });
+const Possessions = require("./game/index").Possessions;
+const server = Server({ games: [Possessions] });
 server.run(8000);

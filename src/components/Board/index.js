@@ -23,7 +23,7 @@ import {
   RoundTracker,
 } from "./Board.styles";
 
-export default function NightStandStuffBoard({
+export default function PossessionsBoard({
   G,
   moves,
   playerID,
@@ -31,7 +31,6 @@ export default function NightStandStuffBoard({
   ctx,
   matchData,
 }) {
-
   const currentPlayerName = get(G.players, [ctx.currentPlayer, "name"], null);
   // Safety here to avoid possibility of infinite loops
   const setPlayerNameRan = React.useRef(false);
@@ -115,7 +114,7 @@ export default function NightStandStuffBoard({
   );
 }
 
-NightStandStuffBoard.propTypes = {
+PossessionsBoard.propTypes = {
   G: PropTypes.any.isRequired,
   ctx: PropTypes.any.isRequired,
   moves: PropTypes.any.isRequired,

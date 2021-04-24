@@ -22,7 +22,7 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
 
   const getMatchInfo = React.useCallback(async () => {
     try {
-      const matchInfo = await lobbyClient.getMatch("nightstand-stuff", matchID);
+      const matchInfo = await lobbyClient.getMatch("possessions", matchID);
       setMatch(matchInfo);
       if (error) setError(null);
     } catch {
