@@ -25,15 +25,15 @@ export default function RulesScreen() {
         to see happen. You get points the further the specified relationship is
         in the indicated direction. The maximum amount any relationship can in
         either direction is five points. If the game ends with one of your
-        goals' relationships in the opposite direction of that listed on the
+        goals&#39; relationships in the opposite direction of that listed on the
         goal, you will just get zero points (not points taken away).
       </p>
       {/* <h3>Show Goal Card here</h3> */}
       <h2>Goal Selection</h2>
       <p>
         At the beginning of the game, players are dealt four goals each (three
-        in a four player game). Players select the one that they don't want and
-        discard it.
+        in a four player game). Players select the one that they don&#39;t want
+        and discard it.
       </p>
       {/* <h3>Show Goal Selection Screen here</h3> */}
       <h2>Initial Board State</h2>
@@ -81,9 +81,9 @@ export default function RulesScreen() {
       <p>
         All of the laid plans are revealed. Player take turns enacting their
         actions on whichever characters they choose. If they can take an action,
-        they <b>must_</b> take an action, even if it isn’t what they want to do
+        they <b>must</b> take an action, even if it isn’t what they want to do
         anymore. Once an action is complete the corresponding card will go into
-        that player's discard pile.
+        that player&#39;s discard pile.
       </p>
       <h2>Actions</h2>
       <ul>
@@ -102,7 +102,7 @@ export default function RulesScreen() {
             character is leaving behind for another character to discover, be it
             positive (like tidying up a room) or negative (like leaving dirty
             dishes lying around). Players are encouraged to announce what it is
-            that's being left. The idea is that a larger number represents a
+            that&#39;s being left. The idea is that a larger number represents a
             more positive or negative thing.
           </p>
         </li>
@@ -110,28 +110,28 @@ export default function RulesScreen() {
           <p>
             <b>React to something:</b> Choose a character to interact with the
             Drop Tokens left behind by another character in the room they are
-            currently in. Choose which pile of Drop Tokens they'll be
+            currently in. Choose which pile of Drop Tokens they&#39;ll be
             interacting with. If multiple tokens from one character are in a
             room, the effect will be the total of the tokens. The corresponding
             relationship will change that amount. This represents a character
             reacting to things another character left in the room. Again,
             players are encouraged to describe this reaction. If there are no
-            characters in a room with anther character's drop tokens, the
-            player's turn is skipped.
+            characters in a room with anther character&#39;s drop tokens, the
+            player&#39;s turn is skipped.
           </p>
         </li>
         <li>
           <p>
             <b>Convo (Fight/Bond):</b> First choose whether the two characters
-            you'll be selecting will fight (negatively affecting the
+            you&#39;ll be selecting will fight (negatively affecting the
             relationship by one) or bond (positively affecting the relationship
             by 1). Choose the two characters that you want to interact. The two
             must be in the same room. If this is a fight, choose a character to
             storm off, then choose an adjacent room for them to storm off to. If
-            this is a bond, they'll remain in the same room. Once again, players
-            are encouraged to describe the specifics of the interaction. If
-            there are no two characters in a room together the player's turn is
-            skipped.
+            this is a bond, they&#39;ll remain in the same room. Once again,
+            players are encouraged to describe the specifics of the interaction.
+            If there are no two characters in a room together the player&#39;s
+            turn is skipped.
           </p>
         </li>
       </ul>
