@@ -14,28 +14,34 @@ export default function RulesScreen() {
         impactful relationships from their time on Earth by possessing the
         current occupants.
       </p>
-      <h2>Objective</h2>
-      <p>
-        Your goal is to have affected the relationships listed on your goal
-        cards more than any other player by the end of six rounds.
-      </p>
-      <h2>Goals</h2>
-      <p>
-        Your goals are relationship changes between two characters that you hope
-        to see happen. You get points the further the specified relationship is
-        in the indicated direction. The maximum amount any relationship can in
-        either direction is five points. If the game ends with one of your
-        goals&#39; relationships in the opposite direction of that listed on the
-        goal, you will just get zero points (not points taken away).
-      </p>
-      {/* <h3>Show Goal Card here</h3> */}
+      <Styled.InlineImageContainer>
+        <div>
+          <h2>Objective</h2>
+          <p>
+            Your goal is to have affected the relationships listed on your goal
+            cards more than any other player by the end of six rounds.
+          </p>
+          <h2>Goals</h2>
+          <p>
+            Your goals are relationship changes between two characters that you
+            hope to see happen. You get points the further the specified
+            relationship is in the indicated direction. The maximum amount any
+            relationship can in either direction is five points. If the game
+            ends with one of your goals&#39; relationships in the opposite
+            direction of that listed on the goal, you will just get zero points
+            (not points taken away).
+          </p>
+        </div>
+        <Styled.GoalImage src={"/example_goal.png"} alt="" />
+      </Styled.InlineImageContainer>
+
       <h2>Goal Selection</h2>
       <p>
         At the beginning of the game, players are dealt four goals each (three
         in a four player game). Players select the one that they don&#39;t want
         and discard it.
       </p>
-      {/* <h3>Show Goal Selection Screen here</h3> */}
+      <Styled.GoalSelectionImage src={"/goal_selection.png"} alt="" />
       <h2>Initial Board State</h2>
       <p>
         Each game of Possessions will start in a unique way. The nine rooms are
@@ -48,7 +54,7 @@ export default function RulesScreen() {
         room, Grandpa - Grandpa’s room, Mom - Parent’s Room, Dad - Bathroom
       </p>
       <p>Each relationship starts at zero.</p>
-      {/* <h3>Show Initial board here with arrows toward what things are</h3> */}
+      <Styled.BoardImage src={"/example_board.png"} alt="" />
       <h2>Rounds</h2>
       <p>
         Rounds consist of two phases: the planning phase, where players lay down

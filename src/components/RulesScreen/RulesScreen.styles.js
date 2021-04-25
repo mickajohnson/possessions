@@ -19,3 +19,22 @@ export const Container = styled.main`
     padding-bottom: 10px;
   }
 `;
+
+export const GoalImage = styled.img``;
+
+export const GoalSelectionImage = styled.img`
+  max-width: 600px;
+  margin: auto;
+  display: block;
+  border: 1px solid black;
+`;
+
+export const BoardImage = styled.img`
+  margin: auto;
+  display: block;
+  border: 1px solid black;
+`;
+
+export const InlineImageContainer = styled.div`
+  display: flex;
+`;
