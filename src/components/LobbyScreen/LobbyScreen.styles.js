@@ -24,12 +24,12 @@ export const Header = styled.h1`
 `;
 
 export const MatchName = styled.h2`
-  font-family: var(--font--seriff);
+  font-family: var(--font-seriff);
   text-align: center;
 `;
 
 export const Player = styled.p`
   font-size: 18px;
   margin-top: 16px;
-  font-family: var(--font--seriff); ;
+  font-family: var(--font-seriff); ;
 `;

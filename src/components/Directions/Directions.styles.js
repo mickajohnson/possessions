@@ -5,7 +5,7 @@ export const Message = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font--seriff);
+  font-family: var(--font-seriff);
   white-space: pre;
 `;
 

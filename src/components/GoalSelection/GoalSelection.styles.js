@@ -30,7 +30,7 @@ export const Content = styled.div`
 
 export const Directions = styled.h2`
   font-size: 1.1rem;
-  font-family: var(--font--seriff);
+  font-family: var(--font-seriff);
   margin-bottom: 26px;
 `;
 

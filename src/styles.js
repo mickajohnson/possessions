@@ -11,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const FlavorText = styled.h1`
-  font-family: var(--font--sans-seriff);
+  font-family: var(--font-sans-seriff);
   font-size: 1.7em;
   margin-bottom: 1em;
   text-align: left;
@@ -35,7 +35,7 @@ export const Button = styled.button`
   border: none;
   padding: 0.8em;
   border-radius: 5px;
-  font-family: var(--font--sans-seriff);
+  font-family: var(--font-sans-seriff);
   font-size: 1.4em;
   outline-color: black;
 `;
@@ -51,21 +51,6 @@ export const FormButton = styled(Button)`
     color: var(--color-pink);
     cursor: not-allowed;
   }
-`;
-
-export const Select = styled.select`
-  margin-bottom: 3em;
-  border-radius: 5px;
-  border: none;
-  padding: 1em;
-  cursor: pointer;
-  width: 100%;
-  font-family: var(--font--seriff);
-  font-size: 1.3em;
-  color: ${({ value }) => (value === "" ? "grey" : "black")};
-  appearance: none;
-  margin-bottom: 1em;
-  outline-color: black;
 `;
 
 export const SplitContainer = styled.div`

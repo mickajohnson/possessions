@@ -54,6 +54,7 @@ export const isReactEligible = (G, characterKey) => {
   );
 };
 
+// TODO: Refactor these and reducer file to a stages system instead of this brittle checking
 export const isValidReact = (G, roomKey, dropperCharKey, reactingCharKey) => {
   const characterRoom = G.rooms[roomKey];
 

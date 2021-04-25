@@ -11,7 +11,7 @@ export const RelationshipWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5px;
-  font-family: var(--font--seriff);
+  font-family: var(--font-seriff);
   font-size: 0.7rem;
 `;
 

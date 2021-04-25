@@ -6,7 +6,7 @@ const Button = styled.button`
   border: none;
   padding: 5px;
   border-radius: 6px;
-  font-family: var(--font--sans-seriff);
+  font-family: var(--font-sans-seriff);
   font-size: 1.2em;
 
   &:first-child {

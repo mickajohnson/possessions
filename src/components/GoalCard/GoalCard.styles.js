@@ -39,7 +39,7 @@ export const Container = styled.div`
 `;
 
 export const Description = styled.p`
-  font-family: var(--font--seriff);
+  font-family: var(--font-seriff);
   text-align: center;
   line-height: 1.2;
   font-size: ${({ size }) => (size === "small" ? "0.5rem" : "1rem")};
@@ -73,7 +73,7 @@ export const PersonPicture = styled.img`
 `;
 
 export const PersonName = styled.p`
-  font-family: var(--font--seriff);
+  font-family: var(--font-seriff);
   text-align: center;
   font-size: ${({ size }) => (size === "small" ? "0.3rem" : "0.8rem")};
 `;
