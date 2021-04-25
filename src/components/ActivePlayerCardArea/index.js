@@ -5,7 +5,7 @@ import { PLANNING, EXECUTION } from "../../constants";
 import BoardButtons from "../BoardButtons";
 import FaceUpCard from "../FaceUpCard";
 import * as Styled from "./ActivePlayerArea.styles";
-import * as Types from "../../../types";
+import * as Types from "../../types";
 
 export default function ActivePlayerCardArea({
   G,

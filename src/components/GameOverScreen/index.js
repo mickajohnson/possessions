@@ -1,4 +1,5 @@
 import * as React from "react";
+import PropTypes from "prop-types";
 
 import * as Styled from "./GameOverScreen.styles";
 import Relationships from "../Relationships";

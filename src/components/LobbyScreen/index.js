@@ -2,6 +2,7 @@ import * as React from "react";
 import { useInterval } from "beautiful-react-hooks";
 import every from "lodash/every";
 import { useHistory, useParams, Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import * as Styled from "./LobbyScreen.styles";
 

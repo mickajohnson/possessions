@@ -1,5 +1,6 @@
 import * as React from "react";
-
+import PropTypes from "prop-types";
+import * as Types from "../../types";
 import * as Styled from "./CreateGameScreen.styles";
 
 export default function CreateGameScreen({ onJoin, lobbyClient }) {
@@ -63,3 +64,8 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
     </Styled.SplitContainer>
   );
 }
+
+CreateGameScreen.propTypes = {
+  onJoin: PropTypes.func.isRequired,
+  lobbyClient: Types.G.isRequired,
+};

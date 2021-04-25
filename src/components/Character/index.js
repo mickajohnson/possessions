@@ -8,6 +8,8 @@ import {
 import { characterClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 import theme from "../../theme";
+import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import {
   isChatEligible,
@@ -90,3 +92,8 @@ export default function Character({ characterKey, G, isActive }) {
     </Styled.CharacterContainer>
   );
 }
+Character.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  characterKey: PropTypes.string.isRequired,
+  G: Types.G.isRequired,
+};

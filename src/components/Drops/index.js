@@ -1,5 +1,6 @@
 import map from "lodash/map";
 import get from "lodash/get";
+import PropTypes from "prop-types";
 
 import { REACT, characterImages } from "../../constants";
 import { dropClickAction } from "../../state/board/actions";

@@ -1,6 +1,7 @@
 import { characterImages, POSITIVE } from "../../constants";
 
 import * as Styled from "./GoalCard.styles";
+import PropTypes from "prop-types";
 
 export default function GoalCard({
   goal,

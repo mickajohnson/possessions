@@ -1,5 +1,6 @@
 import map from "lodash/map";
-
+import PropTypes from "prop-types";
+import * as Types from "../../types";
 import * as Styled from "./CommandLine.styles";
 
 import FaceUpCard from "../FaceUpCard";
@@ -19,6 +20,12 @@ function Command({ command, isHappening, isFaceUp }) {
     </Styled.CommandContainer>
   );
 }
+
+Command.propTypes = {
+  isFaceUp: PropTypes.bool.isRequired,
+  isHappening: PropTypes.bool.isRequired,
+  command: Types.G.isRequired,
+};
 
 export default function CommandLine({
   commands,
@@ -41,3 +48,10 @@ export default function CommandLine({
     </Styled.CommandLineContainer>
   );
 }
+
+CommandLine.propTypes = {
+  commands: PropTypes.objectOf(Types.card).isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
+  currentCommandKey: PropTypes.string.isRequired,
+  isFaceUp: PropTypes.bool.isRequired,
+};

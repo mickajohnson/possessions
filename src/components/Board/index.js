@@ -16,6 +16,7 @@ import Relationships from "../Relationships";
 import Directions from "../Directions";
 
 import * as Styled from "./Board.styles";
+import * as Types from "../../types";
 
 export default function PossessionsBoard({
   G,
@@ -109,10 +110,10 @@ export default function PossessionsBoard({
 }
 
 PossessionsBoard.propTypes = {
-  G: PropTypes.any.isRequired,
-  ctx: PropTypes.any.isRequired,
-  moves: PropTypes.any.isRequired,
-  playerID: PropTypes.string,
-  isActive: PropTypes.bool,
-  isMultiplayer: PropTypes.bool,
+  G: Types.G.isRequired,
+  ctx: Types.ctx.isRequired,
+  moves: Types.moves.isRequired,
+  playerID: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  matchData: PropTypes.object.isRequired,
 };

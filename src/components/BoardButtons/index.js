@@ -1,4 +1,5 @@
 import { resetAction, selectAction } from "../../state/board/actions";
+import PropTypes from "prop-types";
 
 import {
   DROP_POS_ONE,
@@ -13,6 +14,7 @@ import {
   CHAT,
 } from "../../constants";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
+import * as Types from "../../types";
 
 import * as Styled from "./BoardButton.styles";
 
@@ -107,3 +109,8 @@ export default function BoardButtons({ moves, currentCardAction }) {
     </Styled.Container>
   );
 }
+
+BoardButtons.propTypes = {
+  moves: Types.moves.isRequired,
+  currentCardAction: PropTypes.string.isRequired,
+};

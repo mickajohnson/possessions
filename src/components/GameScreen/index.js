@@ -3,6 +3,7 @@ import { Possessions } from "../../game";
 import PossessionsBoard from "../Board";
 import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
+import PropTypes from "prop-types";
 
 import { useParams, Redirect } from "react-router-dom";
 

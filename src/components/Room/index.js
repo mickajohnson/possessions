@@ -1,5 +1,6 @@
 import * as React from "react";
 import reduce from "lodash/reduce";
+import PropTypes from "prop-types";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/helpers";
 import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";

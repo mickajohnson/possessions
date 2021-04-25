@@ -1,7 +1,8 @@
 import { useBoardState } from "../../state/board/reducer";
 import { EXECUTION, PLANNING } from "../../constants";
-
-import * as Styled from "./Directions.styles.js";
+import PropTypes from "prop-types";
+import * as Types from "../../types";
+import * as Styled from "./Directions.styles";
 
 export default function Directions({
   playerID,
@@ -36,3 +37,11 @@ export default function Directions({
     );
   }
 }
+
+Directions.propTypes = {
+  playerID: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  ctx: Types.ctx.isRequired,
+  G: Types.G.isRequired,
+  currentPlayerName: PropTypes.string.isRequired,
+};

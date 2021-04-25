@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 
 export const G = PropTypes.exact({
   players: PropTypes.object,
+  characters: PropTypes.objectOf(character).isRequired,
+  currentCommandKey: PropTypes.number.isRequired,
 });
 
 export const player = PropTypes.shape({
@@ -28,6 +30,7 @@ export const goal = PropTypes.shape({
 
 export const ctx = PropTypes.exact({
   phase: PropTypes.string.isRequired,
+  currentPlayer: PropTypes.number.isRequired,
 });
 
 export const moves = PropTypes.shape({
@@ -45,4 +48,14 @@ export const moves = PropTypes.shape({
   bond: PropTypes.func,
   fight: PropTypes.func,
   skipTurn: PropTypes.func,
+});
+
+export const character = PropTypes.shape({
+  name: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+});
+
+export const lobbyClient = PropTypes.shape({
+  createMatch: PropTypes.func.isRequired,
+  joinMatch: PropTypes.func.isRequired,
 });

@@ -1,4 +1,5 @@
 import map from "lodash/map";
+import PropTypes from "prop-types";
 
 import * as Styled from "./Relationships.styles";
 

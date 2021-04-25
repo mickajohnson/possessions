@@ -1,5 +1,6 @@
 import * as React from "react";
 import get from "lodash/get";
+import PropTypes from "prop-types";
 
 import { CHAT, EXECUTION, FIGHT, BOND, REACT } from "../../constants";
 import {

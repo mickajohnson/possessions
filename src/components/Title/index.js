@@ -1,4 +1,5 @@
 import * as Styled from "./Title.styles";
+import PropTypes from "prop-types";
 
 export default function Title({ fontSize = "4.5em", padding }) {
   return (
@@ -7,3 +8,8 @@ export default function Title({ fontSize = "4.5em", padding }) {
     </Styled.Header>
   );
 }
+
+Title.propTypes = {
+  fontSize: PropTypes.string.isRequired,
+  padding: PropTypes.string.isRequired,
+};

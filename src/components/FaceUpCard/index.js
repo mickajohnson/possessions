@@ -1,4 +1,5 @@
 import * as Styled from "./FaceUpCard.styles";
+import PropTypes from "prop-types";
 
 export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
   const handlePlayCard = () => {

@@ -4,6 +4,7 @@ import Title from "../Title";
 
 import * as Styled from "./GoalSelection.styles";
 import GoalCard from "../GoalCard";
+import PropTypes from "prop-types";
 
 export default function GoalSelection({
   goals,

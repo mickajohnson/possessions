@@ -1,4 +1,6 @@
 import * as Styled from "./DiscardPile.styles";
+import * as Types from "../../types";
+import PropTypes from "prop-types";
 
 export default function DiscardPile({ discardPile }) {
   return (
@@ -9,3 +11,7 @@ export default function DiscardPile({ discardPile }) {
     </Styled.Container>
   );
 }
+
+DiscardPile.propTypes = {
+  discardPile: PropTypes.arrayOf(Types.card).isRequired,
+};
