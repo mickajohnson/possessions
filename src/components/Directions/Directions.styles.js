@@ -5,7 +5,7 @@ export const Message = styled.p`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Domine";
+  font-family: var(--font--seriff);
   white-space: pre;
 `;
 

@@ -14,11 +14,11 @@ export const NavItemContainer = styled.div`
 `;
 
 export const NavItem = styled(Link)`
-  color: ${({ theme }) => theme.colors.redOrange};
+  color: var(--color-redOrange);
   font-size: 3em;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.yellow};
+    color: var(--color-yellow);
   }
 `;
 

@@ -1,5 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 
+import theme from "./theme";
+
 export const Container = styled.div`
   padding: 2em;
   display: flex;
@@ -9,7 +11,7 @@ export const Container = styled.div`
 `;
 
 export const FlavorText = styled.h1`
-  font-family: "Staatliches";
+  font-family: var(--font--sans-seriff);
   font-size: 1.7em;
   margin-bottom: 1em;
   text-align: left;
@@ -21,7 +23,7 @@ export const Input = styled.input`
   margin-bottom: 1em;
   width: 100%;
   padding: 1em;
-  font-family: "Domine", seriff;
+  font-family: var(--font-seriff);
   font-size: 1.3em;
   outline-color: black;
 `;
@@ -29,24 +31,24 @@ export const Input = styled.input`
 export const Button = styled.button`
   width: 100%;
   cursor: pointer;
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: var(--color-blue);
   border: none;
   padding: 0.8em;
   border-radius: 5px;
-  font-family: "Staatliches";
+  font-family: var(--font--sans-seriff);
   font-size: 1.4em;
   outline-color: black;
 `;
 
 export const FormButton = styled(Button)`
   margin-top: 1.5em;
-  background-color: ${({ theme }) => theme.colors.green};
+  background-color: var(--color-green);
   color: white;
   outline-color: black;
 
   &:disabled {
-    background-color: ${({ theme }) => theme.colors.redOrange};
-    color: ${({ theme }) => theme.colors.pink};
+    background-color: var(--color-redOrange);
+    color: var(--color-pink);
     cursor: not-allowed;
   }
 `;
@@ -58,7 +60,7 @@ export const Select = styled.select`
   padding: 1em;
   cursor: pointer;
   width: 100%;
-  font-family: "Domine", seriff;
+  font-family: var(--font--seriff);
   font-size: 1.3em;
   color: ${({ value }) => (value === "" ? "grey" : "black")};
   appearance: none;
@@ -89,31 +91,36 @@ export const FormContainer = styled.div`
 `;
 
 export const ApiErrorMessage = styled.p`
-  color: ${({ theme }) => theme.colors.redOrange};
+  color: var(--color-redOrange);
   text-align: center;
   margin-top: 1em;
   font-size: 1.3em;
 `;
 
 export const PinkSpace = styled.div`
-  background-color: ${({ theme }) => theme.colors.pink};
+  background-color: var(--color-pink);
   height: 100%;
   width: 100%;
 `;
 
 export const GlobalStyles = createGlobalStyle`
   :root {
-    --color-lightGreen: #A4CBB4;
-    --color-background: #EDE4D8;
-    --color-redOrange: #F45F31;
-    --color-blue: #77A5A4;
-    --color-yellow: #D39805;
-    --color-brown: #C0AC92;
-    --color-salmon: #FFBEA6;
-    --color-grey: #C4C4C4;
-    --color-green: #518967;
-    --color-pink: #FFBEA6;
-    --color-negativePink: #FFADAD;
+    --color-lightGreen: ${theme.colors.lightGreen};
+    --color-background: ${theme.colors.background};
+    --color-redOrange: ${theme.colors.redOrange};
+    --color-blue: ${theme.colors.blue};
+    --color-yellow: ${theme.colors.yellow};
+    --color-brown: ${theme.colors.brown};
+    --color-salmon: ${theme.colors.salmon};
+    --color-grey: ${theme.colors.grey};
+    --color-green: ${theme.colors.green};
+    --color-pink: ${theme.colors.pink};
+    --color-negativePink: ${theme.colors.negativePink};
+
+    --font-seriff: "Domine", seriff;
+    --font-sans-seriff:"Staatliches", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
   }
 
   body {

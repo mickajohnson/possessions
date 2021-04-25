@@ -32,7 +32,7 @@ export const SidebarSection = styled.div`
 export const Sidebar = styled.div`
   grid-area: sidebar;
   padding: 10px;
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: var(--color-background);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

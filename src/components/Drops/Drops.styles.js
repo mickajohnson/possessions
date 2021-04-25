@@ -14,7 +14,7 @@ export const Value = styled.p`
       : value < 0
       ? "var(--color-redOrange)"
       : "black"};
-  font-family: "Staatliches";
+  font-family: var(--font--sans-seriff);
   width: 100%;
   text-align: right;
   font-size: 1.3rem;
@@ -43,7 +43,7 @@ export const DropContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   background-color: white;
-  font-family: "Domine";
+  font-family: var(--font--seriff);
   font-size: 0.8rem;
   padding-right: 5px;
   padding-bottom: 2px;

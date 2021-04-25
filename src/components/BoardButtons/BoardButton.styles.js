@@ -6,7 +6,7 @@ const Button = styled.button`
   border: none;
   padding: 5px;
   border-radius: 6px;
-  font-family: "Staatliches";
+  font-family: var(--font--sans-seriff);
   font-size: 1.2em;
 
   &:first-child {
@@ -19,15 +19,15 @@ export const CancelButton = styled(Button)`
 `;
 
 export const ConfirmButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.blue};
+  background-color: var(--color-blue);
 `;
 
 export const FightButton = styled(Button)`
-  background-color: ${({ theme }) => theme.colors.redOrange};
+  background-color: var(--color-redOrange);
 `;
 
 export const BondButton = styled(Button)`
-  background-color: ${({ theme }) => "green"};
+  background-color: var(--color-green);
 `;
 
 export const Container = styled.div`

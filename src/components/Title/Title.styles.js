@@ -7,5 +7,5 @@ export const Header = styled.h1`
 `;
 
 export const BlueText = styled.span`
-  color: ${({ theme }) => theme.colors.blue};
+  color: var(--color-blue);
 `;

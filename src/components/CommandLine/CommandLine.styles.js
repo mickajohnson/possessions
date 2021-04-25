@@ -7,7 +7,7 @@ export const CommandLineContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 5px;
   padding: 5px;
-  background-color: ${({ theme }) => theme.colors.brown};
+  background-color: var(--color-brown);
   max-height: 140px;
   align-items: center;
 `;
