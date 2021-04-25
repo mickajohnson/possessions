@@ -1,6 +1,7 @@
 import map from "lodash/map";
 import get from "lodash/get";
 import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import { REACT, characterImages } from "../../constants";
 import { dropClickAction } from "../../state/board/actions";
@@ -55,6 +56,14 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   );
 }
 
+DropGroup.propTypes = {
+  dropGroup: PropTypes.arrayOf(Types.drop).isRequired,
+  G: Types.G.isRequired,
+  characterKey: PropTypes.string.isRequired,
+  roomKey: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+};
+
 export default function Drops({ drops, G, roomKey, isActive }) {
   return (
     <Styled.DropsContainer>
@@ -75,3 +84,10 @@ export default function Drops({ drops, G, roomKey, isActive }) {
     </Styled.DropsContainer>
   );
 }
+
+Drops.propTypes = {
+  drops: PropTypes.objectOf(PropTypes.arrayOf(Types.drop)).isRequired,
+  G: Types.G.isRequired,
+  roomKey: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+};

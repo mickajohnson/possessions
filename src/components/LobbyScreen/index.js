@@ -2,7 +2,7 @@ import * as React from "react";
 import { useInterval } from "beautiful-react-hooks";
 import every from "lodash/every";
 import { useHistory, useParams, Redirect } from "react-router-dom";
-import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import * as Styled from "./LobbyScreen.styles";
 
@@ -72,3 +72,8 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   }
   return <Styled.Container>Loading...</Styled.Container>;
 }
+
+LobbyScreen.propTypes = {
+  lobbyClient: Types.lobbyClient.isRequired,
+  storedPlayerData: Types.storedPlayerData.isRequired,
+};

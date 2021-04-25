@@ -1,6 +1,7 @@
 import * as React from "react";
 import get from "lodash/get";
 import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import { CHAT, EXECUTION, FIGHT, BOND, REACT } from "../../constants";
 import {
@@ -86,3 +87,11 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
     </Styled.HouseContainer>
   );
 }
+
+House.propTypes = {
+  G: Types.G.isRequired,
+  ctx: Types.ctx.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  playerID: PropTypes.number.isRequired,
+  skipTurn: PropTypes.func.isRequired,
+};

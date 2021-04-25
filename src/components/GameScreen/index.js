@@ -3,7 +3,7 @@ import { Possessions } from "../../game";
 import PossessionsBoard from "../Board";
 import { Client } from "boardgame.io/react";
 import { SocketIO } from "boardgame.io/multiplayer";
-import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import { useParams, Redirect } from "react-router-dom";
 
@@ -38,3 +38,7 @@ export default function GameScreen({ storedPlayerData }) {
     />
   );
 }
+
+GameScreen.propTypes = {
+  storedPlayerData: Types.storedPlayerData.isRequired,
+};

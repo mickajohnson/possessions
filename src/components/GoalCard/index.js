@@ -1,4 +1,5 @@
 import { characterImages, POSITIVE } from "../../constants";
+import * as Types from "../../types";
 
 import * as Styled from "./GoalCard.styles";
 import PropTypes from "prop-types";
@@ -41,3 +42,11 @@ export default function GoalCard({
     </Styled.Container>
   );
 }
+
+GoalCard.propTypes = {
+  goal: Types.goal.isRequired,
+  onClick: PropTypes.func,
+  isActive: PropTypes.bool,
+  size: PropTypes.string,
+  selected: PropTypes.bool.isRequired,
+};

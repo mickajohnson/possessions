@@ -1,5 +1,6 @@
 import * as Styled from "./FaceUpCard.styles";
 import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
   const handlePlayCard = () => {
@@ -14,3 +15,9 @@ export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
     </Styled.Container>
   );
 }
+
+FaceUpCard.propTypes = {
+  card: Types.card.isRequired,
+  onDoubleClick: PropTypes.func.isRequired,
+  isPlayable: PropTypes.bool.isRequired,
+};

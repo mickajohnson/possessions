@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as Types from "../../types";
 
 import Title from "../Title";
 
@@ -62,3 +63,11 @@ export default function GoalSelection({
     </Styled.GoalSelectionContainer>
   );
 }
+
+GoalSelection.propTypes = {
+  goals: PropTypes.arrayOf(Types.goal).isRequired,
+  removeGoal: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  playerID: PropTypes.string.isRequired,
+  currentPlayerName: PropTypes.string.isRequired,
+};

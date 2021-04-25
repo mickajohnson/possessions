@@ -1,6 +1,7 @@
 import * as React from "react";
 import reduce from "lodash/reduce";
 import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/helpers";
 import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";
@@ -109,3 +110,9 @@ export default function Room({ roomKey, G, isActive }) {
     </Styled.RoomContainer>
   );
 }
+
+Room.propTypes = {
+  G: Types.G.isRequired,
+  roomKey: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+};

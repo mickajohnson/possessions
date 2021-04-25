@@ -1,5 +1,6 @@
 import * as React from "react";
 import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import * as Styled from "./JoinScreen.styles";
 
@@ -58,3 +59,8 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
     </Styled.SplitContainer>
   );
 }
+
+JoinScreen.propTypes = {
+  onJoin: PropTypes.func.isRequired,
+  lobbyClient: Types.lobbyClient.isRequired,
+};

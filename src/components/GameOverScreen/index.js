@@ -1,5 +1,5 @@
 import * as React from "react";
-import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import * as Styled from "./GameOverScreen.styles";
 import Relationships from "../Relationships";
@@ -30,3 +30,8 @@ export default function GameOverScreen({ gameoverData, G }) {
     </Styled.GameOverContainer>
   );
 }
+
+GameOverScreen.propTypes = {
+  G: Types.G.isRequired,
+  gameoverData: Types.gameoverData.isRequired,
+};

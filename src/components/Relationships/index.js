@@ -1,5 +1,6 @@
 import map from "lodash/map";
 import PropTypes from "prop-types";
+import * as Types from "../../types";
 
 import * as Styled from "./Relationships.styles";
 
@@ -18,3 +19,7 @@ export default function Relationships({ relationships }) {
     </Styled.Container>
   );
 }
+
+Relationships.propTypes = {
+  relationships: PropTypes.objectOf(Types.relationship).isRequired,
+};
