@@ -1,9 +1,11 @@
 import get from "lodash/get";
+import PropTypes from "prop-types";
 
 import { PLANNING, EXECUTION } from "../../constants";
 import BoardButtons from "../BoardButtons";
 import FaceUpCard from "../FaceUpCard";
 import * as Styled from "./ActivePlayerArea.styles";
+import * as Types from "../../../types";
 
 export default function ActivePlayerCardArea({
   G,
@@ -51,3 +53,11 @@ export default function ActivePlayerCardArea({
     </Styled.Container>
   );
 }
+
+ActivePlayerCardArea.propTypes = {
+  G: Types.G.isRequired,
+  ctx: Types.ctx.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  playerID: PropTypes.number.isRequired,
+  moves: Types.moves.isRequired,
+};
