@@ -78,7 +78,7 @@ export default function Drops({ drops, G, roomKey, isActive }) {
             isActive={isActive}
           />
         ) : (
-          <Styled.EmptyDropGroup />
+          <Styled.EmptyDropGroup key={characterKey} />
         )
       )}
     </Styled.DropsContainer>

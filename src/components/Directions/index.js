@@ -25,7 +25,7 @@ export default function Directions({
     }
     return (
       <Styled.Message>
-        <Styled.Your>Styled.Your</Styled.Your> turn! {directions}
+        <Styled.Your>Your</Styled.Your> turn! {directions}
       </Styled.Message>
     );
   } else if (currentPlayerName) {

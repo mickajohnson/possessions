@@ -24,7 +24,7 @@ function Command({ command, isHappening, isFaceUp }) {
 Command.propTypes = {
   isFaceUp: PropTypes.bool.isRequired,
   isHappening: PropTypes.bool.isRequired,
-  command: Types.G.isRequired,
+  command: Types.card,
 };
 
 export default function CommandLine({
@@ -52,6 +52,6 @@ export default function CommandLine({
 CommandLine.propTypes = {
   commands: PropTypes.objectOf(Types.card).isRequired,
   isActivePlayer: PropTypes.bool.isRequired,
-  currentCommandKey: PropTypes.string.isRequired,
+  currentCommandKey: PropTypes.number.isRequired,
   isFaceUp: PropTypes.bool.isRequired,
 };

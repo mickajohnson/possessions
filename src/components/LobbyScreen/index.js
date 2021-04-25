@@ -59,7 +59,7 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
           </Styled.Button>
           {match.players.map((player) => (
             <Styled.Player key={player.id}>
-              <strong>Styled.Player {player.id + 1}:</strong>{" "}
+              <strong>Player {player.id + 1}:</strong>{" "}
               {player.name ? player.name : "Waiting..."}
             </Styled.Player>
           ))}

@@ -1,23 +1,5 @@
 import PropTypes from "prop-types";
 
-export const G = PropTypes.exact({
-  players: PropTypes.object,
-  characters: PropTypes.objectOf(character).isRequired,
-  currentCommandKey: PropTypes.number.isRequired,
-  roomOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
-  rooms: PropTypes.objectOf(room).isRequire,
-  relationships: PropTypes.objectOf(relationship).isRequired,
-  roundNumber: 0,
-});
-
-export const player = PropTypes.shape({
-  deck: PropTypes.arrayOf(card).isRequired,
-  hand: PropTypes.arrayOf(card).isRequired,
-  commands: PropTypes.objectOf(card).isRequired,
-  discardPile: PropTypes.arrayOf(card).isRequired,
-  goals: PropTypes.arrayOf(goal),
-});
-
 export const card = PropTypes.shape({
   action: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
@@ -40,9 +22,12 @@ export const goalWithScore = PropTypes.shape({
   id: PropTypes.string.isRequired,
 });
 
-export const ctx = PropTypes.exact({
+export const ctx = PropTypes.shape({
   phase: PropTypes.string.isRequired,
-  currentPlayer: PropTypes.number.isRequired,
+  numPlayers: PropTypes.number.isRequired,
+  turn: PropTypes.number.isRequired,
+  currentPlayer: PropTypes.string.isRequired,
+  playOrder: PropTypes.arrayOf(PropTypes.string),
 });
 
 export const moves = PropTypes.shape({
@@ -77,22 +62,11 @@ export const relationship = PropTypes.shape({
   name: PropTypes.string.isRequired,
 });
 
-export const room = PropTypes.shape({
-  position: PropTypes.number.isRequired,
-  drops: PropTypes.objectOf(drop),
-  name: PropTypes.string.isRequired,
-});
-
 export const drop = PropTypes.shape({
   id: PropTypes.string.isRequired,
   character: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
 });
-
-export const gameoverData = {
-  scores: PropTypes.arrayOf(score).isRequired,
-  winner: score.isRequired,
-};
 
 export const score = {
   score: PropTypes.number.isRequired,
@@ -100,8 +74,37 @@ export const score = {
   scoredGoals: PropTypes.arrayOf(goalWithScore).isRequired,
 };
 
-export const storedPlayerData = {
-  playerID: PropTypes.number.isRequired,
+export const gameoverData = PropTypes.shape({
+  scores: PropTypes.arrayOf(score).isRequired,
+  winner: score.isRequired,
+});
+
+export const storedPlayerData = PropTypes.shape({
+  playerID: PropTypes.string.isRequired,
   playerCredentials: PropTypes.any.isRequired,
-  matchID: PropTypes.number.isRequired,
-};
+  matchID: PropTypes.string.isRequired,
+});
+
+export const room = PropTypes.shape({
+  position: PropTypes.number.isRequired,
+  drops: PropTypes.objectOf(PropTypes.arrayOf(drop)),
+  name: PropTypes.string.isRequired,
+});
+
+export const player = PropTypes.shape({
+  deck: PropTypes.arrayOf(card).isRequired,
+  hand: PropTypes.arrayOf(card).isRequired,
+  commands: PropTypes.objectOf(card).isRequired,
+  discardPile: PropTypes.arrayOf(card).isRequired,
+  goals: PropTypes.arrayOf(goal),
+});
+
+export const G = PropTypes.exact({
+  players: PropTypes.object,
+  characters: PropTypes.objectOf(character).isRequired,
+  currentCommandKey: PropTypes.number.isRequired,
+  roomOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
+  rooms: PropTypes.objectOf(room).isRequired,
+  relationships: PropTypes.objectOf(relationship).isRequired,
+  roundNumber: PropTypes.number.isRequired,
+});

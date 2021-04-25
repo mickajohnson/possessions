@@ -67,5 +67,5 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
 
 CreateGameScreen.propTypes = {
   onJoin: PropTypes.func.isRequired,
-  lobbyClient: Types.G.isRequired,
+  lobbyClient: Types.lobbyClient.isRequired,
 };

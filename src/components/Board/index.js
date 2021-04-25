@@ -115,5 +115,5 @@ PossessionsBoard.propTypes = {
   moves: Types.moves.isRequired,
   playerID: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
-  matchData: PropTypes.object.isRequired,
+  matchData: PropTypes.array.isRequired,
 };

@@ -58,6 +58,6 @@ ActivePlayerCardArea.propTypes = {
   G: Types.G.isRequired,
   ctx: Types.ctx.isRequired,
   isActive: PropTypes.bool.isRequired,
-  playerID: PropTypes.number.isRequired,
+  playerID: PropTypes.string.isRequired,
   moves: Types.moves.isRequired,
 };

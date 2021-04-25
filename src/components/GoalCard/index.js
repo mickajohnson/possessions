@@ -48,5 +48,5 @@ GoalCard.propTypes = {
   onClick: PropTypes.func,
   isActive: PropTypes.bool,
   size: PropTypes.string,
-  selected: PropTypes.bool.isRequired,
+  selected: PropTypes.bool,
 };
