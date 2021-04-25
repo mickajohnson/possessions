@@ -1,24 +1,22 @@
 import map from "lodash/map";
 
-import {
-  CommandContainer,
-  CommandLineContainer,
-  FaceDownCard,
-} from "./CommandLine.styles";
+import * as Styled from "./CommandLine.styles";
 
 import FaceUpCard from "../FaceUpCard";
 
 function Command({ command, isHappening, isFaceUp }) {
   if (!isFaceUp && command) {
-    return <FaceDownCard src="/card_back.png" isHappening={isHappening} />;
+    return (
+      <Styled.FaceDownCard src="/card_back.png" isHappening={isHappening} />
+    );
   }
   return (
-    <CommandContainer
+    <Styled.CommandContainer
       isFaceDown={!isFaceUp && command}
       isHappening={isHappening}
     >
       {command && isFaceUp ? <FaceUpCard card={command} /> : null}
-    </CommandContainer>
+    </Styled.CommandContainer>
   );
 }
 
@@ -29,7 +27,7 @@ export default function CommandLine({
   isFaceUp,
 }) {
   return (
-    <CommandLineContainer>
+    <Styled.CommandLineContainer>
       {map(commands, (command, commandKey) => (
         <Command
           isHappening={
@@ -40,6 +38,6 @@ export default function CommandLine({
           command={command}
         />
       ))}
-    </CommandLineContainer>
+    </Styled.CommandLineContainer>
   );
 }

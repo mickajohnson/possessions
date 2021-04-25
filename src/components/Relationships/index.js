@@ -1,19 +1,19 @@
 import map from "lodash/map";
 
-import { Container, RelationshipWrapper, Score } from "./Relationships.styles";
+import * as Styled from "./Relationships.styles";
 
 export default function Relationships({ relationships }) {
   return (
-    <Container>
+    <Styled.Container>
       {map(relationships, (relationshipData, relationshipKey) => (
-        <RelationshipWrapper key={relationshipKey}>
+        <Styled.RelationshipWrapper key={relationshipKey}>
           <span>{relationshipData.name}</span>
-          <Score score={relationshipData.score}>
+          <Styled.Score score={relationshipData.score}>
             {relationshipData.score > 0 && "+"}
             {relationshipData.score}
-          </Score>
-        </RelationshipWrapper>
+          </Styled.Score>
+        </Styled.RelationshipWrapper>
       ))}
-    </Container>
+    </Styled.Container>
   );
 }

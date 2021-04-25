@@ -15,13 +15,7 @@ import GameOverScreen from "../GameOverScreen";
 import Relationships from "../Relationships";
 import Directions from "../Directions";
 
-import {
-  BoardContainer,
-  Sidebar,
-  SidebarHeading,
-  SidebarSection,
-  RoundTracker,
-} from "./Board.styles";
+import * as Styled from "./Board.styles";
 
 export default function PossessionsBoard({
   G,
@@ -65,7 +59,7 @@ export default function PossessionsBoard({
 
   return (
     <Provider>
-      <BoardContainer>
+      <Styled.BoardContainer>
         <Title padding={"10px"} fontSize="1em" />
         <Directions
           G={G}
@@ -74,18 +68,18 @@ export default function PossessionsBoard({
           currentPlayerName={currentPlayerName}
           isActive={isActive}
         />
-        <RoundTracker>Round {G.roundNumber} / 6</RoundTracker>
-        <Sidebar>
-          <SidebarSection>
-            <SidebarHeading>Relationships</SidebarHeading>
+        <Styled.RoundTracker>Round {G.roundNumber} / 6</Styled.RoundTracker>
+        <Styled.Sidebar>
+          <Styled.SidebarSection>
+            <Styled.SidebarHeading>Relationships</Styled.SidebarHeading>
             <Relationships relationships={G.relationships} />
-          </SidebarSection>
+          </Styled.SidebarSection>
 
-          <SidebarSection>
-            <SidebarHeading>Goals</SidebarHeading>
+          <Styled.SidebarSection>
+            <Styled.SidebarHeading>Goals</Styled.SidebarHeading>
             <Goals goals={G.players[playerID].goals} />
-          </SidebarSection>
-        </Sidebar>
+          </Styled.SidebarSection>
+        </Styled.Sidebar>
 
         <House
           G={G}
@@ -109,7 +103,7 @@ export default function PossessionsBoard({
           currentPlayerName={currentPlayerName}
           isActive={isActive}
         />
-      </BoardContainer>
+      </Styled.BoardContainer>
     </Provider>
   );
 }

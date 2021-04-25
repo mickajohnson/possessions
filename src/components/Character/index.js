@@ -15,7 +15,7 @@ import {
   isReactEligible,
 } from "../../game/helpers";
 
-import { CharacterContainer, CharacterImage } from "./Character.styles";
+import * as Styled from "./Character.styles";
 
 export default function Character({ characterKey, G, isActive }) {
   const dispatch = useDispatch();
@@ -25,8 +25,6 @@ export default function Character({ characterKey, G, isActive }) {
     chatCharacterOne,
     chatCharacterTwo,
   } = useBoardState();
-
-  const { characters } = G;
 
   const characterSelected = selectedCharacter === characterKey;
   const inCharacterSelectionPhase =
@@ -82,13 +80,13 @@ export default function Character({ characterKey, G, isActive }) {
   };
 
   return (
-    <CharacterContainer
+    <Styled.CharacterContainer
       key={characterKey}
       onClick={(e) => handleCharacterClick(e, characterKey)}
       isOption={isOption || isSelected}
       backgroundColor={backgroundColor}
     >
-      <CharacterImage src={characterImages[characterKey]} />
-    </CharacterContainer>
+      <Styled.CharacterImage src={characterImages[characterKey]} />
+    </Styled.CharacterContainer>
   );
 }

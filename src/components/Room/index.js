@@ -8,7 +8,7 @@ import { useDispatch, useBoardState } from "../../state/board/reducer";
 import Drops from "../Drops";
 import Character from "../Character";
 
-import { RoomName, RoomContainer, CharactersContainer } from "./Room.styles";
+import * as Styled from "./Room.styles";
 
 export default function Room({ roomKey, G, isActive }) {
   const dispatch = useDispatch();
@@ -78,14 +78,14 @@ export default function Room({ roomKey, G, isActive }) {
   };
 
   return (
-    <RoomContainer
+    <Styled.RoomContainer
       isOption={isOption}
       borderColor={borderColor}
       onClick={handleRoomClick}
       roomKey={roomKey}
     >
-      <RoomName roomKey={roomKey}>{rooms[roomKey].name}</RoomName>
-      <CharactersContainer>
+      <Styled.RoomName roomKey={roomKey}>{rooms[roomKey].name}</Styled.RoomName>
+      <Styled.CharactersContainer>
         {roomsWithCharacters[roomKey]
           ? roomsWithCharacters[roomKey].map((characterKey) => (
               <Character
@@ -97,7 +97,7 @@ export default function Room({ roomKey, G, isActive }) {
               />
             ))
           : null}
-      </CharactersContainer>
+      </Styled.CharactersContainer>
       <Drops
         dispatch={dispatch}
         drops={rooms[roomKey].drops}
@@ -105,6 +105,6 @@ export default function Room({ roomKey, G, isActive }) {
         roomKey={roomKey}
         isActive={isActive}
       />
-    </RoomContainer>
+    </Styled.RoomContainer>
   );
 }

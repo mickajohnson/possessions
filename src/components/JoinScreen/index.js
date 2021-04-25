@@ -1,14 +1,6 @@
 import * as React from "react";
 
-import {
-  FormContainer,
-  SplitContainer,
-  Input,
-  FlavorText,
-  FormButton,
-  ApiErrorMessage,
-  PinkSpace,
-} from "./JoinScreen.styles";
+import * as Styled from "./JoinScreen.styles";
 
 export default function JoinScreen({ onJoin, lobbyClient }) {
   const [name, setName] = React.useState("");
@@ -37,31 +29,31 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
   };
 
   return (
-    <SplitContainer>
-      <PinkSpace />
-      <FormContainer>
-        <FlavorText>Join a Game...</FlavorText>
+    <Styled.SplitContainer>
+      <Styled.PinkSpace />
+      <Styled.FormContainer>
+        <Styled.FlavorText>Join a Game...</Styled.FlavorText>
 
-        <Input
+        <Styled.Input
           name="name"
           placeholder="Your Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Input
+        <Styled.Input
           name="matchID"
           placeholder="Game Code"
           value={matchID}
           onChange={(e) => setMatchID(e.target.value)}
         />
-        <FormButton
+        <Styled.FormButton
           onClick={handleJoin}
           disabled={name.length < 1 || matchID.length < 1}
         >
           Join Existing Game
-        </FormButton>
-        <ApiErrorMessage>{message}</ApiErrorMessage>
-      </FormContainer>
-    </SplitContainer>
+        </Styled.FormButton>
+        <Styled.ApiErrorMessage>{message}</Styled.ApiErrorMessage>
+      </Styled.FormContainer>
+    </Styled.SplitContainer>
   );
 }

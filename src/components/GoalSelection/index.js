@@ -2,15 +2,7 @@ import * as React from "react";
 
 import Title from "../Title";
 
-import {
-  GoalSelectionContainer,
-  GoalsContainer,
-  RemoveButton,
-  Header,
-  Content,
-  Directions,
-  FlavorText,
-} from "./GoalSelection.styles";
+import * as Styled from "./GoalSelection.styles";
 import GoalCard from "../GoalCard";
 
 export default function GoalSelection({
@@ -39,14 +31,14 @@ export default function GoalSelection({
     : `Waiting${currentPlayerName ? ` on ${currentPlayerName}` : ""}...`;
 
   return (
-    <GoalSelectionContainer>
-      <Header>
+    <Styled.GoalSelectionContainer>
+      <Styled.Header>
         <Title fontSize="1.2em" />
-      </Header>
-      <Content>
-        <FlavorText>Time to choose your destiny...</FlavorText>
-        <Directions>{direction}</Directions>
-        <GoalsContainer>
+      </Styled.Header>
+      <Styled.Content>
+        <Styled.FlavorText>Time to choose your destiny...</Styled.FlavorText>
+        <Styled.Directions>{direction}</Styled.Directions>
+        <Styled.GoalsContainer>
           {goals.map((goal) => (
             <GoalCard
               key={goal.id}
@@ -56,13 +48,16 @@ export default function GoalSelection({
               selected={selectedGoalId === goal.id}
             />
           ))}
-        </GoalsContainer>
+        </Styled.GoalsContainer>
         {isActive ? (
-          <RemoveButton disabled={!selectedGoalId} onClick={handleConfirmClick}>
+          <Styled.RemoveButton
+            disabled={!selectedGoalId}
+            onClick={handleConfirmClick}
+          >
             Confirm Removal
-          </RemoveButton>
+          </Styled.RemoveButton>
         ) : null}
-      </Content>
-    </GoalSelectionContainer>
+      </Styled.Content>
+    </Styled.GoalSelectionContainer>
   );
 }

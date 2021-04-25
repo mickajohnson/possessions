@@ -1,5 +1,4 @@
 import * as React from "react";
-import styled from "styled-components";
 import get from "lodash/get";
 
 import { CHAT, EXECUTION, FIGHT, BOND, REACT } from "../../constants";
@@ -14,6 +13,8 @@ import Room from "../Room";
 import { every } from "lodash";
 import { isChatEligible, isReactEligible } from "../../game/helpers";
 import { usePreviousValue } from "beautiful-react-hooks";
+
+import * as Styled from "./House.styles";
 
 export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   const { roomOrder } = G;
@@ -77,18 +78,10 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
   }, [isActive, ctx.phase, stagedAction, dispatch, G, playerID, skipTurn]);
 
   return (
-    <HouseContainer>
+    <Styled.HouseContainer>
       {roomOrder.map((roomKey) => (
         <Room key={roomKey} roomKey={roomKey} G={G} isActive={isActive} />
       ))}
-    </HouseContainer>
+    </Styled.HouseContainer>
   );
 }
-
-const HouseContainer = styled.div`
-  grid-area: main;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0 2em 2em 2em;
-`;

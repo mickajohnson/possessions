@@ -1,15 +1,6 @@
 import * as React from "react";
 
-import {
-  FormContainer,
-  SplitContainer,
-  Input,
-  Select,
-  FormButton,
-  ApiErrorMessage,
-  PinkSpace,
-  FlavorText,
-} from "./CreateGameScreen.styles";
+import * as Styled from "./CreateGameScreen.styles";
 
 export default function CreateGameScreen({ onJoin, lobbyClient }) {
   const [name, setName] = React.useState("");
@@ -35,17 +26,17 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
 
   const buttonDisabled = name.length === 0 || !numberOfPlayers;
   return (
-    <SplitContainer>
-      <PinkSpace />
-      <FormContainer>
-        <FlavorText>Create Game...</FlavorText>
-        <Input
+    <Styled.SplitContainer>
+      <Styled.PinkSpace />
+      <Styled.FormContainer>
+        <Styled.FlavorText>Create Game...</Styled.FlavorText>
+        <Styled.Input
           name="name"
           placeholder="Your Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Select
+        <Styled.Select
           name="numberOfPlayers"
           value={numberOfPlayers}
           onChange={(e) => setNumberOfPlayers(e.target.value)}
@@ -59,16 +50,16 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
               {val}
             </option>
           ))}
-        </Select>
+        </Styled.Select>
 
-        <FormButton
+        <Styled.FormButton
           disabled={buttonDisabled}
           onClick={() => handleCreateGame(name, numberOfPlayers)}
         >
           Create Game
-        </FormButton>
-        <ApiErrorMessage>{error}</ApiErrorMessage>
-      </FormContainer>
-    </SplitContainer>
+        </Styled.FormButton>
+        <Styled.ApiErrorMessage>{error}</Styled.ApiErrorMessage>
+      </Styled.FormContainer>
+    </Styled.SplitContainer>
   );
 }

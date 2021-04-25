@@ -3,14 +3,7 @@ import get from "lodash/get";
 import { PLANNING, EXECUTION } from "../../constants";
 import BoardButtons from "../BoardButtons";
 import FaceUpCard from "../FaceUpCard";
-import {
-  CardContainer,
-  Deck,
-  Hand,
-  Container,
-  Remaining,
-  DeckImage,
-} from "./ActivePlayerArea.styles";
+import * as Styled from "./ActivePlayerArea.styles";
 
 export default function ActivePlayerCardArea({
   G,
@@ -27,23 +20,23 @@ export default function ActivePlayerCardArea({
   };
 
   return (
-    <Container>
-      <Deck>
-        <DeckImage src="/card_back.png" />
-        <Remaining>{player.deck.length}</Remaining>
-      </Deck>
+    <Styled.Container>
+      <Styled.Deck>
+        <Styled.DeckImage src="/card_back.png" />
+        <Styled.Remaining>{player.deck.length}</Styled.Remaining>
+      </Styled.Deck>
 
-      <Hand>
+      <Styled.Hand>
         {player.hand.map((card) => (
-          <CardContainer key={card.id}>
+          <Styled.CardContainer key={card.id}>
             <FaceUpCard
               isPlayable={isPlayable}
               onDoubleClick={handleProgramCard}
               card={card}
             />
-          </CardContainer>
+          </Styled.CardContainer>
         ))}
-      </Hand>
+      </Styled.Hand>
       {isActive && ctx.phase === EXECUTION ? (
         <BoardButtons
           currentCardAction={get(
@@ -55,6 +48,6 @@ export default function ActivePlayerCardArea({
           G={G}
         />
       ) : null}
-    </Container>
+    </Styled.Container>
   );
 }

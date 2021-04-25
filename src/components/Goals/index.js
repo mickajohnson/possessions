@@ -1,31 +1,15 @@
-import styled from "styled-components";
-
 import GoalCard from "../GoalCard";
+
+import * as Styled from "./Goals.styles";
 
 export default function Goals({ goals }) {
   return (
-    <GoalsContainer>
+    <Styled.GoalsContainer>
       {goals.map((goal) => (
-        <GoalContainer>
+        <Styled.GoalContainer>
           <GoalCard key={goal.id} size="small" goal={goal} />
-        </GoalContainer>
+        </Styled.GoalContainer>
       ))}
-    </GoalsContainer>
+    </Styled.GoalsContainer>
   );
 }
-
-const GoalContainer = styled.div`
-  padding-bottom: 10px;
-
-  &:first-child {
-    padding-top: 10px;
-  }
-`;
-
-const GoalsContainer = styled.div`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-around;
-`;

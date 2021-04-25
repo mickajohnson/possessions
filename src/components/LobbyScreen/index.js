@@ -3,15 +3,7 @@ import { useInterval } from "beautiful-react-hooks";
 import every from "lodash/every";
 import { useHistory, useParams, Redirect } from "react-router-dom";
 
-import {
-  Container,
-  Button,
-  MatchName,
-  Player,
-  Header,
-  Content,
-  ApiErrorMessage,
-} from "./LobbyScreen.styles";
+import * as Styled from "./LobbyScreen.styles";
 
 export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   const [match, setMatch] = React.useState({});
@@ -57,23 +49,25 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
 
   if (match.players) {
     return (
-      <Container>
-        <Content>
-          <Header>Waiting for all players to join...</Header>
-          <MatchName>Match Code: {match.matchID}</MatchName>
-          <Button onClick={handleCopyClick}>Copy Match Code</Button>
+      <Styled.Container>
+        <Styled.Content>
+          <Styled.Header>Waiting for all players to join...</Styled.Header>
+          <Styled.MatchName>Match Code: {match.matchID}</Styled.MatchName>
+          <Styled.Button onClick={handleCopyClick}>
+            Copy Match Code
+          </Styled.Button>
           {match.players.map((player) => (
-            <Player key={player.id}>
-              <strong>Player {player.id + 1}:</strong>{" "}
+            <Styled.Player key={player.id}>
+              <strong>Styled.Player {player.id + 1}:</strong>{" "}
               {player.name ? player.name : "Waiting..."}
-            </Player>
+            </Styled.Player>
           ))}
-          <ApiErrorMessage>{error}</ApiErrorMessage>
-        </Content>
-      </Container>
+          <Styled.ApiErrorMessage>{error}</Styled.ApiErrorMessage>
+        </Styled.Content>
+      </Styled.Container>
     );
   } else if (error) {
     return <Redirect to="/" />;
   }
-  return <Container>Loading...</Container>;
+  return <Styled.Container>Loading...</Styled.Container>;
 }

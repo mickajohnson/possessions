@@ -14,13 +14,7 @@ import {
 } from "../../constants";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
-import {
-  Container,
-  CancelButton,
-  ConfirmButton,
-  FightButton,
-  BondButton,
-} from "./BoardButton.styles";
+import * as Styled from "./BoardButton.styles";
 
 export default function BoardButtons({ moves, currentCardAction }) {
   const dispatch = useDispatch();
@@ -88,22 +82,28 @@ export default function BoardButtons({ moves, currentCardAction }) {
   };
 
   return (
-    <Container>
+    <Styled.Container>
       {stagedAction !== null && stagedAction !== CHAT ? (
         <>
           {canConfirm ? (
-            <ConfirmButton onClick={handleConfirmClick}>Confirm</ConfirmButton>
+            <Styled.ConfirmButton onClick={handleConfirmClick}>
+              Confirm
+            </Styled.ConfirmButton>
           ) : null}
-          <CancelButton onClick={handleCancelClick}>Cancel</CancelButton>
+          <Styled.CancelButton onClick={handleCancelClick}>
+            Cancel
+          </Styled.CancelButton>
         </>
       ) : null}
 
       {stagedAction === CHAT ? (
         <>
-          <FightButton onClick={handleFightClick}>Fight</FightButton>
-          <BondButton onClick={handleBondClick}>Bond</BondButton>
+          <Styled.FightButton onClick={handleFightClick}>
+            Fight
+          </Styled.FightButton>
+          <Styled.BondButton onClick={handleBondClick}>Bond</Styled.BondButton>
         </>
       ) : null}
-    </Container>
+    </Styled.Container>
   );
 }

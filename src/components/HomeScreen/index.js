@@ -1,22 +1,17 @@
-import {
-  NavItem,
-  RainbowImage,
-  NavItemContainer,
-  HomeContainer,
-} from "./HomeScreen.styles";
+import * as Styled from "./HomeScreen.styles";
 
 import Title from "../Title";
 
 export default function HomeScreen() {
   return (
-    <HomeContainer>
+    <Styled.HomeContainer>
       <Title />
-      <NavItemContainer>
-        <NavItem to="/create">Create Game</NavItem>
-        <NavItem to="/join">Join Game</NavItem>
-        <NavItem to="/rules">How to Play</NavItem>
-      </NavItemContainer>
-      <RainbowImage src={"/rainbows.png"} alt="" />
-    </HomeContainer>
+      <Styled.NavItemContainer>
+        <Styled.NavItem to="/create">Create Game</Styled.NavItem>
+        <Styled.NavItem to="/join">Join Game</Styled.NavItem>
+        <Styled.NavItem to="/rules">How to Play</Styled.NavItem>
+      </Styled.NavItemContainer>
+      <Styled.RainbowImage src={"/rainbows.png"} alt="" />
+    </Styled.HomeContainer>
   );
 }

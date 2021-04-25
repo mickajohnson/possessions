@@ -6,13 +6,7 @@ import { dropClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
 import { isValidReact } from "../../game/helpers";
-import {
-  CharacterImage,
-  Value,
-  DropContainer,
-  DropsContainer,
-  EmptyDropGroup,
-} from "./Drops.styles";
+import * as Styled from "./Drops.styles";
 
 function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   const dispatch = useDispatch();
@@ -47,20 +41,22 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   const value = dropGroup.reduce((accum, drop) => accum + drop.value, 0);
 
   return (
-    <DropContainer
+    <Styled.DropContainer
       isOption={isSelected || isOption}
       borderColor={borderColor}
       onClick={handleDropGroupClick}
     >
-      <CharacterImage src={characterImages[characterKey]} />
-      <Value value={value}>{value < 1 ? value : `+${value}`}</Value>
-    </DropContainer>
+      <Styled.CharacterImage src={characterImages[characterKey]} />
+      <Styled.Value value={value}>
+        {value < 1 ? value : `+${value}`}
+      </Styled.Value>
+    </Styled.DropContainer>
   );
 }
 
 export default function Drops({ drops, G, roomKey, isActive }) {
   return (
-    <DropsContainer>
+    <Styled.DropsContainer>
       {map(drops, (dropGroup, characterKey) =>
         dropGroup.length ? (
           <DropGroup
@@ -72,9 +68,9 @@ export default function Drops({ drops, G, roomKey, isActive }) {
             isActive={isActive}
           />
         ) : (
-          <EmptyDropGroup />
+          <Styled.EmptyDropGroup />
         )
       )}
-    </DropsContainer>
+    </Styled.DropsContainer>
   );
 }

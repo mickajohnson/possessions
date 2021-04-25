@@ -1,7 +1,7 @@
 import { useBoardState } from "../../state/board/reducer";
 import { EXECUTION, PLANNING } from "../../constants";
 
-import { Message, PlayerName, Your } from "./Directions.styles.js";
+import * as Styled from "./Directions.styles.js";
 
 export default function Directions({
   playerID,
@@ -23,16 +23,16 @@ export default function Directions({
       directions = canDraw ? "Draw a card to finish turn." : "Select a card.";
     }
     return (
-      <Message>
-        <Your>Your</Your> turn! {directions}
-      </Message>
+      <Styled.Message>
+        <Styled.Your>Styled.Your</Styled.Your> turn! {directions}
+      </Styled.Message>
     );
   } else if (currentPlayerName) {
     return (
-      <Message>
+      <Styled.Message>
         {"Waiting on "}
-        <PlayerName>{currentPlayerName}</PlayerName>...
-      </Message>
+        <Styled.PlayerName>{currentPlayerName}</Styled.PlayerName>...
+      </Styled.Message>
     );
   }
 }
