@@ -38,6 +38,7 @@ export const Button = styled.button`
   font-family: var(--font-sans-seriff);
   font-size: 1.4em;
   outline-color: black;
+  color: white;
 `;
 
 export const FormButton = styled(Button)`

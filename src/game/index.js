@@ -50,7 +50,6 @@ export const Possessions = {
     [EXECUTION]: {
       onBegin: (G) => {
         G.currentCommandKey = 0;
-        // reveal all cards
       },
       turn: {
         onEnd: (G, ctx) => {
@@ -89,7 +88,10 @@ export const Possessions = {
     },
   },
   endIf: (G) => {
-    if (G.roundNumber === 7) {
+    if (
+      G.roundNumber === 1 &&
+      every(G.players, (player) => player.goals.length === 3)
+    ) {
       const scores = tallyScores(G);
       return {
         winner: maxBy(scores, "score"),

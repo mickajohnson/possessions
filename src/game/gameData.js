@@ -1,3 +1,5 @@
+import sample from "lodash/sample";
+
 import {
   MOM,
   DAD,
@@ -178,7 +180,8 @@ export const getGoalCards = () => {
 export const getInitialRelationships = () => {
   return RELATIONSHIPS.reduce((relationshipObject, relationshipKey) => {
     relationshipObject[relationshipKey] = {
-      score: 0,
+      // score: 0,
+      score: sample([-4, -3, -2, -1, -0, 1, 2, 3, 4]),
       name: relationshipKeyToNameMapping[relationshipKey],
     };
     return relationshipObject;

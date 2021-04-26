@@ -23,7 +23,7 @@ export const goalWithScore = PropTypes.shape({
 });
 
 export const ctx = PropTypes.shape({
-  phase: PropTypes.string.isRequired,
+  phase: PropTypes.string,
   numPlayers: PropTypes.number.isRequired,
   turn: PropTypes.number.isRequired,
   currentPlayer: PropTypes.string.isRequired,
@@ -68,11 +68,11 @@ export const drop = PropTypes.shape({
   value: PropTypes.number.isRequired,
 });
 
-export const score = {
+export const score = PropTypes.shape({
   score: PropTypes.number.isRequired,
   playerID: PropTypes.string.isRequired,
   scoredGoals: PropTypes.arrayOf(goalWithScore).isRequired,
-};
+});
 
 export const gameoverData = PropTypes.shape({
   scores: PropTypes.arrayOf(score).isRequired,

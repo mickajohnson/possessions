@@ -5,6 +5,7 @@ import { Container } from "../../styles";
 export const GameOverContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 `;
 
 export const Relationships = styled.div`
@@ -22,12 +23,14 @@ export const RelationshipWrapper = styled.div`
 export const GoalContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const PlayerRow = styled.div`
   display: flex;
+  flex-direction: column;
   margin-bottom: 25px;
-  width: 75%;
+  width: 400px;
 `;
 
 export const GoalsContainer = styled.div`
@@ -35,18 +38,35 @@ export const GoalsContainer = styled.div`
   width: 100%;
   align-items: center;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  font-family: var(--font-seriff);
 `;
 
-export const GoalCard = styled.div`
-  height: 120px;
-  width: 80px;
-  font-size: 14px;
-  background-color: white;
-  boarder-radius: 6px;
+export const PlayerText = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-  margin-top: 10px;
+  justify-content: space-between;
+  font-family: var(--font-seriff);
+  font-size: 1.5rem;
+  padding-bottom: 10px;
+`;
+
+export const Rank = styled.span`
+  font-family: var(--font-sans-seriff);
+`;
+
+export const WinnerName = styled.span`
+  font-family: var(--font-seriff);
+  display: block;
+`;
+
+export const WinnerHeading = styled.h1`
+  text-align: center;
+  padding-bottom: 40px;
+`;
+
+export const LeaderBoard = styled.div``;
+
+export const GoalScore = styled.p`
+  padding-bottom: 5px;
 `;
