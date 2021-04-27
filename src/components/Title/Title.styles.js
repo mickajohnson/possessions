@@ -9,3 +9,7 @@ export const Header = styled.h1`
 export const BlueText = styled.span`
   color: var(--color-blue);
 `;
+
+export const YellowText = styled.span`
+  color: var(--color-yellow);
+`;

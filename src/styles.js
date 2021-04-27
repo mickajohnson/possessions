@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import theme from "./theme";
 
 export const Container = styled.div`
-  padding: 2em;
+  padding: 32px;
   display: flex;
   justify-content: center;
   height: 100vh;
