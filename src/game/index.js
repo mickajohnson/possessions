@@ -88,8 +88,10 @@ export const Possessions = {
       },
     },
   },
-  endIf: (G) => {
-    if (G.roundNumber === 7) {
+  endIf: (G, ctx) => {
+    if (
+      ctx.playOrder.length === 4 ? G.roundNumber === 5 : G.roundNumber === 7
+    ) {
       const scores = tallyScores(G);
       return {
         winner: maxBy(scores, "score"),
