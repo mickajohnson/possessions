@@ -1,6 +1,22 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import { Container } from "../../styles";
+
+export const PlayAgainButton = styled(Link)`
+  background-color: var(--color-green);
+  width: 200px;
+  margin-bottom: 40px;
+  cursor: pointer;
+  border: none;
+  padding: 0.8em;
+  border-radius: 5px;
+  font-family: var(--font-sans-seriff);
+  font-size: 1.4em;
+  outline-color: black;
+  color: white;
+  text-align: center;
+`;
 
 export const GameOverContainer = styled(Container)`
   flex-direction: column;
@@ -26,13 +42,6 @@ export const GoalContainer = styled.div`
   align-items: center;
 `;
 
-export const PlayerRow = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 25px;
-  width: 400px;
-`;
-
 export const GoalsContainer = styled.div`
   display: flex;
   width: 100%;
@@ -43,18 +52,6 @@ export const GoalsContainer = styled.div`
   font-family: var(--font-seriff);
 `;
 
-export const PlayerText = styled.div`
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-seriff);
-  font-size: 1.5rem;
-  padding-bottom: 10px;
-`;
-
-export const Rank = styled.span`
-  font-family: var(--font-sans-seriff);
-`;
-
 export const WinnerName = styled.span`
   font-family: var(--font-seriff);
   display: block;
@@ -62,10 +59,33 @@ export const WinnerName = styled.span`
 
 export const WinnerHeading = styled.h1`
   text-align: center;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 `;
 
-export const LeaderBoard = styled.div``;
+export const LeaderBoardHeading = styled.th``;
+
+export const Rank = styled.td``;
+
+export const Name = styled.td`
+  font-family: var(--font-seriff);
+`;
+
+export const Goals = styled.td``;
+
+export const Score = styled.td`
+  font-family: var(--font-seriff);
+  text-align: center;
+`;
+
+export const LeaderBoard = styled.table`
+  width: 50%;
+  max-width: 500px;
+`;
+
+export const LeaderBoardRow = styled.tr`
+  display: grid;
+  grid-template-columns: 50px minmax(70px, 1fr) 300px 50px;
+`;
 
 export const GoalScore = styled.p`
   padding-bottom: 5px;
