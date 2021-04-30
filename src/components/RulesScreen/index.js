@@ -17,20 +17,28 @@ export default function RulesScreen() {
         </p>
         <Styled.InlineImageContainer>
           <div>
+            <h2>Storytelling</h2>
+            <p>
+              Possessions is meant to be experienced as a storytelling, light
+              role-playing game. Players are encouraged to narrate what they are
+              making the characters do.
+            </p>
             <h2>Objective</h2>
             <p>
               Your goal is to have affected the relationships listed on your
               goal cards more than any other player by the end of six rounds.
             </p>
+
             <h2>Goals</h2>
             <p>
               Your goals are relationship changes between two characters that
               you hope to see happen. You get points the further the specified
-              relationship is in the indicated direction. The maximum amount any
-              relationship can in either direction is five points. If the game
-              ends with one of your goals&#39; relationships in the opposite
-              direction of that listed on the goal, you will just get zero
-              points (not points taken away).
+              relationship is in the indicated direction (either positive or
+              negative). The maximum amount any relationship can go in either
+              direction is five points. If the game ends with one of your
+              goals&#39; relationships in the opposite direction of that listed
+              on the goal, you will just get zero points (not points taken
+              away).
             </p>
           </div>
           <Styled.GoalImage src={"/example_goal.png"} alt="" />
@@ -68,7 +76,7 @@ export default function RulesScreen() {
         </p>
         <h2>Planning Phase</h2>
         <p>
-          Players draw six cards from their personal deck and layout what four
+          Players draw six cards from their personal deck and lay out what four
           things they’re going to attempt during the possession phase round.
           They do so by selecting (double clicking) a card from their hand. It
           will then go face down in an action slot. This represents what they
@@ -76,8 +84,8 @@ export default function RulesScreen() {
           Phase has begun.
         </p>
         <p>
-          Once they put a card down, they draw another card to fill their hand
-          back to six.
+          Once they put a card down, they automatically draw another card to
+          fill their hand back to six.
         </p>
         <p>
           Players take turn laying down plans until all four action slots are
@@ -104,7 +112,7 @@ export default function RulesScreen() {
           </li>
           <li>
             <p>
-              <b>Leave behind something:</b> Choose a character to leave behind
+              <b>Leave something behind:</b> Choose a character to leave behind
               a Drop Token in the room they are currently in. The size and
               polarity of of the token is listed on the card. This represents
               something the character is leaving behind for another character to
@@ -143,11 +151,20 @@ export default function RulesScreen() {
             </p>
           </li>
         </ul>
+        <h2>Player Decks</h2>
+        <p>
+          Each player starts with their own deck of action cards they&#39;ll be
+          drawing from. Each deck is made up of: three Move One cards, two Move
+          Two cards, three React cards, two Convo card, and one each of Drop +1,
+          Drop -1, Drop +2, & Drop -2.
+        </p>
         <h2>Game End</h2>
-        <p>The game ends after six rounds.</p>
+        <p>
+          The game ends after six rounds (four rounds in a four player game).
+        </p>
         <h2>Winning</h2>
         <p>
-          Players goals are revealed. Each player gets points based on what
+          Players&#39; goals are revealed. Each player gets points based on what
           their goals were and where the corresponding relationships are.
           Whoever has the most points at the end wins.
         </p>
