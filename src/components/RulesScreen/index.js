@@ -8,12 +8,12 @@ export default function RulesScreen() {
       <section>
         <p>
           Welcome to Possessions, a game of mischief-making, storytelling, and
-          misdirected vengeance. Each player acts ass a restless ghost,
-          grappling with the fragmented memories from their mortal lives,
-          shackled to the property where they died. The only way they can reach
-          fulfillment and pass through to the other side is by reacting - or
-          correcting - the most impactful relationships from their time on Earth
-          by possessing the current occupants.
+          misdirected vengeance. Each player acts as a restless ghost, grappling
+          with the fragmented memories from their mortal lives, shackled to the
+          property where they died. The only way they can reach fulfillment and
+          pass through to the other side is by reacting - or correcting - the
+          most impactful relationships from their time on Earth by possessing
+          the current occupants.
         </p>
         <Styled.InlineImageContainer>
           <div>
