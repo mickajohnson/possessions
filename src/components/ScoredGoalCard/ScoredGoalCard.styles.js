@@ -21,9 +21,7 @@ export const DescriptionContainer = styled.div`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 `;
 
 export const PeopleContainer = styled.div`
@@ -39,7 +37,18 @@ export const PersonContainer = styled.div`
   width: 46%;
 `;
 
+export const RedX = styled.p`
+  color: var(--color-redOrange);
+  font-family: var(--font-sans-seriff);
+  font-size: 2rem;
+`;
+
+export const Score = styled.p`
+  color: var(--color-green);
+  font-family: var(--font-sans-seriff);
+  font-size: 2rem;
+`;
+
 export const PersonPicture = styled.img`
   transform ${({ tiltLeft }) => (tiltLeft ? "rotate(-10deg)" : "rotate(10deg)")}
-
 `;

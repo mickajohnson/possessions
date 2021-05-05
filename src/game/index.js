@@ -3,6 +3,7 @@ import { EXECUTION, PLANNING, GOAL_SELECTION } from "../constants";
 import every from "lodash/every";
 import maxBy from "lodash/maxBy";
 import sortBy from "lodash/sortBy";
+import reverse from "lodash/reverse";
 import { tallyScores } from "./helpers";
 
 import {
@@ -95,7 +96,7 @@ export const Possessions = {
       const scores = tallyScores(G);
       return {
         winner: maxBy(scores, "score"),
-        scores: sortBy(scores, "score"),
+        scores: reverse(sortBy(scores, "score")),
       };
     }
   },

@@ -2,26 +2,19 @@ import { characterImages, POSITIVE } from "../../constants";
 import * as Types from "../../types";
 
 import * as Styled from "./ScoredGoalCard.styles";
-import PropTypes from "prop-types";
 
-export default function GoalCard({
-  goal,
-  onClick = () => {},
-  isActive = false,
-  selected = false,
-  size = "large",
-}) {
+export default function GoalCard({ goal }) {
   const [personOne, personTwo] = goal.relationship.split("_");
 
   return (
-    <Styled.Container
-      size={size}
-      selected={selected}
-      onClick={() => onClick(goal.id)}
-      selectable={isActive}
-      positive={goal.polarity === POSITIVE}
-    >
-      <Styled.DescriptionContainer></Styled.DescriptionContainer>
+    <Styled.Container positive={goal.polarity === POSITIVE}>
+      <Styled.DescriptionContainer>
+        {goal.score < 1 ? (
+          <Styled.RedX>X</Styled.RedX>
+        ) : (
+          <Styled.Score>{goal.score}</Styled.Score>
+        )}
+      </Styled.DescriptionContainer>
       <Styled.PeopleContainer>
         <Styled.PersonContainer>
           <Styled.PersonPicture tiltLeft src={characterImages[personOne]} />
@@ -35,9 +28,5 @@ export default function GoalCard({
 }
 
 GoalCard.propTypes = {
-  goal: Types.goal.isRequired,
-  onClick: PropTypes.func,
-  isActive: PropTypes.bool,
-  size: PropTypes.string,
-  selected: PropTypes.bool,
+  goal: Types.goalWithScore.isRequired,
 };
