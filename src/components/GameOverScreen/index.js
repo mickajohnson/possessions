@@ -2,8 +2,7 @@ import * as React from "react";
 import * as Types from "../../types";
 
 import * as Styled from "./GameOverScreen.styles";
-// import Relationships from "../Relationships";
-// import GoalCard from "../GoalCard";
+import ScoredGoalCard from "../ScoredGoalCard";
 
 export default function GameOverScreen({ gameoverData, G }) {
   return (
@@ -28,15 +27,13 @@ export default function GameOverScreen({ gameoverData, G }) {
             <Styled.SeriffText>
               {G.players[scoreData.playerID].name}
             </Styled.SeriffText>
-            {/* <Styled.GoalsContainer>
+            <Styled.GoalsContainer>
               {scoreData.scoredGoals.map((goal) => (
                 <Styled.GoalContainer key={goal.id}>
-                  <Styled.GoalScore>Goal Score: {goal.score}</Styled.GoalScore>
-                  <GoalCard goal={goal} size="small" />
+                  <ScoredGoalCard goal={goal} />
                 </Styled.GoalContainer>
               ))}
-            </Styled.GoalsContainer> */}
-            <Styled.SeriffText>Goals</Styled.SeriffText>
+            </Styled.GoalsContainer>
             <Styled.SeriffText>{scoreData.score}</Styled.SeriffText>
           </Styled.LeaderBoardBodyRow>
         ))}

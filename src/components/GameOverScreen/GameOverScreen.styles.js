@@ -24,18 +24,6 @@ export const GameOverContainer = styled(Container)`
   justify-content: flex-start;
 `;
 
-export const Relationships = styled.div`
-  margin-top: 1em;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const RelationshipWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-`;
-
 export const GoalContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -47,8 +35,8 @@ export const GoalsContainer = styled.div`
   width: 100%;
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
-  padding-bottom: 20px;
+  justify-content: space-around;
+  padding: 5px 0;
   font-family: var(--font-seriff);
 `;
 
@@ -68,7 +56,7 @@ export const SeriffText = styled.td`
   font-family: var(--font-seriff);
   text-align: center;
   font-weight: normal;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 `;
 
 export const SansSeriffText = styled.td`
@@ -86,6 +74,7 @@ export const LeaderBoard = styled.table`
 export const LeaderBoardRow = styled.tr`
   display: grid;
   grid-template-columns: 80px minmax(100px, 1fr) 300px 80px;
+  align-items: center;
 `;
 
 export const LeaderBoardBodyRow = styled(LeaderBoardRow)`
