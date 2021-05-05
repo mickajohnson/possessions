@@ -55,36 +55,58 @@ export const GoalsContainer = styled.div`
 export const WinnerName = styled.span`
   font-family: var(--font-seriff);
   display: block;
+  font-size: 2rem;
 `;
 
 export const WinnerHeading = styled.h1`
   text-align: center;
   padding-bottom: 20px;
+  font-size: 2.5rem;
 `;
 
-export const LeaderBoardHeading = styled.th``;
-
-export const Rank = styled.td``;
-
-export const Name = styled.td`
-  font-family: var(--font-seriff);
-`;
-
-export const Goals = styled.td``;
-
-export const Score = styled.td`
+export const SeriffText = styled.td`
   font-family: var(--font-seriff);
   text-align: center;
+  font-weight: normal;
+  font-size: 1.6rem;
+`;
+
+export const SansSeriffText = styled.td`
+  font-family: var(--font-san-seriff);
+  text-align: center;
+  font-weight: normal;
+  font-size: 1.6rem;
 `;
 
 export const LeaderBoard = styled.table`
-  width: 50%;
-  max-width: 500px;
+  width: 70%;
+  max-width: 700px;
 `;
 
 export const LeaderBoardRow = styled.tr`
   display: grid;
-  grid-template-columns: 50px minmax(70px, 1fr) 300px 50px;
+  grid-template-columns: 80px minmax(100px, 1fr) 300px 80px;
+`;
+
+export const LeaderBoardBodyRow = styled(LeaderBoardRow)`
+  &:nth-child(2n) {
+    background-color: #d7e4dd;
+  }
+
+  &:nth-child(2n + 1) {
+    background-color: white;
+  }
+
+  &:last-child {
+    border-radius: 0 0 5px 5px;
+  }
+`;
+
+// Move colors to constants
+export const LeaderBoardHeadingRow = styled(LeaderBoardRow)`
+  background: #9bb8a7;
+  padding: 2px 0 0 0;
+  border-radius: 5px 5px 0 0;
 `;
 
 export const GoalScore = styled.p`

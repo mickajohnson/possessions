@@ -16,16 +16,18 @@ export default function GameOverScreen({ gameoverData, G }) {
       </Styled.WinnerHeading>
       <Styled.PlayAgainButton to="/">Play Again</Styled.PlayAgainButton>
       <Styled.LeaderBoard>
-        <Styled.LeaderBoardRow>
-          <Styled.LeaderBoardHeading>Rank</Styled.LeaderBoardHeading>
-          <Styled.LeaderBoardHeading>Player</Styled.LeaderBoardHeading>
-          <Styled.LeaderBoardHeading>Goals</Styled.LeaderBoardHeading>
-          <Styled.LeaderBoardHeading>Score</Styled.LeaderBoardHeading>
-        </Styled.LeaderBoardRow>
+        <Styled.LeaderBoardHeadingRow>
+          <Styled.SansSeriffText as={"th"}>Rank</Styled.SansSeriffText>
+          <Styled.SansSeriffText as={"th"}>Player</Styled.SansSeriffText>
+          <Styled.SansSeriffText as={"th"}>Goals</Styled.SansSeriffText>
+          <Styled.SansSeriffText as={"th"}>Score</Styled.SansSeriffText>
+        </Styled.LeaderBoardHeadingRow>
         {gameoverData.scores.map((scoreData, index) => (
-          <Styled.LeaderBoardRow key={scoreData.playerId}>
-            <Styled.Score>{index + 1}</Styled.Score>
-            <Styled.Name>{G.players[scoreData.playerID].name}</Styled.Name>
+          <Styled.LeaderBoardBodyRow key={scoreData.playerID}>
+            <Styled.SansSeriffText>{index + 1}</Styled.SansSeriffText>
+            <Styled.SeriffText>
+              {G.players[scoreData.playerID].name}
+            </Styled.SeriffText>
             {/* <Styled.GoalsContainer>
               {scoreData.scoredGoals.map((goal) => (
                 <Styled.GoalContainer key={goal.id}>
@@ -34,9 +36,9 @@ export default function GameOverScreen({ gameoverData, G }) {
                 </Styled.GoalContainer>
               ))}
             </Styled.GoalsContainer> */}
-            <Styled.Goals>Goals</Styled.Goals>
-            <Styled.Score>{scoreData.score}</Styled.Score>
-          </Styled.LeaderBoardRow>
+            <Styled.SeriffText>Goals</Styled.SeriffText>
+            <Styled.SeriffText>{scoreData.score}</Styled.SeriffText>
+          </Styled.LeaderBoardBodyRow>
         ))}
       </Styled.LeaderBoard>
       {/* <Relationships relationships={G.relationships} /> */}
