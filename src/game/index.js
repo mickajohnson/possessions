@@ -89,9 +89,11 @@ export const Possessions = {
     },
   },
   endIf: (G) => {
+    // endIf: (G, ctx) => {
     if (
       G.roundNumber === 1 &&
       every(G.players, (player) => player.goals.length === 3)
+      // ctx.playOrder.length === 4 ? G.roundNumber === 5 : G.roundNumber === 7
     ) {
       const scores = tallyScores(G);
       return {

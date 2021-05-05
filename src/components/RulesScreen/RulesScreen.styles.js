@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   font-family: var(--font-seriff);
-  padding: 30px 100px;
+  padding: 32px;
+
+  section {
+    padding: 0 90px;
+  }
 
   h1 {
     font-family: var(--font-sans-seriff);

@@ -10,7 +10,7 @@ export const HomeContainer = styled(Container)`
 export const NavItemContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 2em 0 0 2em;
+  padding: 32px 0 0 32px;
 `;
 
 export const NavItem = styled(Link)`
