@@ -24,7 +24,10 @@ export const Container = styled.main`
   }
 `;
 
-export const GoalImage = styled.img``;
+export const GoalImage = styled.img`
+  object-fit: scale-down;
+  max-width: 250px;
+`;
 
 export const GoalSelectionImage = styled.img`
   max-width: 600px;

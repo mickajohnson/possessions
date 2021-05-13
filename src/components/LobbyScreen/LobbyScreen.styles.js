@@ -16,7 +16,8 @@ export const Content = styled.div`
   align-items: left;
   justify-content: left;
   height: fit-content;
-  padding-top: 7%;
+  width: 385px;
+  padding-top: 65px;
 `;
 
 export const Header = styled.h1`

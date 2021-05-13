@@ -9,6 +9,7 @@ import * as Styled from "./LobbyScreen.styles";
 export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   const [match, setMatch] = React.useState({});
   const [error, setError] = React.useState(null);
+  const [loadingEllipsis, setLoadingEllipsis] = React.useState(".");
 
   const { matchID, playerID } = useParams();
   const history = useHistory();
@@ -44,6 +45,15 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
     getMatchInfo();
   }, 1000);
 
+  useInterval(() => {
+    setLoadingEllipsis((currentEllipsis) => {
+      if (currentEllipsis.length >= 3) {
+        return "";
+      }
+      return `${currentEllipsis}.`;
+    });
+  }, 500);
+
   const handleCopyClick = () => {
     navigator.clipboard.writeText(match.matchID);
   };
@@ -52,7 +62,9 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
     return (
       <Styled.Container>
         <Styled.Content>
-          <Styled.Header>Waiting for all players to join...</Styled.Header>
+          <Styled.Header>
+            Waiting for all players to join{loadingEllipsis}
+          </Styled.Header>
           <Styled.MatchName>Match Code: {match.matchID}</Styled.MatchName>
           <Styled.Button onClick={handleCopyClick}>
             Copy Match Code

@@ -1,10 +1,13 @@
 import * as Styled from "./RulesScreen.styles";
 import Title from "../Title";
+import { Link } from "react-router-dom";
 
 export default function RulesScreen() {
   return (
     <Styled.Container>
-      <Title>Possessions</Title>
+      <Link to="/">
+        <Title></Title>
+      </Link>
       <section>
         <p>
           Welcome to Possessions, a game of mischief-making, storytelling, and
@@ -15,14 +18,14 @@ export default function RulesScreen() {
           most impactful relationships from their time on Earth by possessing
           the current occupants.
         </p>
+        <h2>Storytelling</h2>
+        <p>
+          Possessions is meant to be experienced as a storytelling, light
+          role-playing game. Players are encouraged to narrate what they are
+          making the characters do.
+        </p>
         <Styled.InlineImageContainer>
           <div>
-            <h2>Storytelling</h2>
-            <p>
-              Possessions is meant to be experienced as a storytelling, light
-              role-playing game. Players are encouraged to narrate what they are
-              making the characters do.
-            </p>
             <h2>Objective</h2>
             <p>
               Your goal is to have affected the relationships listed on your
