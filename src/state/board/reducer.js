@@ -57,7 +57,6 @@ export const initialState = {
   chatCharacterOne: null,
   chatCharacterTwo: null,
   dropperCharacter: null,
-  canConfirm: false,
   phase: null,
 };
 
@@ -175,7 +174,6 @@ function reducer(state, action) {
             ? "Chose fight or bond"
             : `${translations[action.action]} - Select a character`,
         stagedAction: action.action,
-        canConfirm: action.action === REACT ? true : false, // TODO: Whats up with this line?
         phase: action.action === CHAT ? SELECT_FIGHT_OR_BOND : SELECT_CHARACTER,
       };
 
