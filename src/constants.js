@@ -85,3 +85,11 @@ export const characterImages = {
   [GRANDPA]: "/grandpa.png",
   [DAUGHTER]: "/daughter.png",
 };
+
+// Phases
+export const SELECT_CHARACTER = "SELECT_CHARACTER";
+export const SELECT_ROOM = "SELECT_ROOM";
+export const SELECT_FIGHT_OR_BOND = "SELECT_FIGHT_OR_BOND";
+export const SELECT_CHARACTER_2 = "SELECT_CHARACTER_2";
+export const SELECT_DROP_PILE = "SELECT_DROP_PILE";
+export const CONFIRMATION = "CONFIRMATION";

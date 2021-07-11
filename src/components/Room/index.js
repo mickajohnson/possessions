@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import * as Types from "../../types";
 
 import { isValidMoveOne, isValidMoveTwo } from "../../game/helpers";
-import { MOVE_ONE, MOVE_TWO, FIGHT } from "../../constants";
+import { MOVE_ONE, MOVE_TWO, FIGHT, SELECT_ROOM } from "../../constants";
 import { roomClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 import Drops from "../Drops";
@@ -21,6 +21,7 @@ export default function Room({ roomKey, G, isActive }) {
     selectedCharacter,
     chatCharacterOne,
     chatCharacterTwo,
+    phase,
   } = useBoardState();
 
   const { roomOrder, characters, rooms } = G;
@@ -44,8 +45,7 @@ export default function Room({ roomKey, G, isActive }) {
 
   const isMoveOneOption =
     stagedAction === MOVE_ONE &&
-    selectedCharacter &&
-    selectedRoom === null &&
+    phase === SELECT_ROOM &&
     isValidMoveOne({ roomOrder, characters }, selectedCharacter, roomKey);
 
   const isFightAfterOption =

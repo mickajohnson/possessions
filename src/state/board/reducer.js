@@ -23,6 +23,12 @@ import {
   GRANDPAS_ROOM,
   GARAGE,
   OFFICE,
+  SELECT_CHARACTER,
+  SELECT_CHARACTER_2,
+  SELECT_ROOM,
+  SELECT_FIGHT_OR_BOND,
+  CONFIRMATION,
+  SELECT_DROP_PILE,
 } from "../../constants";
 
 export const MOVE_ONE_CLICK = "MOVE_ONE_CLICK";
@@ -51,6 +57,7 @@ export const initialState = {
   chatCharacterTwo: null,
   dropperCharacter: null,
   canConfirm: false,
+  phase: null,
 };
 
 const translations = {
@@ -127,6 +134,26 @@ const characterClickMessage = (stagedAction, characterOne) => {
   }
 };
 
+function selectPostCharacteClickPhase(stagedAction) {
+  switch (stagedAction) {
+    case MOVE_ONE:
+    case MOVE_TWO:
+      return SELECT_ROOM;
+    case DROP_POS_TWO:
+    case DROP_POS_ONE:
+    case DROP_NEG_TWO:
+    case DROP_NEG_ONE:
+      return CONFIRMATION;
+    case REACT:
+      return SELECT_DROP_PILE;
+    case FIGHT:
+    case BOND:
+      return SELECT_CHARACTER_2;
+    default:
+      return null;
+  }
+}
+
 function reducer(state, action) {
   switch (action.type) {
     case SELECT_ACTION:
@@ -137,7 +164,8 @@ function reducer(state, action) {
             ? "Chose fight or bond"
             : `${translations[action.action]} - Select a character`,
         stagedAction: action.action,
-        canConfirm: action.action === REACT ? true : false,
+        canConfirm: action.action === REACT ? true : false, // TODO: Whats up with this line?
+        phase: action.action === CHAT ? SELECT_FIGHT_OR_BOND : SELECT_CHARACTER,
       };
 
     case CHARACTER_CLICK:
@@ -147,17 +175,13 @@ function reducer(state, action) {
           message: characterClickMessage(state.stagedAction, action.character),
           selectedCharacter: action.character,
           selectedRoom: null,
-          canConfirm: [
-            DROP_NEG_ONE,
-            DROP_NEG_TWO,
-            DROP_POS_ONE,
-            DROP_POS_TWO,
-          ].includes(state.stagedAction),
+          phase: selectPostCharacteClickPhase(state.stagedAction),
         };
       } else if (CHAT_ACTIONS.includes(state.stagedAction)) {
         return chatInteraction(state, action);
       }
       return state;
+
     case ROOM_CLICK:
       if (
         [MOVE_ONE, MOVE_TWO].includes(state.stagedAction) &&
@@ -169,7 +193,7 @@ function reducer(state, action) {
             translations[action.room]
           }?`,
           selectedRoom: action.room,
-          canConfirm: true,
+          phase: CONFIRMATION,
         };
       } else if (
         state.stagedAction === FIGHT &&
@@ -185,7 +209,7 @@ function reducer(state, action) {
             translations[action.room]
           }. Confirm?`,
           selectedRoom: action.room,
-          canConfirm: true,
+          phase: CONFIRMATION,
         };
       }
       return state;
@@ -196,7 +220,7 @@ function reducer(state, action) {
           ...state,
           dropperCharacter: action.dropperKey,
           message: `${state.selectedCharacter} react to ${action.dropperKey}. Confirm?`,
-          canConfirm: true,
+          phase: CONFIRMATION,
         };
       }
       return state;

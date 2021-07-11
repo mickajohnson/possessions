@@ -1,9 +1,8 @@
 import map from "lodash/map";
-import get from "lodash/get";
 import PropTypes from "prop-types";
 import * as Types from "../../types";
 
-import { REACT, characterImages } from "../../constants";
+import { characterImages, SELECT_DROP_PILE } from "../../constants";
 import { dropClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
@@ -12,21 +11,11 @@ import * as Styled from "./Drops.styles";
 
 function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   const dispatch = useDispatch();
-  const { stagedAction, dropperCharacter, selectedCharacter } = useBoardState();
-
-  const { characters } = G;
-
-  const reactingCharRoomKey = get(
-    characters,
-    [selectedCharacter, "location"],
-    null
-  );
+  const { dropperCharacter, selectedCharacter, phase } = useBoardState();
 
   const isOption =
-    selectedCharacter &&
-    stagedAction === REACT &&
-    roomKey === reactingCharRoomKey &&
-    isValidReact(G, reactingCharRoomKey, characterKey, selectedCharacter) &&
+    phase === SELECT_DROP_PILE &&
+    isValidReact(G, roomKey, characterKey, selectedCharacter) &&
     isActive;
 
   const isSelected = isOption && dropperCharacter === characterKey;

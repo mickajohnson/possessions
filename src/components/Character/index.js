@@ -1,9 +1,10 @@
 import {
   CHAT_ACTIONS,
-  NON_RESTRICTED_ACTIONS,
   FIGHT,
   REACT,
   characterImages,
+  SELECT_CHARACTER,
+  NON_RESTRICTED_ACTIONS,
 } from "../../constants";
 import { characterClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
@@ -26,15 +27,18 @@ export default function Character({ characterKey, G, isActive }) {
     selectedCharacter,
     chatCharacterOne,
     chatCharacterTwo,
+    phase,
   } = useBoardState();
+
+  console.log(phase);
 
   const characterSelected = selectedCharacter === characterKey;
   const inCharacterSelectionPhase =
-    NON_RESTRICTED_ACTIONS.includes(stagedAction) && selectedCharacter === null;
+    NON_RESTRICTED_ACTIONS.includes(stagedAction) && phase === SELECT_CHARACTER;
   const reactEligible =
     stagedAction === REACT &&
     isReactEligible(G, characterKey) &&
-    selectedCharacter === null;
+    phase === SELECT_CHARACTER;
 
   const inFirstChatSelectionPhase =
     CHAT_ACTIONS.includes(stagedAction) &&
@@ -72,6 +76,8 @@ export default function Character({ characterKey, G, isActive }) {
     backgroundColor = theme.colors.purple;
   } else if (isSelected) {
     backgroundColor = theme.colors.green;
+  } else if (isOption) {
+    backgroundColor = theme.colors.white;
   }
 
   const handleCharacterClick = (e, character) => {

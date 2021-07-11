@@ -1,5 +1,7 @@
 import some from "lodash/some";
 import reduce from "lodash/reduce";
+import get from "lodash/get";
+
 import { POSITIVE, NEGATIVE } from "../constants";
 
 const validMoveOnes = {
@@ -26,16 +28,15 @@ const validMoveTwos = {
   8: [2, 4, 6],
 };
 
-export const isValidMove = (moveValidator) => (
-  G,
-  characterKey,
-  locationKey
-) => {
-  const destinationIndex = G.roomOrder.indexOf(locationKey);
-  const originIndex = G.roomOrder.indexOf(G.characters[characterKey].location);
+export const isValidMove =
+  (moveValidator) => (G, characterKey, locationKey) => {
+    const destinationIndex = G.roomOrder.indexOf(locationKey);
+    const originIndex = G.roomOrder.indexOf(
+      G.characters[characterKey].location
+    );
 
-  return moveValidator[originIndex].includes(destinationIndex);
-};
+    return moveValidator[originIndex].includes(destinationIndex);
+  };
 
 export const isValidMoveOne = isValidMove(validMoveOnes);
 export const isValidMoveTwo = isValidMove(validMoveTwos);
@@ -54,11 +55,16 @@ export const isReactEligible = (G, characterKey) => {
   );
 };
 
-// TODO: Refactor these and reducer file to a stages system instead of this brittle checking
 export const isValidReact = (G, roomKey, dropperCharKey, reactingCharKey) => {
   const characterRoom = G.rooms[roomKey];
+  const reactingCharRoomKey = get(
+    G.characters,
+    [reactingCharKey, "location"],
+    null
+  );
 
   return (
+    roomKey === reactingCharRoomKey &&
     characterRoom &&
     characterRoom.drops[dropperCharKey].length > 0 &&
     dropperCharKey !== reactingCharKey

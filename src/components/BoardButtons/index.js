@@ -12,6 +12,7 @@ import {
   MOVE_ONE,
   MOVE_TWO,
   CHAT,
+  CONFIRMATION,
 } from "../../constants";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 import * as Types from "../../types";
@@ -27,7 +28,7 @@ export default function BoardButtons({ moves, currentCardAction }) {
     chatCharacterTwo,
     dropperCharacter,
     stagedAction,
-    canConfirm,
+    phase,
   } = useBoardState();
 
   const handleConfirmClick = () => {
@@ -87,7 +88,7 @@ export default function BoardButtons({ moves, currentCardAction }) {
     <Styled.Container>
       {stagedAction !== null && stagedAction !== CHAT ? (
         <>
-          {canConfirm ? (
+          {phase === CONFIRMATION ? (
             <Styled.ConfirmButton onClick={handleConfirmClick}>
               Confirm
             </Styled.ConfirmButton>
