@@ -13,6 +13,9 @@ import {
   MOVE_TWO,
   CHAT,
   CONFIRMATION,
+  SELECT_CHARACTER,
+  CHAT_ACTIONS,
+  SELECT_FIGHT_OR_BOND,
 } from "../../constants";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 import * as Types from "../../types";
@@ -84,6 +87,10 @@ export default function BoardButtons({ moves, currentCardAction }) {
     dispatch(selectAction(BOND));
   };
 
+  const initialPhase = CHAT_ACTIONS.includes(stagedAction)
+    ? SELECT_FIGHT_OR_BOND
+    : SELECT_CHARACTER;
+
   return (
     <Styled.Container>
       {stagedAction !== null && stagedAction !== CHAT ? (
@@ -93,9 +100,11 @@ export default function BoardButtons({ moves, currentCardAction }) {
               Confirm
             </Styled.ConfirmButton>
           ) : null}
-          <Styled.CancelButton onClick={handleCancelClick}>
-            Cancel
-          </Styled.CancelButton>
+          {phase !== initialPhase && (
+            <Styled.CancelButton onClick={handleCancelClick}>
+              Cancel
+            </Styled.CancelButton>
+          )}
         </>
       ) : null}
 
