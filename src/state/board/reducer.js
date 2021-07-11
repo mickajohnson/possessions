@@ -82,8 +82,7 @@ const translations = {
   [OFFICE]: "Office",
 };
 
-// TODO: merge chat interaction with the chracter click message and ther function
-const chatInteraction = (state, action) => {
+const chatCharacterClick = (state, action) => {
   if (state.phase === SELECT_CHARACTER) {
     return {
       ...state,
@@ -130,22 +129,23 @@ const chatInteraction = (state, action) => {
 };
 
 const characterClickMessage = (stagedAction, characterOne) => {
-  if ([MOVE_ONE, MOVE_TWO].includes(stagedAction)) {
-    return `${translations[stagedAction]} - ${characterOne} - Select a room.`;
-  } else if (
-    [DROP_NEG_ONE, DROP_NEG_TWO, DROP_POS_ONE, DROP_POS_TWO].includes(
-      stagedAction
-    )
-  ) {
-    return `${translations[stagedAction]} - ${characterOne} - Confirm?`;
-  } else if (stagedAction === REACT) {
-    return `${translations[stagedAction]} - ${characterOne} - Select dropped items.`;
-  } else {
-    return "";
+  switch (stagedAction) {
+    case MOVE_ONE:
+    case MOVE_TWO:
+      return `${translations[stagedAction]} - ${characterOne} - Select a room.`;
+    case DROP_POS_TWO:
+    case DROP_POS_ONE:
+    case DROP_NEG_TWO:
+    case DROP_NEG_ONE:
+      return `${translations[stagedAction]} - ${characterOne} - Confirm?`;
+    case REACT:
+      return `${translations[stagedAction]} - ${characterOne} - Select dropped items.`;
+    default:
+      return "";
   }
 };
 
-function selectPostCharacteClickPhase(stagedAction) {
+function characterClickPhase(stagedAction) {
   switch (stagedAction) {
     case MOVE_ONE:
     case MOVE_TWO:
@@ -183,13 +183,12 @@ function reducer(state, action) {
       if (NON_CHAT_ACTIONS.includes(state.stagedAction)) {
         return {
           ...state,
-          message: characterClickMessage(state.stagedAction, action.character),
           selectedCharacter: action.character,
-          selectedRoom: null,
-          phase: selectPostCharacteClickPhase(state.stagedAction),
+          message: characterClickMessage(state.stagedAction, action.character),
+          phase: characterClickPhase(state.stagedAction),
         };
       } else if (CHAT_ACTIONS.includes(state.stagedAction)) {
-        return chatInteraction(state, action);
+        return chatCharacterClick(state, action);
       }
       return state;
 
@@ -206,12 +205,7 @@ function reducer(state, action) {
           selectedRoom: action.room,
           phase: CONFIRMATION,
         };
-      } else if (
-        state.stagedAction === FIGHT &&
-        state.selectedCharacter &&
-        state.chatCharacterOne &&
-        state.chatCharacterTwo
-      ) {
+      } else if (state.stagedAction === FIGHT && state.phase === SELECT_ROOM) {
         return {
           ...state,
           message: `${translations[state.stagedAction]} - ${
@@ -226,7 +220,7 @@ function reducer(state, action) {
       return state;
 
     case DROP_CLICK:
-      if (state.stagedAction === REACT && state.selectedCharacter) {
+      if (state.stagedAction === REACT && state.phase === SELECT_DROP_PILE) {
         return {
           ...state,
           dropperCharacter: action.dropperKey,

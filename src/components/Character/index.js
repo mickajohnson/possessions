@@ -32,11 +32,11 @@ export default function Character({ characterKey, G, isActive }) {
     phase,
   } = useBoardState();
 
-  console.log(phase);
-
   const characterSelected = selectedCharacter === characterKey;
+
   const inCharacterSelectionPhase =
     NON_RESTRICTED_ACTIONS.includes(stagedAction) && phase === SELECT_CHARACTER;
+
   const reactEligible =
     stagedAction === REACT &&
     isReactEligible(G, characterKey) &&
