@@ -29,6 +29,7 @@ import {
   SELECT_FIGHT_OR_BOND,
   CONFIRMATION,
   SELECT_DROP_PILE,
+  SELECT_MOVER,
 } from "../../constants";
 
 export const MOVE_ONE_CLICK = "MOVE_ONE_CLICK";
@@ -81,39 +82,49 @@ const translations = {
   [OFFICE]: "Office",
 };
 
+// TODO: merge chat interaction with the chracter click message and ther function
 const chatInteraction = (state, action) => {
-  if (state.chatCharacterOne === null) {
+  if (state.phase === SELECT_CHARACTER) {
     return {
       ...state,
       message: `${translations[state.stagedAction]} - ${
         action.character
       }. Select other character.`,
       chatCharacterOne: action.character,
+      phase: SELECT_CHARACTER_2,
     };
-  } else if (state.chatCharacterTwo === null && state.stagedAction === BOND) {
+  } else if (
+    state.phase === SELECT_CHARACTER_2 &&
+    state.stagedAction === BOND
+  ) {
     return {
       ...state,
       message: `${translations[state.stagedAction]} - ${
         state.chatCharacterOne
       } & ${action.character}. Confirm?`,
       chatCharacterTwo: action.character,
-      canConfirm: true,
+      phase: CONFIRMATION,
     };
-  } else if (state.chatCharacterTwo === null && state.stagedAction === FIGHT) {
+  } else if (
+    state.phase === SELECT_CHARACTER_2 &&
+    state.stagedAction === FIGHT
+  ) {
     return {
       ...state,
       message: `${translations[state.stagedAction]} - ${
         state.chatCharacterOne
       } & ${action.character}. Which character will move?`,
       chatCharacterTwo: action.character,
+      phase: SELECT_MOVER,
     };
-  } else if (state.stagedAction === FIGHT) {
+  } else if (state.phase === SELECT_MOVER) {
     return {
       ...state,
       message: `${translations[state.stagedAction]} - ${
         state.chatCharacterOne
       } & ${state.chatCharacterTwo}. ${action.character} move to which room?`,
       selectedCharacter: action.character,
+      phase: SELECT_ROOM,
     };
   }
 };
@@ -185,7 +196,7 @@ function reducer(state, action) {
     case ROOM_CLICK:
       if (
         [MOVE_ONE, MOVE_TWO].includes(state.stagedAction) &&
-        state.selectedCharacter
+        state.phase === SELECT_ROOM
       ) {
         return {
           ...state,

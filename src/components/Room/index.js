@@ -15,14 +15,8 @@ import * as Styled from "./Room.styles";
 export default function Room({ roomKey, G, isActive }) {
   const dispatch = useDispatch();
 
-  const {
-    stagedAction,
-    selectedRoom,
-    selectedCharacter,
-    chatCharacterOne,
-    chatCharacterTwo,
-    phase,
-  } = useBoardState();
+  const { stagedAction, selectedRoom, selectedCharacter, phase } =
+    useBoardState();
 
   const { roomOrder, characters, rooms } = G;
 
@@ -50,16 +44,12 @@ export default function Room({ roomKey, G, isActive }) {
 
   const isFightAfterOption =
     stagedAction === FIGHT &&
-    selectedCharacter &&
-    chatCharacterOne &&
-    chatCharacterTwo &&
-    selectedRoom === null &&
+    phase === SELECT_ROOM &&
     isValidMoveOne({ roomOrder, characters }, selectedCharacter, roomKey);
 
   const isMoveTwoOption =
     stagedAction === MOVE_TWO &&
-    selectedCharacter &&
-    selectedRoom === null &&
+    phase === SELECT_ROOM &&
     isValidMoveTwo({ roomOrder, characters }, selectedCharacter, roomKey);
 
   const isOption =

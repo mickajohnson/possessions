@@ -5,6 +5,8 @@ import {
   characterImages,
   SELECT_CHARACTER,
   NON_RESTRICTED_ACTIONS,
+  SELECT_CHARACTER_2,
+  SELECT_MOVER,
 } from "../../constants";
 import { characterClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
@@ -42,18 +44,17 @@ export default function Character({ characterKey, G, isActive }) {
 
   const inFirstChatSelectionPhase =
     CHAT_ACTIONS.includes(stagedAction) &&
-    chatCharacterOne === null &&
+    phase === SELECT_CHARACTER &&
     isChatEligible(G.characters, characterKey);
 
   const inSecondChatSelectionPhase =
     CHAT_ACTIONS.includes(stagedAction) &&
-    chatCharacterOne &&
+    phase === SELECT_CHARACTER_2 &&
     isValidChat(G, chatCharacterOne, characterKey);
 
   const inFightMoverSelectionPhase =
     stagedAction === FIGHT &&
-    chatCharacterOne &&
-    chatCharacterTwo &&
+    phase === SELECT_MOVER &&
     [chatCharacterTwo, chatCharacterOne].includes(characterKey);
 
   const isOption =
