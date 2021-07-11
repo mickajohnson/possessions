@@ -12,14 +12,16 @@ export default function Commands({ G, playerID, ctx }) {
       {map(G.players, (player, playerKey) => (
         <Styled.CommandLineContainer key={playerKey}>
           <Styled.PlayerName
-            isActive={Number(ctx.currentPlayer) === Number(playerKey)}
+            isActivePlayer={Number(ctx.currentPlayer) === Number(playerKey)}
           >
             {player.name}
             {playerKey === playerID ? " (You!)" : ""}
           </Styled.PlayerName>
           <CommandLine
             commands={player.commands}
-            isActivePlayer={Number(ctx.currentPlayer) === Number(playerKey)}
+            isActivePlayerPlayer={
+              Number(ctx.currentPlayer) === Number(playerKey)
+            }
             currentCommandKey={G.currentCommandKey}
             isFaceUp={ctx.phase === EXECUTION || playerID === playerKey}
           />

@@ -14,7 +14,7 @@ import { useDispatch, useBoardState } from "../../state/board/reducer";
 import { isValidReact } from "../../game/helpers";
 import * as Styled from "./Drops.styles";
 
-function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
+function DropGroup({ dropGroup, G, characterKey, roomKey, isActivePlayer }) {
   const dispatch = useDispatch();
   const { dropperCharacter, selectedCharacter, phase, stagedAction } =
     useBoardState();
@@ -23,7 +23,7 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
     stagedAction === REACT &&
     [SELECT_DROP_PILE, CONFIRMATION].includes(phase) &&
     isValidReact(G, roomKey, characterKey, selectedCharacter) &&
-    isActive;
+    isActivePlayer;
 
   const isSelected = isOption && dropperCharacter === characterKey;
 
@@ -57,10 +57,10 @@ DropGroup.propTypes = {
   G: Types.G.isRequired,
   characterKey: PropTypes.string.isRequired,
   roomKey: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
 };
 
-export default function Drops({ drops, G, roomKey, isActive }) {
+export default function Drops({ drops, G, roomKey, isActivePlayer }) {
   return (
     <Styled.DropsContainer>
       {map(drops, (dropGroup, characterKey) =>
@@ -71,7 +71,7 @@ export default function Drops({ drops, G, roomKey, isActive }) {
             dropGroup={dropGroup}
             G={G}
             roomKey={roomKey}
-            isActive={isActive}
+            isActivePlayer={isActivePlayer}
           />
         ) : (
           <Styled.EmptyDropGroup key={characterKey} />
@@ -85,5 +85,5 @@ Drops.propTypes = {
   drops: PropTypes.objectOf(PropTypes.arrayOf(Types.drop)).isRequired,
   G: Types.G.isRequired,
   roomKey: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
 };

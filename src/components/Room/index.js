@@ -12,7 +12,7 @@ import Character from "../Character";
 
 import * as Styled from "./Room.styles";
 
-export default function Room({ roomKey, G, isActive }) {
+export default function Room({ roomKey, G, isActivePlayer }) {
   const dispatch = useDispatch();
 
   const { stagedAction, selectedRoom, selectedCharacter, phase } =
@@ -53,7 +53,8 @@ export default function Room({ roomKey, G, isActive }) {
     isValidMoveTwo({ roomOrder, characters }, selectedCharacter, roomKey);
 
   const isOption =
-    isActive && (isMoveOneOption || isMoveTwoOption || isFightAfterOption);
+    isActivePlayer &&
+    (isMoveOneOption || isMoveTwoOption || isFightAfterOption);
 
   let borderColor = null;
 
@@ -85,7 +86,7 @@ export default function Room({ roomKey, G, isActive }) {
                 characterKey={characterKey}
                 dispatch={dispatch}
                 G={G}
-                isActive={isActive}
+                isActivePlayer={isActivePlayer}
               />
             ))
           : null}
@@ -95,7 +96,7 @@ export default function Room({ roomKey, G, isActive }) {
         drops={rooms[roomKey].drops}
         G={G}
         roomKey={roomKey}
-        isActive={isActive}
+        isActivePlayer={isActivePlayer}
       />
     </Styled.RoomContainer>
   );
@@ -104,5 +105,5 @@ export default function Room({ roomKey, G, isActive }) {
 Room.propTypes = {
   G: Types.G.isRequired,
   roomKey: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
 };

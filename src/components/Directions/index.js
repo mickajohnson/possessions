@@ -6,7 +6,7 @@ import * as Styled from "./Directions.styles";
 
 export default function Directions({
   playerID,
-  isActive,
+  isActivePlayer,
   ctx,
   currentPlayerName,
   G,
@@ -17,7 +17,7 @@ export default function Directions({
   const canDraw = player.commands[G.currentCommandKey] !== null;
 
   let directions = "Waiting...";
-  if (isActive) {
+  if (isActivePlayer) {
     if (ctx.phase === EXECUTION) {
       directions = message;
     } else if (ctx.phase === PLANNING) {
@@ -40,7 +40,7 @@ export default function Directions({
 
 Directions.propTypes = {
   playerID: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
   ctx: Types.ctx.isRequired,
   G: Types.G.isRequired,
   currentPlayerName: PropTypes.string.isRequired,

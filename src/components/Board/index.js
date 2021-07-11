@@ -22,7 +22,7 @@ export default function PossessionsBoard({
   G,
   moves,
   playerID,
-  isActive,
+  isActive: isActivePlayer,
   ctx,
   matchData,
 }) {
@@ -34,13 +34,13 @@ export default function PossessionsBoard({
     if (
       !setPlayerNameRan.current &&
       ctx.phase === GOAL_SELECTION &&
-      isActive &&
+      isActivePlayer &&
       !G.players[playerID].name
     ) {
       moves.setPlayerNames(matchData);
       setPlayerNameRan.current = true;
     }
-  }, [isActive, ctx.phase, G.players, playerID, G, matchData, moves]);
+  }, [isActivePlayer, ctx.phase, G.players, playerID, G, matchData, moves]);
 
   if (ctx.gameover) {
     return <GameOverScreen gameoverData={ctx.gameover} G={G} />;
@@ -51,7 +51,7 @@ export default function PossessionsBoard({
       <GoalSelection
         goals={G.players[playerID].goals}
         removeGoal={moves.removeGoal}
-        isActive={isActive}
+        isActivePlayer={isActivePlayer}
         playerID={playerID}
         currentPlayerName={currentPlayerName}
       />
@@ -67,7 +67,7 @@ export default function PossessionsBoard({
           playerID={playerID}
           ctx={ctx}
           currentPlayerName={currentPlayerName}
-          isActive={isActive}
+          isActivePlayer={isActivePlayer}
         />
         <Styled.RoundTracker>Round {G.roundNumber} / 6</Styled.RoundTracker>
         <Styled.Sidebar>
@@ -84,7 +84,7 @@ export default function PossessionsBoard({
 
         <House
           G={G}
-          isActive={isActive}
+          isActivePlayer={isActivePlayer}
           ctx={ctx}
           playerID={playerID}
           skipTurn={moves.skipTurn}
@@ -95,14 +95,14 @@ export default function PossessionsBoard({
           moves={moves}
           G={G}
           ctx={ctx}
-          isActive={isActive}
+          isActivePlayer={isActivePlayer}
         />
         <Commands
           G={G}
           playerID={playerID}
           ctx={ctx}
           currentPlayerName={currentPlayerName}
-          isActive={isActive}
+          isActivePlayer={isActivePlayer}
         />
       </Styled.BoardContainer>
     </Provider>

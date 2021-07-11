@@ -29,7 +29,7 @@ Command.propTypes = {
 
 export default function CommandLine({
   commands,
-  isActivePlayer,
+  isActivePlayerPlayer,
   currentCommandKey,
   isFaceUp,
 }) {
@@ -38,7 +38,8 @@ export default function CommandLine({
       {map(commands, (command, commandKey) => (
         <Command
           isHappening={
-            isActivePlayer && Number(currentCommandKey) === Number(commandKey)
+            isActivePlayerPlayer &&
+            Number(currentCommandKey) === Number(commandKey)
           }
           isFaceUp={isFaceUp}
           key={`command${commandKey}`}
@@ -51,7 +52,7 @@ export default function CommandLine({
 
 CommandLine.propTypes = {
   commands: PropTypes.objectOf(Types.card).isRequired,
-  isActivePlayer: PropTypes.bool.isRequired,
+  isActivePlayerPlayer: PropTypes.bool.isRequired,
   currentCommandKey: PropTypes.number.isRequired,
   isFaceUp: PropTypes.bool.isRequired,
 };

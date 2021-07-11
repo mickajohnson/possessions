@@ -18,6 +18,11 @@ export default function FaceUpCard({ card, onDoubleClick, isPlayable }) {
 
 FaceUpCard.propTypes = {
   card: Types.card.isRequired,
-  onDoubleClick: PropTypes.func.isRequired,
-  isPlayable: PropTypes.bool.isRequired,
+  onDoubleClick: PropTypes.func,
+  isPlayable: PropTypes.bool,
+};
+
+FaceUpCard.defaultProps = {
+  onDoubleClick: () => {},
+  isPlayable: false,
 };

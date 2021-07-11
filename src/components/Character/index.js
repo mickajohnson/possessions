@@ -22,7 +22,7 @@ import {
 
 import * as Styled from "./Character.styles";
 
-export default function Character({ characterKey, G, isActive }) {
+export default function Character({ characterKey, G, isActivePlayer }) {
   const dispatch = useDispatch();
   const {
     stagedAction,
@@ -58,7 +58,7 @@ export default function Character({ characterKey, G, isActive }) {
     [chatCharacterTwo, chatCharacterOne].includes(characterKey);
 
   const isOption =
-    isActive &&
+    isActivePlayer &&
     (characterSelected ||
       inCharacterSelectionPhase ||
       inFirstChatSelectionPhase ||
@@ -100,7 +100,7 @@ export default function Character({ characterKey, G, isActive }) {
   );
 }
 Character.propTypes = {
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
   characterKey: PropTypes.string.isRequired,
   G: Types.G.isRequired,
 };

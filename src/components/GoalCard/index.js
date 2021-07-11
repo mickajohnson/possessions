@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export default function GoalCard({
   goal,
   onClick = () => {},
-  isActive = false,
+  isActivePlayer = false,
   selected = false,
   size = "large",
 }) {
@@ -18,7 +18,7 @@ export default function GoalCard({
       size={size}
       selected={selected}
       onClick={() => onClick(goal.id)}
-      selectable={isActive}
+      selectable={isActivePlayer}
       positive={goal.polarity === POSITIVE}
     >
       <Styled.DescriptionContainer>
@@ -46,7 +46,7 @@ export default function GoalCard({
 GoalCard.propTypes = {
   goal: Types.goal.isRequired,
   onClick: PropTypes.func,
-  isActive: PropTypes.bool,
+  isActivePlayer: PropTypes.bool,
   size: PropTypes.string,
   selected: PropTypes.bool,
 };

@@ -12,10 +12,10 @@ export default function ActivePlayerCardArea({
   moves,
   playerID,
   ctx,
-  isActive,
+  isActivePlayer,
 }) {
   const player = G.players[playerID];
-  const isPlayable = isActive && ctx.phase === PLANNING;
+  const isPlayable = isActivePlayer && ctx.phase === PLANNING;
 
   const handleProgramCard = (cardId) => {
     moves.programCard(playerID, cardId);
@@ -39,7 +39,7 @@ export default function ActivePlayerCardArea({
           </Styled.CardContainer>
         ))}
       </Styled.Hand>
-      {isActive && ctx.phase === EXECUTION ? (
+      {isActivePlayer && ctx.phase === EXECUTION ? (
         <BoardButtons
           currentCardAction={get(
             G.players[playerID].commands[G.currentCommandKey],
@@ -57,7 +57,7 @@ export default function ActivePlayerCardArea({
 ActivePlayerCardArea.propTypes = {
   G: Types.G.isRequired,
   ctx: Types.ctx.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
   playerID: PropTypes.string.isRequired,
   moves: Types.moves.isRequired,
 };

@@ -11,7 +11,6 @@ export const CardContainer = styled.div`
 export const Deck = styled.div`
   height: 110px;
   width: 80px;
-  background-color: white;
   margin-right: 10px;
   position: relative;
 `;
@@ -19,6 +18,7 @@ export const Deck = styled.div`
 export const DeckImage = styled.img`
   height: 110px;
   width: 80px;
+  border-radius: 6px;
 `;
 
 export const Hand = styled.div`

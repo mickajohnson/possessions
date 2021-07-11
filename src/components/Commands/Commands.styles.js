@@ -11,8 +11,8 @@ export const Container = styled.div`
 `;
 
 export const PlayerName = styled.p`
-  color: ${({ theme, isActive }) =>
-    isActive ? theme.colors.redOrange : theme.colors.blue};
+  color: ${({ theme, isActivePlayer }) =>
+    isActivePlayer ? theme.colors.redOrange : theme.colors.blue};
 `;
 
 export const CommandLineContainer = styled.div`

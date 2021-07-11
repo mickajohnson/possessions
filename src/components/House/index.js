@@ -18,11 +18,11 @@ import { usePreviousValue } from "beautiful-react-hooks";
 
 import * as Styled from "./House.styles";
 
-export default function House({ G, ctx, isActive, playerID, skipTurn }) {
+export default function House({ G, ctx, isActivePlayer, playerID, skipTurn }) {
   const { roomOrder } = G;
   const { stagedAction } = useBoardState();
   const dispatch = useDispatch();
-  const prevIsActive = usePreviousValue(isActive);
+  const previsActivePlayer = usePreviousValue(isActivePlayer);
 
   React.useEffect(() => {
     const currentCardAction = get(
@@ -32,8 +32,8 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
     );
 
     if (
-      isActive &&
-      !prevIsActive &&
+      isActivePlayer &&
+      !previsActivePlayer &&
       stagedAction === null &&
       ctx.phase === EXECUTION &&
       currentCardAction
@@ -41,19 +41,19 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
       dispatch(selectAction(currentCardAction));
     }
   }, [
-    isActive,
+    isActivePlayer,
     ctx.phase,
     stagedAction,
     dispatch,
     G.currentCommandKey,
     G.players,
     playerID,
-    prevIsActive,
+    previsActivePlayer,
   ]);
 
   React.useEffect(() => {
     const onChatAndNoneValid =
-      isActive &&
+      isActivePlayer &&
       [CHAT, FIGHT, BOND].includes(stagedAction) &&
       ctx.phase === EXECUTION &&
       every(
@@ -62,7 +62,7 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
       );
 
     const onReactAndNoneValid =
-      isActive &&
+      isActivePlayer &&
       stagedAction === REACT &&
       ctx.phase === EXECUTION &&
       every(
@@ -77,12 +77,25 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
         dispatch(resetAction);
       }, 1500);
     }
-  }, [isActive, ctx.phase, stagedAction, dispatch, G, playerID, skipTurn]);
+  }, [
+    isActivePlayer,
+    ctx.phase,
+    stagedAction,
+    dispatch,
+    G,
+    playerID,
+    skipTurn,
+  ]);
 
   return (
     <Styled.HouseContainer>
       {roomOrder.map((roomKey) => (
-        <Room key={roomKey} roomKey={roomKey} G={G} isActive={isActive} />
+        <Room
+          key={roomKey}
+          roomKey={roomKey}
+          G={G}
+          isActivePlayer={isActivePlayer}
+        />
       ))}
     </Styled.HouseContainer>
   );
@@ -91,7 +104,7 @@ export default function House({ G, ctx, isActive, playerID, skipTurn }) {
 House.propTypes = {
   G: Types.G.isRequired,
   ctx: Types.ctx.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
   playerID: PropTypes.string.isRequired,
   skipTurn: PropTypes.func.isRequired,
 };

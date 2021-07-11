@@ -10,25 +10,25 @@ import PropTypes from "prop-types";
 export default function GoalSelection({
   goals,
   removeGoal,
-  isActive,
+  isActivePlayer,
   playerID,
   currentPlayerName,
 }) {
   const [selectedGoalId, setSelectedGoalId] = React.useState(null);
 
   const handleConfirmClick = () => {
-    if (isActive) {
+    if (isActivePlayer) {
       removeGoal(playerID, selectedGoalId);
     }
   };
 
   const handleCardClick = (goalId) => {
-    if (isActive) {
+    if (isActivePlayer) {
       setSelectedGoalId(goalId);
     }
   };
 
-  const direction = isActive
+  const direction = isActivePlayer
     ? "Select 1 Card to Remove"
     : `Waiting${currentPlayerName ? ` on ${currentPlayerName}` : ""}...`;
 
@@ -46,12 +46,12 @@ export default function GoalSelection({
               key={goal.id}
               goal={goal}
               onClick={handleCardClick}
-              isActive={isActive}
+              isActivePlayer={isActivePlayer}
               selected={selectedGoalId === goal.id}
             />
           ))}
         </Styled.GoalsContainer>
-        {isActive ? (
+        {isActivePlayer ? (
           <Styled.RemoveButton
             disabled={!selectedGoalId}
             onClick={handleConfirmClick}
@@ -67,7 +67,7 @@ export default function GoalSelection({
 GoalSelection.propTypes = {
   goals: PropTypes.arrayOf(Types.goal).isRequired,
   removeGoal: PropTypes.func.isRequired,
-  isActive: PropTypes.bool.isRequired,
+  isActivePlayer: PropTypes.bool.isRequired,
   playerID: PropTypes.string.isRequired,
   currentPlayerName: PropTypes.string.isRequired,
 };
