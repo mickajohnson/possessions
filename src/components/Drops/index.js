@@ -2,7 +2,12 @@ import map from "lodash/map";
 import PropTypes from "prop-types";
 import * as Types from "../../types";
 
-import { characterImages, SELECT_DROP_PILE } from "../../constants";
+import {
+  characterImages,
+  CONFIRMATION,
+  SELECT_DROP_PILE,
+  REACT,
+} from "../../constants";
 import { dropClickAction } from "../../state/board/actions";
 import { useDispatch, useBoardState } from "../../state/board/reducer";
 
@@ -11,10 +16,12 @@ import * as Styled from "./Drops.styles";
 
 function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
   const dispatch = useDispatch();
-  const { dropperCharacter, selectedCharacter, phase } = useBoardState();
+  const { dropperCharacter, selectedCharacter, phase, stagedAction } =
+    useBoardState();
 
   const isOption =
-    phase === SELECT_DROP_PILE &&
+    stagedAction === REACT &&
+    [SELECT_DROP_PILE, CONFIRMATION].includes(phase) &&
     isValidReact(G, roomKey, characterKey, selectedCharacter) &&
     isActive;
 
@@ -33,7 +40,7 @@ function DropGroup({ dropGroup, G, characterKey, roomKey, isActive }) {
 
   return (
     <Styled.DropContainer
-      isOption={isSelected || isOption}
+      isOption={isSelected || (isOption && phase !== CONFIRMATION)}
       borderColor={borderColor}
       onClick={handleDropGroupClick}
     >
