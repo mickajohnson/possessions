@@ -15,7 +15,7 @@ const Button = styled.button`
 `;
 
 export const CancelButton = styled(Button)`
-  background-color: ${({ theme }) => "grey"};
+  background-color: var(--color-grey);
 `;
 
 export const ConfirmButton = styled(Button)`

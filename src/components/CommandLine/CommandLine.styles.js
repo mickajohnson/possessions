@@ -12,25 +12,21 @@ export const CommandLineContainer = styled.div`
   align-items: center;
 `;
 
-export const CommandContainer = styled.div`
+const cardContainer = css`
   border: ${({ isHappening }) =>
     isHappening ? "1px solid var(--color-green)" : "none"};
   border-radius: 6px;
+`;
+
+export const CommandContainer = styled.div`
+  ${cardContainer}
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  ${({ isFaceDown }) =>
-    isFaceDown
-      ? css`
-          background-image: url(/card_back.png);
-        `
-      : ""}
   background-color: white;
 `;
 
 export const FaceDownCard = styled.img`
-  border: ${({ isHappening }) =>
-    isHappening ? "1px solid var(--color-green)" : "none"};
-  border-radius: 6px;
+  ${cardContainer}
 `;

@@ -12,10 +12,7 @@ function Command({ command, isHappening, isFaceUp }) {
     );
   }
   return (
-    <Styled.CommandContainer
-      isFaceDown={!isFaceUp && command}
-      isHappening={isHappening}
-    >
+    <Styled.CommandContainer isHappening={isHappening}>
       {command && isFaceUp ? <FaceUpCard card={command} /> : null}
     </Styled.CommandContainer>
   );
