@@ -54,9 +54,9 @@ export default function LobbyScreen({lobbyClient, storedPlayerData}) {
     });
   }, 500);
 
-  const handleCopyClick = () => {
-    navigator.clipboard.writeText(match.matchID);
-  };
+  // const handleCopyClick = () => {
+  //   navigator.clipboard.writeText(match.matchID);
+  // };
 
   if (match.players) {
     return (
