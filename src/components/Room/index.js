@@ -61,7 +61,7 @@ export default function Room({ roomKey, G, isActivePlayer }) {
   if (selectedRoom === roomKey) {
     borderColor = "var(--color-green)";
   } else if (isOption) {
-    borderColor = "var(--color-blue)";
+    borderColor = "var(--color-yellow)";
   }
 
   const handleRoomClick = () => {
