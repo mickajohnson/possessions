@@ -28,7 +28,8 @@ export default function CreateGameScreen({ onJoin, lobbyClient }) {
   const buttonDisabled = name.length === 0 || !numberOfPlayers;
   return (
     <Styled.SplitContainer>
-      <Styled.PinkSpace />
+      <Styled.LogoImage src={"/logo.png"} alt="" />
+
       <Styled.FormContainer>
         <Styled.FlavorText>Create Game...</Styled.FlavorText>
         <Styled.Input

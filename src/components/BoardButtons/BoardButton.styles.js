@@ -24,10 +24,12 @@ export const ConfirmButton = styled(Button)`
 
 export const FightButton = styled(Button)`
   background-color: var(--color-redOrange);
+  color: var(--color-white);
 `;
 
 export const BondButton = styled(Button)`
   background-color: var(--color-green);
+  color: var(--color-white);
 `;
 
 export const Container = styled.div`

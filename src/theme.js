@@ -13,6 +13,7 @@ const theme = {
     lightGreen: "#A4CBB4",
     negativePink: "#FFADAD",
     white: "#FFF",
+    teal: "#76A5A4",
   },
 };
 

@@ -32,7 +32,8 @@ export default function JoinScreen({ onJoin, lobbyClient }) {
 
   return (
     <Styled.SplitContainer>
-      <Styled.PinkSpace />
+      <Styled.LogoImage src={"/logo.png"} alt="" />
+
       <Styled.FormContainer>
         <Styled.FlavorText>Join a Game...</Styled.FlavorText>
 

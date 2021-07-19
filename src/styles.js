@@ -83,10 +83,8 @@ export const ApiErrorMessage = styled.p`
   font-size: 1.3em;
 `;
 
-export const PinkSpace = styled.div`
-  background-color: var(--color-pink);
-  height: 100%;
-  width: 100%;
+export const LogoImage = styled.img`
+  max-height: 100vh;
 `;
 
 export const GlobalStyles = createGlobalStyle`
@@ -102,6 +100,8 @@ export const GlobalStyles = createGlobalStyle`
     --color-green: ${theme.colors.green};
     --color-pink: ${theme.colors.pink};
     --color-negativePink: ${theme.colors.negativePink};
+    --color-white: ${theme.colors.white};
+    --color-teal: ${theme.colors.teal};
 
     --font-seriff: "Domine", seriff;
     --font-sans-seriff:"Staatliches", -apple-system, BlinkMacSystemFont, "Segoe UI",

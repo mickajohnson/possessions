@@ -11,17 +11,17 @@ import {
   LIVING_ROOM,
 } from "../../constants";
 
-const roomKeysToImage = {
-  [DINING_ROOM]: "/dining_room.png",
-  [KITCHEN]: "/kitchen.png",
-  [GRANDPAS_ROOM]: "/grandpas_room.png",
-  [DAUGHTERS_ROOM]: "/daughters_room.png",
-  [PARENTS_ROOM]: "/parents_room.png",
-  [OFFICE]: "/office.png",
-  [BATHROOM]: "/bathroom.png",
-  [GARAGE]: "/garage.png",
-  [LIVING_ROOM]: "/living_room.png",
-};
+// const roomKeysToImage = {
+//   [DINING_ROOM]: "/dining_room.png",
+//   [KITCHEN]: "/kitchen.png",
+//   [GRANDPAS_ROOM]: "/grandpas_room.png",
+//   [DAUGHTERS_ROOM]: "/daughters_room.png",
+//   [PARENTS_ROOM]: "/parents_room.png",
+//   [OFFICE]: "/office.png",
+//   [BATHROOM]: "/bathroom.png",
+//   [GARAGE]: "/garage.png",
+//   [LIVING_ROOM]: "/living_room.png",
+// };
 
 const roomBannerColors = {
   [DINING_ROOM]: "#393280",
@@ -53,9 +53,7 @@ export const RoomContainer = styled.div`
   border: ${({ borderColor }) =>
     borderColor ? `3px solid ${borderColor}` : null};
   padding-top: 10px;
-  background-image: url(${({ roomKey }) => roomKeysToImage[roomKey]});
-  background-color: ${({ theme }) =>
-    theme.colors.gray} /* Used if the image is unavailable */
+  background-color: var(--color-teal);
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover;
