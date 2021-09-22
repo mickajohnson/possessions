@@ -1,26 +1,26 @@
-import * as React from "react";
-import { useInterval } from "beautiful-react-hooks";
-import every from "lodash/every";
-import { useHistory, useParams, Redirect } from "react-router-dom";
-import * as Types from "../../types";
+import * as React from 'react';
+import {useInterval} from 'beautiful-react-hooks';
+import every from 'lodash/every';
+import {useHistory, useParams, Redirect} from 'react-router-dom';
+import * as Types from '../../types';
 
-import * as Styled from "./LobbyScreen.styles";
+import * as Styled from './LobbyScreen.styles';
 
-export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
+export default function LobbyScreen({lobbyClient, storedPlayerData}) {
   const [match, setMatch] = React.useState({});
   const [error, setError] = React.useState(null);
-  const [loadingEllipsis, setLoadingEllipsis] = React.useState(".");
+  const [loadingEllipsis, setLoadingEllipsis] = React.useState('.');
 
-  const { matchID, playerID } = useParams();
+  const {matchID, playerID} = useParams();
   const history = useHistory();
 
   const getMatchInfo = React.useCallback(async () => {
     try {
-      const matchInfo = await lobbyClient.getMatch("possessions", matchID);
+      const matchInfo = await lobbyClient.getMatch('possessions', matchID);
       setMatch(matchInfo);
       if (error) setError(null);
     } catch {
-      setError("Unable to connect to server.");
+      setError('Unable to connect to server.');
     }
   }, [error, lobbyClient, matchID]);
 
@@ -31,7 +31,7 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
     ) {
       getMatchInfo();
     } else {
-      history.push("/");
+      history.push('/');
     }
   }, [storedPlayerData, matchID, playerID, history, getMatchInfo]);
 
@@ -48,15 +48,15 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
   useInterval(() => {
     setLoadingEllipsis((currentEllipsis) => {
       if (currentEllipsis.length >= 3) {
-        return "";
+        return '';
       }
       return `${currentEllipsis}.`;
     });
   }, 500);
 
-  const handleCopyClick = () => {
-    navigator.clipboard.writeText(match.matchID);
-  };
+  // const handleCopyClick = () => {
+  //   navigator.clipboard.writeText(match.matchID);
+  // };
 
   if (match.players) {
     return (
@@ -66,13 +66,13 @@ export default function LobbyScreen({ lobbyClient, storedPlayerData }) {
             Waiting for all players to join{loadingEllipsis}
           </Styled.Header>
           <Styled.MatchName>Match Code: {match.matchID}</Styled.MatchName>
-          <Styled.Button onClick={handleCopyClick}>
+          {/* <Styled.Button onClick={handleCopyClick}>
             Copy Match Code
-          </Styled.Button>
+          </Styled.Button> */}
           {match.players.map((player) => (
             <Styled.Player key={player.id}>
-              <strong>Player {player.id + 1}:</strong>{" "}
-              {player.name ? player.name : "Waiting..."}
+              <strong>Player {player.id + 1}:</strong>{' '}
+              {player.name ? player.name : 'Waiting...'}
             </Styled.Player>
           ))}
           <Styled.ApiErrorMessage>{error}</Styled.ApiErrorMessage>
